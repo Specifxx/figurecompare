@@ -70,6 +70,10 @@ test("catalogue numbers where stores put them", () => {
   assert.equal(numberOf("(Stellar Blade) EVE | Nendoroid #2932", "nendoroid"), "2932");
   assert.equal(numberOf("DEATH NOTE: Nendoroid Misa Amane 2.0", "nendoroid"), null);
   assert.equal(numberOf("Kaiju No. 8 Nendoroid Kafka Hibino", "nendoroid"), null);
+  assert.equal(numberOf("Avatar The Last Airbender Nendoroid - Aang - 1867", "nendoroid"), "1867");
+  assert.equal(numberOf("Nendoroid 0544 Kirby", "nendoroid"), "544");
+  assert.equal(numberOf("Nendoroid Hatsune Miku 3.0", "nendoroid"), null);
+  assert.equal(numberOf("Hatsune Miku GT Project Nendoroid Racing Miku 2024", "nendoroid"), null);
 });
 
 test("every store's title becomes one name shape", () => {
@@ -84,4 +88,7 @@ test("every store's title becomes one name shape", () => {
   assert.equal(t("Oreimo POP UP PARADE Kuroneko Pvc Fig", "pop-up-parade", null), "POP UP PARADE Oreimo - Kuroneko");
   assert.equal(t("Mr Love Queens Choice Nendoroid Zeyan Li (re-run)", "nendoroid", null), "Nendoroid Mr Love Queens Choice - Zeyan Li");
   assert.equal(t("Kaiju No. 8 Nendoroid Gen Narumi", "nendoroid", "2883"), "Nendoroid Kaiju No. 8 - Gen Narumi");
+  assert.equal(t("Avatar The Last Airbender Nendoroid - Aang - 1867", "nendoroid", "1867"), "Nendoroid Avatar The Last Airbender - Aang");
+  assert.equal(t("Nendoroid 0544 Kirby", "nendoroid", "544"), "Nendoroid Kirby");
+  assert.equal(t("Hatsune Miku - Nendoroid Hatsune Miku - (NT Ver.)", "nendoroid", null), "Nendoroid Hatsune Miku - Hatsune Miku (NT Ver.)");
 });

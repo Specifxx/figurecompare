@@ -47,8 +47,10 @@ export function numberOf(title: string, line: LineKey): string | null {
     // store that leads with it: "2345 Frieren Nendoroid".
     const m =
       title.match(/nendoroid\s*(?:[-–:]\s*)?(?:no\.?|#)?\s*(\d{2,4}(?:-?(?:a|b|c|d|dx|sp))?)\b(?!\.\d)/i) ??
-      title.match(/^\s*(?:#|no\.?\s*)?(\d{3,4}(?:-?(?:dx|sp))?)\b(?!\.\d)\s+(?=\D)/i);
-    return m ? m[1].toUpperCase().replace(/^(\d+)([A-Z])/, "$1-$2") : null;
+      title.match(/^\s*(?:#|no\.?\s*)?(\d{3,4}(?:-?(?:dx|sp))?)\b(?!\.\d)\s+(?=\D)/i) ??
+      // "... Nendoroid Aang - 1867", "Nendoroid Death Note L 2.0 - 1200"
+      title.match(/\s[-–#]\s*(\d{3,4}(?:-?dx)?)\s*$/i);
+    return m ? m[1].toUpperCase().replace(/^0+(?=\d)/, "").replace(/^(\d+)([A-Z])/, "$1-$2") : null;
   }
   if (line === "figma") {
     const m = title.match(/figma\s*(?:no\.?|#)?\s*((?:sp-|ex-)?\d{1,3}(?:-?(?:dx|a|b))?)\b/i);
@@ -122,7 +124,7 @@ export function tidyName(title: string, line: LineKey, number: string | null): s
     .replace(/\banime\s*collectibles?\b|\bcollectible\s*figure\b/gi, " ")
     .replace(/\bpvc\s*fig(?:ure)?\b\.?|\b(?:non-?scale\s+)?(?:pvc\s+)?figure\b/gi, " ");
   if (number) {
-    const n = number.replace(/-/g, "-?").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const n = "0*" + number.replace(/-/g, "-?").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     t = t.replace(new RegExp(`(?:#|\\bno\\.?\\s*)?(?<![\\w.])${n}\\b(?!\\.\\d)\\s*:?`, "gi"), " ");
   }
   if (line !== "pop-up-parade") t = t.replace(/^\s*\d{3,4}\s+(?=\D)/, " ");
@@ -130,7 +132,7 @@ export function tidyName(title: string, line: LineKey, number: string | null): s
     .split(LINE_TOKEN[line])
     .map((p) => p.replace(/\s*[|–—]\s*/g, " - ").replace(/\s{2,}/g, " ").replace(SEP, "").trim())
     .filter(Boolean);
-  let rest = parts.join(" - ").replace(/(?:\s-\s)+/g, " - ").replace(SEP, "");
+  let rest = parts.join(" - ").replace(/(?:\s-\s)+/g, " - ").replace(/\s-\s(?=[([])/g, " ").replace(SEP, "");
   // "(Series) Character" → "Character (Series)".
   const lead = rest.match(/^\(([^)]+)\)\s*(.+)$/);
   if (lead) rest = `${lead[2]} (${lead[1]})`;

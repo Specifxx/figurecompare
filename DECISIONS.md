@@ -61,3 +61,22 @@ Pastel candy palette with a night-sky theme, Fredoka + M PLUS Rounded 1c (self-h
 Google Fonts request), sticker cards, a ribbon header, sparkles, kaomoji and an original mascot, Kira. No
 character art, official logos or screenshots anywhere: the owner's no-trademark rule, and copyright. Motion
 stops under `prefers-reduced-motion`. No pop-ups (family pop-up policy).
+
+## What the first real imports taught — 2026-10-28
+
+* **One shop under two names counts once.** Good Games and The Games Capital (AU) served the same 269
+  listings at the same prices: 196 of the first 685 figures were "compared at two stores" that were one
+  stock. The Games Capital is out of the store list, and `dropMirrors` (`src/lib/merge.ts`) drops any store
+  whose barcode-and-price pairs are 80%+ another store's in the same region, so the next franchise twin is
+  caught without anyone noticing it first. After it: 494 honest figures.
+* **One name shape.** Stores write "2014 Chainsaw Man Nendoroid Kobeni", "(Stellar Blade) EVE | Nendoroid
+  #2932", "Nendoroid - 1281 Waddle Dee - Kirby". `tidyName` makes every figure "<Line> <rest>" with the
+  catalogue number taken out (it has its own chip, and it ends the slug). Slugs were reset once, before
+  launch; from now on they are kept forever.
+* **Barcodes are cached for good.** Keying the lookup cache on Shopify's `updated_at` re-asked for every
+  barcode on the second run (stores bump it on each stock sync). A found barcode is kept; a product with
+  none is asked again after 30 days. The 2,400-a-day budget now goes to products never looked up: Solaris
+  Japan, Otaku Mart and Super Anime Store fill in over the first few days.
+* **The ops monitor** warns when a store's figure collections come back empty, not when a store simply
+  carries none of our lines (about 25 of the 72 do today; they are read daily and cost a second or two).
+  The stores page lists only stores with a figure on the site.
