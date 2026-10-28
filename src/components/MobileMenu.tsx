@@ -39,7 +39,7 @@ export function MobileMenu({
         onClick={() => setOpen(true)}
         aria-expanded={open}
         aria-controls="site-menu"
-        className="grid h-9 w-9 place-items-center rounded-full border-2 border-line bg-card text-lg text-ink transition hover:border-pink"
+        className="grid h-9 w-9 place-items-center rounded-lg border border-line bg-card text-lg text-ink transition hover:border-soft"
       >
         <span aria-hidden>☰</span>
         <span className="sr-only">Menu</span>
@@ -62,12 +62,12 @@ export function MobileMenu({
             <nav className="absolute inset-y-0 right-0 flex w-[min(22rem,88vw)] flex-col overflow-y-auto overscroll-contain border-l-2 border-line bg-bg p-4 shadow-sticker">
               <div className="mb-3 flex items-center justify-between">
                 <p className="font-display text-lg font-bold text-ink">
-                  Menu ✦
+                  Menu
                 </p>
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="grid h-9 w-9 place-items-center rounded-full border-2 border-line bg-card text-ink hover:border-pink"
+                  className="grid h-9 w-9 place-items-center rounded-lg border border-line bg-card text-ink hover:border-soft"
                   aria-label="Close menu"
                 >
                   ✕
@@ -76,9 +76,9 @@ export function MobileMenu({
               <Link
                 href="/"
                 prefetch={false}
-                className={`mb-3 flex items-center gap-2 rounded-xl px-2 py-2 text-base ${pathname === "/" ? "bg-pink-pale font-bold" : "hover:bg-pink-pale/60"}`}
+                className={`mb-3 flex items-center gap-2 rounded-lg px-2 py-2 text-base ${pathname === "/" ? "bg-lilac-pale font-semibold" : "hover:bg-lilac-pale"}`}
               >
-                <span aria-hidden>🏠</span> Home
+                Home
               </Link>
               {groups.map((g) => (
                 <div key={g.title} className="mb-4">
@@ -94,9 +94,8 @@ export function MobileMenu({
                           aria-current={
                             isActive(pathname, l.href) ? "page" : undefined
                           }
-                          className={`flex items-center gap-2 rounded-xl px-2 py-2 text-base text-ink ${isActive(pathname, l.href) ? "bg-pink-pale font-bold" : "hover:bg-pink-pale/60"}`}
+                          className={`flex items-center gap-2 rounded-lg px-2 py-2 text-base text-ink ${isActive(pathname, l.href) ? "bg-lilac-pale font-semibold" : "hover:bg-lilac-pale"}`}
                         >
-                          <span aria-hidden>{l.emoji}</span>
                           <span className="flex-1">{l.label}</span>
                           {l.count != null && (
                             <span className="text-xs text-soft">{l.count}</span>
@@ -118,7 +117,7 @@ export function MobileMenu({
                         type="button"
                         onClick={() => setRegion(r.code)}
                         aria-pressed={region === r.code}
-                        className={`w-full rounded-xl border-2 px-2 py-1.5 text-left text-sm ${region === r.code ? "border-ink bg-pink text-white" : "border-line bg-card text-ink hover:border-pink"}`}
+                        className={`w-full rounded-lg border px-2 py-1.5 text-left text-sm ${region === r.code ? "border-pink bg-pink text-white" : "border-line bg-card text-ink hover:border-pink"}`}
                       >
                         {r.flag} {r.name}
                       </button>

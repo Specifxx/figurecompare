@@ -9,8 +9,8 @@ import type { EbayPick, Figure, Offer } from "@/lib/types";
 import { OutLink } from "./OutLink";
 
 const STOCK: Record<Offer["st"], { label: string; cls: string }> = {
-  in: { label: "In stock ♡", cls: "bg-mint-pale text-mint" },
-  pre: { label: "Pre-order ✎", cls: "bg-sky-pale text-sky" },
+  in: { label: "In stock", cls: "bg-mint-pale text-mint" },
+  pre: { label: "Pre-order", cls: "bg-lilac-pale text-ink" },
   out: { label: "Sold out", cls: "bg-line/50 text-soft" },
 };
 
@@ -74,7 +74,7 @@ export function PriceTable({ f, region, ebay, placement = "table" }: { f: Figure
           <li key={o.s}>
             <Row
               name={storeName(o.s)}
-              sub={o === best ? "Cheapest store ✧" : null}
+              sub={o === best ? "Cheapest store" : null}
               price={money(o.p, region)}
               status={o.st}
               href={storeUrl(o.s, o.u)}
@@ -113,7 +113,7 @@ function Row({
   const s = status ? STOCK[status] : null;
   return (
     <div
-      className={`flex items-center gap-3 rounded-2xl border-2 px-3 py-2.5 ${tint} ${
+      className={`flex items-center gap-3 rounded-xl border px-3 py-2.5 ${tint} ${
         highlight ? "border-pink shadow-sticker" : "border-line"
       } ${status === "out" ? "opacity-70" : ""}`}
     >

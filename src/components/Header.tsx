@@ -17,8 +17,7 @@ const NAV = [
 
 export function Header({ groups }: { groups: NavGroup[] }) {
   return (
-    <header className="sticky top-0 z-40 border-b-2 border-line bg-bg/85 backdrop-blur">
-      <div className="ribbon h-1.5 w-full" aria-hidden />
+    <header className="sticky top-0 z-40 border-b border-line bg-card/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-2.5 xl:max-w-[1440px]">
         <Link href="/" prefetch={false} className="shrink-0" aria-label="FigureCompare home">
           <Logo />
@@ -40,8 +39,8 @@ export function Header({ groups }: { groups: NavGroup[] }) {
         <ul className="flex gap-1.5 whitespace-nowrap">
           {NAV.map((n) => (
             <li key={n.href}>
-              <Link prefetch={false} href={n.href} className="chip border-2 border-line bg-card px-3 py-1 text-sm text-ink transition hover:-translate-y-0.5 hover:border-pink hover:bg-pink-pale">
-                <span aria-hidden>{n.emoji}</span> {n.label}
+              <Link prefetch={false} href={n.href} className="chip border border-line bg-card px-3 py-1 text-sm text-ink transition hover:border-soft">
+                {n.label}
               </Link>
             </li>
           ))}

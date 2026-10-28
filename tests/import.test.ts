@@ -54,6 +54,19 @@ test("a deposit or pre-owned variant is never the offer", () => {
   assert.ok("cents" in l && l.cents === 8995);
 });
 
+test("Solaris Japan's \"Pre Owned\" variant (a space, no hyphen) is never the offer", () => {
+  const l = listingFromProduct(
+    shop,
+    product({
+      variants: [
+        { id: 1, title: "Brand New", price: "29.77", available: true, sku: "4545784061121" },
+        { id: 2, title: "Pre Owned", price: "18.50", available: true, sku: "4545784061121" },
+      ],
+    }),
+  );
+  assert.ok("cents" in l && l.cents === 2977);
+});
+
 test("yen prices are whole yen", () => {
   const jp: Store = { ...shop, region: "JP" };
   const l = listingFromProduct(jp, product({ variants: [{ id: 9, title: "Default Title", price: "6800", available: true, sku: "4580590174528" }] }));

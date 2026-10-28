@@ -97,3 +97,18 @@ stops under `prefers-reduced-motion`. No pop-ups (family pop-up policy).
   and drawn at build per region like the prices (no function, no request). Placed below the content,
   never beside a store's buy button, never a pop-up or a banner across the top. NZ searches go to
   ebay.com.au, which ships there. `tests/site.test.ts` fails on a page without one.
+
+## A grown-up look — 2026-10-28 (owner)
+
+* **The candy design was too cute.** The owner wants FigureCompare to read as a professional tool for teens and
+  adults of any gender, not a kids' site. Now: neutral greys, one red accent, green only for savings, Inter, flat
+  cards with thin borders, product photos on white. The mascot, sparkles, kaomoji, emoji icons, the savings
+  marquee and the rainbow and polka-dot backgrounds are gone. The light anime touch left is the star in the logo
+  and a フィギュア kicker on the home page. The colour tokens keep their old names (`--pink` is the red), so no
+  component had to learn new ones. This replaces "Design — 2026-10-28" above.
+* **The link preview shows the product.** `scripts/og/render.mjs` draws `src/app/opengraph-image.jpg` from
+  today's data: the figure with the most in-stock stores in one region, five store prices, the lowest marked, the
+  saving under them. Run it by hand and look before committing; Reddit and X keep a post's first thumbnail.
+* **"Pre Owned" with a space is pre-owned.** Solaris Japan names its used variant "Pre Owned"; the variant and
+  title filters only knew "pre-owned"/"preowned". Today the new variant was the cheaper one everywhere we
+  checked, but a used copy could have been shown as the price.

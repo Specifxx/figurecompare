@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function NewFigures() {
   return (
     <div className="mx-auto max-w-6xl px-4">
-      <PageHead emoji="✨" title="Just spotted in stores" sub="Figures that appeared at two or more stores most recently, newest first ☆*:.｡.o(≧▽≦)o.｡.:*☆" />
+      <PageHead emoji="✨" title="Just spotted in stores" sub="Figures that appeared at two or more stores most recently, newest first." />
       {REGIONS.map((r) => {
         const list = newestIn(r.code, 48);
         return (

@@ -5,8 +5,6 @@ import { money, pct } from "@/lib/format";
 import type { Figure } from "@/lib/types";
 import { FigureImage } from "./FigureImage";
 
-const TINTS = ["bg-pink-pale", "bg-lilac-pale", "bg-sky-pale", "bg-mint-pale", "bg-lemon-pale"];
-
 /** A figure card. With `region` it shows that region's price only (lists
  *  already split by region); without, every region's, switched by CSS. */
 export function FigureTile({ f, i = 0, region }: { f: Figure; i?: number; region?: RegionCode }) {
@@ -15,17 +13,17 @@ export function FigureTile({ f, i = 0, region }: { f: Figure; i?: number; region
   const cls = (code: RegionCode) => (region ? "" : `rp rp-${code}`);
   return (
     <Link prefetch={false} href={`/figure/${f.slug}`} className="sticker tile-hover group flex flex-col overflow-hidden">
-      <div className={`relative aspect-square ${TINTS[i % TINTS.length]}`}>
-        <FigureImage src={f.img} alt={f.name} line={f.line} className="h-full w-full object-contain p-3 transition-transform duration-300 group-hover:scale-105" />
-        <span className="chip absolute left-2 top-2 border-2 border-ink bg-card text-ink">
-          {line.emoji} {line.name}
+      <div className="relative aspect-square bg-white">
+        <FigureImage src={f.img} alt={f.name} line={f.line} className="h-full w-full object-contain p-3 transition-transform duration-300 group-hover:scale-[1.03]" />
+        <span className="chip absolute left-2 top-2 border border-line bg-card text-ink">
+          {line.name}
           {f.number ? ` ${f.number}` : ""}
         </span>
         {regions.map((r) => {
           const s = spreadIn(f, r.code);
           return s != null && s >= 0.1 ? (
             <span key={r.code} className={`${cls(r.code)} absolute bottom-2 right-2`}>
-              <span className="chip rotate-6 border-2 border-ink bg-lemon text-ink shadow-popsm">save {pct(s)}!</span>
+              <span className="chip bg-mint text-white">save {pct(s)}</span>
             </span>
           ) : null;
         })}
@@ -45,7 +43,7 @@ export function FigureTile({ f, i = 0, region }: { f: Figure; i?: number; region
                     </span>
                   </>
                 ) : f.offers[r.code]?.length ? (
-                  <span className="text-xs text-soft">Sold out {r.phrase} (｡•́︿•̀｡)</span>
+                  <span className="text-xs text-soft">Sold out {r.phrase}</span>
                 ) : (
                   <span className="text-xs text-soft">Not sold {r.phrase} yet</span>
                 )}

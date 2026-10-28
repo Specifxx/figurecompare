@@ -25,9 +25,8 @@ export function SideNav({ groups, footer }: { groups: NavGroup[]; footer?: React
                       href={l.href}
                       prefetch={false}
                       aria-current={active ? "page" : undefined}
-                      className={`flex items-center gap-2 rounded-xl px-2 py-1.5 text-sm transition ${active ? "bg-pink-pale font-bold text-ink ring-2 ring-inset ring-pink/40" : "text-soft hover:bg-pink-pale/60 hover:text-ink"}`}
+                      className={`flex items-center gap-2 rounded-md border-l-2 px-2 py-1.5 text-sm transition ${active ? "border-pink bg-lilac-pale font-semibold text-ink" : "border-transparent text-soft hover:bg-lilac-pale hover:text-ink"}`}
                     >
-                      <span aria-hidden>{l.emoji}</span>
                       <span className="flex-1">{l.label}</span>
                       {l.count != null && <span className="text-xs text-soft">{l.count}</span>}
                     </Link>

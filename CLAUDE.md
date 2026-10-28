@@ -53,9 +53,11 @@ Previews build only with `[preview]`, when the owner asks. `claude/*` branches n
 
 ## Design
 
-Cute, colourful, decorated: pastel candy palette, Fredoka + M PLUS Rounded, sticker cards, sparkles, kaomoji and
-Kira the mascot (`src/components/Mascot.tsx`, original). Never use character art, official logos or anime
-screenshots as decoration; product photos are the stores' own, hotlinked. Respect `prefers-reduced-motion`.
+Professional and unisex, for teens and adults (owner, 2026-10-28: the first candy look was too cute): neutral greys,
+one red accent (`--pink` in `globals.css`, kept as a name), green for savings, Inter, flat cards with thin borders, no
+mascot, sparkles, kaomoji or emoji decoration. The anime touch stays light: the star in the logo, a フィギュア kicker.
+Never use character art, official logos or anime screenshots as decoration; product photos are the stores' own,
+hotlinked. Respect `prefers-reduced-motion`. The link preview is drawn by `scripts/og/render.mjs` from real data.
 
 ## The site watches itself
 

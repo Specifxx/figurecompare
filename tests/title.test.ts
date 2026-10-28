@@ -45,6 +45,7 @@ test("not figures: accessories, parts, plush, dolls", () => {
 test("not new or not one figure", () => {
   refused("Nendoroid 2345 Frieren (Pre-owned)", "pre-owned");
   refused("figma 567 Makima - Used, box opened", "pre-owned");
+  refused("Nendoroid 1234 Rem Pre Owned", "pre-owned");
   refused("Nendoroid 1234 Rem [Box Damaged]", "damaged");
   refused("Nendoroid 1234 Rem bootleg", "bootleg");
   refused("Nendoroid 1234 Rem + Nendoroid 1235 Ram", "bundle");

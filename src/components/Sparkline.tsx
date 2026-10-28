@@ -5,7 +5,7 @@ import { money } from "@/lib/format";
 /** The lowest orderable price over time, as a step line. Server-rendered SVG. */
 export function PriceHistory({ series, region, today }: { series: [number, number][] | undefined; region: RegionCode; today: number }) {
   if (!series || series.length < 2) {
-    return <p className="text-sm text-soft">Price history starts the day we first saw this figure; check back in a few days (・ω・)ノ</p>;
+    return <p className="text-sm text-soft">Price history starts the day we first saw this figure; check back in a few days.</p>;
   }
   const pts = [...series, [today, series[series.length - 1][1]] as [number, number]];
   const x0 = pts[0][0];

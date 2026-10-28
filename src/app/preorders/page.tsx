@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function Preorders() {
   return (
     <div className="mx-auto max-w-6xl px-4">
-      <PageHead emoji="📅" title="Figure pre-orders" sub="Pre-orders open now, most stores first. Lock in the lowest pre-order price before it sells out (っ˘ω˘ς )" />
+      <PageHead emoji="📅" title="Figure pre-orders" sub="Pre-orders open now, most stores first. Lock in the lowest pre-order price before it sells out." />
       {REGIONS.map((r) => {
         const list = preordersIn(r.code, 96);
         return (

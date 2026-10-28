@@ -1,10 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/react";
-import "@fontsource/fredoka/500.css";
-import "@fontsource/fredoka/600.css";
-import "@fontsource/fredoka/700.css";
-import "@fontsource/m-plus-rounded-1c/400.css";
-import "@fontsource/m-plus-rounded-1c/700.css";
+import "@fontsource-variable/inter";
 import "./globals.css";
 import { SITE } from "@/site";
 import { ACTIVE_REGIONS } from "@/lib/regions";
@@ -45,7 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: BOOT }} />
       </head>
       <body className="min-h-screen font-sans antialiased">
-        <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-full focus:bg-card focus:px-3 focus:py-1">
+        <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-md focus:bg-card focus:px-3 focus:py-1">
           Skip to content
         </a>
         <Header groups={groups} />

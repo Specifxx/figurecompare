@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { LINES, SITE } from "@/site";
-import { Mascot } from "@/components/Mascot";
 import { PageHead } from "@/components/Section";
 import { Prose } from "@/components/Prose";
 import { EbayStrip, SITE_QUERIES } from "@/components/EbayStrip";
@@ -16,7 +15,6 @@ export default function About() {
     <div className="mx-auto max-w-3xl px-4">
       <div className="flex items-end gap-4">
         <PageHead title="About FigureCompare" sub="A price guide for figure collectors, made by fans of the hobby." />
-        <Mascot size={110} className="hidden shrink-0 sm:block" mood="wow" />
       </div>
       <Prose>
         <p>
