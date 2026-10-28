@@ -1,3 +1,5 @@
+import { Pumpkin } from "./Pumpkin";
+
 // The mark: a dark rounded square with a white four-point star (the one anime
 // touch) and a red dot. Same as src/app/icon.svg.
 export function LogoMark({ size = 32 }: { size?: number }) {
@@ -17,6 +19,7 @@ export function Logo() {
       <span className="h-display text-xl leading-none sm:text-[22px]">
         Figure<span className="text-pink">Compare</span>
       </span>
+      <Pumpkin />
     </span>
   );
 }
