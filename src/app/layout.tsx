@@ -11,6 +11,7 @@ import { EbayNavBox } from "@/components/EbayStrip";
 import { navGroups } from "@/lib/nav";
 import { getMeta, lineCounts } from "@/lib/data";
 import { niceDate } from "@/lib/format";
+import { SEASON_BOOT_SCRIPT } from "@/lib/season";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -38,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: BOOT }} />
+        <script dangerouslySetInnerHTML={{ __html: BOOT + SEASON_BOOT_SCRIPT }} />
       </head>
       <body className="min-h-screen font-sans antialiased">
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-md focus:bg-card focus:px-3 focus:py-1">
