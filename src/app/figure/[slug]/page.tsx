@@ -13,7 +13,7 @@ import { PriceHistory } from "@/components/Sparkline";
 import { RegionTabs } from "@/components/RegionPicker";
 import { TileGrid } from "@/components/FigureTile";
 import { OutLink } from "@/components/OutLink";
-import { EbayStrip, lineQueries } from "@/components/EbayStrip";
+import { EbayButton, EbayStrip, lineQueries } from "@/components/EbayStrip";
 
 // Prerendered at build, one static file per figure; a slug the release does
 // not know is a 404, never a render on request.
@@ -124,13 +124,16 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
                       at <strong>{storeName(b.offer.s)}</strong> · {b.stores} store{b.stores === 1 ? "" : "s"} compared
                       {s != null && s >= 0.05 ? <> · <span className="font-bold text-mint">save up to {pct(s)}</span></> : null}
                     </p>
-                    <OutLink
-                      href={storeUrl(b.offer.s, b.offer.u)}
-                      event={{ source: b.offer.s, region: r.code, placement: "hero", jan: f.jan }}
-                      className="btn-pop relative mt-3 bg-buy px-6 py-2.5 text-white"
-                    >
-                      Buy at {storeName(b.offer.s)}
-                    </OutLink>
+                    <div className="relative mt-3 flex flex-wrap gap-2">
+                      <OutLink
+                        href={storeUrl(b.offer.s, b.offer.u)}
+                        event={{ source: b.offer.s, region: r.code, placement: "hero", jan: f.jan }}
+                        className="btn-pop bg-buy px-6 py-2.5 text-white"
+                      >
+                        Buy at {storeName(b.offer.s)}
+                      </OutLink>
+                      <EbayButton f={f} region={r.code} pick={ebay[r.code]} placement="hero_ebay" className="px-5 py-2.5" />
+                    </div>
                   </div>
                 ) : (
                   <div className="sticker bg-card p-4 text-sm">
@@ -139,9 +142,10 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
                     </p>
                     {regions.filter((x) => x !== r.code).length > 0 && (
                       <p className="mt-1 text-soft">
-                        It is sold {regions.filter((x) => x !== r.code).map((x) => REGIONS.find((y) => y.code === x)!.phrase).join(", ")}: pick a region above, or check eBay below.
+                        It is sold {regions.filter((x) => x !== r.code).map((x) => REGIONS.find((y) => y.code === x)!.phrase).join(", ")}: pick a region above, or check eBay.
                       </p>
                     )}
+                    <EbayButton f={f} region={r.code} pick={ebay[r.code]} placement="hero_ebay" className="mt-3 px-5 py-2.5" />
                   </div>
                 )}
               </div>
@@ -227,19 +231,28 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
       {/* Phone buy bar: the region's cheapest orderable store, always in reach. */}
       {REGIONS.map((r) => {
         const low = lowestOrderable(f.offers[r.code]);
-        return low ? (
+        return (
           <div key={r.code} className={`rp rp-${r.code}`}>
-            <div className="fixed inset-x-0 bottom-0 z-30 flex items-center gap-3 border-t border-line bg-card/95 px-4 py-2 backdrop-blur md:hidden">
+            <div className="fixed inset-x-0 bottom-0 z-30 flex items-center gap-2 border-t border-line bg-card/95 px-4 py-2 backdrop-blur md:hidden">
               <div className="min-w-0 flex-1">
-                <p className="truncate text-xs text-soft">Cheapest {r.phrase}: {storeName(low.s)}</p>
-                <p className="h-display text-xl text-pink-deep">{money(low.p, r.code)}</p>
+                {low ? (
+                  <>
+                    <p className="truncate text-xs text-soft">Cheapest {r.phrase}: {storeName(low.s)}</p>
+                    <p className="h-display text-xl text-pink-deep">{money(low.p, r.code)}</p>
+                  </>
+                ) : (
+                  <p className="text-sm text-soft">No store {r.phrase} has it in stock</p>
+                )}
               </div>
-              <OutLink href={storeUrl(low.s, low.u)} event={{ source: low.s, region: r.code, placement: "buybar", jan: f.jan }} className="btn-pop bg-buy text-white">
-                Buy
-              </OutLink>
+              <EbayButton f={f} region={r.code} pick={ebay[r.code]} placement="buybar_ebay" className="px-3 py-2 text-sm" />
+              {low && (
+                <OutLink href={storeUrl(low.s, low.u)} event={{ source: low.s, region: r.code, placement: "buybar", jan: f.jan }} className="btn-pop bg-buy text-white">
+                  Buy
+                </OutLink>
+              )}
             </div>
           </div>
-        ) : null;
+        );
       })}
     </div>
   );

@@ -80,6 +80,7 @@ export function MobileMenu({
               >
                 Home
               </Link>
+              {footer && <div className="mb-4">{footer}</div>}
               {groups.map((g) => (
                 <div key={g.title} className="mb-4">
                   <h2 className="mb-1 px-2 font-display text-xs font-bold uppercase tracking-wider text-soft">
@@ -125,7 +126,6 @@ export function MobileMenu({
                   ))}
                 </ul>
               </div>
-              {footer}
             </nav>
           </div>,
           document.body,

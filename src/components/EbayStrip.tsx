@@ -15,7 +15,7 @@ import { ebayAffiliateUrl, ebaySearchUrl, ebayShopHost, subId } from "@/lib/affi
 import { getEbay } from "@/lib/data";
 import { ACTIVE_REGIONS } from "@/lib/regions";
 import { money } from "@/lib/format";
-import type { Figure } from "@/lib/types";
+import type { EbayPick, Figure } from "@/lib/types";
 import { OutLink } from "./OutLink";
 
 export type EbayQuery = { label: string; q: string };
@@ -158,5 +158,18 @@ export function EbayNavBox({ placement }: { placement: string }) {
         );
       })}
     </>
+  );
+}
+
+/** eBay beside a figure's own buy button (hero, phone buy bar): the listing
+ *  with its price when the eBay pass found one, else a search for the figure. */
+export function EbayButton({ f, region, pick, placement, className = "" }: { f: Figure; region: RegionCode; pick?: EbayPick; placement: string; className?: string }) {
+  const sub = subId(region, placement, f.jan);
+  const href = pick ? ebayAffiliateUrl(pick.u, sub) : ebaySearchUrl(f.name.replace(/[()]/g, " ").replace(/\s+/g, " ").trim(), region, sub);
+  if (!href) return null;
+  return (
+    <OutLink href={href} paid event={{ source: "ebay", region, placement, jan: f.jan }} className={`btn-pop border border-line bg-card text-ink hover:border-soft ${className}`}>
+      {pick ? <>eBay {money(pick.p, region)}</> : "Check eBay"} <span className="text-[10px] font-semibold uppercase text-soft">Ad</span>
+    </OutLink>
   );
 }

@@ -18,6 +18,14 @@ export function searchQuery(f: Figure): string {
   return f.name.replace(/[()]/g, " ").replace(/\s+/g, " ").trim();
 }
 
+/** How an eBay price compares with the cheapest store: never re-ranked, just said. */
+function vsBest(p: number, bestP: number | undefined): string {
+  if (bestP == null) return "new, Buy It Now";
+  if (p < bestP) return "cheaper than every store";
+  if (p === bestP) return "same as the cheapest store";
+  return `+${Math.round(((p - bestP) / bestP) * 100)}% vs cheapest store`;
+}
+
 export function PriceTable({ f, region, ebay, placement = "table" }: { f: Figure; region: RegionCode; ebay?: EbayPick; placement?: string }) {
   const offers = f.offers[region] ?? [];
   const r = REGION_BY_CODE[region];
@@ -34,7 +42,7 @@ export function PriceTable({ f, region, ebay, placement = "table" }: { f: Figure
           {ebayUrl && (
             <Row
               name={ebay ? "eBay" : "Search eBay"}
-              sub={ebay ? "Cheapest new Buy It Now listing · Ad" : `New listings on ${ebayShopHost(region)?.replace("www.", "")} · Ad`}
+              sub={ebay ? `Shown first · ${vsBest(ebay.p, best?.p)}` : `Shown first · new listings on ${ebayShopHost(region)?.replace("www.", "")}`}
               price={ebay ? money(ebay.p, region) : null}
               status={null}
               href={ebayUrl}

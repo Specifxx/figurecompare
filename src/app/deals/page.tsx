@@ -19,6 +19,7 @@ export default function Deals() {
         title="Figure deals today"
         sub="In stock figures where the cheapest store is at least 10% under the dearest one in your region. Same barcode, same box, different price."
       />
+      <EbayStrip className="mb-8" placement="deals_top" queries={SITE_QUERIES} />
       {REGIONS.map((r) => {
         const deals = dealsIn(r.code, 48).map((d) => d.f);
         return (
