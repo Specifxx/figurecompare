@@ -2,7 +2,7 @@
 // by region, a figure kept only when one region has enough stores. Pure, so
 // tests/merge.test.ts can pin every rule.
 import { LINES, REGIONS, SITE, type LineKey, type RegionCode } from "@/site";
-import { pickName, readTitle } from "./title";
+import { pickName, readTitle, tidyName } from "./title";
 import { slugify } from "./slug";
 import type { Figure, Listing, Offer } from "./types";
 
@@ -12,6 +12,40 @@ export function median(xs: number[]): number {
   const s = xs.slice().sort((a, b) => a - b);
   const m = s.length >> 1;
   return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
+}
+
+/**
+ * Stores that are one shop under two names (a franchise's second domain on
+ * the same Shopify stock) would count twice toward the two-store rule. Within
+ * a region, a store whose barcode-and-price pairs are at least 80% another
+ * store's (5+ listings) is a mirror: the first store in `order` keeps its
+ * listings, the mirror's are dropped. Returns the mirrors as id → kept id.
+ */
+export function dropMirrors(listings: Listing[], order: string[]): { listings: Listing[]; mirrors: Record<string, string> } {
+  const keys = new Map<string, Set<string>>();
+  const region = new Map<string, string>();
+  for (const l of listings) {
+    if (!keys.has(l.store)) keys.set(l.store, new Set());
+    keys.get(l.store)!.add(`${l.jan}:${l.cents}`);
+    region.set(l.store, l.region);
+  }
+  const rank = (id: string) => (order.indexOf(id) + 1 || order.length + 1);
+  const ids = [...keys.keys()].sort((a, b) => rank(a) - rank(b) || a.localeCompare(b));
+  const mirrors: Record<string, string> = {};
+  for (let i = 0; i < ids.length; i++) {
+    const a = ids[i];
+    if (mirrors[a]) continue;
+    for (const b of ids.slice(i + 1)) {
+      if (mirrors[b] || region.get(a) !== region.get(b)) continue;
+      const A = keys.get(a)!;
+      const B = keys.get(b)!;
+      if (Math.min(A.size, B.size) < 5) continue;
+      let shared = 0;
+      for (const k of B) if (A.has(k)) shared++;
+      if (shared >= 0.8 * Math.min(A.size, B.size)) mirrors[b] = a;
+    }
+  }
+  return { listings: listings.filter((l) => !mirrors[l.store]), mirrors };
 }
 
 /** Offers in display order: orderable first, cheapest first. */
@@ -83,11 +117,11 @@ export function mergeListings(listings: Listing[], state: MergeState, today: str
     const titles = (named.filter((l) => l.region !== "JP").length ? named.filter((l) => l.region !== "JP") : named.length ? named : agreeing).map((l) => l.title);
     const numbers = agreeing.map((l) => readTitle(l.title)).flatMap((i) => ("refused" in i || !i.number ? [] : [i.number]));
     const number = numbers.length ? mode(numbers) : null;
-    const name = ensureLine(pickName(titles, number), line);
+    const name = pickName(titles.map((t) => tidyName(t, line, number)), null);
 
     let slug = state.slugs[jan];
     if (!slug) {
-      const base = slugify(name) || `${line}-${jan}`;
+      const base = slugify(number ? `${name} ${number}` : name) || `${line}-${jan}`;
       slug = usedSlugs.has(base) ? `${base}-${jan.slice(-5)}` : base;
       usedSlugs.add(slug);
       state.slugs[jan] = slug;
@@ -103,10 +137,4 @@ function mode(xs: string[]): string {
   const c = new Map<string, number>();
   for (const x of xs) c.set(x, (c.get(x) ?? 0) + 1);
   return [...c.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0][0];
-}
-
-/** Make sure the display name says what line it is ("Frieren" → "Nendoroid Frieren"). */
-function ensureLine(name: string, line: LineKey): string {
-  const l = LINES.find((x) => x.key === line)!;
-  return new RegExp(l.name.replace(/\s+/g, "\\s*"), "i").test(name) ? name : `${l.name} ${name}`;
 }

@@ -6,7 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { STORES, type Store } from "@/content/stores";
 import { REGION_BY_CODE } from "@/site";
-import { mergeListings, type MergeState } from "@/lib/merge";
+import { dropMirrors, mergeListings, type MergeState } from "@/lib/merge";
 import { recordHistory } from "@/lib/history";
 import { readShopify, shopifyCurrency, PRODUCT_LOOKUPS_PER_RUN, type BarcodeCache, type ReadResult } from "@/lib/import/shopify";
 import { readWoo } from "@/lib/import/woo";
@@ -76,8 +76,14 @@ async function main() {
     }
   }
 
+  const mirrored = dropMirrors(listings, STORES.map((s) => s.id));
+  for (const [id, of] of Object.entries(mirrored.mirrors)) {
+    if (runs[id]) runs[id].mirrorOf = of;
+    console.log(`= ${id} carries the same stock as ${of}: counted once`);
+  }
+
   const today = new Date().toISOString().slice(0, 10);
-  const figures = mergeListings(listings, state, today);
+  const figures = mergeListings(mirrored.listings, state, today);
   // Refuse to publish an empty catalogue over a good one.
   if (prevFigures.length > 50 && figures.length < prevFigures.length * 0.5) {
     console.error(`Figures fell from ${prevFigures.length} to ${figures.length}; not publishing.`);

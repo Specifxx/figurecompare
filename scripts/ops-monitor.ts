@@ -33,9 +33,11 @@ export function judgeFreshness(updatedAt: string, now = Date.now()): Omit<Result
 
 export function judgeStores(meta: Meta, total: number): Omit<Result, "name"> {
   const bad = Object.entries(meta.stores).filter(([, s]) => !s.ok);
-  const empty = Object.entries(meta.stores).filter(([, s]) => s.ok && s.matched === 0);
+  // A store whose figure collections came back empty: its collection moved or
+  // was renamed. (A store reading products but none of our lines is normal.)
+  const empty = Object.entries(meta.stores).filter(([, s]) => s.ok && s.listings === 0);
   if (!bad.length && !empty.length) return { status: "ok", detail: `${total} stores read` };
-  const detail = [...bad.map(([k, s]) => `${k}: ${s.error}`), ...empty.map(([k]) => `${k}: 0 figures with a barcode`)].join("; ");
+  const detail = [...bad.map(([k, s]) => `${k}: ${s.error}`), ...empty.map(([k]) => `${k}: figure collection empty`)].join("; ");
   return { status: bad.length > total / 3 ? "fail" : "warn", detail };
 }
 

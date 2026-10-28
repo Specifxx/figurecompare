@@ -43,7 +43,11 @@ export function lineOf(title: string): LineKey | null {
 /** The catalogue number in a Nendoroid or figma title. */
 export function numberOf(title: string, line: LineKey): string | null {
   if (line === "nendoroid") {
-    const m = title.match(/nendoroid\s*(?:no\.?|#)?\s*(\d{1,4}(?:-?(?:a|b|c|d|dx|sp))?)\b/i);
+    // "Nendoroid 2345", "Nendoroid No.2345", "Nendoroid - 2345 Frieren", or a
+    // store that leads with it: "2345 Frieren Nendoroid".
+    const m =
+      title.match(/nendoroid\s*(?:[-–:]\s*)?(?:no\.?|#)?\s*(\d{2,4}(?:-?(?:a|b|c|d|dx|sp))?)\b(?!\.\d)/i) ??
+      title.match(/^\s*(?:#|no\.?\s*)?(\d{3,4}(?:-?(?:dx|sp))?)\b(?!\.\d)\s+(?=\D)/i);
     return m ? m[1].toUpperCase().replace(/^(\d+)([A-Z])/, "$1-$2") : null;
   }
   if (line === "figma") {
@@ -94,6 +98,43 @@ export function cleanName(title: string): string {
   }
   t = t.replace(/\bfigma\b/gi, "figma").replace(/\bnendoroid\b/gi, "Nendoroid").replace(/\bpop\s*up\s*parade\b/gi, "POP UP PARADE");
   return t;
+}
+
+const LINE_TOKEN: Record<LineKey, RegExp> = {
+  nendoroid: /\bnendoroid\b/gi,
+  figma: /\bfigma\b/gi,
+  "pop-up-parade": /\bpop\s*up\s*parade\b/gi,
+};
+const LINE_LABEL: Record<LineKey, string> = { nendoroid: "Nendoroid", figma: "figma", "pop-up-parade": "POP UP PARADE" };
+const SEP = /^[\s\-–—:|,#/]+|[\s\-–—:|,#/]+$/g;
+
+/**
+ * One name shape for every store's way of writing a title: the line first,
+ * then the rest with the catalogue number taken out (the page shows it on its
+ * own), store filler removed, and the line word in the middle turned into a
+ * dash. "2014 Chainsaw Man Nendoroid Kobeni" → "Nendoroid Chainsaw Man - Kobeni",
+ * "(Stellar Blade) EVE | Nendoroid #2932" → "Nendoroid EVE (Stellar Blade)".
+ */
+export function tidyName(title: string, line: LineKey, number: string | null): string {
+  let t = cleanName(title)
+    .replace(/\(\s*\)|\[\s*\]/g, " ")
+    .replace(/\((?:re-?run|re-?issue|re-?release|reprint)\)|\b(?:re-?run|reissue)\b/gi, " ")
+    .replace(/\banime\s*collectibles?\b|\bcollectible\s*figure\b/gi, " ")
+    .replace(/\bpvc\s*fig(?:ure)?\b\.?|\b(?:non-?scale\s+)?(?:pvc\s+)?figure\b/gi, " ");
+  if (number) {
+    const n = number.replace(/-/g, "-?").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    t = t.replace(new RegExp(`(?:#|\\bno\\.?\\s*)?(?<![\\w.])${n}\\b(?!\\.\\d)\\s*:?`, "gi"), " ");
+  }
+  if (line !== "pop-up-parade") t = t.replace(/^\s*\d{3,4}\s+(?=\D)/, " ");
+  const parts = t
+    .split(LINE_TOKEN[line])
+    .map((p) => p.replace(/\s*[|–—]\s*/g, " - ").replace(/\s{2,}/g, " ").replace(SEP, "").trim())
+    .filter(Boolean);
+  let rest = parts.join(" - ").replace(/(?:\s-\s)+/g, " - ").replace(SEP, "");
+  // "(Series) Character" → "Character (Series)".
+  const lead = rest.match(/^\(([^)]+)\)\s*(.+)$/);
+  if (lead) rest = `${lead[2]} (${lead[1]})`;
+  return rest ? `${LINE_LABEL[line]} ${rest}` : LINE_LABEL[line];
 }
 
 /** Pick the product's display name from every store's cleaned title: the most

@@ -34,6 +34,8 @@ export interface StoreRun {
   refused: Record<string, number>;
   noJan: number;
   ms: number;
+  /** Set when this store's stock is another store's (dropMirrors): not counted. */
+  mirrorOf?: string;
 }
 
 export interface Meta {

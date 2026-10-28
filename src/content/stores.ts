@@ -3,7 +3,7 @@
 // Store API, two at a time at most, about a request a second, and a store that
 // keeps answering 403/429 is skipped for the run (never worked around).
 // From the 2026-10-28 store probe (/mnt/project-files/next-niche/figure-stores.md
-// in the project files): the 74 readable Shopify stores with an anime-figure
+// in the project files): the readable Shopify stores with an anime-figure
 // collection. No readable store is Japan-based yet.
 import type { RegionCode } from "@/site";
 
@@ -40,7 +40,6 @@ export const STORES: Store[] = [
   { id: "pokebox", name: "PokéBox", region: "AU", base: "https://pokebox.com.au", platform: "shopify", collections: ["figures"] },
   { id: "popincollectables", name: "POPin Collectables", region: "AU", base: "https://popincollectables.com.au", platform: "shopify", collections: ["nendoroid"] },
   { id: "thefinalbosscollectables", name: "The Final Boss Collectables", region: "AU", base: "https://thefinalbosscollectables.com.au", platform: "shopify", collections: ["figurines"] },
-  { id: "thegamescapital", name: "The Games Capital", region: "AU", base: "https://thegamescapital.com.au", platform: "shopify", collections: ["anime-figure", "bandai-figures"] },
   { id: "401games", name: "401 Games", region: "CA", base: "https://store.401games.ca", platform: "shopify", collections: ["all-non-scale-figures"] },
   { id: "acgamesonline", name: "A & C Games", region: "CA", base: "https://acgamesonline.com", platform: "shopify", collections: ["figma-figures", "banpresto-figures"] },
   { id: "animeotakuhobby", name: "Anime Otaku Hobby", region: "CA", base: "https://animeotakuhobby.com", platform: "shopify", collections: ["nendoroid"] },
@@ -70,7 +69,6 @@ export const STORES: Store[] = [
   { id: "japan2uk", name: "Japan2UK", region: "UK", base: "https://japan2uk.com", platform: "shopify", collections: ["banpresto-figures"] },
   { id: "koolthings", name: "Koolthings", region: "UK", base: "https://koolthings.co.uk", platform: "shopify", collections: ["anime-figurines"] },
   { id: "livingrealms", name: "Living Realms", region: "UK", base: "https://livingrealms.co.uk", platform: "shopify", collections: ["anime-figures-revised"] },
-  { id: "rollnplay", name: "Roll N Play", region: "UK", base: "https://rollnplay.co.uk", platform: "shopify", collections: ["figures"] },
   { id: "collect", name: "TGC Collectables (The Game Collection)", region: "UK", base: "https://collect.thegamecollection.net", platform: "shopify", collections: ["anime-figures", "banpresto"] },
   { id: "thecardvault", name: "The Card Vault", region: "UK", base: "https://thecardvault.co.uk", platform: "shopify", collections: ["action-toy-figures"] },
   { id: "tokyotoys", name: "TokyoToys", region: "UK", base: "https://tokyotoys.com", platform: "shopify", collections: ["nendoroids", "pop-up-parade"] },

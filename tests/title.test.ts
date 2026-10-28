@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { cleanName, lineOf, numberOf, pickName, readTitle } from "@/lib/title";
+import { cleanName, lineOf, numberOf, pickName, readTitle, tidyName } from "@/lib/title";
 
 const ok = (t: string) => {
   const r = readTitle(t);
@@ -62,4 +62,26 @@ test("the most common name wins", () => {
     pickName(["Nendoroid 2345 Frieren", "[PRE-ORDER] Nendoroid 2345 Frieren", "Nendoroid Frieren - Frieren: Beyond Journey's End"], "2345"),
     "Nendoroid 2345 Frieren",
   );
+});
+
+test("catalogue numbers where stores put them", () => {
+  assert.equal(numberOf("1183 Nendoroid Figure Hunter x Hunter - Gon Freecss", "nendoroid"), "1183");
+  assert.equal(numberOf("Nendoroid - 1596 Dark Magician Girl - Yu-Gi-Oh!", "nendoroid"), "1596");
+  assert.equal(numberOf("(Stellar Blade) EVE | Nendoroid #2932", "nendoroid"), "2932");
+  assert.equal(numberOf("DEATH NOTE: Nendoroid Misa Amane 2.0", "nendoroid"), null);
+  assert.equal(numberOf("Kaiju No. 8 Nendoroid Kafka Hibino", "nendoroid"), null);
+});
+
+test("every store's title becomes one name shape", () => {
+  const t = (title: string, line: Parameters<typeof tidyName>[1], n: string | null) => tidyName(title, line, n);
+  // Real titles from the 2026-10-28 first import.
+  assert.equal(t("(Stellar Blade) EVE | Nendoroid #2932", "nendoroid", "2932"), "Nendoroid EVE (Stellar Blade)");
+  assert.equal(t("1560 Chainsaw Man Nendoroid Denji", "nendoroid", "1560"), "Nendoroid Chainsaw Man - Denji");
+  assert.equal(t("Nendoroid - 2582 Zhongli - Genshin Impact", "nendoroid", "2582"), "Nendoroid Zhongli - Genshin Impact");
+  assert.equal(t("figma 296: Todomatsu Matsuno (Osomatsu-san)", "figma", "296"), "figma Todomatsu Matsuno (Osomatsu-san)");
+  assert.equal(t("Hololive - Mori Calliope - figma #602 ( )", "figma", "602"), "figma Hololive - Mori Calliope");
+  assert.equal(t("Bubble Uta POP UP PARADE Figure - Anime Collectible", "pop-up-parade", null), "POP UP PARADE Bubble Uta");
+  assert.equal(t("Oreimo POP UP PARADE Kuroneko Pvc Fig", "pop-up-parade", null), "POP UP PARADE Oreimo - Kuroneko");
+  assert.equal(t("Mr Love Queens Choice Nendoroid Zeyan Li (re-run)", "nendoroid", null), "Nendoroid Mr Love Queens Choice - Zeyan Li");
+  assert.equal(t("Kaiju No. 8 Nendoroid Gen Narumi", "nendoroid", "2883"), "Nendoroid Kaiju No. 8 - Gen Narumi");
 });

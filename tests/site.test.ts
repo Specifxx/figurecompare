@@ -64,4 +64,7 @@ test("ops monitor judgements", () => {
   assert.equal(judgeStores({ updatedAt: "", figures: 1, stores: { a: run(true), b: run(true) } }, 2).status, "ok");
   assert.equal(judgeStores({ updatedAt: "", figures: 1, stores: { a: run(false), b: run(true), c: run(true), d: run(true) } }, 4).status, "warn");
   assert.equal(judgeStores({ updatedAt: "", figures: 1, stores: { a: run(false), b: run(false), c: run(true) } }, 3).status, "fail");
+  // A store with none of our lines is fine; an empty figure collection is not.
+  assert.equal(judgeStores({ updatedAt: "", figures: 1, stores: { a: run(true, 0), b: run(true) } }, 2).status, "ok");
+  assert.equal(judgeStores({ updatedAt: "", figures: 1, stores: { a: { ...run(true, 0), listings: 0 }, b: run(true) } }, 2).status, "warn");
 });

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mergeListings, saneOffers, type MergeState } from "@/lib/merge";
+import { dropMirrors, mergeListings, saneOffers, type MergeState } from "@/lib/merge";
 import type { Listing } from "@/lib/types";
 
 const L = (store: string, region: Listing["region"], cents: number, extra: Partial<Listing> = {}): Listing => ({
@@ -65,5 +65,21 @@ test("names prefer English listings outside Japan and always say the line", () =
     fresh(),
     "d",
   );
-  assert.equal(out[0].name, "Frieren Nendoroid 2345");
+  assert.equal(out[0].name, "Nendoroid Frieren");
+  assert.equal(out[0].number, "2345");
+  assert.equal(out[0].slug, "nendoroid-frieren-2345");
+});
+
+test("a store that is another store's stock under a second domain counts once", () => {
+  const jans = ["4580590174528", "4545784068991", "4580828673205", "4580590195509", "4580590196506", "4580416945080"];
+  // Good Games and The Games Capital (AU), 2026-10-28: the same 269 listings.
+  const gg = jans.map((jan, i) => L("goodgames", "AU", 9999 + i, { jan }));
+  const tgc = jans.map((jan, i) => L("thegamescapital", "AU", 9999 + i, { jan }));
+  const other = jans.slice(0, 3).map((jan, i) => L("gamerholic", "AU", 9999 + i, { jan }));
+  const r = dropMirrors([...tgc, ...gg, ...other], ["goodgames", "gamerholic", "thegamescapital"]);
+  assert.deepEqual(r.mirrors, { thegamescapital: "goodgames" });
+  assert.equal(r.listings.filter((l) => l.store === "thegamescapital").length, 0);
+  // Same prices in another region are not a mirror; nor are two stores that share a few prices.
+  const us = jans.map((jan, i) => L("superanimestore", "US", 9999 + i, { jan }));
+  assert.deepEqual(dropMirrors([...gg, ...us, ...other], []).mirrors, {});
 });
