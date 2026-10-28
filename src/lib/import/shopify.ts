@@ -3,7 +3,7 @@
 // we cover go further. The barcode comes from the SKU or a "JAN:" line in the
 // description; the list API has no barcode field, so otherwise it is looked up
 // in /products/<handle>.json (barcode filled at 79 of 88 stores in the
-// 2026-10-28 probe), cached by product id + updated_at in
+// 2026-10-28 probe), cached by product id in
 // data/state/barcodes.json and capped per run. About a request a second:
 // Shopify answers 429 to a runner going faster.
 import { REGION_BY_CODE } from "@/site";
@@ -40,7 +40,19 @@ export interface ReadResult {
   noJan: number;
 }
 
+/** store:productId → the barcode its product page gave, and the day we asked. */
 export type BarcodeCache = Record<string, { at: string; jan: string | null }>;
+
+/** A product's barcode does not change, so a found one is kept for good. Not
+ *  keyed on updated_at: stores bump it on every stock sync, and the second
+ *  import re-asked for ~2,400 barcodes it already had. A product that had none
+ *  is asked again after 30 days, in case the store fills it in. */
+export function cachedJan(entry: { at: string; jan: string | null } | undefined, now = Date.now()): string | null | undefined {
+  if (!entry) return undefined;
+  if (entry.jan) return entry.jan;
+  const age = (now - Date.parse(entry.at)) / 86_400_000;
+  return age < 30 ? null : undefined;
+}
 
 const MAX_PAGES = 80;
 /** Barcode lookups per run, across every store (≈ 40 minutes at one a second
@@ -150,13 +162,13 @@ export async function readShopify(store: Store, cache: BarcodeCache, budget: { l
         seen.add(p.id);
         res.seen++;
         const key = `${store.id}:${p.id}`;
-        const hit = cache[key] && cache[key].at === (p.updated_at ?? "") ? cache[key].jan : undefined;
+        const hit = cachedJan(cache[key]);
         let r = listingFromProduct(store, p, hit);
         if ("noJan" in r && hit === undefined && budget.lookups > 0) {
           budget.lookups--;
           const jan = await productJsonJan(store, p).catch(() => undefined);
           // A failed lookup is not cached: it is tried again next run.
-          if (jan !== undefined) cache[key] = { at: p.updated_at ?? "", jan };
+          if (jan !== undefined) cache[key] = { at: new Date().toISOString().slice(0, 10), jan };
           await sleep(PACE_MS);
           r = listingFromProduct(store, p, jan ?? null);
         }

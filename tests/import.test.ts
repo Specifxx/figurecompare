@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { listingFromProduct, sizedImage, type ShopifyProduct } from "@/lib/import/shopify";
+import { cachedJan, listingFromProduct, sizedImage, type ShopifyProduct } from "@/lib/import/shopify";
 import { listingFromWoo, type WooProduct } from "@/lib/import/woo";
 import type { Store } from "@/content/stores";
 
@@ -88,4 +88,13 @@ test("collections: a line's own first, then anime figures; never dolls, parts or
   );
   assert.deepEqual(pickCollections(["trading-cards", "all"], ["figures"]), ["figures"]);
   assert.deepEqual(pickCollections([], []), []);
+});
+
+test("a barcode found once is kept; a missing one is asked again after 30 days", () => {
+  const now = Date.parse("2026-11-30T00:00:00Z");
+  assert.equal(cachedJan(undefined, now), undefined);
+  // Shopify's updated_at moves on every stock sync; it must not expire a found barcode.
+  assert.equal(cachedJan({ at: "2026-10-28T13:42:14Z", jan: "4580590174528" }, now), "4580590174528");
+  assert.equal(cachedJan({ at: "2026-11-20", jan: null }, now), null);
+  assert.equal(cachedJan({ at: "2026-10-28", jan: null }, now), undefined);
 });
