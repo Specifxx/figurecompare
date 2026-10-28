@@ -106,6 +106,18 @@ export function listingFromProduct(store: Store, p: ShopifyProduct, cachedJan?: 
   };
 }
 
+/** The shop's own currency (/meta.json). products.json is priced in it
+ *  whatever country is asked for, so a shop whose own currency is not the
+ *  region's is skipped even when its checkout would charge the region's. */
+export async function shopifyOwnCurrency(store: Store): Promise<string | null> {
+  try {
+    const d = await fetchJson<{ currency?: string }>(`${store.base}/meta.json`, {}, 1);
+    return d.currency ?? null;
+  } catch {
+    return null;
+  }
+}
+
 /** The currency the storefront charges for the region's country (cart.js). A
  *  store that answers in another currency is skipped for the run: prices are
  *  never converted. */

@@ -29,6 +29,9 @@ type Result = {
   host: string;
   base?: string;
   name?: string;
+  /** The shop's own currency (/meta.json). products.json prices are in it,
+   *  whatever cart.js answers for another country. */
+  currency?: string;
   platform?: "shopify" | "woo" | null;
   regions?: RegionCode[];
   perRegion?: Partial<Record<RegionCode, { listings: number; noJan: number; seen: number; inStock: number; lines: Record<string, number> }>>;
@@ -56,8 +59,9 @@ async function probe(host: string): Promise<Result> {
   if (shopify) {
     r.platform = "shopify";
     try {
-      const meta = await fetchJson<{ name?: string }>(`${r.base}/meta.json`, {}, 1);
+      const meta = await fetchJson<{ name?: string; currency?: string }>(`${r.base}/meta.json`, {}, 1);
       r.name = meta.name;
+      r.currency = meta.currency;
     } catch {}
     const regions: RegionCode[] = [];
     for (const reg of REGIONS.filter((x) => x.code !== "JP")) {
@@ -69,8 +73,10 @@ async function probe(host: string): Promise<Result> {
     }
     r.regions = regions;
     r.perRegion = {};
-    // Read once, in the first region it charges (the others only reprice).
-    for (const code of regions.slice(0, 1)) {
+    // Read once, in the region of the shop's own currency (products.json is
+    // priced in it), else the first region it charges.
+    const home = regions.find((c) => REGIONS.find((x) => x.code === c)?.currency === r.currency);
+    for (const code of home ? [home] : regions.slice(0, 1)) {
       const store: Store = { id: host, name: r.name ?? host, region: code, base: r.base!, platform: "shopify" };
       try {
         const res = await readShopify(store, {}, { lookups: LOOKUPS });

@@ -8,7 +8,7 @@ import { STORES, type Store } from "@/content/stores";
 import { REGION_BY_CODE } from "@/site";
 import { dropMirrors, mergeListings, type MergeState } from "@/lib/merge";
 import { recordHistory } from "@/lib/history";
-import { readShopify, shopifyCurrency, PRODUCT_LOOKUPS_PER_RUN, type BarcodeCache, type ReadResult } from "@/lib/import/shopify";
+import { readShopify, shopifyCurrency, shopifyOwnCurrency, PRODUCT_LOOKUPS_PER_RUN, type BarcodeCache, type ReadResult } from "@/lib/import/shopify";
 import { readWoo } from "@/lib/import/woo";
 import type { History, Listing, Meta, StoreRun } from "@/lib/types";
 
@@ -30,6 +30,8 @@ const budget = { lookups: PRODUCT_LOOKUPS_PER_RUN };
 async function readStore(store: Store, cache: BarcodeCache): Promise<ReadResult> {
   if (store.platform === "woo") return readWoo(store);
   const want = REGION_BY_CODE[store.region].currency;
+  const own = await shopifyOwnCurrency(store);
+  if (own && own !== want) throw new Error(`prices in ${own}, region needs ${want}`);
   const cur = await shopifyCurrency(store);
   if (cur && cur !== want) throw new Error(`charges ${cur}, region needs ${want}`);
   return readShopify(store, cache, budget);

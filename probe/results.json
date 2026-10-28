@@ -1,0 +1,1771 @@
+[
+ {
+  "host": "alloutanimeshop.com",
+  "error": "home: fetch failed"
+ },
+ {
+  "host": "aniimeshop.com",
+  "base": "https://aniimeshop.com",
+  "platform": "shopify",
+  "name": "Aniime Shop General",
+  "currency": "EUR",
+  "regions": [
+   "EU"
+  ],
+  "perRegion": {
+   "EU": {
+    "listings": 15,
+    "noJan": 62,
+    "seen": 81,
+    "inStock": 15,
+    "lines": {
+     "nendoroid": 15
+    }
+   }
+  }
+ },
+ {
+  "host": "animateusaonlineshop.com",
+  "base": "https://animateusaonlineshop.com",
+  "platform": "shopify",
+  "name": "animate USA Online Shop",
+  "currency": "USD",
+  "regions": [
+   "US"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 289,
+    "noJan": 10,
+    "seen": 328,
+    "inStock": 133,
+    "lines": {
+     "figma": 23,
+     "nendoroid": 174,
+     "pop-up-parade": 92
+    }
+   }
+  }
+ },
+ {
+  "host": "anime-mamma.com",
+  "error": "home: fetch failed"
+ },
+ {
+  "host": "animecity.ca",
+  "base": "https://animecity.ca",
+  "platform": "shopify",
+  "name": "Anime City Incorporated",
+  "currency": "CAD",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU",
+   "SG"
+  ],
+  "perRegion": {
+   "CA": {
+    "listings": 3,
+    "noJan": 0,
+    "seen": 3,
+    "inStock": 0,
+    "lines": {
+     "pop-up-parade": 3
+    }
+   }
+  }
+ },
+ {
+  "host": "animeexpressshop.com",
+  "error": "home: fetch failed"
+ },
+ {
+  "host": "animegami.co.uk",
+  "base": "https://animegami.co.uk",
+  "platform": null
+ },
+ {
+  "host": "animeislandca.com",
+  "base": "https://animeislandca.com",
+  "platform": "shopify",
+  "name": "Anime Island CA",
+  "currency": "USD",
+  "regions": [
+   "US"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 5,
+    "noJan": 0,
+    "seen": 1796,
+    "inStock": 1,
+    "lines": {
+     "pop-up-parade": 4,
+     "nendoroid": 1
+    }
+   }
+  }
+ },
+ {
+  "host": "animepopshop.com",
+  "base": "https://animepopshop.com",
+  "platform": "shopify",
+  "name": "Anime Pop",
+  "currency": "USD",
+  "regions": [
+   "US"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 112,
+    "noJan": 28,
+    "seen": 6448,
+    "inStock": 80,
+    "lines": {
+     "nendoroid": 75,
+     "pop-up-parade": 33,
+     "figma": 4
+    }
+   }
+  }
+ },
+ {
+  "host": "animeseki.com",
+  "base": "https://animeseki.com",
+  "platform": "shopify",
+  "name": "AnimeSeki",
+  "currency": "USD",
+  "regions": [
+   "US"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 4,
+    "noJan": 45,
+    "seen": 59,
+    "inStock": 4,
+    "lines": {
+     "nendoroid": 3,
+     "pop-up-parade": 1
+    }
+   }
+  }
+ },
+ {
+  "host": "atlantis-comics.com",
+  "base": "https://atlantis-comics.com",
+  "platform": "shopify",
+  "name": "Atlantis Games & Comics",
+  "currency": "USD",
+  "regions": [
+   "US"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 15,
+    "noJan": 175,
+    "seen": 195,
+    "inStock": 4,
+    "lines": {
+     "nendoroid": 15
+    }
+   }
+  }
+ },
+ {
+  "host": "bigapplecollectibles.com",
+  "base": "https://bigapplecollectibles.com",
+  "platform": null
+ },
+ {
+  "host": "camdenanime.co.uk",
+  "base": "https://camdenanime.co.uk",
+  "platform": "shopify",
+  "name": "Camden Anime",
+  "currency": "GBP",
+  "regions": [
+   "UK"
+  ],
+  "perRegion": {
+   "UK": {
+    "listings": 16,
+    "noJan": 103,
+    "seen": 139,
+    "inStock": 16,
+    "lines": {
+     "nendoroid": 10,
+     "pop-up-parade": 6
+    }
+   }
+  }
+ },
+ {
+  "host": "charmingsushi.co.uk",
+  "base": "https://www.charmingsushi.co.uk",
+  "platform": "shopify",
+  "name": "CharmingSushi",
+  "currency": "GBP",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU",
+   "SG"
+  ],
+  "perRegion": {
+   "UK": {
+    "listings": 15,
+    "noJan": 64,
+    "seen": 85,
+    "inStock": 5,
+    "lines": {
+     "figma": 8,
+     "nendoroid": 3,
+     "pop-up-parade": 4
+    }
+   }
+  }
+ },
+ {
+  "host": "chesterlegeek.com",
+  "base": "https://www.chesterlegeek.com",
+  "platform": "shopify",
+  "name": "Chester Le Geek",
+  "currency": "GBP",
+  "regions": [
+   "UK"
+  ],
+  "perRegion": {
+   "UK": {
+    "listings": 0,
+    "noJan": 2,
+    "seen": 152,
+    "inStock": 0,
+    "lines": {}
+   }
+  }
+ },
+ {
+  "host": "chibichopshop.com",
+  "base": "https://chibichopshop.com",
+  "platform": "shopify",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU",
+   "SG"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 0,
+    "noJan": 26,
+    "seen": 205,
+    "inStock": 0,
+    "lines": {}
+   }
+  }
+ },
+ {
+  "host": "chonkycollectibles.com",
+  "base": "https://chonkycollectibles.com",
+  "platform": "shopify",
+  "name": "CHONKY COLLECTIBLES",
+  "currency": "CAD",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU",
+   "SG"
+  ],
+  "perRegion": {
+   "CA": {
+    "listings": 1,
+    "noJan": 0,
+    "seen": 13,
+    "inStock": 0,
+    "lines": {
+     "nendoroid": 1
+    }
+   }
+  }
+ },
+ {
+  "host": "cosmicdestroyers.com",
+  "base": "https://cosmicdestroyers.com",
+  "platform": "shopify",
+  "name": "Cosmic Destroyer’s Collectibles ",
+  "currency": "USD",
+  "regions": [
+   "US"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 1,
+    "noJan": 0,
+    "seen": 1,
+    "inStock": 1,
+    "lines": {
+     "nendoroid": 1
+    }
+   }
+  }
+ },
+ {
+  "host": "curibo.co.uk",
+  "base": "https://curibo.co.uk",
+  "platform": "shopify",
+  "name": "Curibo",
+  "currency": "GBP",
+  "regions": [
+   "US",
+   "UK",
+   "EU"
+  ],
+  "perRegion": {
+   "UK": {
+    "listings": 0,
+    "noJan": 203,
+    "seen": 380,
+    "inStock": 0,
+    "lines": {}
+   }
+  }
+ },
+ {
+  "host": "derpycards.com",
+  "base": "https://derpycards.com",
+  "platform": "shopify",
+  "name": "Derpy Cards",
+  "currency": "CAD",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU",
+   "SG"
+  ],
+  "perRegion": {
+   "CA": {
+    "listings": 1,
+    "noJan": 2,
+    "seen": 21,
+    "inStock": 1,
+    "lines": {
+     "figma": 1
+    }
+   }
+  }
+ },
+ {
+  "host": "elbenwald.com",
+  "base": "https://elbenwald.com",
+  "platform": "shopify",
+  "name": "Elbenwald",
+  "currency": "EUR",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU"
+  ],
+  "perRegion": {
+   "EU": {
+    "listings": 15,
+    "noJan": 24,
+    "seen": 49,
+    "inStock": 15,
+    "lines": {
+     "pop-up-parade": 7,
+     "nendoroid": 8
+    }
+   }
+  }
+ },
+ {
+  "host": "envcollectible.com",
+  "base": "https://envcollectible.com",
+  "platform": "shopify",
+  "name": "ENV Collectible",
+  "currency": "CAD",
+  "regions": [
+   "US",
+   "CA"
+  ],
+  "perRegion": {
+   "CA": {
+    "listings": 15,
+    "noJan": 1,
+    "seen": 20000,
+    "inStock": 0,
+    "lines": {
+     "nendoroid": 7,
+     "pop-up-parade": 8
+    }
+   }
+  }
+ },
+ {
+  "host": "exfigure.com",
+  "base": "https://exfigure.com",
+  "platform": "shopify",
+  "name": "Exfigure",
+  "currency": "USD",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU",
+   "SG"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 13,
+    "noJan": 626,
+    "seen": 1165,
+    "inStock": 13,
+    "lines": {
+     "figma": 2,
+     "pop-up-parade": 10,
+     "nendoroid": 1
+    }
+   }
+  }
+ },
+ {
+  "host": "fictionary-world.de",
+  "base": "https://fictionary-world.de",
+  "platform": "shopify",
+  "name": "fictionary world",
+  "currency": "EUR",
+  "regions": [
+   "EU"
+  ],
+  "perRegion": {
+   "EU": {
+    "listings": 16,
+    "noJan": 1553,
+    "seen": 2160,
+    "inStock": 15,
+    "lines": {
+     "pop-up-parade": 12,
+     "nendoroid": 4
+    }
+   }
+  }
+ },
+ {
+  "host": "figurecentral.com.au",
+  "base": "https://www.figurecentral.com.au",
+  "platform": "shopify",
+  "name": "Figure Central",
+  "currency": "AUD",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "SG"
+  ],
+  "perRegion": {
+   "AU": {
+    "listings": 0,
+    "noJan": 20,
+    "seen": 39,
+    "inStock": 0,
+    "lines": {}
+   }
+  }
+ },
+ {
+  "host": "figurespot.com",
+  "error": "home: fetch failed"
+ },
+ {
+  "host": "funtimetoysandgifts.com",
+  "base": "https://www.funtimetoysandgifts.com",
+  "platform": "shopify",
+  "regions": [
+   "US"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 0,
+    "noJan": 1,
+    "seen": 9613,
+    "inStock": 0,
+    "lines": {}
+   }
+  }
+ },
+ {
+  "host": "gameshack.ca",
+  "base": "https://www.gameshack.ca",
+  "platform": "shopify",
+  "name": "Game Shack",
+  "currency": "CAD",
+  "regions": [
+   "CA"
+  ],
+  "perRegion": {
+   "CA": {
+    "listings": 0,
+    "noJan": 3,
+    "seen": 5660,
+    "inStock": 0,
+    "lines": {}
+   }
+  }
+ },
+ {
+  "host": "gamezilla.ca",
+  "base": "https://gamezilla.ca",
+  "platform": "shopify",
+  "name": "GameZilla",
+  "currency": "CAD",
+  "regions": [
+   "CA"
+  ],
+  "perRegion": {
+   "CA": {
+    "listings": 15,
+    "noJan": 0,
+    "seen": 204,
+    "inStock": 15,
+    "lines": {
+     "pop-up-parade": 15
+    }
+   }
+  }
+ },
+ {
+  "host": "geekandco.ca",
+  "base": "https://geekandco.ca",
+  "platform": "shopify",
+  "name": "Geek & Co.",
+  "currency": "CAD",
+  "regions": [
+   "US",
+   "CA"
+  ],
+  "perRegion": {
+   "CA": {
+    "listings": 1,
+    "noJan": 2,
+    "seen": 8956,
+    "inStock": 1,
+    "lines": {
+     "pop-up-parade": 1
+    }
+   }
+  }
+ },
+ {
+  "host": "goodgameanime.com",
+  "base": "https://goodgameanime.com",
+  "platform": "shopify",
+  "name": "Good Game Anime",
+  "currency": "USD",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 14,
+    "noJan": 57,
+    "seen": 74,
+    "inStock": 14,
+    "lines": {
+     "nendoroid": 14
+    }
+   }
+  }
+ },
+ {
+  "host": "goodsmileus.com",
+  "base": "https://www.goodsmileus.com",
+  "platform": "shopify",
+  "name": "Good Smile US",
+  "currency": "USD",
+  "regions": [
+   "US"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 71,
+    "noJan": 0,
+    "seen": 72,
+    "inStock": 18,
+    "lines": {
+     "figma": 71
+    }
+   }
+  }
+ },
+ {
+  "host": "gundamplanet.com",
+  "base": "https://www.gundamplanet.com",
+  "platform": "shopify",
+  "name": "Gundam Planet",
+  "currency": "USD",
+  "regions": [
+   "US"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 15,
+    "noJan": 1337,
+    "seen": 1462,
+    "inStock": 15,
+    "lines": {
+     "figma": 15
+    }
+   }
+  }
+ },
+ {
+  "host": "hobby-bee.com",
+  "base": "https://hobby-bee.com",
+  "platform": "shopify",
+  "name": "Hobby Bee Canada",
+  "currency": "CAD",
+  "regions": [
+   "CA"
+  ],
+  "perRegion": {
+   "CA": {
+    "listings": 2852,
+    "noJan": 598,
+    "seen": 5330,
+    "inStock": 847,
+    "lines": {
+     "figma": 328,
+     "nendoroid": 1824,
+     "pop-up-parade": 700
+    }
+   }
+  }
+ },
+ {
+  "host": "hobbyco.com.au",
+  "base": "https://www.hobbyco.com.au",
+  "platform": "shopify",
+  "name": "Hobbyco",
+  "currency": "AUD",
+  "regions": [
+   "AU"
+  ],
+  "perRegion": {
+   "AU": {
+    "listings": 15,
+    "noJan": 29,
+    "seen": 648,
+    "inStock": 1,
+    "lines": {
+     "pop-up-parade": 15
+    }
+   }
+  }
+ },
+ {
+  "host": "hobbyfigures.co.uk",
+  "base": "https://hobbyfigures.co.uk",
+  "platform": "shopify",
+  "name": "Hobby Figures",
+  "currency": "GBP",
+  "regions": [
+   "UK"
+  ],
+  "perRegion": {
+   "UK": {
+    "listings": 16,
+    "noJan": 2656,
+    "seen": 5690,
+    "inStock": 11,
+    "lines": {
+     "figma": 11,
+     "nendoroid": 5
+    }
+   }
+  }
+ },
+ {
+  "host": "hobbygenki.com",
+  "error": "home: fetch failed"
+ },
+ {
+  "host": "japan-figure.com",
+  "base": "https://japan-figure.com",
+  "platform": "shopify",
+  "name": " Japan Figure Store - #1 Bring To You The Best Japanese Goods",
+  "currency": "USD",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU",
+   "SG"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 2459,
+    "noJan": 1011,
+    "seen": 24154,
+    "inStock": 2274,
+    "lines": {
+     "pop-up-parade": 494,
+     "figma": 173,
+     "nendoroid": 1792
+    }
+   }
+  }
+ },
+ {
+  "host": "japantoys.com.au",
+  "base": "https://www.japantoys.com.au",
+  "platform": "shopify",
+  "name": "JapanToys",
+  "currency": "AUD",
+  "regions": [
+   "AU"
+  ],
+  "perRegion": {
+   "AU": {
+    "listings": 276,
+    "noJan": 6,
+    "seen": 646,
+    "inStock": 51,
+    "lines": {
+     "figma": 19,
+     "nendoroid": 185,
+     "pop-up-parade": 72
+    }
+   }
+  }
+ },
+ {
+  "host": "jumpichiban.com",
+  "base": "https://jumpichiban.com",
+  "platform": "shopify",
+  "name": "JumpIchiban",
+  "currency": "EUR",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU",
+   "SG"
+  ],
+  "perRegion": {
+   "EU": {
+    "listings": 12,
+    "noJan": 411,
+    "seen": 20000,
+    "inStock": 9,
+    "lines": {
+     "pop-up-parade": 3,
+     "nendoroid": 9
+    }
+   }
+  }
+ },
+ {
+  "host": "kappahobby.com",
+  "base": "https://www.kappahobby.com",
+  "platform": "shopify",
+  "name": "Kappa Hobby",
+  "currency": "USD",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU",
+   "SG"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 15,
+    "noJan": 1332,
+    "seen": 2039,
+    "inStock": 15,
+    "lines": {
+     "nendoroid": 13,
+     "pop-up-parade": 2
+    }
+   }
+  }
+ },
+ {
+  "host": "kawaii-mart.com",
+  "error": "home: fetch failed"
+ },
+ {
+  "host": "kollectkorner.com",
+  "base": "https://www.kollectkorner.com",
+  "platform": "shopify",
+  "name": "Kollect Korner",
+  "currency": "USD",
+  "regions": [
+   "US"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 1,
+    "noJan": 1,
+    "seen": 1271,
+    "inStock": 1,
+    "lines": {
+     "nendoroid": 1
+    }
+   }
+  }
+ },
+ {
+  "host": "kotous.com",
+  "base": "https://kotous.com",
+  "platform": null
+ },
+ {
+  "host": "kyouhobbyshop.com",
+  "error": "home: fetch failed"
+ },
+ {
+  "host": "loadeddice.uk",
+  "base": "https://www.loadeddice.uk",
+  "platform": "shopify",
+  "name": "Loaded Dice",
+  "currency": "GBP",
+  "regions": [
+   "UK"
+  ],
+  "perRegion": {
+   "UK": {
+    "listings": 15,
+    "noJan": 388,
+    "seen": 723,
+    "inStock": 8,
+    "lines": {
+     "nendoroid": 13,
+     "pop-up-parade": 2
+    }
+   }
+  }
+ },
+ {
+  "host": "lootgoblincollectables.com",
+  "base": "https://www.lootgoblincollectables.com",
+  "platform": "shopify",
+  "name": "Loot Goblin Collectables ",
+  "currency": "AUD",
+  "regions": [
+   "AU"
+  ],
+  "perRegion": {
+   "AU": {
+    "listings": 0,
+    "noJan": 1,
+    "seen": 18,
+    "inStock": 0,
+    "lines": {}
+   }
+  }
+ },
+ {
+  "host": "meccha-japan.com",
+  "base": "https://meccha-japan.com",
+  "platform": null
+ },
+ {
+  "host": "mikufan.com",
+  "error": "home: fetch failed"
+ },
+ {
+  "host": "myanimetoys.com",
+  "base": "https://animedepot.net",
+  "platform": null
+ },
+ {
+  "host": "nabemacollectibles.com",
+  "base": "https://www.nabemacollectibles.com",
+  "platform": "shopify",
+  "name": "Nabema Collectibles",
+  "currency": "CAD",
+  "regions": [
+   "US",
+   "CA"
+  ],
+  "perRegion": {
+   "CA": {
+    "listings": 7,
+    "noJan": 0,
+    "seen": 9298,
+    "inStock": 1,
+    "lines": {
+     "pop-up-parade": 7
+    }
+   }
+  }
+ },
+ {
+  "host": "nekotwo.com",
+  "base": "https://nekotwo.com",
+  "platform": "shopify",
+  "name": "Nekotwo",
+  "currency": "USD",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU",
+   "SG"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 1531,
+    "noJan": 539,
+    "seen": 3506,
+    "inStock": 27,
+    "lines": {
+     "figma": 6,
+     "pop-up-parade": 389,
+     "nendoroid": 1136
+    }
+   }
+  }
+ },
+ {
+  "host": "nendotown.com",
+  "error": "home: fetch failed"
+ },
+ {
+  "host": "nerdblock.com",
+  "base": "https://nerdblock.com",
+  "platform": null
+ },
+ {
+  "host": "ninoma.com",
+  "base": "https://ninoma.com",
+  "platform": "shopify",
+  "name": "Ninoma",
+  "currency": "JPY",
+  "regions": [],
+  "perRegion": {}
+ },
+ {
+  "host": "ohayopop.com",
+  "base": "https://ohayopop.com",
+  "platform": "shopify",
+  "name": "OhayoPop",
+  "currency": "USD",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU",
+   "SG"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 15,
+    "noJan": 44,
+    "seen": 85,
+    "inStock": 11,
+    "lines": {
+     "pop-up-parade": 15
+    }
+   }
+  }
+ },
+ {
+  "host": "okini.land",
+  "base": "https://okini.land",
+  "platform": null
+ },
+ {
+  "host": "oomomostore.com",
+  "base": "https://www.oomomostore.com",
+  "platform": "shopify",
+  "name": "Oomomo Canada",
+  "currency": "CAD",
+  "regions": [
+   "CA"
+  ],
+  "perRegion": {
+   "CA": {
+    "listings": 117,
+    "noJan": 0,
+    "seen": 249,
+    "inStock": 117,
+    "lines": {
+     "nendoroid": 85,
+     "pop-up-parade": 32
+    }
+   }
+  }
+ },
+ {
+  "host": "orbitopia-figures.com",
+  "base": "https://orbitopia-figures.com",
+  "platform": "shopify",
+  "name": "OrbiTopia",
+  "currency": "EUR",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU",
+   "SG"
+  ],
+  "perRegion": {
+   "EU": {
+    "listings": 14,
+    "noJan": 305,
+    "seen": 426,
+    "inStock": 12,
+    "lines": {
+     "nendoroid": 3,
+     "pop-up-parade": 11
+    }
+   }
+  }
+ },
+ {
+  "host": "oshoppu.com",
+  "base": "https://oshoppu.com",
+  "platform": "shopify",
+  "name": "oshoppu",
+  "currency": "GBP",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU"
+  ],
+  "perRegion": {
+   "UK": {
+    "listings": 122,
+    "noJan": 237,
+    "seen": 396,
+    "inStock": 78,
+    "lines": {
+     "figma": 18,
+     "nendoroid": 75,
+     "pop-up-parade": 29
+    }
+   }
+  }
+ },
+ {
+  "host": "otakucollectives.com",
+  "base": "https://otakucollectives.com",
+  "platform": "shopify",
+  "name": "Otaku Collectives",
+  "currency": "USD",
+  "regions": [
+   "US"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 0,
+    "noJan": 0,
+    "seen": 2205,
+    "inStock": 0,
+    "lines": {}
+   }
+  }
+ },
+ {
+  "host": "otakumode.com",
+  "base": "https://otakumode.com",
+  "platform": null
+ },
+ {
+  "host": "ozziecollectables.com",
+  "base": "https://www.ozziecollectables.com",
+  "platform": "shopify",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU",
+   "SG"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 15,
+    "noJan": 84,
+    "seen": 277,
+    "inStock": 14,
+    "lines": {
+     "nendoroid": 12,
+     "pop-up-parade": 3
+    }
+   }
+  }
+ },
+ {
+  "host": "plazajapan.com",
+  "base": "https://www.plazajapan.com",
+  "platform": null
+ },
+ {
+  "host": "popculturetengoku.co.nz",
+  "base": "https://www.popculturetengoku.co.nz",
+  "platform": "shopify",
+  "name": "Popculture Tengoku",
+  "currency": "NZD",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU"
+  ],
+  "perRegion": {
+   "NZ": {
+    "listings": 15,
+    "noJan": 65,
+    "seen": 106,
+    "inStock": 7,
+    "lines": {
+     "nendoroid": 11,
+     "pop-up-parade": 4
+    }
+   }
+  }
+ },
+ {
+  "host": "prexhobby.com",
+  "base": "https://www.prexhobby.com",
+  "platform": "shopify",
+  "name": "P-Rex Hobby",
+  "currency": "CAD",
+  "regions": [
+   "US",
+   "CA"
+  ],
+  "perRegion": {
+   "CA": {
+    "listings": 15,
+    "noJan": 137,
+    "seen": 2349,
+    "inStock": 8,
+    "lines": {
+     "pop-up-parade": 7,
+     "nendoroid": 8
+    }
+   }
+  }
+ },
+ {
+  "host": "raptorgames.com",
+  "base": "https://raptorgames.com",
+  "platform": "shopify",
+  "name": "Raptor Games",
+  "currency": "AUD",
+  "regions": [
+   "AU"
+  ],
+  "perRegion": {
+   "AU": {
+    "listings": 5,
+    "noJan": 0,
+    "seen": 14426,
+    "inStock": 1,
+    "lines": {
+     "figma": 3,
+     "nendoroid": 2
+    }
+   }
+  }
+ },
+ {
+  "host": "roningames.com.au",
+  "base": "https://roningames.com.au",
+  "platform": "shopify",
+  "name": "Ronin Games",
+  "currency": "AUD",
+  "regions": [
+   "AU"
+  ],
+  "perRegion": {},
+  "error": "read: https://roningames.com.au/collections/all/products.json?limit=250&page=64&country=AU: HTTP 500"
+ },
+ {
+  "host": "sccg.co.uk",
+  "base": "https://sincitycomicsgaming.com",
+  "platform": "shopify",
+  "name": "Sin City Comics & Gaming",
+  "currency": "GBP",
+  "regions": [
+   "UK"
+  ],
+  "perRegion": {
+   "UK": {
+    "listings": 8,
+    "noJan": 0,
+    "seen": 14597,
+    "inStock": 4,
+    "lines": {
+     "pop-up-parade": 8
+    }
+   }
+  }
+ },
+ {
+  "host": "shop.forbiddenplanet.co.uk",
+  "base": "https://shop.forbiddenplanet.co.uk",
+  "platform": "shopify",
+  "name": "Forbidden Planet International",
+  "currency": "GBP",
+  "regions": [
+   "UK"
+  ],
+  "perRegion": {
+   "UK": {
+    "listings": 1,
+    "noJan": 0,
+    "seen": 18,
+    "inStock": 1,
+    "lines": {
+     "nendoroid": 1
+    }
+   }
+  }
+ },
+ {
+  "host": "shop.otakuhouse.com",
+  "base": "https://shop.otakuhouse.com",
+  "platform": "shopify",
+  "name": "Otaku House",
+  "currency": "SGD",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU",
+   "SG"
+  ],
+  "perRegion": {
+   "SG": {
+    "listings": 13,
+    "noJan": 89,
+    "seen": 1069,
+    "inStock": 13,
+    "lines": {
+     "figma": 6,
+     "nendoroid": 7
+    }
+   }
+  }
+ },
+ {
+  "host": "shumistore.com",
+  "base": "https://shumistore.com",
+  "platform": "shopify",
+  "name": "Shumi Toys & Gifts",
+  "currency": "USD",
+  "regions": [
+   "US"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 15,
+    "noJan": 674,
+    "seen": 833,
+    "inStock": 9,
+    "lines": {
+     "figma": 15
+    }
+   }
+  }
+ },
+ {
+  "host": "spankyslootstash.com",
+  "base": "https://www.spankyslootstash.com",
+  "platform": "shopify",
+  "name": "Spanky's Loot Stash",
+  "currency": "USD",
+  "regions": [
+   "US",
+   "UK",
+   "CA"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 0,
+    "noJan": 5,
+    "seen": 6826,
+    "inStock": 0,
+    "lines": {}
+   }
+  }
+ },
+ {
+  "host": "spiedagames.com",
+  "base": "https://spiedagames.com",
+  "platform": "shopify",
+  "name": "Spieda Games",
+  "currency": "USD",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "EU",
+   "SG"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 1,
+    "noJan": 15,
+    "seen": 8233,
+    "inStock": 0,
+    "lines": {
+     "nendoroid": 1
+    }
+   }
+  }
+ },
+ {
+  "host": "sugoi.shop",
+  "base": "https://sugoi.shop",
+  "platform": "shopify",
+  "name": "Sugoi Shop",
+  "currency": "AUD",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "SG"
+  ],
+  "perRegion": {
+   "AU": {
+    "listings": 15,
+    "noJan": 1214,
+    "seen": 1619,
+    "inStock": 12,
+    "lines": {
+     "nendoroid": 15
+    }
+   }
+  }
+ },
+ {
+  "host": "sugoimart.com",
+  "base": "https://www.sugoimart.com",
+  "platform": "shopify",
+  "name": "Sugoi Mart",
+  "currency": "USD",
+  "regions": [
+   "US"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 9,
+    "noJan": 2,
+    "seen": 15068,
+    "inStock": 0,
+    "lines": {
+     "nendoroid": 7,
+     "pop-up-parade": 2
+    }
+   }
+  }
+ },
+ {
+  "host": "superanimestore.com",
+  "base": "https://superanimestore.com",
+  "platform": "shopify",
+  "name": "Super Anime Store",
+  "currency": "USD",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU",
+   "SG"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 205,
+    "noJan": 42,
+    "seen": 20000,
+    "inStock": 26,
+    "lines": {
+     "pop-up-parade": 59,
+     "nendoroid": 118,
+     "figma": 28
+    }
+   }
+  }
+ },
+ {
+  "host": "sweetsandgeeks.com",
+  "base": "https://www.sweetsandgeeks.com",
+  "platform": "shopify",
+  "name": "Sweets and Geeks",
+  "currency": "USD",
+  "regions": [
+   "US"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 15,
+    "noJan": 0,
+    "seen": 22,
+    "inStock": 5,
+    "lines": {
+     "pop-up-parade": 14,
+     "nendoroid": 1
+    }
+   }
+  }
+ },
+ {
+  "host": "theanimethrone.com",
+  "base": "https://theanimethrone.com",
+  "platform": "shopify",
+  "name": "TheAnimeThrone",
+  "currency": "USD",
+  "regions": [
+   "US"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 13,
+    "noJan": 332,
+    "seen": 479,
+    "inStock": 13,
+    "lines": {
+     "nendoroid": 13
+    }
+   }
+  }
+ },
+ {
+  "host": "thefigureshop.com",
+  "error": "home: fetch failed"
+ },
+ {
+  "host": "thegamescapital.com.au",
+  "base": "https://www.goodgames.com.au",
+  "platform": "shopify",
+  "name": "Good Games",
+  "currency": "AUD",
+  "regions": [
+   "AU"
+  ],
+  "perRegion": {
+   "AU": {
+    "listings": 257,
+    "noJan": 14,
+    "seen": 2109,
+    "inStock": 7,
+    "lines": {
+     "nendoroid": 137,
+     "pop-up-parade": 119,
+     "figma": 1
+    }
+   }
+  }
+ },
+ {
+  "host": "tohoanimationstore.us",
+  "base": "https://tohoanimationstore.us",
+  "platform": "shopify",
+  "name": "TOHO animation Store | US",
+  "currency": "USD",
+  "regions": [
+   "US"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 13,
+    "noJan": 1,
+    "seen": 78,
+    "inStock": 12,
+    "lines": {
+     "nendoroid": 9,
+     "pop-up-parade": 4
+    }
+   }
+  }
+ },
+ {
+  "host": "toyarena.com",
+  "base": "https://toyarena.com",
+  "platform": "shopify",
+  "name": "ToyArena",
+  "currency": "USD",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU",
+   "SG"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 15,
+    "noJan": 1594,
+    "seen": 1859,
+    "inStock": 15,
+    "lines": {
+     "figma": 15
+    }
+   }
+  }
+ },
+ {
+  "host": "toycoin.com.sg",
+  "base": "https://toycoin.com.sg",
+  "platform": "shopify",
+  "name": "ToyCoin",
+  "currency": "SGD",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU",
+   "SG"
+  ],
+  "perRegion": {
+   "SG": {
+    "listings": 1528,
+    "noJan": 67,
+    "seen": 2468,
+    "inStock": 259,
+    "lines": {
+     "figma": 2,
+     "nendoroid": 1526
+    }
+   }
+  }
+ },
+ {
+  "host": "toynk.com",
+  "base": "https://www.toynk.com",
+  "platform": "shopify",
+  "name": "Toynk Toys",
+  "currency": "USD",
+  "regions": [
+   "US"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 15,
+    "noJan": 1,
+    "seen": 20000,
+    "inStock": 15,
+    "lines": {
+     "nendoroid": 14,
+     "pop-up-parade": 1
+    }
+   }
+  }
+ },
+ {
+  "host": "toyshnip.com",
+  "base": "https://www.toyshnip.com",
+  "platform": "shopify",
+  "name": "ToyShnip",
+  "currency": "USD",
+  "regions": [
+   "US",
+   "UK",
+   "CA",
+   "AU",
+   "NZ",
+   "EU",
+   "SG"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 33,
+    "noJan": 0,
+    "seen": 39,
+    "inStock": 33,
+    "lines": {
+     "pop-up-parade": 6,
+     "nendoroid": 26,
+     "figma": 1
+    }
+   }
+  }
+ },
+ {
+  "host": "toytokyo.com",
+  "base": "https://toytokyo.com",
+  "platform": "shopify",
+  "name": "TOY TOKYO",
+  "currency": "USD",
+  "regions": [
+   "US",
+   "CA",
+   "AU",
+   "NZ"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 0,
+    "noJan": 3,
+    "seen": 935,
+    "inStock": 0,
+    "lines": {}
+   }
+  }
+ },
+ {
+  "host": "ultimasupply.com",
+  "base": "https://ultimasupply.com",
+  "platform": "shopify",
+  "name": "Ultima Supply",
+  "currency": "USD",
+  "regions": [
+   "US"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 0,
+    "noJan": 13,
+    "seen": 733,
+    "inStock": 0,
+    "lines": {}
+   }
+  }
+ },
+ {
+  "host": "unifigshop.com",
+  "base": "https://unifigshop.com",
+  "platform": "shopify",
+  "name": "UniFig",
+  "currency": "CAD",
+  "regions": [
+   "US",
+   "CA"
+  ],
+  "perRegion": {
+   "CA": {
+    "listings": 9,
+    "noJan": 0,
+    "seen": 20,
+    "inStock": 2,
+    "lines": {
+     "pop-up-parade": 8,
+     "nendoroid": 1
+    }
+   }
+  }
+ },
+ {
+  "host": "usagundamstore.com",
+  "base": "https://www.usagundamstore.com",
+  "platform": "shopify",
+  "regions": [
+   "US"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 365,
+    "noJan": 2573,
+    "seen": 3881,
+    "inStock": 16,
+    "lines": {
+     "figma": 78,
+     "nendoroid": 283,
+     "pop-up-parade": 4
+    }
+   }
+  }
+ },
+ {
+  "host": "utopiatoysandmodels.com",
+  "base": "https://utopiatoysandmodels.com",
+  "platform": "shopify",
+  "regions": [
+   "US"
+  ],
+  "perRegion": {
+   "US": {
+    "listings": 15,
+    "noJan": 42,
+    "seen": 57,
+    "inStock": 13,
+    "lines": {
+     "pop-up-parade": 15
+    }
+   }
+  }
+ },
+ {
+  "host": "wonderlandgames.com.au",
+  "base": "https://www.wonderlandgames.com.au",
+  "platform": "shopify",
+  "name": "Wonderland Games",
+  "currency": "AUD",
+  "regions": [
+   "AU"
+  ],
+  "perRegion": {
+   "AU": {
+    "listings": 10,
+    "noJan": 0,
+    "seen": 20000,
+    "inStock": 5,
+    "lines": {
+     "pop-up-parade": 9,
+     "nendoroid": 1
+    }
+   }
+  }
+ }
+]

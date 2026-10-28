@@ -121,3 +121,21 @@ listing with its price when the eBay pass found one, else a search), the eBay ro
 ("Shown first", with how it compares to the cheapest store), an eBay strip at the top of every list page as well
 as the bottom, and the eBay box first in the sidebar and phone menu. Stores stay sorted by price and the real
 cheapest keeps its badge; the family's pinned-marketplace rule, as on the card sites.
+
+## 136 stores, and a shop is read only in its own currency — 2026-10-28 (owner)
+
+The owner found Eren Yeager priced only in AU and UK: the US had three big figure shops. A two-pass probe
+(`scripts/probe-stores.ts`, `.github/workflows/probe-stores.yml`, results in `probe/results.json` on the branch)
+read ~380 candidate shops the way the import would and 64 joined (30 US, 10 CA, 8 UK, 6 EU, 6 AU, 2 NZ, 2 SG),
+among them animate USA, Japan Figure Store, Nekotwo, Good Smile US, Hobby Bee and ToyCoin.
+
+* **products.json is priced in the shop's own currency**, whatever `?country=` asks for: Shopify Markets only
+  localises the checkout. The first probe would have filed Singapore's ToyCoin as a US store with SGD prices
+  shown as dollars. The import now refuses a Shopify store whose `/meta.json` currency is not its region's,
+  before the cart.js check; each shop is listed once, in its own currency's region.
+* New shops get `collections: ["all"]` as the fallback, used only when `/collections.json` names no figure
+  collection.
+* Barcodes for the new shops come from `fill-barcodes.yml` (16 runners), not the daily import's 2,400-lookup
+  budget, which the biggest catalogues would take for weeks. The import's timeout is 240 minutes for 136 stores.
+* Left out: marketplaces and shops behind bot protection, a Japan-priced shop (Ninoma, JPY), shops with none of
+  our lines or no readable barcodes, and The Games Capital (it redirects to Good Games, already listed).
