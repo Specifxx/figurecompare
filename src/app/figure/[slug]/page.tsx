@@ -14,6 +14,7 @@ import { RegionTabs } from "@/components/RegionPicker";
 import { TileGrid } from "@/components/FigureTile";
 import { OutLink } from "@/components/OutLink";
 import { Sparkles } from "@/components/Sparkles";
+import { EbayStrip, lineQueries } from "@/components/EbayStrip";
 
 // Prerendered at build, one static file per figure; a slug the release does
 // not know is a 404, never a render on request.
@@ -213,6 +214,14 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
           <TileGrid figures={siblings} />
         </section>
       )}
+
+      <EbayStrip
+        className="mt-10"
+        placement="figure_more"
+        queries={[{ label: "This figure on eBay", q: f.name }, ...lineQueries(line.name)]}
+        figures={siblings}
+        title={`More ${line.name} on eBay`}
+      />
 
       <section className="mt-10 max-w-3xl">
         <h2 className="h-display mb-3 text-2xl">Questions</h2>

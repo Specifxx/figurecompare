@@ -3,6 +3,7 @@ import { LINES, SITE } from "@/site";
 import { Mascot } from "@/components/Mascot";
 import { PageHead } from "@/components/Section";
 import { Prose } from "@/components/Prose";
+import { EbayStrip, SITE_QUERIES } from "@/components/EbayStrip";
 
 export const metadata: Metadata = {
   title: "About FigureCompare and how matching works",
@@ -43,6 +44,7 @@ export default function About() {
           Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. FigureCompare is part of a family of price comparison sites, linked at the bottom of every page.
         </p>
       </Prose>
+      <EbayStrip className="mt-10" placement="about" queries={SITE_QUERIES} />
     </div>
   );
 }

@@ -26,6 +26,8 @@ test("affiliate tags name the site, region, placement and product", () => {
   assert.ok(e.searchParams.get("campid"));
   assert.match(ebaySearchUrl("Nendoroid Frieren", "UK", "t")!, /ebay\.co\.uk.*LH_BIN=1/);
   assert.equal(ebaySearchUrl("x", "JP", "t"), null);
+  // New Zealand shops on eBay Australia (no eBay NZ in the Partner Network).
+  assert.match(ebaySearchUrl("Nendoroid Frieren", "NZ", "t")!, /ebay\.com\.au.*campid=/);
   assert.match(amazonSearchUrl("x", "US", "figure-us-y")!, /tag=.*ascsubtag=figure-us-y/);
   assert.equal(amazonSearchUrl("x", "UK", "t"), null, "no UK tag yet, no Amazon UK row");
   assert.match(storeUrl("nope", "https://shop.example/p?a=1"), /utm_source=figurecompare\.com&utm_medium=referral/);
@@ -78,4 +80,19 @@ test("one contact address everywhere (owner, 2026-10-28)", async () => {
     const other = (fs.readFileSync(f, "utf8").match(/[\w.+-]+@[\w-]+\.[\w.]+/g) ?? []).filter((a) => a !== SITE.email && !a.startsWith("@"));
     assert.deepEqual(other, [], `${f} has another address`);
   }
+});
+
+test("eBay strips on every page but the legal ones, labelled and sponsored (owner, 2026-10-28)", async () => {
+  const fs = await import("node:fs");
+  const walk = (d: string): string[] => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(`${d}/${e.name}`) : [`${d}/${e.name}`]));
+  const legal = /\/(terms|privacy|disclosure)\/page\.tsx$/;
+  for (const f of walk("src/app").filter((f) => /\/(page|not-found)\.tsx$/.test(f) && !legal.test(f))) {
+    const src = fs.readFileSync(f, "utf8");
+    const viaHub = src.includes("<LineHub") && fs.readFileSync("src/components/LineHub.tsx", "utf8").includes("<EbayStrip");
+    assert.ok(src.includes("<EbayStrip") || viaHub, `${f} has no eBay strip`);
+  }
+  const strip = fs.readFileSync("src/components/EbayStrip.tsx", "utf8");
+  assert.match(strip, /Ad · Paid link/);
+  assert.ok((strip.match(/<OutLink/g) ?? []).length === (strip.match(/<OutLink[^>]*\bpaid\b/gs) ?? []).length, "every eBay link is paid (rel sponsored)");
+  assert.ok(!fs.readFileSync("src/app/layout.tsx", "utf8").includes("<EbayStrip"), "no site-wide banner: one strip per page, below the content");
 });

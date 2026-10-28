@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Mascot } from "@/components/Mascot";
+import { EbayStrip, SITE_QUERIES } from "@/components/EbayStrip";
 
 export default function NotFound() {
   return (
@@ -10,6 +11,7 @@ export default function NotFound() {
       <Link prefetch={false} href="/" className="btn-pop mt-6 bg-pink text-white">
         Back home ♡
       </Link>
+      <EbayStrip className="mt-12 text-left" placement="notfound" queries={SITE_QUERIES} />
     </div>
   );
 }

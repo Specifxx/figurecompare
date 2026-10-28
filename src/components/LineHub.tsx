@@ -3,6 +3,7 @@ import { LINE_BY_KEY, type LineKey } from "@/site";
 import { figuresOfLine, storeCount } from "@/lib/data";
 import { TileGrid } from "./FigureTile";
 import { PageHead } from "./Section";
+import { EbayStrip, lineQueries } from "./EbayStrip";
 
 export const PER_PAGE = 48;
 
@@ -48,6 +49,7 @@ export function LineHub({ line, page }: { line: LineKey; page: number }) {
           ))}
         </nav>
       )}
+      <EbayStrip className="mt-10" placement={`line_${line}`} queries={lineQueries(l.name)} figures={list} title={`${l.name} on eBay`} />
     </div>
   );
 }

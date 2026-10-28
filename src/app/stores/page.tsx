@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { REGIONS } from "@/site";
 import { STORES } from "@/content/stores";
-import { activeStores } from "@/lib/data";
+import { activeStores, popular } from "@/lib/data";
 import { storeUrl } from "@/lib/affiliate";
 import { PageHead } from "@/components/Section";
+import { EbayStrip, SITE_QUERIES } from "@/components/EbayStrip";
 
 export const metadata: Metadata = {
   title: "Where to buy anime figures online",
@@ -45,6 +46,7 @@ export default function Stores() {
           );
         })}
       </div>
+      <EbayStrip className="mt-10" placement="stores" queries={SITE_QUERIES} figures={popular(30)} title="Figures on eBay" />
     </div>
   );
 }

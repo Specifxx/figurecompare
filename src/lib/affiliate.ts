@@ -88,9 +88,15 @@ export function storePays(storeId: string): boolean {
   return !!(store?.affiliate && process.env[store.affiliate.envVar]);
 }
 
+/** The eBay a region's visitors shop on: its own, or eBay Australia for New
+ *  Zealand (no eBay NZ in the Partner Network; Australian sellers ship there). */
+export function ebayShopHost(region: RegionCode): string | null {
+  return REGION_BY_CODE[region].ebayHost ?? (region === "NZ" ? "www.ebay.com.au" : null);
+}
+
 /** eBay search, Buy It Now, new, cheapest first, in the region's eBay. */
 export function ebaySearchUrl(query: string, region: RegionCode, sub: string): string | null {
-  const h = REGION_BY_CODE[region].ebayHost;
+  const h = ebayShopHost(region);
   if (!h) return null;
   const u = `https://${h}/sch/i.html?_nkw=${encodeURIComponent(query)}&LH_BIN=1&LH_ItemCondition=1000&_sop=15`;
   return ebayAffiliateUrl(u, sub);

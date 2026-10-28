@@ -80,3 +80,20 @@ stops under `prefers-reduced-motion`. No pop-ups (family pop-up policy).
 * **The ops monitor** warns when a store's figure collections come back empty, not when a store simply
   carries none of our lines (about 25 of the 72 do today; they are read daily and cost a second or two).
   The stores page lists only stores with a figure on the site.
+
+## Sidebar menu and eBay on every page — 2026-10-28 (owner)
+
+* **Navigation copies DexCompare and MTG Compare.** Desktop (xl and up) gets a sticky left sidebar with
+  every line (with its count), deals, pre-orders, new arrivals, stores and the about pages; below xl the
+  ☰ button opens a sheet listing the same, plus the region picker. No separate "choose your region" step:
+  the region still comes from the time zone and can be changed from the header or the menu. The groups
+  are one list (`src/lib/nav.ts`), so the two menus never disagree. Still static: the active link is
+  marked in the browser.
+* **eBay is the commission for now** (the store programs are not approved yet), so every page but terms,
+  privacy and disclosure ends with an eBay strip (`src/components/EbayStrip.tsx`): real listings from
+  `ebay.json` when we have three or more for the page's figures, otherwise eBay searches for the page's
+  line or figure. Plus a small eBay box at the foot of the sidebar and the phone menu. Each is labelled
+  "Ad", rel sponsored, tagged `figure-<region>-<placement>-…` so the reports show which placements earn,
+  and drawn at build per region like the prices (no function, no request). Placed below the content,
+  never beside a store's buy button, never a pop-up or a banner across the top. NZ searches go to
+  ebay.com.au, which ships there. `tests/site.test.ts` fails on a page without one.
