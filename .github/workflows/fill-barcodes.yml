@@ -1,0 +1,70 @@
+name: Fill barcodes
+
+# Looks up store barcodes on many runners at once (each its own IP, about a
+# request a second) and merges them into data/state/barcodes.json on main. Run
+# it by hand after adding stores, then run "Import prices". No deploy.
+
+on:
+  workflow_dispatch:
+    inputs:
+      minutes:
+        description: "Minutes each runner looks up for"
+        default: "90"
+
+concurrency:
+  group: import-prices
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  lookup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npx tsx scripts/fill-barcodes.ts
+        env:
+          SHARD: ${{ matrix.shard }}
+          SHARDS: 16
+          MINUTES: ${{ inputs.minutes }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: barcodes-${{ matrix.shard }}
+          path: probe/barcodes-${{ matrix.shard }}.json
+          if-no-files-found: ignore
+
+  merge:
+    needs: lookup
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/download-artifact@v4
+        with:
+          path: shards
+      - name: Merge into the cache and commit to main
+        run: |
+          set -euo pipefail
+          node -e 'const fs=require("fs"),p=require("path");const f="data/state/barcodes.json";const c=JSON.parse(fs.readFileSync(f,"utf8"));let n=0;for(const d of fs.readdirSync("shards"))for(const x of fs.readdirSync(p.join("shards",d))){const o=JSON.parse(fs.readFileSync(p.join("shards",d,x),"utf8"));for(const k in o){c[k]=o[k];n++}}fs.writeFileSync(f,JSON.stringify(c)+"\n");console.log(n,"entries merged")'
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/state/barcodes.json
+          git commit -m "data: barcode lookups" -m "Written by fill-barcodes.yml. Not a release." || exit 0
+          for i in 1 2 3 4; do git push origin HEAD:main && exit 0; sleep $((2 ** i)); git pull --rebase origin main; done
+          exit 1
