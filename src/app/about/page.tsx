@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LINES } from "@/site";
+import { LINES, SITE } from "@/site";
 import { Mascot } from "@/components/Mascot";
 import { PageHead } from "@/components/Section";
 import { Prose } from "@/components/Prose";
@@ -40,7 +40,7 @@ export default function About() {
         </p>
         <h2>Spotted a mistake? Want a store added?</h2>
         <p>
-          Email <a href="mailto:hello@figurecompare.com">hello@figurecompare.com</a>. FigureCompare is part of a family of price comparison sites, linked at the bottom of every page.
+          Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. FigureCompare is part of a family of price comparison sites, linked at the bottom of every page.
         </p>
       </Prose>
     </div>

@@ -68,3 +68,14 @@ test("ops monitor judgements", () => {
   assert.equal(judgeStores({ updatedAt: "", figures: 1, stores: { a: run(true, 0), b: run(true) } }, 2).status, "ok");
   assert.equal(judgeStores({ updatedAt: "", figures: 1, stores: { a: { ...run(true, 0), listings: 0 }, b: run(true) } }, 2).status, "warn");
 });
+
+test("one contact address everywhere (owner, 2026-10-28)", async () => {
+  const fs = await import("node:fs");
+  const { SITE } = await import("@/site");
+  assert.equal(SITE.email, "compareempire@gmail.com");
+  const walk = (d: string): string[] => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(`${d}/${e.name}`) : [`${d}/${e.name}`]));
+  for (const f of walk("src").filter((f) => /\.(tsx?|md)$/.test(f))) {
+    const other = (fs.readFileSync(f, "utf8").match(/[\w.+-]+@[\w-]+\.[\w.]+/g) ?? []).filter((a) => a !== SITE.email && !a.startsWith("@"));
+    assert.deepEqual(other, [], `${f} has another address`);
+  }
+});
