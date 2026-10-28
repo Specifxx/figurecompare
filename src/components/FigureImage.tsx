@@ -8,5 +8,7 @@ export function FigureImage({ src, alt, line, className = "", eager = false }: {
         <span aria-hidden>{LINE_BY_KEY[line].emoji}</span>
       </div>
     );
-  return <img src={src} alt={alt} loading={eager ? "eager" : "lazy"} decoding="async" referrerPolicy="no-referrer" className={className} />;
+  // text-transparent: if a store pulls its photo, the browser's broken-image
+  // alt text does not spill over the tile.
+  return <img src={src} alt={alt} loading={eager ? "eager" : "lazy"} decoding="async" referrerPolicy="no-referrer" className={`text-transparent ${className}`} />;
 }

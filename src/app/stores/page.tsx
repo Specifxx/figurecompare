@@ -22,7 +22,9 @@ export default function Stores() {
       />
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {REGIONS.map((r) => {
-          const list = STORES.filter((s) => s.region === r.code).sort((a, b) => (counts[b.id] ?? 0) - (counts[a.id] ?? 0));
+          // Only stores with a figure on the site today; the rest are still
+          // read every day and appear once they stock one of our lines.
+          const list = STORES.filter((s) => s.region === r.code && (counts[s.id] ?? 0) > 0).sort((a, b) => (counts[b.id] ?? 0) - (counts[a.id] ?? 0));
           if (!list.length) return null;
           return (
             <section key={r.code} className="sticker p-4">
@@ -35,7 +37,7 @@ export default function Stores() {
                     <a href={storeUrl(s.id, s.base)} rel="nofollow noopener" target="_blank" className="font-semibold hover:text-pink-deep">
                       {s.name}
                     </a>
-                    <span className="text-soft">{(counts[s.id] ?? 0).toLocaleString("en-US")} figures</span>
+                    <span className="shrink-0 whitespace-nowrap text-soft">{counts[s.id].toLocaleString("en-US")} figure{counts[s.id] === 1 ? "" : "s"}</span>
                   </li>
                 ))}
               </ul>
