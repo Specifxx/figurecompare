@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE } from "@/site";
 import { PageHead } from "@/components/Section";
 import { Prose } from "@/components/Prose";
 
@@ -16,7 +17,7 @@ export default function Privacy() {
           <li><strong>Affiliate partners</strong> (eBay, Amazon, stores) may set their own cookies once you follow a link to their site, under their own privacy policies.</li>
           <li><strong>Product photos</strong> load from the stores&apos; own servers.</li>
         </ul>
-        <p>Questions: <a href="mailto:hello@figurecompare.com">hello@figurecompare.com</a>.</p>
+        <p>Questions: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
       </Prose>
     </div>
   );

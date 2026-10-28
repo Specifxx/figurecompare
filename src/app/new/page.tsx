@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { REGIONS } from "@/site";
-import { newestIn } from "@/lib/data";
+import { newest, newestIn } from "@/lib/data";
 import { TileGrid } from "@/components/FigureTile";
 import { PageHead } from "@/components/Section";
+import { EbayStrip, SITE_QUERIES } from "@/components/EbayStrip";
 
 export const metadata: Metadata = {
   title: "New anime figures in stores",
@@ -22,6 +23,7 @@ export default function NewFigures() {
           </div>
         );
       })}
+      <EbayStrip className="mt-10" placement="new" queries={SITE_QUERIES} figures={newest(30)} />
     </div>
   );
 }

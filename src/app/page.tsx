@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LINES, REGIONS, SITE } from "@/site";
-import { activeStores, dealsIn, getFigures, getMeta, lineCounts, newestIn, popularIn, preordersIn, storeName } from "@/lib/data";
+import { activeStores, dealsIn, getFigures, getMeta, lineCounts, newest, newestIn, popular, popularIn, preordersIn, storeName } from "@/lib/data";
 import { ago, money, pct } from "@/lib/format";
 import { Mascot } from "@/components/Mascot";
 import { Sparkles } from "@/components/Sparkles";
@@ -10,6 +10,7 @@ import { RegionPicker } from "@/components/RegionPicker";
 import { TileGrid } from "@/components/FigureTile";
 import { Section } from "@/components/Section";
 import { ACTIVE_REGIONS } from "@/lib/regions";
+import { EbayStrip, SITE_QUERIES } from "@/components/EbayStrip";
 
 export const metadata: Metadata = {
   title: { absolute: `${SITE.name}: compare Nendoroid, figma & POP UP PARADE prices` },
@@ -91,6 +92,8 @@ export default function Home() {
           ))}
         </section>
 
+        <EbayStrip className="mt-10" placement="home" queries={SITE_QUERIES} figures={popular(30)} title="Figures on eBay" />
+
         {REGIONS.map((r) => {
           const deals = dealsIn(r.code, 8).map((d) => d.f);
           const pre = preordersIn(r.code, 8);
@@ -124,6 +127,8 @@ export default function Home() {
             </div>
           );
         })}
+
+        <EbayStrip className="mt-10" placement="home_new" queries={SITE_QUERIES} figures={newest(30)} title="New on eBay" />
 
         <section className="mt-14">
           <h2 className="h-display mb-4 text-center text-3xl">

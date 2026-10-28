@@ -2,7 +2,7 @@
 // marketplaces (eBay, Amazon) sit pinned above them, labelled, never counted
 // as a store and never the "best price" (family rule: paid rows pinned).
 import { REGION_BY_CODE, type RegionCode } from "@/site";
-import { amazonSearchUrl, ebayAffiliateUrl, ebaySearchUrl, hljUrl, storePays, storeUrl, subId } from "@/lib/affiliate";
+import { amazonSearchUrl, ebayAffiliateUrl, ebaySearchUrl, ebayShopHost, hljUrl, storePays, storeUrl, subId } from "@/lib/affiliate";
 import { storeName } from "@/lib/data";
 import { money } from "@/lib/format";
 import type { EbayPick, Figure, Offer } from "@/lib/types";
@@ -34,7 +34,7 @@ export function PriceTable({ f, region, ebay, placement = "table" }: { f: Figure
           {ebayUrl && (
             <Row
               name={ebay ? "eBay" : "Search eBay"}
-              sub={ebay ? "Cheapest new Buy It Now listing · Ad" : `New listings on ${r.ebayHost?.replace("www.", "")} · Ad`}
+              sub={ebay ? "Cheapest new Buy It Now listing · Ad" : `New listings on ${ebayShopHost(region)?.replace("www.", "")} · Ad`}
               price={ebay ? money(ebay.p, region) : null}
               status={null}
               href={ebayUrl}

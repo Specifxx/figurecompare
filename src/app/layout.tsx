@@ -10,7 +10,10 @@ import { SITE } from "@/site";
 import { ACTIVE_REGIONS } from "@/lib/regions";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { getMeta } from "@/lib/data";
+import { SideNav } from "@/components/SideNav";
+import { EbayNavBox } from "@/components/EbayStrip";
+import { navGroups } from "@/lib/nav";
+import { getMeta, lineCounts } from "@/lib/data";
 import { niceDate } from "@/lib/format";
 
 export const metadata: Metadata = {
@@ -35,6 +38,7 @@ const BOOT = `(function(){var d=document.documentElement;try{var r=localStorage.
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const meta = getMeta();
+  const groups = navGroups(lineCounts());
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -44,8 +48,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-full focus:bg-card focus:px-3 focus:py-1">
           Skip to content
         </a>
-        <Header />
-        <main id="main">{children}</main>
+        <Header groups={groups} />
+        {/* From xl the left side of a wide screen is the sidebar; the pages keep their own width. */}
+        <div className="mx-auto flex max-w-[1440px]">
+          <SideNav groups={groups} footer={<EbayNavBox placement="sidebar" />} />
+          <main id="main" className="min-w-0 flex-1">
+            {children}
+          </main>
+        </div>
         <Footer updated={meta ? niceDate(meta.updatedAt) : null} />
         <Analytics />
       </body>
