@@ -17,13 +17,13 @@ export default function Deals() {
       <PageHead
         emoji="💸"
         title="Figure deals today"
-        sub="In stock figures where the cheapest store is at least 10% under the dearest one in your region. Same barcode, same box, different price ٩(◕‿◕)۶"
+        sub="In stock figures where the cheapest store is at least 10% under the dearest one in your region. Same barcode, same box, different price."
       />
       {REGIONS.map((r) => {
         const deals = dealsIn(r.code, 48).map((d) => d.f);
         return (
           <div key={r.code} className={`rp rp-${r.code}`}>
-            {deals.length ? <TileGrid figures={deals} region={r.code} /> : <p className="sticker p-6 text-center text-soft">No deals {r.phrase} today. Check back after tomorrow&apos;s price check (´･ω･`)</p>}
+            {deals.length ? <TileGrid figures={deals} region={r.code} /> : <p className="sticker p-6 text-center text-soft">No deals {r.phrase} today. Check back after tomorrow&apos;s price check.</p>}
           </div>
         );
       })}

@@ -85,7 +85,7 @@ export function listingFromProduct(store: Store, p: ShopifyProduct, cachedJan?: 
   const variants = p.variants.filter((v) => Number(v.price) > 0);
   if (!variants.length) return { refused: "no-price" };
   // A variant that names a condition other than new, or a deposit, is never the offer.
-  const clean = variants.filter((v) => !/used|pre-?owned|damaged|deposit|b-?grade|box\s*damage/i.test(v.title || ""));
+  const clean = variants.filter((v) => !/used|pre[-\s]?owned|second[-\s]?hand|damaged|deposit|b-?grade|box\s*damage/i.test(v.title || ""));
   if (!clean.length) return { refused: "pre-owned" };
   const orderable = clean.filter((v) => v.available);
   const v = (orderable.length ? orderable : clean).slice().sort((a, b) => Number(a.price) - Number(b.price))[0];

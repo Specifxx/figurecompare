@@ -24,7 +24,7 @@ export interface TitleInfo {
 // mini figures), and figma's non-figure products.
 const NOT_FIGURE =
   /\bnendoroid\s*(more|plus|petite|doll|swacchao|surprise|play\s*set|playset|pouch|parts|face\s*parts|customi[sz]able|accessor|stand|base|keychain|key\s*chain|strap|acrylic|plush|cushion)|\bfigma\s*(styles?|parts|stand|base|accessor)|\b(plush|keychain|key\s*chain|acrylic\s*stand|t-?shirt|hoodie|poster|mouse\s*pad|tapestry|sticker|badge|art\s*book|artbook|empty\s*box|box\s*only|display\s*case|dust\s*cover|replacement|custom\s*face|face\s*plate|faceplate|decal)\b/i;
-const PRE_OWNED = /\b(pre-?owned|pre-?loved|second\s*-?\s*hand|used|loose|opened|open\s*box|no\s*box|unboxed|b-?grade|grade\s*[bc])\b/i;
+const PRE_OWNED = /\b(pre[-\s]?owned|pre[-\s]?loved|second\s*-?\s*hand|used|loose|opened|open\s*box|no\s*box|unboxed|b-?grade|grade\s*[bc])\b/i;
 const DAMAGED = /\b(damaged?|dented|crushed|box\s*damage|imperfect|defect|as[\s-]is|missing)\b/i;
 const BOOTLEG = /\b(bootleg|replica|knock-?off|unofficial|fake|copy\s*version)\b/i;
 const BUNDLE = /\b(bundle|set\s*of\s*\d|lot\s*of|\d\s*x\s+nendoroid|combo)\b|\s\+\s/i;

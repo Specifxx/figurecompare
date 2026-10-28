@@ -4,8 +4,7 @@ import { LogoMark } from "./Logo";
 
 export function Footer({ updated }: { updated?: string | null }) {
   return (
-    <footer className="relative mt-16 bg-lilac-pale pt-10 text-sm">
-      <div className="wavy-top absolute -top-3.5 left-0 right-0 h-4 bg-lilac-pale" aria-hidden />
+    <footer className="relative mt-16 border-t border-line bg-card pt-10 text-sm">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 pb-8 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <div className="flex items-center gap-2">
@@ -13,7 +12,7 @@ export function Footer({ updated }: { updated?: string | null }) {
             <span className="h-display text-lg">FigureCompare</span>
           </div>
           <p className="mt-2 text-soft">
-            Nendoroid, figma and POP UP PARADE prices from real figure stores, matched by barcode and checked every day. ヾ(＾∇＾)
+            Nendoroid, figma and POP UP PARADE prices from real figure stores, matched by barcode and checked every day.
           </p>
           {updated && <p className="mt-2 text-xs text-soft">Prices updated {updated}.</p>}
         </div>
@@ -54,7 +53,7 @@ export function Footer({ updated }: { updated?: string | null }) {
           </ul>
         </div>
       </div>
-      <div className="border-t-2 border-line/60 px-4 py-4 text-center text-xs text-soft">
+      <div className="border-t border-line px-4 py-4 text-center text-xs text-soft">
         <p>
           Some links earn us a small commission at no cost to you; they never change the order of prices. Prices and stock change fast: the store&apos;s page is always right.
         </p>

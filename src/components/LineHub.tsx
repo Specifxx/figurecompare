@@ -33,7 +33,7 @@ export function LineHub({ line, page }: { line: LineKey; page: number }) {
           </p>
         }
       />
-      {list.length ? <TileGrid figures={list} /> : <p className="sticker p-6 text-center text-soft">No {l.name} figures in stock anywhere yet (；ω；)</p>}
+      {list.length ? <TileGrid figures={list} /> : <p className="sticker p-6 text-center text-soft">No {l.name} figures in stock anywhere yet.</p>}
       {pages > 1 && (
         <nav aria-label="Pages" className="mt-8 flex flex-wrap justify-center gap-2">
           {Array.from({ length: pages }, (_, i) => i + 1).map((p) => (
@@ -42,7 +42,7 @@ export function LineHub({ line, page }: { line: LineKey; page: number }) {
               key={p}
               href={href(p)}
               aria-current={p === page ? "page" : undefined}
-              className={`grid h-10 min-w-10 place-items-center rounded-full border-2 px-3 font-display font-semibold ${p === page ? "border-ink bg-pink text-white shadow-popsm" : "border-line bg-card hover:border-pink"}`}
+              className={`grid h-10 min-w-10 place-items-center rounded-lg border px-3 font-display font-semibold ${p === page ? "border-pink bg-pink text-white" : "border-line bg-card hover:border-pink"}`}
             >
               {p}
             </Link>

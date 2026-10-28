@@ -48,12 +48,12 @@ export function EbayStrip({
           .slice(0, MAX_TILES);
         return (
           <aside key={r.code} className={`rp rp-${r.code} ${className}`} aria-label={`${title} (ad)`}>
-            <div className="rounded-blob border-2 border-dashed border-lemon bg-lemon-pale/60 p-4">
+            <div className="rounded-blob border border-line bg-card p-4">
               <div className="mb-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
                 <h2 className="font-display text-lg font-bold text-ink">
-                  <span aria-hidden>🛍️</span> {title}
+                  {title}
                 </h2>
-                <span className="rounded-full bg-card px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-soft ring-1 ring-line">Ad · Paid link</span>
+                <span className="rounded bg-lilac-pale px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-soft">Ad · Paid link</span>
                 <span className="text-xs text-soft">New, Buy It Now on {host.replace("www.", "")}</span>
               </div>
               {picks.length >= MIN_TILES ? (
@@ -78,16 +78,12 @@ function Tiles({ region, placement, picks }: { region: RegionCode; placement: st
             href={ebayAffiliateUrl(pick.u, subId(region, placement, f.jan))}
             paid
             event={{ source: "ebay", region, placement, jan: f.jan }}
-            className="group flex h-full flex-col overflow-hidden rounded-2xl border-2 border-line bg-card transition hover:-translate-y-0.5 hover:border-pink"
+            className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-card transition hover:-translate-y-0.5 hover:border-pink"
           >
             <span className="grid aspect-square place-items-center bg-white p-2">
               {pick.img ? (
                 <img src={pick.img} alt="" loading="lazy" decoding="async" referrerPolicy="no-referrer" className="h-full w-full object-contain text-transparent" />
-              ) : (
-                <span aria-hidden className="text-4xl">
-                  🎀
-                </span>
-              )}
+              ) : null}
             </span>
             <span className="flex flex-1 flex-col gap-1 p-2">
               <span className="line-clamp-2 text-xs font-semibold text-ink">{f.name}</span>
@@ -111,7 +107,7 @@ function Searches({ region, placement, queries }: { region: RegionCode; placemen
             href={x.href!}
             paid
             event={{ source: "ebay", region, placement }}
-            className="inline-flex min-h-[44px] items-center gap-1.5 rounded-full border-2 border-ink bg-card px-4 py-2 text-sm font-bold text-ink shadow-popsm transition hover:-translate-y-0.5 hover:bg-pink hover:text-white"
+            className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border border-line bg-card px-4 py-2 text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-pink hover:text-white"
           >
             {x.label} <span aria-hidden>›</span>
           </OutLink>
@@ -153,9 +149,9 @@ export function EbayNavBox({ placement }: { placement: string }) {
               href={href}
               paid
               event={{ source: "ebay", region: r.code, placement }}
-              className="block rounded-2xl border-2 border-dashed border-lemon bg-lemon-pale/60 p-3 text-sm transition hover:border-pink"
+              className="block rounded-xl border border-line bg-card p-3 text-sm transition hover:border-soft"
             >
-              <span className="block font-display font-bold text-ink">🛍️ Figures on eBay ›</span>
+              <span className="block font-display font-bold text-ink">Figures on eBay ›</span>
               <span className="text-[11px] text-soft">New, Buy It Now · Ad</span>
             </OutLink>
           </div>

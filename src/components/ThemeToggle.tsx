@@ -16,7 +16,7 @@ export function ThemeToggle() {
     <button
       onClick={flip}
       aria-label={night ? "Switch to day theme" : "Switch to night theme"}
-      className="grid h-9 w-9 place-items-center rounded-full border-2 border-line bg-card text-lg transition hover:rotate-12 hover:border-lilac"
+      className="grid h-9 w-9 place-items-center rounded-lg border border-line bg-card text-lg transition hover:border-soft"
     >
       <span aria-hidden>{night ? "☀️" : "🌙"}</span>
     </button>

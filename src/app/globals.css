@@ -4,45 +4,48 @@
 
 /* ✧ FigureCompare's look: candy pastels, rounded type, sticker cards and a few
    sparkles. Every decoration is CSS, SVG or a kaomoji: no character art. */
+/* FigureCompare's look (owner, 2026-10-28: professional, for teens and adults
+   of any gender): neutral greys, one red accent, green for savings. The names
+   are the old candy ones so every component keeps working; the colours are not. */
 :root {
-  --bg: 255 246 251;
+  --bg: 248 248 250;
   --card: 255 255 255;
-  --ink: 59 35 80;
-  --soft: 122 98 140;
-  --line: 240 214 232;
-  --pink: 255 95 162;
-  --pink-deep: 226 52 128;
-  --pink-pale: 255 228 240;
-  --lilac: 155 123 255;
-  --lilac-pale: 238 232 255;
-  --mint: 38 196 160;
-  --mint-pale: 220 250 240;
-  --sky: 72 168 245;
-  --sky-pale: 224 241 255;
-  --lemon: 255 205 60;
-  --lemon-pale: 255 246 214;
-  --buy: 236 64 140;
+  --ink: 24 24 32;
+  --soft: 96 99 112;
+  --line: 228 228 234;
+  --pink: 225 56 72;
+  --pink-deep: 196 36 54;
+  --pink-pale: 253 238 240;
+  --lilac: 92 96 112;
+  --lilac-pale: 242 242 246;
+  --mint: 21 140 88;
+  --mint-pale: 229 245 236;
+  --sky: 60 110 220;
+  --sky-pale: 242 242 246;
+  --lemon: 180 120 20;
+  --lemon-pale: 246 245 240;
+  --buy: 225 56 72;
   color-scheme: light;
 }
 
 [data-theme="night"] {
-  --bg: 26 18 46;
-  --card: 40 30 68;
-  --ink: 250 236 255;
-  --soft: 196 176 222;
-  --line: 72 56 110;
-  --pink: 255 120 180;
-  --pink-deep: 255 150 198;
-  --pink-pale: 74 40 86;
-  --lilac: 176 150 255;
-  --lilac-pale: 54 44 96;
-  --mint: 80 220 186;
-  --mint-pale: 30 66 70;
-  --sky: 110 190 255;
-  --sky-pale: 34 52 90;
-  --lemon: 255 214 90;
-  --lemon-pale: 70 58 40;
-  --buy: 255 108 170;
+  --bg: 14 14 18;
+  --card: 24 24 30;
+  --ink: 238 238 242;
+  --soft: 160 162 176;
+  --line: 46 46 56;
+  --pink: 255 98 110;
+  --pink-deep: 255 128 138;
+  --pink-pale: 58 28 34;
+  --lilac: 170 172 186;
+  --lilac-pale: 34 34 42;
+  --mint: 74 210 146;
+  --mint-pale: 22 50 38;
+  --sky: 120 160 255;
+  --sky-pale: 34 34 42;
+  --lemon: 230 180 80;
+  --lemon-pale: 40 38 32;
+  --buy: 235 64 80;
   color-scheme: dark;
 }
 
@@ -53,24 +56,6 @@ html {
 body {
   background-color: rgb(var(--bg));
   color: rgb(var(--ink));
-  /* soft polka dots over a pastel wash */
-  background-image:
-    radial-gradient(rgb(var(--pink) / 0.10) 1.5px, transparent 1.6px),
-    radial-gradient(circle at 10% 0%, rgb(var(--lilac) / 0.16), transparent 40%),
-    radial-gradient(circle at 95% 15%, rgb(var(--sky) / 0.14), transparent 35%),
-    radial-gradient(circle at 50% 100%, rgb(var(--mint) / 0.10), transparent 45%);
-  background-size: 22px 22px, 100% 100%, 100% 100%, 100% 100%;
-  background-attachment: scroll, fixed, fixed, fixed;
-}
-
-[data-theme="night"] body {
-  background-image:
-    radial-gradient(rgb(255 255 255 / 0.22) 1px, transparent 1.2px),
-    radial-gradient(rgb(255 220 120 / 0.18) 1px, transparent 1.2px),
-    radial-gradient(circle at 15% 0%, rgb(var(--lilac) / 0.22), transparent 45%),
-    radial-gradient(circle at 90% 30%, rgb(var(--pink) / 0.14), transparent 40%);
-  background-size: 90px 90px, 140px 140px, 100% 100%, 100% 100%;
-  background-position: 0 0, 40px 60px, 0 0, 0 0;
 }
 
 /* Region panels: every region's prices are in the HTML; a tiny script in
@@ -102,36 +87,19 @@ html:not([data-region]) .rn-US { display: none; }
 
 @layer components {
   .sticker {
-    @apply rounded-blob border-2 border-line bg-card shadow-sticker;
+    @apply rounded-xl border border-line bg-card shadow-sticker;
   }
   .btn-pop {
-    @apply inline-flex items-center justify-center gap-1.5 rounded-full border-2 border-ink px-4 py-2 font-display font-semibold shadow-popsm transition-transform duration-150 hover:-translate-y-0.5 hover:shadow-pop active:translate-y-0 active:shadow-none;
+    @apply inline-flex items-center justify-center gap-1.5 rounded-lg px-4 py-2 font-display font-semibold transition hover:brightness-110 active:brightness-95;
   }
   .chip {
-    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-bold;
+    @apply inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-xs font-semibold;
   }
   .h-display {
     @apply font-display font-bold tracking-tight;
   }
-  .rainbow-text {
-    background: linear-gradient(90deg, rgb(var(--pink)), rgb(var(--lilac)), rgb(var(--sky)), rgb(var(--mint)));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  .ribbon {
-    background: repeating-linear-gradient(45deg, rgb(var(--pink)) 0 14px, rgb(var(--pink-deep)) 14px 28px);
-  }
-  .checker {
-    background-image: conic-gradient(rgb(var(--pink-pale)) 25%, transparent 0 50%, rgb(var(--pink-pale)) 0 75%, transparent 0);
-    background-size: 16px 16px;
-  }
-  .wavy-top {
-    -webkit-mask: radial-gradient(14px at 50% 0, transparent 98%, #000) 50% 14px / 28px 100% repeat-x;
-    mask: radial-gradient(14px at 50% 0, transparent 98%, #000) 50% 14px / 28px 100% repeat-x;
-  }
   .tile-hover {
-    @apply transition-transform duration-200 hover:-translate-y-1 hover:rotate-[-0.6deg];
+    @apply transition hover:-translate-y-0.5 hover:shadow-md;
   }
 }
 
@@ -144,11 +112,11 @@ html:not([data-region]) .rn-US { display: none; }
 }
 
 :focus-visible {
-  outline: 3px solid rgb(var(--lilac));
+  outline: 2px solid rgb(var(--pink));
   outline-offset: 2px;
-  border-radius: 10px;
+  border-radius: 6px;
 }
 
 ::selection {
-  background: rgb(var(--pink) / 0.3);
+  background: rgb(var(--pink) / 0.2);
 }

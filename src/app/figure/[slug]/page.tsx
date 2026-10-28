@@ -13,7 +13,6 @@ import { PriceHistory } from "@/components/Sparkline";
 import { RegionTabs } from "@/components/RegionPicker";
 import { TileGrid } from "@/components/FigureTile";
 import { OutLink } from "@/components/OutLink";
-import { Sparkles } from "@/components/Sparkles";
 import { EbayStrip, lineQueries } from "@/components/EbayStrip";
 
 // Prerendered at build, one static file per figure; a slug the release does
@@ -89,9 +88,7 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
 
       <section className="grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
         <div className="relative">
-          <div className="sticker relative mx-auto max-w-sm -rotate-1 overflow-hidden bg-pink-pale md:max-w-none">
-            <span aria-hidden className="absolute left-1/2 top-0 z-10 h-6 w-24 -translate-x-1/2 -translate-y-2 rotate-2 rounded-sm bg-lemon/80" />
-            <Sparkles count={8} seed={f.jan.charCodeAt(12)} />
+          <div className="sticker relative mx-auto max-w-sm overflow-hidden bg-white md:max-w-none">
             <FigureImage src={f.img} alt={f.name} line={f.line} eager className="relative aspect-square w-full object-contain p-6" />
           </div>
           <p className="mt-2 text-center text-xs text-soft">Photo from a store listing.</p>
@@ -99,9 +96,9 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
 
         <div>
           <div className="flex flex-wrap gap-1.5">
-            <span className="chip border-2 border-ink bg-pink text-white">{line.emoji} {line.name}{f.number ? ` No. ${f.number}` : ""}</span>
-            <span className="chip border-2 border-line bg-card text-soft">{line.maker}</span>
-            <span className="chip border-2 border-line bg-card text-soft">JAN {f.jan}</span>
+            <span className="chip bg-ink text-bg">{line.name}{f.number ? ` No. ${f.number}` : ""}</span>
+            <span className="chip border border-line bg-card text-soft">{line.maker}</span>
+            <span className="chip border border-line bg-card text-soft">JAN {f.jan}</span>
           </div>
           <h1 className="h-display mt-2 text-3xl leading-tight sm:text-4xl">{f.name} price</h1>
 
@@ -119,7 +116,6 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
               <div key={r.code} className={`rp rp-${r.code} mt-4`}>
                 {b ? (
                   <div className="sticker relative overflow-hidden bg-card p-4">
-                    <div className="checker absolute inset-y-0 right-0 w-24 opacity-60" aria-hidden />
                     <p className="text-sm font-bold text-soft">
                       Cheapest {r.phrase} {b.offer.st === "pre" ? "(pre-order)" : ""}
                     </p>
@@ -133,13 +129,13 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
                       event={{ source: b.offer.s, region: r.code, placement: "hero", jan: f.jan }}
                       className="btn-pop relative mt-3 bg-buy px-6 py-2.5 text-white"
                     >
-                      Buy at {storeName(b.offer.s)} <span aria-hidden>♡</span>
+                      Buy at {storeName(b.offer.s)}
                     </OutLink>
                   </div>
                 ) : (
                   <div className="sticker bg-card p-4 text-sm">
                     <p className="font-bold">
-                      {f.offers[r.code]?.length ? `Sold out at every store ${r.phrase} right now (｡•́︿•̀｡)` : `No store ${r.phrase} lists this figure yet.`}
+                      {f.offers[r.code]?.length ? `Sold out at every store ${r.phrase} right now.` : `No store ${r.phrase} lists this figure yet.`}
                     </p>
                     {regions.filter((x) => x !== r.code).length > 0 && (
                       <p className="mt-1 text-soft">
@@ -156,7 +152,7 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
 
       <section className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
         <div>
-          <h2 className="h-display mb-3 text-2xl">Every store&apos;s price ✦</h2>
+          <h2 className="h-display mb-3 text-2xl">Every store&apos;s price</h2>
           {REGIONS.map((r) => (
             <div key={r.code} className={`rp rp-${r.code}`}>
               <PriceTable f={f} region={r.code} ebay={ebay[r.code]} />
@@ -176,7 +172,7 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
 
         <aside className="space-y-6">
           <div className="sticker p-4">
-            <h2 className="h-display mb-2 text-lg">Price history 📈</h2>
+            <h2 className="h-display mb-2 text-lg">Price history</h2>
             {REGIONS.map((r) => (
               <div key={r.code} className={`rp rp-${r.code}`}>
                 <PriceHistory series={history[r.code]} region={r.code} today={today} />
@@ -210,7 +206,7 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
 
       {siblings.length > 0 && (
         <section className="mt-10">
-          <h2 className="h-display mb-3 text-2xl">More {line.name} ♡</h2>
+          <h2 className="h-display mb-3 text-2xl">More {line.name}</h2>
           <TileGrid figures={siblings} />
         </section>
       )}
@@ -233,13 +229,13 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
         const low = lowestOrderable(f.offers[r.code]);
         return low ? (
           <div key={r.code} className={`rp rp-${r.code}`}>
-            <div className="fixed inset-x-0 bottom-0 z-30 flex items-center gap-3 border-t-2 border-line bg-card/95 px-4 py-2 backdrop-blur md:hidden">
+            <div className="fixed inset-x-0 bottom-0 z-30 flex items-center gap-3 border-t border-line bg-card/95 px-4 py-2 backdrop-blur md:hidden">
               <div className="min-w-0 flex-1">
                 <p className="truncate text-xs text-soft">Cheapest {r.phrase}: {storeName(low.s)}</p>
                 <p className="h-display text-xl text-pink-deep">{money(low.p, r.code)}</p>
               </div>
               <OutLink href={storeUrl(low.s, low.u)} event={{ source: low.s, region: r.code, placement: "buybar", jan: f.jan }} className="btn-pop bg-buy text-white">
-                Buy ♡
+                Buy
               </OutLink>
             </div>
           </div>

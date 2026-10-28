@@ -32,7 +32,7 @@ export function RegionPicker({ compact = false }: { compact?: boolean }) {
       <select
         value={region}
         onChange={(e) => setRegion(e.target.value as RegionCode)}
-        className={`cursor-pointer appearance-none rounded-full border-2 border-line bg-card py-1.5 pl-3 pr-7 font-display text-sm font-semibold text-ink hover:border-pink ${compact ? "max-w-[5.5rem]" : ""}`}
+        className={`cursor-pointer appearance-none rounded-lg border border-line bg-card py-1.5 pl-3 pr-7 font-display text-sm font-semibold text-ink hover:border-pink ${compact ? "max-w-[5.5rem]" : ""}`}
       >
         {ACTIVE_REGIONS.map((r) => (
           <option key={r.code} value={r.code}>
@@ -56,7 +56,7 @@ export function RegionTabs({ available }: { available: RegionCode[] }) {
           role="tab"
           aria-selected={region === r.code}
           onClick={() => setRegion(r.code)}
-          className={`chip border-2 px-3 py-1 text-sm transition ${region === r.code ? "border-ink bg-pink text-white shadow-popsm" : "border-line bg-card text-ink hover:border-pink"}`}
+          className={`chip border px-3 py-1 text-sm transition ${region === r.code ? "border-pink bg-pink text-white" : "border-line bg-card text-ink hover:border-pink"}`}
         >
           <span aria-hidden>{r.flag}</span> {r.code === "JP" ? "From Japan" : r.code}
         </button>

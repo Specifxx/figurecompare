@@ -1,0 +1,66 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- The link preview (src/app/opengraph-image.jpg), drawn by render.mjs from today's data. -->
+<style>
+@font-face{font-family:Inter;font-weight:100 900;src:url(../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1200px;height:630px;overflow:hidden}
+body{font-family:Inter,sans-serif;color:#181820;background:#f8f8fa;position:relative}
+.bar{position:absolute;left:0;right:0;top:0;height:8px;background:#e13848}
+.wrap{position:absolute;inset:8px 0 0 0;display:flex;align-items:center;gap:48px;padding:0 60px}
+.left{flex:1 1 0}
+.brand{display:flex;align-items:center;gap:12px}
+.brand svg{width:48px;height:48px}
+.word{font-weight:800;font-size:34px;letter-spacing:-.8px}
+.word b{color:#e13848;font-weight:800}
+.kicker0{margin-top:34px;font-size:16px;font-weight:700;letter-spacing:3px;color:#e13848}
+h1{font-weight:800;font-size:58px;line-height:1.04;margin-top:10px;letter-spacing:-2px}
+h1 em{font-style:normal;color:#e13848}
+.sub{margin-top:20px;font-size:22px;line-height:1.45;color:#5f6370;font-weight:500}
+.regions{margin-top:24px;display:flex;gap:5px;flex-wrap:wrap}
+.regions span{font-weight:600;font-size:14px;padding:4px 8px;border-radius:6px;background:#fff;border:1px solid #e4e4ea;color:#3a3d48}
+.card{width:500px;flex:none;background:#fff;border:1px solid #e4e4ea;border-radius:16px;box-shadow:0 20px 50px -20px rgba(24,24,32,.25);padding:26px 26px 22px}
+.kicker{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#5f6370}
+.name{font-weight:750;font-size:24px;line-height:1.2;margin-top:6px;letter-spacing:-.4px}
+.rows{margin-top:16px;display:flex;flex-direction:column;gap:8px}
+.row{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-radius:10px;border:1px solid #e4e4ea;font-size:18px;font-weight:600}
+.row .p{font-weight:750;font-size:20px;font-variant-numeric:tabular-nums}
+.row.best{background:#e5f5ec;border-color:#158c58}
+.row.best .p{color:#158c58}
+.tag{margin-left:10px;font-size:11px;font-weight:800;letter-spacing:.8px;background:#158c58;color:#fff;padding:3px 7px;border-radius:4px;vertical-align:2px}
+.row.top .p{color:#9a9cab;text-decoration:line-through;text-decoration-thickness:2px}
+.save{margin-top:14px;font-weight:700;font-size:18px;color:#158c58}
+</style></head>
+<body>
+<div class="bar"></div>
+<div class="wrap">
+  <div class="left">
+    <div class="brand">
+      <svg viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" rx="14" fill="#181820"/><path d="M32 12l5 15 15 5-15 5-5 15-5-15-15-5 15-5z" fill="#fff"/><circle cx="49" cy="15" r="5" fill="#e13848"/></svg>
+      <div class="word">Figure<b>Compare</b></div>
+    </div>
+    <p class="kicker0">NENDOROID · FIGMA · POP UP PARADE</p>
+    <h1>Find the <em>lowest price</em> for any anime figure</h1>
+    <p class="sub" id="sub"></p>
+    <div class="regions" id="regions"></div>
+  </div>
+  <div class="card">
+    <p class="kicker" id="kicker"></p>
+    <p class="name" id="name"></p>
+    <div class="rows" id="rows"></div>
+    <p class="save" id="save"></p>
+  </div>
+</div>
+<script>
+window.draw = (d) => {
+  document.getElementById("sub").textContent = d.sub;
+  document.getElementById("regions").innerHTML = d.regions.map((r) => `<span>${r}</span>`).join("");
+  document.getElementById("kicker").textContent = d.kicker;
+  document.getElementById("name").textContent = d.name;
+  document.getElementById("rows").innerHTML = d.rows
+    .map((r, i) => `<div class="row ${i === 0 ? "best" : i === d.rows.length - 1 ? "top" : ""}"><span>${r.store}${i === 0 ? '<span class="tag">LOWEST</span>' : ""}</span><span class="p">${r.price}</span></div>`)
+    .join("");
+  document.getElementById("save").textContent = d.save;
+};
+</script>
+</body></html>

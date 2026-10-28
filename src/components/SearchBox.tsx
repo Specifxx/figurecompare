@@ -8,7 +8,6 @@ import type { RegionCode } from "@/site";
 
 export type IndexRow = [slug: string, name: string, line: string, jan: string, prices: Partial<Record<RegionCode, number>>];
 
-const LINE_EMOJI: Record<string, string> = { nendoroid: "🍡", figma: "🤸", "pop-up-parade": "🎀" };
 let cache: Promise<IndexRow[]> | null = null;
 const loadIndex = () => (cache ??= fetch("/search-index.json").then((r) => (r.ok ? r.json() : [])).catch(() => []));
 
@@ -76,7 +75,7 @@ export function SearchBox({ big = false, autoFocus = false }: { big?: boolean; a
             go(results[active][0]);
           }
         }}
-        className={`flex items-center gap-2 rounded-full border-2 border-ink bg-card pl-4 pr-1.5 shadow-popsm focus-within:shadow-pop ${big ? "py-2" : "py-1"}`}
+        className={`flex items-center gap-2 rounded-lg border border-line bg-card pl-3 pr-1.5 focus-within:border-soft ${big ? "py-2" : "py-1"}`}
       >
         <span aria-hidden className="text-pink">⌕</span>
         <input
@@ -102,22 +101,21 @@ export function SearchBox({ big = false, autoFocus = false }: { big?: boolean; a
           autoComplete="off"
           className={`min-w-0 flex-1 bg-transparent font-sans text-ink placeholder:text-soft focus:outline-none ${big ? "text-lg" : "text-sm"}`}
         />
-        <button type="submit" className={`rounded-full bg-pink font-display font-semibold text-white ${big ? "px-5 py-2" : "px-3 py-1 text-sm"}`}>
-          Find ✧
+        <button type="submit" className={`rounded-md bg-pink font-display font-semibold text-white ${big ? "px-5 py-2" : "px-3 py-1 text-sm"}`}>
+          Find
         </button>
       </form>
       {open && q.trim().length > 1 && (
         <ul className="sticker absolute left-0 right-0 top-full z-50 mt-2 max-h-[70vh] overflow-auto p-1.5 text-left">
-          {!rows && <li className="px-3 py-2 text-sm text-soft">Loading the figure list… (◕‿◕)</li>}
-          {rows && !results.length && <li className="px-3 py-2 text-sm text-soft">No figure matches yet (；ω；) Try the character&apos;s name.</li>}
+          {!rows && <li className="px-3 py-2 text-sm text-soft">Loading the figure list…</li>}
+          {rows && !results.length && <li className="px-3 py-2 text-sm text-soft">No figure matches yet. Try the character&apos;s name.</li>}
           {results.map((r, i) => (
             <li key={r[0]}>
               <a
                 href={`/figure/${r[0]}`}
                 onMouseEnter={() => setActive(i)}
-                className={`flex items-center gap-3 rounded-2xl px-3 py-2 ${i === active ? "bg-pink-pale" : ""}`}
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 ${i === active ? "bg-lilac-pale" : ""}`}
               >
-                <span aria-hidden className="text-xl">{LINE_EMOJI[r[2]] ?? "✦"}</span>
                 <span className="min-w-0 flex-1 truncate text-sm font-semibold">{r[1]}</span>
                 {r[4][region] != null && <span className="shrink-0 font-display text-sm font-bold text-pink-deep">{money(r[4][region]!, region)}</span>}
               </a>
