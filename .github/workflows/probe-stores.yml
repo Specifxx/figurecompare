@@ -1,0 +1,60 @@
+name: Probe stores
+
+# Reads candidate shops (probe/candidates.txt) the way the import would and
+# commits probe/results.json to the branch it ran on. Sharded: Shopify 429s one
+# runner that pages many shops. Never touches data/ or main.
+
+on:
+  push:
+    branches: ["claude/**"]
+    paths: ["probe/candidates.txt"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npx tsx scripts/probe-stores.ts
+        env:
+          SHARD: ${{ matrix.shard }}
+          SHARDS: 16
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: probe-${{ matrix.shard }}
+          path: probe/out-${{ matrix.shard }}.json
+          if-no-files-found: ignore
+
+  collect:
+    needs: probe
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: shards
+      - name: Commit results
+        run: |
+          set -euo pipefail
+          node -e 'const fs=require("fs");const p=require("path");let all=[];for(const d of fs.readdirSync("shards"))for(const f of fs.readdirSync(p.join("shards",d)))all=all.concat(JSON.parse(fs.readFileSync(p.join("shards",d,f),"utf8")));all.sort((a,b)=>a.host.localeCompare(b.host));fs.writeFileSync("probe/results.json",JSON.stringify(all,null,1)+"\n");console.log(all.length,"stores")'
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add probe/results.json
+          git commit -m "probe: store results" || exit 0
+          for i in 1 2 3 4; do git push origin HEAD:${GITHUB_REF_NAME} && exit 0; sleep $((2 ** i)); git pull --rebase origin ${GITHUB_REF_NAME}; done
+          exit 1
