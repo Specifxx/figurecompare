@@ -33,6 +33,7 @@ export function LineHub({ line, page }: { line: LineKey; page: number }) {
           </p>
         }
       />
+      <EbayStrip className="mb-8" placement={`line_${line}_top`} queries={lineQueries(l.name)} />
       {list.length ? <TileGrid figures={list} /> : <p className="sticker p-6 text-center text-soft">No {l.name} figures in stock anywhere yet.</p>}
       {pages > 1 && (
         <nav aria-label="Pages" className="mt-8 flex flex-wrap justify-center gap-2">

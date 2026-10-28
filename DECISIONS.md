@@ -112,3 +112,12 @@ stops under `prefers-reduced-motion`. No pop-ups (family pop-up policy).
 * **"Pre Owned" with a space is pre-owned.** Solaris Japan names its used variant "Pre Owned"; the variant and
   title filters only knew "pre-owned"/"preowned". Today the new variant was the cheaper one everywhere we
   checked, but a used copy could have been shown as the price.
+
+## eBay first, everywhere — 2026-10-28 (owner)
+
+eBay is the only commission until the store programs (and HobbyLink Japan) approve us, so it is never hidden:
+an eBay button beside every figure's own buy button (hero and phone buy bar, `hero_ebay`/`buybar_ebay`; the
+listing with its price when the eBay pass found one, else a search), the eBay row first in every price table
+("Shown first", with how it compares to the cheapest store), an eBay strip at the top of every list page as well
+as the bottom, and the eBay box first in the sidebar and phone menu. Stores stay sorted by price and the real
+cheapest keeps its badge; the family's pinned-marketplace rule, as on the card sites.

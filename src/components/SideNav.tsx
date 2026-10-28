@@ -13,6 +13,7 @@ export function SideNav({ groups, footer }: { groups: NavGroup[]; footer?: React
   return (
     <aside className="hidden w-56 shrink-0 xl:block">
       <nav aria-label="Browse" className="sticky top-[7.5rem] max-h-[calc(100dvh-7.5rem)] overflow-y-auto overscroll-contain py-6 pl-4 pr-2 [scrollbar-width:thin]">
+        {footer && <div className="mb-5">{footer}</div>}
         {groups.map((g) => (
           <div key={g.title} className="mb-5">
             <h2 className="mb-1 px-2 font-display text-xs font-bold uppercase tracking-wider text-soft">{g.title}</h2>
@@ -36,7 +37,6 @@ export function SideNav({ groups, footer }: { groups: NavGroup[]; footer?: React
             </ul>
           </div>
         ))}
-        {footer}
       </nav>
     </aside>
   );

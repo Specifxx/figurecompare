@@ -96,3 +96,12 @@ test("eBay strips on every page but the legal ones, labelled and sponsored (owne
   assert.ok((strip.match(/<OutLink/g) ?? []).length === (strip.match(/<OutLink[^>]*\bpaid\b/gs) ?? []).length, "every eBay link is paid (rel sponsored)");
   assert.ok(!fs.readFileSync("src/app/layout.tsx", "utf8").includes("<EbayStrip"), "no site-wide banner: one strip per page, below the content");
 });
+
+test("eBay sits beside every buy button and first in every price list (owner, 2026-10-28)", async () => {
+  const fs = await import("node:fs");
+  const page = fs.readFileSync("src/app/figure/[slug]/page.tsx", "utf8");
+  assert.ok(page.includes('placement="hero_ebay"') && page.includes('placement="buybar_ebay"'), "hero and phone buy bar carry an eBay button");
+  const table = fs.readFileSync("src/components/PriceTable.tsx", "utf8");
+  assert.ok(table.indexOf('source: "ebay"') < table.indexOf("offers.map"), "the eBay row comes before the stores");
+  assert.match(table, /Shown first/);
+});

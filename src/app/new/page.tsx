@@ -15,6 +15,7 @@ export default function NewFigures() {
   return (
     <div className="mx-auto max-w-6xl px-4">
       <PageHead emoji="✨" title="Just spotted in stores" sub="Figures that appeared at two or more stores most recently, newest first." />
+      <EbayStrip className="mb-8" placement="new_top" queries={SITE_QUERIES} />
       {REGIONS.map((r) => {
         const list = newestIn(r.code, 48);
         return (

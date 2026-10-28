@@ -15,6 +15,7 @@ export default function Preorders() {
   return (
     <div className="mx-auto max-w-6xl px-4">
       <PageHead emoji="📅" title="Figure pre-orders" sub="Pre-orders open now, most stores first. Lock in the lowest pre-order price before it sells out." />
+      <EbayStrip className="mb-8" placement="preorders_top" queries={SITE_QUERIES} />
       {REGIONS.map((r) => {
         const list = preordersIn(r.code, 96);
         return (
