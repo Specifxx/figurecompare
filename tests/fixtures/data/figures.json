@@ -1,0 +1,1342 @@
+{
+ "figures": [
+  {
+   "jan": "4580590000001",
+   "slug": "nendoroid-1000-sample-hero",
+   "name": "Nendoroid 1000 Sample Hero",
+   "line": "nendoroid",
+   "number": "1000",
+   "img": null,
+   "first": "2026-10-10",
+   "offers": {
+    "US": [
+     {
+      "s": "us-a",
+      "p": 5999,
+      "st": "in",
+      "u": "https://example.com/us-a/0"
+     },
+     {
+      "s": "us-b",
+      "p": 6699,
+      "st": "in",
+      "u": "https://example.com/us-b/0"
+     },
+     {
+      "s": "us-c",
+      "p": 7399,
+      "st": "in",
+      "u": "https://example.com/us-c/0"
+     }
+    ],
+    "UK": [
+     {
+      "s": "uk-a",
+      "p": 4999,
+      "st": "in",
+      "u": "https://example.com/uk-a/0"
+     },
+     {
+      "s": "uk-b",
+      "p": 5699,
+      "st": "in",
+      "u": "https://example.com/uk-b/0"
+     }
+    ],
+    "CA": [
+     {
+      "s": "ca-a",
+      "p": 7999,
+      "st": "in",
+      "u": "https://example.com/ca-a/0"
+     },
+     {
+      "s": "ca-b",
+      "p": 8699,
+      "st": "in",
+      "u": "https://example.com/ca-b/0"
+     }
+    ],
+    "AU": [
+     {
+      "s": "au-a",
+      "p": 8995,
+      "st": "in",
+      "u": "https://example.com/au-a/0"
+     },
+     {
+      "s": "au-b",
+      "p": 9695,
+      "st": "in",
+      "u": "https://example.com/au-b/0"
+     },
+     {
+      "s": "au-c",
+      "p": 10395,
+      "st": "in",
+      "u": "https://example.com/au-c/0"
+     }
+    ],
+    "EU": [
+     {
+      "s": "eu-a",
+      "p": 5499,
+      "st": "in",
+      "u": "https://example.com/eu-a/0"
+     },
+     {
+      "s": "eu-b",
+      "p": 6199,
+      "st": "in",
+      "u": "https://example.com/eu-b/0"
+     }
+    ],
+    "SG": [
+     {
+      "s": "sg-a",
+      "p": 7900,
+      "st": "in",
+      "u": "https://example.com/sg-a/0"
+     },
+     {
+      "s": "sg-b",
+      "p": 8600,
+      "st": "in",
+      "u": "https://example.com/sg-b/0"
+     }
+    ],
+    "JP": [
+     {
+      "s": "jp-a",
+      "p": 6800,
+      "st": "in",
+      "u": "https://example.com/jp-a/0"
+     },
+     {
+      "s": "jp-b",
+      "p": 7200,
+      "st": "in",
+      "u": "https://example.com/jp-b/0"
+     }
+    ]
+   }
+  },
+  {
+   "jan": "4580590000018",
+   "slug": "figma-1037-test-witch",
+   "name": "figma 1037 Test Witch",
+   "line": "figma",
+   "number": "1037",
+   "img": null,
+   "first": "2026-10-11",
+   "offers": {
+    "US": [
+     {
+      "s": "us-a",
+      "p": 5849,
+      "st": "pre",
+      "u": "https://example.com/us-a/1"
+     },
+     {
+      "s": "us-b",
+      "p": 6549,
+      "st": "pre",
+      "u": "https://example.com/us-b/1"
+     },
+     {
+      "s": "us-c",
+      "p": 7249,
+      "st": "out",
+      "u": "https://example.com/us-c/1"
+     }
+    ],
+    "UK": [
+     {
+      "s": "uk-a",
+      "p": 4849,
+      "st": "pre",
+      "u": "https://example.com/uk-a/1"
+     },
+     {
+      "s": "uk-b",
+      "p": 5549,
+      "st": "pre",
+      "u": "https://example.com/uk-b/1"
+     }
+    ],
+    "CA": [
+     {
+      "s": "ca-a",
+      "p": 7849,
+      "st": "pre",
+      "u": "https://example.com/ca-a/1"
+     },
+     {
+      "s": "ca-b",
+      "p": 8549,
+      "st": "pre",
+      "u": "https://example.com/ca-b/1"
+     }
+    ],
+    "NZ": [
+     {
+      "s": "nz-a",
+      "p": 9845,
+      "st": "pre",
+      "u": "https://example.com/nz-a/1"
+     },
+     {
+      "s": "nz-b",
+      "p": 10545,
+      "st": "pre",
+      "u": "https://example.com/nz-b/1"
+     }
+    ],
+    "EU": [
+     {
+      "s": "eu-a",
+      "p": 5349,
+      "st": "pre",
+      "u": "https://example.com/eu-a/1"
+     },
+     {
+      "s": "eu-b",
+      "p": 6049,
+      "st": "pre",
+      "u": "https://example.com/eu-b/1"
+     }
+    ],
+    "SG": [
+     {
+      "s": "sg-a",
+      "p": 7750,
+      "st": "pre",
+      "u": "https://example.com/sg-a/1"
+     },
+     {
+      "s": "sg-b",
+      "p": 8450,
+      "st": "pre",
+      "u": "https://example.com/sg-b/1"
+     }
+    ],
+    "JP": [
+     {
+      "s": "jp-a",
+      "p": 6700,
+      "st": "pre",
+      "u": "https://example.com/jp-a/1"
+     },
+     {
+      "s": "jp-b",
+      "p": 7100,
+      "st": "pre",
+      "u": "https://example.com/jp-b/1"
+     }
+    ]
+   }
+  },
+  {
+   "jan": "4580590000025",
+   "slug": "pop-up-parade-fixture-knight",
+   "name": "POP UP PARADE Fixture Knight",
+   "line": "pop-up-parade",
+   "number": null,
+   "img": null,
+   "first": "2026-10-12",
+   "offers": {
+    "US": [
+     {
+      "s": "us-a",
+      "p": 5699,
+      "st": "in",
+      "u": "https://example.com/us-a/2"
+     },
+     {
+      "s": "us-b",
+      "p": 6399,
+      "st": "out",
+      "u": "https://example.com/us-b/2"
+     },
+     {
+      "s": "us-c",
+      "p": 7099,
+      "st": "in",
+      "u": "https://example.com/us-c/2"
+     }
+    ],
+    "UK": [
+     {
+      "s": "uk-a",
+      "p": 4699,
+      "st": "in",
+      "u": "https://example.com/uk-a/2"
+     },
+     {
+      "s": "uk-b",
+      "p": 5399,
+      "st": "out",
+      "u": "https://example.com/uk-b/2"
+     }
+    ],
+    "AU": [
+     {
+      "s": "au-a",
+      "p": 8695,
+      "st": "in",
+      "u": "https://example.com/au-a/2"
+     },
+     {
+      "s": "au-b",
+      "p": 9395,
+      "st": "out",
+      "u": "https://example.com/au-b/2"
+     },
+     {
+      "s": "au-c",
+      "p": 10095,
+      "st": "in",
+      "u": "https://example.com/au-c/2"
+     }
+    ],
+    "NZ": [
+     {
+      "s": "nz-a",
+      "p": 9695,
+      "st": "in",
+      "u": "https://example.com/nz-a/2"
+     },
+     {
+      "s": "nz-b",
+      "p": 10395,
+      "st": "out",
+      "u": "https://example.com/nz-b/2"
+     }
+    ],
+    "EU": [
+     {
+      "s": "eu-a",
+      "p": 5199,
+      "st": "in",
+      "u": "https://example.com/eu-a/2"
+     },
+     {
+      "s": "eu-b",
+      "p": 5899,
+      "st": "out",
+      "u": "https://example.com/eu-b/2"
+     }
+    ],
+    "SG": [
+     {
+      "s": "sg-a",
+      "p": 7600,
+      "st": "in",
+      "u": "https://example.com/sg-a/2"
+     },
+     {
+      "s": "sg-b",
+      "p": 8300,
+      "st": "out",
+      "u": "https://example.com/sg-b/2"
+     }
+    ]
+   }
+  },
+  {
+   "jan": "4580590000032",
+   "slug": "nendoroid-1111-demo-idol",
+   "name": "Nendoroid 1111 Demo Idol",
+   "line": "nendoroid",
+   "number": "1111",
+   "img": null,
+   "first": "2026-10-13",
+   "offers": {
+    "US": [
+     {
+      "s": "us-a",
+      "p": 5549,
+      "st": "out",
+      "u": "https://example.com/us-a/3"
+     },
+     {
+      "s": "us-b",
+      "p": 6249,
+      "st": "in",
+      "u": "https://example.com/us-b/3"
+     },
+     {
+      "s": "us-c",
+      "p": 6949,
+      "st": "in",
+      "u": "https://example.com/us-c/3"
+     }
+    ],
+    "CA": [
+     {
+      "s": "ca-a",
+      "p": 7549,
+      "st": "out",
+      "u": "https://example.com/ca-a/3"
+     },
+     {
+      "s": "ca-b",
+      "p": 8249,
+      "st": "in",
+      "u": "https://example.com/ca-b/3"
+     }
+    ],
+    "AU": [
+     {
+      "s": "au-a",
+      "p": 8545,
+      "st": "out",
+      "u": "https://example.com/au-a/3"
+     },
+     {
+      "s": "au-b",
+      "p": 9245,
+      "st": "in",
+      "u": "https://example.com/au-b/3"
+     },
+     {
+      "s": "au-c",
+      "p": 9945,
+      "st": "in",
+      "u": "https://example.com/au-c/3"
+     }
+    ],
+    "NZ": [
+     {
+      "s": "nz-a",
+      "p": 9545,
+      "st": "out",
+      "u": "https://example.com/nz-a/3"
+     },
+     {
+      "s": "nz-b",
+      "p": 10245,
+      "st": "in",
+      "u": "https://example.com/nz-b/3"
+     }
+    ],
+    "EU": [
+     {
+      "s": "eu-a",
+      "p": 5049,
+      "st": "out",
+      "u": "https://example.com/eu-a/3"
+     },
+     {
+      "s": "eu-b",
+      "p": 5749,
+      "st": "in",
+      "u": "https://example.com/eu-b/3"
+     }
+    ],
+    "JP": [
+     {
+      "s": "jp-a",
+      "p": 6500,
+      "st": "out",
+      "u": "https://example.com/jp-a/3"
+     },
+     {
+      "s": "jp-b",
+      "p": 6900,
+      "st": "in",
+      "u": "https://example.com/jp-b/3"
+     }
+    ]
+   }
+  },
+  {
+   "jan": "4580590000049",
+   "slug": "figma-1148-example-mage",
+   "name": "figma 1148 Example Mage",
+   "line": "figma",
+   "number": "1148",
+   "img": null,
+   "first": "2026-10-14",
+   "offers": {
+    "UK": [
+     {
+      "s": "uk-a",
+      "p": 4999,
+      "st": "in",
+      "u": "https://example.com/uk-a/4"
+     },
+     {
+      "s": "uk-b",
+      "p": 5699,
+      "st": "in",
+      "u": "https://example.com/uk-b/4"
+     }
+    ],
+    "CA": [
+     {
+      "s": "ca-a",
+      "p": 7999,
+      "st": "in",
+      "u": "https://example.com/ca-a/4"
+     },
+     {
+      "s": "ca-b",
+      "p": 8699,
+      "st": "in",
+      "u": "https://example.com/ca-b/4"
+     }
+    ],
+    "AU": [
+     {
+      "s": "au-a",
+      "p": 8995,
+      "st": "in",
+      "u": "https://example.com/au-a/4"
+     },
+     {
+      "s": "au-b",
+      "p": 9695,
+      "st": "in",
+      "u": "https://example.com/au-b/4"
+     },
+     {
+      "s": "au-c",
+      "p": 10395,
+      "st": "in",
+      "u": "https://example.com/au-c/4"
+     }
+    ],
+    "NZ": [
+     {
+      "s": "nz-a",
+      "p": 9995,
+      "st": "in",
+      "u": "https://example.com/nz-a/4"
+     },
+     {
+      "s": "nz-b",
+      "p": 10695,
+      "st": "in",
+      "u": "https://example.com/nz-b/4"
+     }
+    ],
+    "SG": [
+     {
+      "s": "sg-a",
+      "p": 7900,
+      "st": "in",
+      "u": "https://example.com/sg-a/4"
+     },
+     {
+      "s": "sg-b",
+      "p": 8600,
+      "st": "in",
+      "u": "https://example.com/sg-b/4"
+     }
+    ],
+    "JP": [
+     {
+      "s": "jp-a",
+      "p": 6800,
+      "st": "in",
+      "u": "https://example.com/jp-a/4"
+     },
+     {
+      "s": "jp-b",
+      "p": 7200,
+      "st": "in",
+      "u": "https://example.com/jp-b/4"
+     }
+    ]
+   }
+  },
+  {
+   "jan": "4580590000056",
+   "slug": "pop-up-parade-mock-pilot",
+   "name": "POP UP PARADE Mock Pilot",
+   "line": "pop-up-parade",
+   "number": null,
+   "img": null,
+   "first": "2026-10-15",
+   "offers": {
+    "US": [
+     {
+      "s": "us-a",
+      "p": 5849,
+      "st": "pre",
+      "u": "https://example.com/us-a/5"
+     },
+     {
+      "s": "us-b",
+      "p": 6549,
+      "st": "pre",
+      "u": "https://example.com/us-b/5"
+     },
+     {
+      "s": "us-c",
+      "p": 7249,
+      "st": "pre",
+      "u": "https://example.com/us-c/5"
+     }
+    ],
+    "UK": [
+     {
+      "s": "uk-a",
+      "p": 4849,
+      "st": "pre",
+      "u": "https://example.com/uk-a/5"
+     },
+     {
+      "s": "uk-b",
+      "p": 5549,
+      "st": "pre",
+      "u": "https://example.com/uk-b/5"
+     }
+    ],
+    "CA": [
+     {
+      "s": "ca-a",
+      "p": 7849,
+      "st": "pre",
+      "u": "https://example.com/ca-a/5"
+     },
+     {
+      "s": "ca-b",
+      "p": 8549,
+      "st": "pre",
+      "u": "https://example.com/ca-b/5"
+     }
+    ],
+    "AU": [
+     {
+      "s": "au-a",
+      "p": 8845,
+      "st": "pre",
+      "u": "https://example.com/au-a/5"
+     },
+     {
+      "s": "au-b",
+      "p": 9545,
+      "st": "pre",
+      "u": "https://example.com/au-b/5"
+     },
+     {
+      "s": "au-c",
+      "p": 10245,
+      "st": "pre",
+      "u": "https://example.com/au-c/5"
+     }
+    ],
+    "EU": [
+     {
+      "s": "eu-a",
+      "p": 5349,
+      "st": "pre",
+      "u": "https://example.com/eu-a/5"
+     },
+     {
+      "s": "eu-b",
+      "p": 6049,
+      "st": "pre",
+      "u": "https://example.com/eu-b/5"
+     }
+    ],
+    "SG": [
+     {
+      "s": "sg-a",
+      "p": 7750,
+      "st": "pre",
+      "u": "https://example.com/sg-a/5"
+     },
+     {
+      "s": "sg-b",
+      "p": 8450,
+      "st": "pre",
+      "u": "https://example.com/sg-b/5"
+     }
+    ],
+    "JP": [
+     {
+      "s": "jp-a",
+      "p": 6700,
+      "st": "pre",
+      "u": "https://example.com/jp-a/5"
+     },
+     {
+      "s": "jp-b",
+      "p": 7100,
+      "st": "pre",
+      "u": "https://example.com/jp-b/5"
+     }
+    ]
+   }
+  },
+  {
+   "jan": "4580590000063",
+   "slug": "nendoroid-1222-placeholder-cat-girl",
+   "name": "Nendoroid 1222 Placeholder Cat Girl",
+   "line": "nendoroid",
+   "number": "1222",
+   "img": null,
+   "first": "2026-10-16",
+   "offers": {
+    "US": [
+     {
+      "s": "us-a",
+      "p": 5699,
+      "st": "in",
+      "u": "https://example.com/us-a/6"
+     },
+     {
+      "s": "us-b",
+      "p": 6399,
+      "st": "in",
+      "u": "https://example.com/us-b/6"
+     },
+     {
+      "s": "us-c",
+      "p": 7099,
+      "st": "in",
+      "u": "https://example.com/us-c/6"
+     }
+    ],
+    "UK": [
+     {
+      "s": "uk-a",
+      "p": 4699,
+      "st": "in",
+      "u": "https://example.com/uk-a/6"
+     },
+     {
+      "s": "uk-b",
+      "p": 5399,
+      "st": "in",
+      "u": "https://example.com/uk-b/6"
+     }
+    ],
+    "CA": [
+     {
+      "s": "ca-a",
+      "p": 7699,
+      "st": "in",
+      "u": "https://example.com/ca-a/6"
+     },
+     {
+      "s": "ca-b",
+      "p": 8399,
+      "st": "in",
+      "u": "https://example.com/ca-b/6"
+     }
+    ],
+    "NZ": [
+     {
+      "s": "nz-a",
+      "p": 9695,
+      "st": "in",
+      "u": "https://example.com/nz-a/6"
+     },
+     {
+      "s": "nz-b",
+      "p": 10395,
+      "st": "in",
+      "u": "https://example.com/nz-b/6"
+     }
+    ],
+    "EU": [
+     {
+      "s": "eu-a",
+      "p": 5199,
+      "st": "in",
+      "u": "https://example.com/eu-a/6"
+     },
+     {
+      "s": "eu-b",
+      "p": 5899,
+      "st": "in",
+      "u": "https://example.com/eu-b/6"
+     }
+    ],
+    "SG": [
+     {
+      "s": "sg-a",
+      "p": 7600,
+      "st": "in",
+      "u": "https://example.com/sg-a/6"
+     },
+     {
+      "s": "sg-b",
+      "p": 8300,
+      "st": "in",
+      "u": "https://example.com/sg-b/6"
+     }
+    ],
+    "JP": [
+     {
+      "s": "jp-a",
+      "p": 6600,
+      "st": "in",
+      "u": "https://example.com/jp-a/6"
+     },
+     {
+      "s": "jp-b",
+      "p": 7000,
+      "st": "in",
+      "u": "https://example.com/jp-b/6"
+     }
+    ]
+   }
+  },
+  {
+   "jan": "4580590000070",
+   "slug": "figma-1259-stub-detective",
+   "name": "figma 1259 Stub Detective",
+   "line": "figma",
+   "number": "1259",
+   "img": null,
+   "first": "2026-10-17",
+   "offers": {
+    "US": [
+     {
+      "s": "us-a",
+      "p": 5549,
+      "st": "in",
+      "u": "https://example.com/us-a/7"
+     },
+     {
+      "s": "us-b",
+      "p": 6249,
+      "st": "in",
+      "u": "https://example.com/us-b/7"
+     },
+     {
+      "s": "us-c",
+      "p": 6949,
+      "st": "in",
+      "u": "https://example.com/us-c/7"
+     }
+    ],
+    "UK": [
+     {
+      "s": "uk-a",
+      "p": 4549,
+      "st": "in",
+      "u": "https://example.com/uk-a/7"
+     },
+     {
+      "s": "uk-b",
+      "p": 5249,
+      "st": "in",
+      "u": "https://example.com/uk-b/7"
+     }
+    ],
+    "AU": [
+     {
+      "s": "au-a",
+      "p": 8545,
+      "st": "in",
+      "u": "https://example.com/au-a/7"
+     },
+     {
+      "s": "au-b",
+      "p": 9245,
+      "st": "in",
+      "u": "https://example.com/au-b/7"
+     },
+     {
+      "s": "au-c",
+      "p": 9945,
+      "st": "in",
+      "u": "https://example.com/au-c/7"
+     }
+    ],
+    "NZ": [
+     {
+      "s": "nz-a",
+      "p": 9545,
+      "st": "in",
+      "u": "https://example.com/nz-a/7"
+     },
+     {
+      "s": "nz-b",
+      "p": 10245,
+      "st": "in",
+      "u": "https://example.com/nz-b/7"
+     }
+    ],
+    "EU": [
+     {
+      "s": "eu-a",
+      "p": 5049,
+      "st": "in",
+      "u": "https://example.com/eu-a/7"
+     },
+     {
+      "s": "eu-b",
+      "p": 5749,
+      "st": "in",
+      "u": "https://example.com/eu-b/7"
+     }
+    ],
+    "SG": [
+     {
+      "s": "sg-a",
+      "p": 7450,
+      "st": "in",
+      "u": "https://example.com/sg-a/7"
+     },
+     {
+      "s": "sg-b",
+      "p": 8150,
+      "st": "in",
+      "u": "https://example.com/sg-b/7"
+     }
+    ]
+   }
+  },
+  {
+   "jan": "4580590000087",
+   "slug": "pop-up-parade-dummy-pirate",
+   "name": "POP UP PARADE Dummy Pirate",
+   "line": "pop-up-parade",
+   "number": null,
+   "img": null,
+   "first": "2026-10-18",
+   "offers": {
+    "US": [
+     {
+      "s": "us-a",
+      "p": 5999,
+      "st": "in",
+      "u": "https://example.com/us-a/8"
+     },
+     {
+      "s": "us-b",
+      "p": 6699,
+      "st": "in",
+      "u": "https://example.com/us-b/8"
+     },
+     {
+      "s": "us-c",
+      "p": 7399,
+      "st": "out",
+      "u": "https://example.com/us-c/8"
+     }
+    ],
+    "CA": [
+     {
+      "s": "ca-a",
+      "p": 7999,
+      "st": "in",
+      "u": "https://example.com/ca-a/8"
+     },
+     {
+      "s": "ca-b",
+      "p": 8699,
+      "st": "in",
+      "u": "https://example.com/ca-b/8"
+     }
+    ],
+    "AU": [
+     {
+      "s": "au-a",
+      "p": 8995,
+      "st": "in",
+      "u": "https://example.com/au-a/8"
+     },
+     {
+      "s": "au-b",
+      "p": 9695,
+      "st": "in",
+      "u": "https://example.com/au-b/8"
+     },
+     {
+      "s": "au-c",
+      "p": 10395,
+      "st": "out",
+      "u": "https://example.com/au-c/8"
+     }
+    ],
+    "NZ": [
+     {
+      "s": "nz-a",
+      "p": 9995,
+      "st": "in",
+      "u": "https://example.com/nz-a/8"
+     },
+     {
+      "s": "nz-b",
+      "p": 10695,
+      "st": "in",
+      "u": "https://example.com/nz-b/8"
+     }
+    ],
+    "EU": [
+     {
+      "s": "eu-a",
+      "p": 5499,
+      "st": "in",
+      "u": "https://example.com/eu-a/8"
+     },
+     {
+      "s": "eu-b",
+      "p": 6199,
+      "st": "in",
+      "u": "https://example.com/eu-b/8"
+     }
+    ],
+    "JP": [
+     {
+      "s": "jp-a",
+      "p": 6800,
+      "st": "in",
+      "u": "https://example.com/jp-a/8"
+     },
+     {
+      "s": "jp-b",
+      "p": 7200,
+      "st": "in",
+      "u": "https://example.com/jp-b/8"
+     }
+    ]
+   }
+  },
+  {
+   "jan": "4580590000094",
+   "slug": "nendoroid-1333-trial-ninja",
+   "name": "Nendoroid 1333 Trial Ninja",
+   "line": "nendoroid",
+   "number": "1333",
+   "img": null,
+   "first": "2026-10-19",
+   "offers": {
+    "UK": [
+     {
+      "s": "uk-a",
+      "p": 4849,
+      "st": "pre",
+      "u": "https://example.com/uk-a/9"
+     },
+     {
+      "s": "uk-b",
+      "p": 5549,
+      "st": "out",
+      "u": "https://example.com/uk-b/9"
+     }
+    ],
+    "CA": [
+     {
+      "s": "ca-a",
+      "p": 7849,
+      "st": "pre",
+      "u": "https://example.com/ca-a/9"
+     },
+     {
+      "s": "ca-b",
+      "p": 8549,
+      "st": "out",
+      "u": "https://example.com/ca-b/9"
+     }
+    ],
+    "AU": [
+     {
+      "s": "au-a",
+      "p": 8845,
+      "st": "pre",
+      "u": "https://example.com/au-a/9"
+     },
+     {
+      "s": "au-b",
+      "p": 9545,
+      "st": "out",
+      "u": "https://example.com/au-b/9"
+     },
+     {
+      "s": "au-c",
+      "p": 10245,
+      "st": "pre",
+      "u": "https://example.com/au-c/9"
+     }
+    ],
+    "NZ": [
+     {
+      "s": "nz-a",
+      "p": 9845,
+      "st": "pre",
+      "u": "https://example.com/nz-a/9"
+     },
+     {
+      "s": "nz-b",
+      "p": 10545,
+      "st": "out",
+      "u": "https://example.com/nz-b/9"
+     }
+    ],
+    "SG": [
+     {
+      "s": "sg-a",
+      "p": 7750,
+      "st": "pre",
+      "u": "https://example.com/sg-a/9"
+     },
+     {
+      "s": "sg-b",
+      "p": 8450,
+      "st": "out",
+      "u": "https://example.com/sg-b/9"
+     }
+    ],
+    "JP": [
+     {
+      "s": "jp-a",
+      "p": 6700,
+      "st": "pre",
+      "u": "https://example.com/jp-a/9"
+     },
+     {
+      "s": "jp-b",
+      "p": 7100,
+      "st": "out",
+      "u": "https://example.com/jp-b/9"
+     }
+    ]
+   }
+  },
+  {
+   "jan": "4580590000100",
+   "slug": "figma-1370-proto-maid",
+   "name": "figma 1370 Proto Maid",
+   "line": "figma",
+   "number": "1370",
+   "img": null,
+   "first": "2026-10-20",
+   "offers": {
+    "US": [
+     {
+      "s": "us-a",
+      "p": 5699,
+      "st": "out",
+      "u": "https://example.com/us-a/10"
+     },
+     {
+      "s": "us-b",
+      "p": 6399,
+      "st": "in",
+      "u": "https://example.com/us-b/10"
+     },
+     {
+      "s": "us-c",
+      "p": 7099,
+      "st": "in",
+      "u": "https://example.com/us-c/10"
+     }
+    ],
+    "UK": [
+     {
+      "s": "uk-a",
+      "p": 4699,
+      "st": "out",
+      "u": "https://example.com/uk-a/10"
+     },
+     {
+      "s": "uk-b",
+      "p": 5399,
+      "st": "in",
+      "u": "https://example.com/uk-b/10"
+     }
+    ],
+    "CA": [
+     {
+      "s": "ca-a",
+      "p": 7699,
+      "st": "out",
+      "u": "https://example.com/ca-a/10"
+     },
+     {
+      "s": "ca-b",
+      "p": 8399,
+      "st": "in",
+      "u": "https://example.com/ca-b/10"
+     }
+    ],
+    "AU": [
+     {
+      "s": "au-a",
+      "p": 8695,
+      "st": "out",
+      "u": "https://example.com/au-a/10"
+     },
+     {
+      "s": "au-b",
+      "p": 9395,
+      "st": "in",
+      "u": "https://example.com/au-b/10"
+     },
+     {
+      "s": "au-c",
+      "p": 10095,
+      "st": "in",
+      "u": "https://example.com/au-c/10"
+     }
+    ],
+    "EU": [
+     {
+      "s": "eu-a",
+      "p": 5199,
+      "st": "out",
+      "u": "https://example.com/eu-a/10"
+     },
+     {
+      "s": "eu-b",
+      "p": 5899,
+      "st": "in",
+      "u": "https://example.com/eu-b/10"
+     }
+    ],
+    "SG": [
+     {
+      "s": "sg-a",
+      "p": 7600,
+      "st": "out",
+      "u": "https://example.com/sg-a/10"
+     },
+     {
+      "s": "sg-b",
+      "p": 8300,
+      "st": "in",
+      "u": "https://example.com/sg-b/10"
+     }
+    ],
+    "JP": [
+     {
+      "s": "jp-a",
+      "p": 6600,
+      "st": "out",
+      "u": "https://example.com/jp-a/10"
+     },
+     {
+      "s": "jp-b",
+      "p": 7000,
+      "st": "in",
+      "u": "https://example.com/jp-b/10"
+     }
+    ]
+   }
+  },
+  {
+   "jan": "4580590000117",
+   "slug": "pop-up-parade-beta-ranger",
+   "name": "POP UP PARADE Beta Ranger",
+   "line": "pop-up-parade",
+   "number": null,
+   "img": null,
+   "first": "2026-10-21",
+   "offers": {
+    "US": [
+     {
+      "s": "us-a",
+      "p": 5549,
+      "st": "in",
+      "u": "https://example.com/us-a/11"
+     },
+     {
+      "s": "us-b",
+      "p": 6249,
+      "st": "in",
+      "u": "https://example.com/us-b/11"
+     },
+     {
+      "s": "us-c",
+      "p": 6949,
+      "st": "in",
+      "u": "https://example.com/us-c/11"
+     }
+    ],
+    "UK": [
+     {
+      "s": "uk-a",
+      "p": 4549,
+      "st": "in",
+      "u": "https://example.com/uk-a/11"
+     },
+     {
+      "s": "uk-b",
+      "p": 5249,
+      "st": "in",
+      "u": "https://example.com/uk-b/11"
+     }
+    ],
+    "CA": [
+     {
+      "s": "ca-a",
+      "p": 7549,
+      "st": "in",
+      "u": "https://example.com/ca-a/11"
+     },
+     {
+      "s": "ca-b",
+      "p": 8249,
+      "st": "in",
+      "u": "https://example.com/ca-b/11"
+     }
+    ],
+    "NZ": [
+     {
+      "s": "nz-a",
+      "p": 9545,
+      "st": "in",
+      "u": "https://example.com/nz-a/11"
+     },
+     {
+      "s": "nz-b",
+      "p": 10245,
+      "st": "in",
+      "u": "https://example.com/nz-b/11"
+     }
+    ],
+    "EU": [
+     {
+      "s": "eu-a",
+      "p": 5049,
+      "st": "in",
+      "u": "https://example.com/eu-a/11"
+     },
+     {
+      "s": "eu-b",
+      "p": 5749,
+      "st": "in",
+      "u": "https://example.com/eu-b/11"
+     }
+    ],
+    "SG": [
+     {
+      "s": "sg-a",
+      "p": 7450,
+      "st": "in",
+      "u": "https://example.com/sg-a/11"
+     },
+     {
+      "s": "sg-b",
+      "p": 8150,
+      "st": "in",
+      "u": "https://example.com/sg-b/11"
+     }
+    ],
+    "JP": [
+     {
+      "s": "jp-a",
+      "p": 6500,
+      "st": "in",
+      "u": "https://example.com/jp-a/11"
+     },
+     {
+      "s": "jp-b",
+      "p": 6900,
+      "st": "in",
+      "u": "https://example.com/jp-b/11"
+     }
+    ]
+   }
+  }
+ ]
+}
