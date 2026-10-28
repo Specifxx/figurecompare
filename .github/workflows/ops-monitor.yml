@@ -1,0 +1,25 @@
+name: Ops monitor
+# Every three hours, from GitHub (so it works when the site or the deploy is
+# what broke): live site, search index, data freshness, store imports, data
+# size and eBay. Fails (and GitHub emails the owner) only when something needs a look.
+on:
+  schedule:
+    - cron: "50 */3 * * *"
+  workflow_dispatch:
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - env:
+          NEXT_PUBLIC_SITE_URL: ${{ vars.SITE_URL }}
+          EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
+        run: npx tsx scripts/ops-monitor.ts

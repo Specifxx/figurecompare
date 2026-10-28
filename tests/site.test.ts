@@ -1,0 +1,67 @@
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { SISTER_SITES, regionForZone } from "@/site";
+import { amazonSearchUrl, ebayAffiliateUrl, ebaySearchUrl, storeUrl, subId } from "@/lib/affiliate";
+import { judgeFreshness, judgeStores } from "../scripts/ops-monitor";
+import { money } from "@/lib/format";
+import { searchRows, type IndexRow } from "@/components/SearchBox";
+
+test("regions from time zones, the specific one wins", () => {
+  assert.equal(regionForZone("America/New_York"), "US");
+  assert.equal(regionForZone("America/Toronto"), "CA");
+  assert.equal(regionForZone("Europe/London"), "UK");
+  assert.equal(regionForZone("Europe/Berlin"), "EU");
+  assert.equal(regionForZone("Australia/Sydney"), "AU");
+  assert.equal(regionForZone("Pacific/Auckland"), "NZ");
+  assert.equal(regionForZone("Asia/Tokyo"), "JP");
+  assert.equal(regionForZone("Asia/Kolkata"), "US");
+  assert.equal(regionForZone(undefined), "US");
+});
+
+test("affiliate tags name the site, region, placement and product", () => {
+  assert.equal(subId("AU", "table_pinned", "4580590174528"), "figure-au-table_pinned-4580590174528");
+  const e = new URL(ebayAffiliateUrl("https://www.ebay.com.au/itm/1", "figure-au-x"));
+  assert.equal(e.searchParams.get("customid"), "figure-au-x");
+  assert.equal(e.searchParams.get("mkrid"), "705-53470-19255-0");
+  assert.ok(e.searchParams.get("campid"));
+  assert.match(ebaySearchUrl("Nendoroid Frieren", "UK", "t")!, /ebay\.co\.uk.*LH_BIN=1/);
+  assert.equal(ebaySearchUrl("x", "JP", "t"), null);
+  assert.match(amazonSearchUrl("x", "US", "figure-us-y")!, /tag=.*ascsubtag=figure-us-y/);
+  assert.equal(amazonSearchUrl("x", "UK", "t"), null, "no UK tag yet, no Amazon UK row");
+  assert.match(storeUrl("nope", "https://shop.example/p?a=1"), /utm_source=figurecompare\.com&utm_medium=referral/);
+});
+
+test("money stays in its own currency", () => {
+  assert.equal(money(8995, "AU"), "A$89.95");
+  assert.equal(money(6800, "JP"), "¥6,800");
+  assert.equal(money(4999, "UK"), "£49.99");
+});
+
+test("the family footer lists every sister site once, on its canonical host", () => {
+  const urls = SISTER_SITES.map((s) => s.url);
+  assert.equal(new Set(urls).size, urls.length);
+  for (const u of ["https://riftcompare.com", "https://opcompare.app", "https://mtgcompare.app", "https://wargamecompare.com", "https://ygocompare.com"]) assert.ok(urls.includes(u), u);
+  assert.ok(!urls.some((u) => u.includes("figurecompare")));
+});
+
+test("search: every word must match; a barcode finds its figure", () => {
+  const rows: IndexRow[] = [
+    ["a", "Nendoroid 2345 Frieren", "nendoroid", "4580590174528", {}],
+    ["b", "figma 567 Makima", "figma", "4545784068991", {}],
+    ["c", "POP UP PARADE Frieren L", "pop-up-parade", "4580590170001", {}],
+  ];
+  assert.deepEqual(searchRows(rows, "frieren").map((r) => r[0]), ["a", "c"]);
+  assert.deepEqual(searchRows(rows, "nendo frieren").map((r) => r[0]), ["a"]);
+  assert.deepEqual(searchRows(rows, "4545784068991").map((r) => r[0]), ["b"]);
+});
+
+test("ops monitor judgements", () => {
+  const now = Date.parse("2026-10-28T12:00:00Z");
+  assert.equal(judgeFreshness("2026-10-28T05:00:00Z", now).status, "ok");
+  assert.equal(judgeFreshness("2026-10-27T00:00:00Z", now).status, "warn");
+  assert.equal(judgeFreshness("2026-10-25T00:00:00Z", now).status, "fail");
+  const run = (ok: boolean, matched = 5) => ({ ok, matched, listings: 10, refused: {}, noJan: 0, ms: 1, error: ok ? undefined : "HTTP 429" });
+  assert.equal(judgeStores({ updatedAt: "", figures: 1, stores: { a: run(true), b: run(true) } }, 2).status, "ok");
+  assert.equal(judgeStores({ updatedAt: "", figures: 1, stores: { a: run(false), b: run(true), c: run(true), d: run(true) } }, 4).status, "warn");
+  assert.equal(judgeStores({ updatedAt: "", figures: 1, stores: { a: run(false), b: run(false), c: run(true) } }, 3).status, "fail");
+});
