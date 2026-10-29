@@ -153,3 +153,8 @@ The owner's production keyset on his second eBay account (5,000 Browse calls a d
 WargameCompare, 2,500 a day each, so `EBAY_DAILY_CAP` defaults to 2,500 (was 2,000). The deletion endpoint now
 answers a notice with 200 (eBay accepts 200 to 204; 200 is the one every guide shows) and its challenge reply is
 never cached. One app has one registered endpoint; both sites keep theirs deployed.
+
+## One EPN campaign for FigureCompare and WargameCompare — 2026-10-29
+
+The owner chose EPN campaign 5339155911 for both sites; it is now the default in `src/lib/affiliate.ts` (was the
+family's shared 5339155912). The customid (`figure-…` / `wgc-…`) tells the sites apart in EPN's report.
