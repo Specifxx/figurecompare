@@ -14,9 +14,10 @@ export function GET(req: Request) {
   const token = process.env.EBAY_VERIFICATION_TOKEN;
   if (!code || !token) return new Response("Not configured", { status: 400 });
   const challengeResponse = createHash("sha256").update(code + token + ENDPOINT).digest("hex");
-  return Response.json({ challengeResponse });
+  return Response.json({ challengeResponse }, { headers: { "Cache-Control": "no-store" } });
 }
 
-export function POST() {
-  return new Response(null, { status: 204 });
+export async function POST(req: Request) {
+  await req.text().catch(() => "");
+  return new Response(null, { status: 200 });
 }

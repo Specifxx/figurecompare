@@ -45,7 +45,7 @@ async function main() {
     console.log("eBay keys not set: skipping (no-op).");
     return;
   }
-  const budget = Number(process.env.EBAY_DAILY_CAP || 2000);
+  const budget = Number(process.env.EBAY_DAILY_CAP || 2500);
   const checked = read<Record<string, string>>("state/ebay-checked.json", {});
   const data = read<EbayData>("public/ebay.json", {});
   const figures = getFigures();
