@@ -48,7 +48,8 @@ Previews build only with `[preview]`, when the owner asks. `claude/*` branches n
   store and never "the cheapest". Commission never decides order.
 - eBay listings come only from `scripts/ebay-import.ts` in GitHub Actions (Browse API by GTIN, new, Buy It Now,
   never from CN/HK sellers, 60%–300% of the store median, no row without a store reference). The keys are GitHub
-  secrets only, never Vercel. Never raise `EBAY_DAILY_CAP` without the owner.
+  secrets only, never Vercel. The keyset is shared with WargameCompare (5,000 calls a day, 2,500 each; owner,
+  2026-10-29): never raise `EBAY_DAILY_CAP` (default 2,500) without the owner.
 - No pop-ups, no interstitials (family pop-up policy). No ads beside a buy button.
 
 ## Design

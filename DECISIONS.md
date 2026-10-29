@@ -146,3 +146,10 @@ With 41 shops selling to the US, the useful fact is how far apart they are on th
 (`scripts/og/render.mjs`) now lists five well-known figures (one per franchise, best known first) in stock at five or
 more US shops, each with its lowest and highest item price, under "Same figure, same box, different price". Still
 drawn by hand from today's data and checked by eye before committing.
+
+## The eBay keyset is shared with WargameCompare, 2,500 calls each — 2026-10-29
+
+The owner's production keyset on his second eBay account (5,000 Browse calls a day) serves FigureCompare and
+WargameCompare, 2,500 a day each, so `EBAY_DAILY_CAP` defaults to 2,500 (was 2,000). The deletion endpoint now
+answers a notice with 200 (eBay accepts 200 to 204; 200 is the one every guide shows) and its challenge reply is
+never cached. One app has one registered endpoint; both sites keep theirs deployed.
