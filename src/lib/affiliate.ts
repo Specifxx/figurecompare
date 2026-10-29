@@ -7,9 +7,9 @@
 import { REGION_BY_CODE, SITE, type RegionCode } from "@/site";
 import { STORE_BY_ID } from "@/content/stores";
 
-/** EPN campaign. FigureCompare's own once created (EBAY_AFFILIATE_CAMPAIGN);
- *  until then the family's shared campaign, split by the customid tag. */
-export const EBAY_CAMPAIGN_ID = process.env.EBAY_AFFILIATE_CAMPAIGN || "5339155912";
+/** EPN campaign, shared with WargameCompare (owner, 2026-10-29); the customid
+ *  tag (`figure-…`) tells the sites apart. EBAY_AFFILIATE_CAMPAIGN overrides. */
+export const EBAY_CAMPAIGN_ID = process.env.EBAY_AFFILIATE_CAMPAIGN || "5339155911";
 
 /** Amazon Associates: each marketplace is its own program and tag. Only the US
  *  tag exists today (the family's); a region without one shows no Amazon row. */
