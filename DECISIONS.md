@@ -139,3 +139,10 @@ among them animate USA, Japan Figure Store, Nekotwo, Good Smile US, Hobby Bee an
   budget, which the biggest catalogues would take for weeks. The import's timeout is 240 minutes for 136 stores.
 * Left out: marketplaces and shops behind bot protection, a Japan-priced shop (Ninoma, JPY), shops with none of
   our lines or no readable barcodes, and The Games Capital (it redirects to Good Games, already listed).
+
+## The link preview shows the gap, not one figure — 2026-10-29
+
+With 41 shops selling to the US, the useful fact is how far apart they are on the same box. The preview
+(`scripts/og/render.mjs`) now lists five well-known figures (one per franchise, best known first) in stock at five or
+more US shops, each with its lowest and highest item price, under "Same figure, same box, different price". Still
+drawn by hand from today's data and checked by eye before committing.
