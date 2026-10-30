@@ -1,0 +1,58 @@
+name: Skincare store probe
+
+# Research only (2026-10-30): reads candidate skincare shops listed in
+# probe/skincare/candidates.txt and commits probe/skincare/results.json and
+# summary.md to the claude/* branch it ran on. Never touches data/ or main.
+
+on:
+  push:
+    branches: ["claude/**"]
+    paths: ["probe/skincare/candidates.txt", "probe/skincare/probe.mjs"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node probe/skincare/probe.mjs
+        env:
+          SHARD: ${{ matrix.shard }}
+          SHARDS: 12
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: skincare-${{ matrix.shard }}
+          path: probe/skincare/out-${{ matrix.shard }}.json
+          if-no-files-found: ignore
+
+  collect:
+    needs: probe
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: shards
+      - name: Commit results
+        run: |
+          set -euo pipefail
+          node probe/skincare/summarize.mjs shards
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add probe/skincare/results.json probe/skincare/summary.md
+          git commit -m "probe: skincare store results" || exit 0
+          for i in 1 2 3 4; do git push origin HEAD:${GITHUB_REF_NAME} && exit 0; sleep $((2 ** i)); git pull --rebase origin ${GITHUB_REF_NAME}; done
+          exit 1
