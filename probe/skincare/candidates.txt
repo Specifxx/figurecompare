@@ -1,106 +1,84 @@
-# Skincare / K-beauty shop candidates for the 2026-10-30 readability probe.
-# Many domains are guesses; the probe reports which answer.
-# US and global Korean shops (USD)
-sokoglam.com
-peachandlily.com
-ohlolly.com
-wishtrend.com
-jolse.com
-us.althea.kr
-roseroseshop.com
-koreadepart.com
-stylekorean.com
-beautyboxkorea.com
-bemusedkorea.com
-ibuybeauti.com
-beautynetkorea.com
-kbeautyhouse.com
-koreanbeautyshop.com
-thekbeautyshop.com
-seoulbeautyclub.com
-kbeautymarket.com
-glowrecipe.com
-credobeauty.com
-thedetoxmarket.com
-follain.com
-beautylish.com
-skinsafeproducts.com
-cosbar.com
-dermstore.com
-skinstore.com
-kbeautyandco.com
-mishaus.com
-kbeautyaddict.com
-# UK / IE
-pureseoul.co.uk
-skincupid.co.uk
-skincity.co.uk
-kbeautyuk.com
-seoulbeautyclub.co.uk
-glowgetter.co.uk
-thekbeautyclub.co.uk
-beautyfeatures.ie
-cultbeauty.co.uk
-lookfantastic.com
-justmylook.com
-allbeauty.com
-escentual.com
-beautybay.com
-spacenk.com
-skinshop.co.uk
-kbeautybox.co.uk
-yesitskbeauty.co.uk
-maskmart.co.uk
-# Canada
-lakinza.ca
-littlewonderland.ca
-kiyokobeauty.com
-k-beautycanada.ca
-kbeautycanada.ca
-seoulbeauty.ca
+# Round 2 (2026-10-30): shops from brand authorised-seller lists (COSRX
+# cosrx.com/pages/store_authorized-seller, Beauty of Joseon
+# beautyofjoseon.com/pages/other-online-retailers) plus round 1's readable
+# K-beauty shops, re-read with a deeper barcode sample.
+# Round 1 keepers
 koreanskincare.ca
-glowybeauty.ca
-nunabeauty.ca
-beautyamora.com
-well.ca
-purifyingbeauty.ca
-monday-haus.com
-socialskin.ca
-# Australia
 nudieglow.com
-kanvasbeauty.com.au
 lilabeauty.com.au
-heartdrops.com.au
-stylestory.com.au
+lakinza.ca
 boniik.com
-etonymoly.com.au
-kbeautyaustralia.com.au
 koreanbeauty.com.au
-kbeautyaddiction.com.au
-kbeautydirect.com.au
-cosmeticcapital.com.au
-beautymart.com.au
-sukin.com.au
-glowbeauty.com.au
-seoulskin.com.au
-mykbeauty.com.au
-kskinstore.com.au
-beautyamora.com.au
-skincarestore.com.au
-# New Zealand
+roseroseshop.com
+pureseoul.co.uk
+heartdrops.com.au
+kanvasbeauty.com.au
+sokoglam.com
+us.althea.kr
+ohlolly.com
+justmylook.com
 amiglow.co.nz
-koreanskincare.co.nz
-kbeauty.co.nz
-glowup.co.nz
-seoulbeauty.co.nz
-nzkbeauty.co.nz
-mecca.co.nz
-beautybliss.co.nz
-facialco.co.nz
-skinfood.co.nz
+kiyokobeauty.com
+skincupid.co.uk
+bemusedkorea.com
+wishtrend.com
+# US
+cupidrop.com
+oo35mm.com
+beautywithin.com
+holastylekorean.com
+bloomingkoco.com
+olivekollection.com
+songofskin.com
+sentisenti.com
+lewkin.com
+dodoskin.com
+mirai-skin.com
+thekshop.co
+# Canada
+thekshop.ca
+sukoshimart.com
+kiokii.com
+uniquebunny.com
+lamourlife.com
+kiyoko.ca
+socialitebeauty.ca
+kbeautyoutlet.ca
+moonmooncosmetics.ca
+kbeautycanada.com
+pandorabeauty.com
+oomomostore.com
+onesplus.ca
+mieviccanada.com
+bestco.shop
+ca.lewkin.com
+# UK
+skinsider.co.uk
+tonic15.com
+skin2seoul.co.uk
+glamtouch.co.uk
+miin-cosmetics.com
+# Australia
+boniik.com.au
+makeup2beauty.com.au
+wcosmetics.com.au
+# New Zealand
+hikoco.co.nz
+thecosmeticstore.co.nz
 # Singapore
-hush.sg
-kbeauty.sg
-glowsg.com
-beautyfresh.sg
-sasa.com.sg
+7amlab.co
+# EU (EUR)
+kbeautyhouse.de
+lovemycosmetic.de
+littlewonderland.nl
+littlewonderland.eu
+korean-skincare.nl
+glowstation.com
+boozyshop.com
+eu.skinsider.com
+miroshoparis.com
+niasha.ch
+mimo-mimo.com
+dermaspace.dk
+yeppo.fi
+bearel.fi
