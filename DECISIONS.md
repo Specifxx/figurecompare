@@ -48,8 +48,8 @@ prefetch renders (Rift Compare and YGO Compare DECISIONS, "Vercel cost"). Here:
 
 * **eBay**: pinned row per region (the cheapest believable new Buy It Now listing found by barcode, else a
   search), labelled Ad. Bootlegs are mostly sold from China and Hong Kong, so those sellers are skipped, and a
-  listing must sit within 60%–300% of the stores' median. Campaign: `EBAY_AFFILIATE_CAMPAIGN`, falling back to
-  the family's shared campaign until FigureCompare has its own.
+  listing must sit within 60%–300% of the stores' median. Campaign: 5339155912, the one campaign every Compare
+  site uses (hard-coded; see "One EPN campaign for every site", 2026-10-30).
 * **Amazon**: a search row per region where an Associates tag exists (US falls back to the family tag).
 * **HobbyLink Japan** (3%): searched by JAN once `HLJ_AFFILIATE_REF` exists.
 * **Store programs**: a store's `affiliate` param is added when its env var is set; it is then labelled
@@ -158,3 +158,13 @@ never cached. One app has one registered endpoint; both sites keep theirs deploy
 
 The owner chose EPN campaign 5339155911 for both sites; it is now the default in `src/lib/affiliate.ts` (was the
 family's shared 5339155912). The customid (`figure-…` / `wgc-…`) tells the sites apart in EPN's report.
+
+## One eBay campaign for every Compare site, hard-coded — 2026-10-30
+
+**Decided (owner).** Every Compare site now sends eBay clicks to ONE EPN campaign, 5339155912 (RiftCompare's,
+already set up), hard-coded in the code: no variable overrides it any more, so a forgotten secret or Vercel
+value can't split the sites again. The sites are told apart by the `customid` prefix alone, which comes first
+in every tag; this site's is `figure-<region>`. Supersedes "One EPN campaign for FigureCompare and WargameCompare" (2026-10-29).
+Replaced: 5339155911 (WargameCompare, FigureCompare, Compare Empire, K Young), 5339231473 (Lorcana),
+5339231474 (Gundam), 5339234013 (YGO). Old secrets/variables (`EBAY_AFFILIATE_CAMPAIGN`,
+`NEXT_PUBLIC_EBAY_CAMPAIGN_ID`, `EBAY_CAMPAIGN_ID`) are no longer read and can be deleted.
