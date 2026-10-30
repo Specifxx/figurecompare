@@ -178,3 +178,11 @@ figure, like the pages), so opening one reads a file from the CDN, never a funct
 rests on a tile. Its rows come from `priceRows()`, the same rows the figure page draws: eBay first, Amazon second,
 then the stores by price, plus the Japan import table when a figure has one. The tile is still a real link, so
 crawlers, new tabs and modified clicks reach the figure page, whose server HTML keeps every price.
+
+## A contact page and the address in the footer — 2026-10-30
+
+The owner: "make sure that contact information is really clear on all of our websites so that any feedback feeds
+into the respective emails". The address (compareempire@gmail.com, `SITE.email`) was only on `/about` and
+`/privacy`. Now `/contact` (static, in the sitemap) gives it with subject-filled mailto links for wrong prices, stores,
+missing figures and press, and the footer links `/contact` and shows the address on every page. Still no form: the
+site has no server to send one. `/contact` joins the legal pages that carry no eBay strip.

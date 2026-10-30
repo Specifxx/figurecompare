@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LINES, SISTER_SITES } from "@/site";
+import { LINES, SISTER_SITES, SITE } from "@/site";
 import { LogoMark } from "./Logo";
 
 export function Footer({ updated }: { updated?: string | null }) {
@@ -38,6 +38,8 @@ export function Footer({ updated }: { updated?: string | null }) {
             <li><Link prefetch={false} href="/disclosure" className="hover:text-pink-deep">Affiliate disclosure</Link></li>
             <li><Link prefetch={false} href="/privacy" className="hover:text-pink-deep">Privacy</Link></li>
             <li><Link prefetch={false} href="/terms" className="hover:text-pink-deep">Terms</Link></li>
+            <li><Link prefetch={false} href="/contact" className="hover:text-pink-deep">Contact us</Link></li>
+            <li><a href={`mailto:${SITE.email}`} className="hover:text-pink-deep">{SITE.email}</a></li>
           </ul>
         </div>
         <div>
