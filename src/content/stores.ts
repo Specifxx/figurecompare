@@ -115,7 +115,7 @@ export const STORES: Store[] = [
   { id: "kollectkorner", name: "Kollect Korner", region: "US", base: "https://www.kollectkorner.com", platform: "shopify", collections: ["all"] },
   { id: "nekotwo", name: "Nekotwo", region: "US", base: "https://nekotwo.com", platform: "shopify", collections: ["all"] },
   { id: "ohayopop", name: "OhayoPop", region: "US", base: "https://ohayopop.com", platform: "shopify", collections: ["all"] },
-  { id: "ozziecollectables", name: "Ozzie Collectables", region: "US", base: "https://www.ozziecollectables.com", platform: "shopify", collections: ["all"] },
+  { id: "ozziecollectables", name: "Ozzie Collectables", region: "AU", base: "https://www.ozziecollectables.com", platform: "shopify", collections: ["all"] }, // AUD shop (Australia), moved from US 2026-10-30
   { id: "shumistore", name: "Shumi Toys & Gifts", region: "US", base: "https://shumistore.com", platform: "shopify", collections: ["all"] },
   { id: "spankyslootstash", name: "Spanky's Loot Stash", region: "US", base: "https://www.spankyslootstash.com", platform: "shopify", collections: ["all"] },
   { id: "spiedagames", name: "Spieda Games", region: "US", base: "https://spiedagames.com", platform: "shopify", collections: ["all"] },
