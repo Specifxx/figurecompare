@@ -103,5 +103,6 @@ test("eBay sits beside every buy button and first in every price list (owner, 20
   assert.ok(page.includes('placement="hero_ebay"') && page.includes('placement="buybar_ebay"'), "hero and phone buy bar carry an eBay button");
   const table = fs.readFileSync("src/components/PriceTable.tsx", "utf8");
   assert.ok(table.indexOf('source: "ebay"') < table.indexOf("offers.map"), "the eBay row comes before the stores");
-  assert.match(table, /Shown first/);
+  // Owner, 2026-10-30: no wording about the order; the row is simply first.
+  assert.doesNotMatch(table, /Shown first/);
 });
