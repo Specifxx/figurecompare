@@ -7,6 +7,7 @@ import { ACTIVE_REGIONS } from "@/lib/regions";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SideNav } from "@/components/SideNav";
+import { QuickView } from "@/components/QuickView";
 import { EbayNavBox } from "@/components/EbayStrip";
 import { navGroups } from "@/lib/nav";
 import { getMeta, lineCounts } from "@/lib/data";
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </main>
         </div>
         <Footer updated={meta ? niceDate(meta.updatedAt) : null} />
+        <QuickView />
         <Analytics />
       </body>
     </html>

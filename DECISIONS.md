@@ -168,3 +168,13 @@ in every tag; this site's is `figure-<region>`. Supersedes "One EPN campaign for
 Replaced: 5339155911 (WargameCompare, FigureCompare, Compare Empire, K Young), 5339231473 (Lorcana),
 5339231474 (Gundam), 5339234013 (YGO). Old secrets/variables (`EBAY_AFFILIATE_CAMPAIGN`,
 `NEXT_PUBLIC_EBAY_CAMPAIGN_ID`, `EBAY_CAMPAIGN_ID`) are no longer read and can be deleted.
+
+## 2026-10-30: quick view on every figure tile (from K Young)
+
+Owner: "I really like the kaeyoung quick view pop ups, can we do that for … all the other sites". A plain click on a
+figure tile now opens K Young's quick view at once, with what the tile already shows (photo, line, name). Every
+store's price then loads from `/q/<slug>`, a static JSON written at build by a `force-static` route (one file per
+figure, like the pages), so opening one reads a file from the CDN, never a function; it is fetched ahead when a mouse
+rests on a tile. Its rows come from `priceRows()`, the same rows the figure page draws: eBay first, Amazon second,
+then the stores by price, plus the Japan import table when a figure has one. The tile is still a real link, so
+crawlers, new tabs and modified clicks reach the figure page, whose server HTML keeps every price.
