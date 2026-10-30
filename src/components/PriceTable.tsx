@@ -42,7 +42,7 @@ export function PriceTable({ f, region, ebay, placement = "table" }: { f: Figure
           {ebayUrl && (
             <Row
               name={ebay ? "eBay" : "Search eBay"}
-              sub={ebay ? `Shown first · ${vsBest(ebay.p, best?.p)}` : `Shown first · new listings on ${ebayShopHost(region)?.replace("www.", "")}`}
+              sub={ebay ? vsBest(ebay.p, best?.p) : `New listings on ${ebayShopHost(region)?.replace("www.", "")}`}
               price={ebay ? money(ebay.p, region) : null}
               status={null}
               href={ebayUrl}
