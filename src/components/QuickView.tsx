@@ -21,6 +21,27 @@ interface Head {
 interface Data {
   rows: Partial<Record<RegionCode, RowsData | null>>;
   japan: RowsData | null;
+  name: string;
+  line: LineKey;
+  img: string | null;
+}
+
+// Every link to a figure page opens it (owner, 2026-10-31: "whenever I click on
+// any item … a quick view open like K Young"): a tile's data-qv attributes when
+// it has them, else the slug read from the href (/figure/<slug>), with the
+// link's own photo and text until /q/<slug> brings the figure's own. Links in
+// the quick view, and on the figure's own page, navigate as usual.
+const FIGURE_PATH = /^\/figure\/([^/?#]+)\/?$/;
+function headOf(e: Event): Head | null {
+  const a = (e.target as Element | null)?.closest?.("a[href]") as HTMLAnchorElement | null;
+  if (!a || (a.target && a.target !== "_self") || a.hasAttribute("download") || a.closest("[role=dialog]")) return null;
+  if (a.dataset.qv) return { slug: a.dataset.qv, name: a.dataset.qvName || "", line: (a.dataset.qvLine || "nendoroid") as LineKey, img: a.dataset.qvImg || null };
+  const href = a.getAttribute("href")!;
+  const m = FIGURE_PATH.exec(href);
+  if (!m || window.location.pathname.replace(/\/$/, "") === href.replace(/\/$/, "")) return null;
+  const img = a.querySelector("img");
+  const text = (a.textContent || "").replace(/\s+/g, " ").trim();
+  return { slug: decodeURIComponent(m[1]), name: img?.alt || (text.length <= 140 ? text : ""), line: "" as LineKey, img: img?.currentSrc || img?.src || null };
 }
 
 const cache = new Map<string, Promise<Data | null>>();
@@ -47,18 +68,17 @@ export function QuickView() {
     // the click already handled and does not navigate.
     function onClick(e: MouseEvent) {
       if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      const a = (e.target as Element | null)?.closest?.("a[data-qv]") as HTMLAnchorElement | null;
-      if (!a) return;
+      const h = headOf(e);
+      if (!h) return;
       e.preventDefault();
-      const slug = a.dataset.qv!;
-      setHead({ slug, name: a.dataset.qvName || "", line: (a.dataset.qvLine || "nendoroid") as LineKey, img: a.dataset.qvImg || null });
+      setHead(h);
       setData("loading");
-      load(slug).then((d) => setData((cur) => (cur === "loading" ? d : cur)));
+      load(h.slug).then((d) => setData((cur) => (cur === "loading" ? d : cur)));
     }
     // Warm the file when a pointer rests on a tile, so most opens are instant.
     function onOver(e: PointerEvent) {
-      const a = (e.target as Element | null)?.closest?.("a[data-qv]") as HTMLAnchorElement | null;
-      if (a && e.pointerType === "mouse") load(a.dataset.qv!);
+      const h = e.pointerType === "mouse" ? headOf(e) : null;
+      if (h) load(h.slug);
     }
     document.addEventListener("click", onClick, true);
     document.addEventListener("pointerover", onOver, { passive: true });
@@ -83,18 +103,22 @@ export function QuickView() {
 
   if (!head) return null;
   const href = `/figure/${head.slug}`;
-  const line = LINE_BY_KEY[head.line];
+  const got = data && data !== "loading" ? data : null;
+  const name = got?.name || head.name;
+  const lineKey = got?.line || head.line;
+  const img = head.img || got?.img || null;
+  const line = LINE_BY_KEY[lineKey];
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-6" role="dialog" aria-modal="true" aria-label={head.name}>
+    <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-6" role="dialog" aria-modal="true" aria-label={name}>
       <button type="button" aria-label="Close" tabIndex={-1} className="qv-backdrop absolute inset-0 bg-ink/40 backdrop-blur-[2px]" onClick={close} />
       <div className="qv-panel relative flex max-h-[92vh] w-full max-w-xl flex-col overflow-hidden rounded-t-2xl border border-line bg-card shadow-2xl sm:rounded-2xl">
         <div className="flex items-start gap-4 border-b border-line p-4 sm:p-5">
           <div className="grid h-24 w-24 shrink-0 place-items-center overflow-hidden rounded-xl border border-line bg-white">
-            <FigureImage src={head.img} alt={head.name} line={head.line} eager className="h-full w-full object-contain p-1.5" />
+            <FigureImage key={img ?? ""} src={img} alt={name} line={lineKey || "nendoroid"} eager className="h-full w-full object-contain p-1.5" />
           </div>
           <div className="min-w-0 flex-1">
             {line && <span className="chip border border-line bg-card text-ink">{line.name}</span>}
-            <h2 className="h-display mt-1 text-lg leading-snug">{head.name}</h2>
+            <h2 className="h-display mt-1 text-lg leading-snug">{name || <span className="qv-shimmer inline-block h-5 w-48 rounded" />}</h2>
           </div>
           <button ref={closeRef} type="button" onClick={close} aria-label="Close" className="-mr-1 -mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-full text-soft hover:bg-lilac-pale hover:text-ink">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>

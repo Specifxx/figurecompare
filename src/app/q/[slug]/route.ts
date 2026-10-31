@@ -19,5 +19,5 @@ export function GET(_req: Request, { params }: { params: { slug: string } }) {
   const sold = new Set(regionsOf(f));
   const rows = Object.fromEntries(REGIONS.filter((r) => r.code !== "JP").map((r) => [r.code, sold.has(r.code) ? priceRows(f, r.code, ebay[r.code], "quickview") : null]));
   const japan = f.offers.JP?.length ? priceRows(f, "JP", undefined, "quickview_japan") : null;
-  return Response.json({ slug: f.slug, jan: f.jan, rows, japan });
+  return Response.json({ slug: f.slug, jan: f.jan, rows, japan, name: f.name, line: f.line, img: f.img });
 }
