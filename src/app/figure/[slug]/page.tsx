@@ -13,6 +13,7 @@ import { PriceHistory } from "@/components/Sparkline";
 import { RegionTabs } from "@/components/RegionPicker";
 import { TileGrid } from "@/components/FigureTile";
 import { OutLink } from "@/components/OutLink";
+import { ReportPrice } from "@/components/ReportForms";
 import { EbayButton, EbayStrip, lineQueries } from "@/components/EbayStrip";
 
 // Prerendered at build, one static file per figure; a slug the release does
@@ -172,6 +173,10 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
           <p className="mt-3 text-xs text-soft">
             Prices are what each store showed at our last check and exclude shipping. Every listing here carries this figure&apos;s barcode (JAN {f.jan}), so it is the same product, not a look-alike.
           </p>
+          <ReportPrice
+            product={`${f.name} (JAN ${f.jan})`}
+            stores={REGIONS.flatMap((r) => (f.offers[r.code] ?? []).map((o) => ({ name: `${storeName(o.s)} (${r.code})`, price: money(o.p, r.code) })))}
+          />
         </div>
 
         <aside className="space-y-6">

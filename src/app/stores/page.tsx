@@ -5,6 +5,7 @@ import { activeStores, popular } from "@/lib/data";
 import { storeUrl } from "@/lib/affiliate";
 import { PageHead } from "@/components/Section";
 import { EbayStrip, SITE_QUERIES } from "@/components/EbayStrip";
+import { SuggestStore } from "@/components/ReportForms";
 
 export const metadata: Metadata = {
   title: "Where to buy anime figures online",
@@ -19,7 +20,7 @@ export default function Stores() {
       <PageHead
         emoji="🏪"
         title="Where to buy anime figures"
-        sub="Every store we check, by region. Real shops only: no open marketplaces, where bootleg figures hide. Know a store we should add? Tell us via the about page."
+        sub="Every store we check, by region. Real shops only: no open marketplaces, where bootleg figures hide. Know a store we should add? Suggest it below."
       />
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {REGIONS.map((r) => {
@@ -46,6 +47,11 @@ export default function Stores() {
           );
         })}
       </div>
+      <section id="suggest" className="mt-10">
+        <h2 className="h-display mb-1 text-2xl">Suggest a store</h2>
+        <p className="mb-2 text-sm text-soft">A real figure shop we don&apos;t check yet? We look at every suggestion and add the store if it lists barcodes we can read. Store owners welcome: listing is free.</p>
+        <SuggestStore regions={REGIONS.map((r) => [r.code, r.name])} what="figures" buttonClassName="btn-pop bg-pink text-white" />
+      </section>
       <EbayStrip className="mt-10" placement="stores" queries={SITE_QUERIES} figures={popular(30)} title="Figures on eBay" />
     </div>
   );

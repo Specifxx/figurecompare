@@ -4,7 +4,8 @@ import { PageHead } from "@/components/Section";
 import { Prose } from "@/components/Prose";
 
 // The address, said plainly and linked from every footer (owner, 2026-10-30).
-// No form: the site has no server to send one, and an email keeps a record.
+// The two forms (a wrong price, a store to add) live where they are used: under
+// every figure's prices and on /stores (DECISIONS.md, 2026-10-31).
 export const metadata: Metadata = {
   title: "Contact us",
   description: `Email FigureCompare at ${SITE.email}: a wrong price or match, a store to add or remove, press and partnerships.`,
@@ -20,6 +21,9 @@ export default function Contact() {
       <Prose>
         <p>
           Email <a href={`mailto:${SITE.email}`}><strong>{SITE.email}</strong></a>. A person reads every message, usually within two working days.
+        </p>
+        <p>
+          Seen a wrong price? Use <strong>Report a wrong price</strong> under the figure&apos;s prices, and <a href="/stores#suggest">suggest a store</a> on the stores page: no email needed.
         </p>
         <ul>
           <li><a href={mail("Wrong price or match")}>A wrong price or a wrong match</a>: the FigureCompare page, the store, and what is wrong.</li>
