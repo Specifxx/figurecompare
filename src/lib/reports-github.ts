@@ -20,7 +20,8 @@
 //
 // Writes only create new files (no read, no sha), so two reports in the same
 // second can never race. The commit subject never carries [deploy] or
-// [preview], and the repo deploys nothing anyway.
+// [preview], and the repo deploys nothing anyway. (A PUT is never cached by
+// Next, so no cache option is needed.)
 
 export type ReportKind = "wrong-price" | "suggest-store" | "other";
 export const REPORT_KINDS: readonly ReportKind[] = ["wrong-price", "suggest-store", "other"];
@@ -152,7 +153,6 @@ export async function saveReport(r: Report, f: typeof fetch = fetch): Promise<Sa
   try {
     const res = await f(`https://api.github.com/repos/${reportsRepo()}/contents/${path}`, {
       method: "PUT",
-      cache: "no-store",
       signal: AbortSignal.timeout(10_000),
       headers: {
         Authorization: `Bearer ${reportsToken()}`,
