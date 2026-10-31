@@ -18,12 +18,15 @@ const read = <T>(p: string, f: T): T => {
   }
 };
 
-const MARKET: Partial<Record<RegionCode, { id: string; country: string }>> = {
-  US: { id: "EBAY_US", country: "US" },
-  UK: { id: "EBAY_GB", country: "GB" },
-  CA: { id: "EBAY_CA", country: "CA" },
-  AU: { id: "EBAY_AU", country: "AU" },
-  EU: { id: "EBAY_DE", country: "DE" },
+// Local sellers only (visitor feedback, WargameCompare 2026-10-31): the search asks for items located in the region's
+// own country (eBay Germany stands for the EU, so it keeps every EU seller and ebayPick drops the rest), and `zip`, a
+// central postcode, lets eBay quote real postage; ebayPick keeps no listing whose postage it does not state.
+const MARKET: Partial<Record<RegionCode, { id: string; country: string; zip: string }>> = {
+  US: { id: "EBAY_US", country: "US", zip: "64101" },
+  UK: { id: "EBAY_GB", country: "GB", zip: "B1 1AA" },
+  CA: { id: "EBAY_CA", country: "CA", zip: "M5V 2T6" },
+  AU: { id: "EBAY_AU", country: "AU", zip: "2000" },
+  EU: { id: "EBAY_DE", country: "DE", zip: "60311" },
 };
 
 async function token(): Promise<string> {
@@ -48,6 +51,8 @@ async function main() {
   const budget = Number(process.env.EBAY_DAILY_CAP || 2500);
   const checked = read<Record<string, string>>("state/ebay-checked.json", {});
   const data = read<EbayData>("public/ebay.json", {});
+  // A row from before 2026-10-31 (any seller, postage unknown) is hidden until it is searched again: search it first.
+  for (const [jan, by] of Object.entries(data)) for (const [region, pick] of Object.entries(by)) if (pick && pick.sh == null) delete checked[`${jan}:${region}`];
   const figures = getFigures();
   const plan = planEbay(figures, checked, Object.keys(MARKET) as RegionCode[], budget);
   const tok = await token();
@@ -57,9 +62,15 @@ async function main() {
   for (const { f, region } of plan) {
     const m = MARKET[region]!;
     const cur = REGIONS.find((r) => r.code === region)!.currency;
-    const url = `https://api.ebay.com/buy/browse/v1/item_summary/search?gtin=${f.jan}&limit=25&sort=price&filter=${encodeURIComponent(`buyingOptions:{FIXED_PRICE},conditionIds:{1000},deliveryCountry:${m.country},priceCurrency:${cur}`)}`;
+    const url = `https://api.ebay.com/buy/browse/v1/item_summary/search?gtin=${f.jan}&limit=25&sort=price&filter=${encodeURIComponent(`buyingOptions:{FIXED_PRICE},conditionIds:{1000},deliveryCountry:${m.country},${region === "EU" ? "" : `itemLocationCountry:${m.country},`}priceCurrency:${cur}`)}`;
     calls++;
-    const r = await fetch(url, { headers: { Authorization: `Bearer ${tok}`, "X-EBAY-C-MARKETPLACE-ID": m.id } });
+    const r = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${tok}`,
+        "X-EBAY-C-MARKETPLACE-ID": m.id,
+        "X-EBAY-C-ENDUSERCTX": `contextualLocation=${encodeURIComponent(`country=${m.country},zip=${m.zip}`)}`,
+      },
+    });
     if (r.status === 429) {
       console.log("eBay 429: stopping for today.");
       break;

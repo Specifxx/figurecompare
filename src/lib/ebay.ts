@@ -11,8 +11,36 @@ export interface EbayItem {
   price?: { value: string; currency: string };
   image?: { imageUrl: string };
   itemLocation?: { country?: string };
+  shippingOptions?: { shippingCost?: { value?: string; currency?: string } }[];
   condition?: string;
 }
+
+/** EU countries: an EU buyer's eBay row may come from a seller in any of them (no customs). */
+export const EU_COUNTRIES: ReadonlySet<string> = new Set(["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE"]);
+
+/** eBay's two-letter country code for a region (the UK is GB on eBay). */
+export const EBAY_COUNTRY: Partial<Record<RegionCode, string>> = { US: "US", UK: "GB", CA: "CA", AU: "AU", EU: "DE" };
+
+/**
+ * Is a seller local to the region? Visitor feedback (WargameCompare, 2026-10-31): overseas sellers' postage made eBay rows
+ * "a lot of wasted clicks", so a region's row comes only from a seller in its own country (any EU country for the EU).
+ * A listing that gives no location passes: the search itself asked for local sellers.
+ */
+export function localSeller(region: RegionCode, country: string | undefined): boolean {
+  if (!country) return true;
+  return region === "EU" ? EU_COUNTRIES.has(country) : country === EBAY_COUNTRY[region];
+}
+
+/** The postage eBay states for the listing, in minor units, or null when it states none (calculated) or in another currency. */
+export function statedPostage(it: EbayItem, currency: string, minor: number): number | null {
+  const c = it.shippingOptions?.[0]?.shippingCost;
+  if (!c || c.value == null || (c.currency && c.currency !== currency)) return null;
+  const n = Math.round(Number(c.value) * minor);
+  return Number.isFinite(n) && n >= 0 ? n : null;
+}
+
+/** May a stored row be shown? Only one with its postage known (rows from before 2026-10-31 have none). */
+export const ebayRowShown = (pick: EbayPick | undefined): pick is EbayPick => !!pick && pick.sh != null;
 
 // Bootleg figures overwhelmingly ship from these; an official figure from a
 // real seller is still listed from Japan, the US, Europe or Australia.
@@ -21,7 +49,8 @@ const BOOTLEG_ORIGINS = new Set(["CN", "HK"]);
 /**
  * The cheapest believable listing: new, from outside the bootleg origins, a
  * title that is still a figure of our lines (no pre-owned, bundle, accessory),
- * in the region's currency, and within 60%–300% of the stores' median. No
+ * in the region's currency, and within 60%–300% of the stores' median; from a
+ * seller in the region (localSeller) with postage eBay states, priced delivered. No
  * store reference, no eBay row (family rule).
  */
 export function ebayPick(items: EbayItem[], storeOffers: Offer[], region: RegionCode): EbayPick | null {
@@ -33,10 +62,14 @@ export function ebayPick(items: EbayItem[], storeOffers: Offer[], region: Region
   for (const it of items) {
     if (!it.price || it.price.currency !== cur) continue;
     if (it.itemLocation?.country && BOOTLEG_ORIGINS.has(it.itemLocation.country)) continue;
+    if (!localSeller(region, it.itemLocation?.country)) continue;
+    const sh = statedPostage(it, cur, minor);
+    if (sh == null) continue;
     if ("refused" in readTitle(it.title)) continue;
     const p = Math.round(Number(it.price.value) * minor);
     if (!(p > 0) || p < ref * 0.6 || p > ref * 3) continue;
-    if (!best || p < best.p) best = { p, u: it.itemWebUrl.split("?")[0], t: it.title.slice(0, 120), img: it.image?.imageUrl ?? null };
+    // The row shows the DELIVERED price, and the cheapest delivered wins.
+    if (!best || p + sh < best.p) best = { p: p + sh, sh, u: it.itemWebUrl.split("?")[0], t: it.title.slice(0, 120), img: it.image?.imageUrl ?? null };
   }
   return best;
 }
