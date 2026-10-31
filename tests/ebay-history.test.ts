@@ -5,7 +5,7 @@ import { dayNumber, priceOn, recordHistory } from "@/lib/history";
 import type { Figure, Offer } from "@/lib/types";
 
 const offers: Offer[] = [5999, 6499, 6999].map((p, i) => ({ s: `s${i}`, p, st: "in", u: "" }));
-const item = (over: Partial<EbayItem>): EbayItem => ({ title: "Nendoroid 2345 Frieren", itemWebUrl: "https://www.ebay.com/itm/1?x=1", price: { value: "55.00", currency: "USD" }, itemLocation: { country: "JP" }, ...over });
+const item = (over: Partial<EbayItem>): EbayItem => ({ title: "Nendoroid 2345 Frieren", itemWebUrl: "https://www.ebay.com/itm/1?x=1", price: { value: "55.00", currency: "USD" }, itemLocation: { country: "US" }, shippingOptions: [{ shippingCost: { value: "0.00", currency: "USD" } }], ...over });
 
 test("eBay: cheapest believable new listing", () => {
   const pick = ebayPick([item({}), item({ price: { value: "52.00", currency: "USD" }, itemWebUrl: "https://www.ebay.com/itm/2" })], offers, "US");
@@ -18,6 +18,23 @@ test("eBay: bootleg origins, too-cheap, pre-owned and other currencies are out",
   assert.equal(ebayPick([item({ price: { value: "19.99", currency: "USD" } })], offers, "US"), null);
   assert.equal(ebayPick([item({ title: "Nendoroid 2345 Frieren used loose" })], offers, "US"), null);
   assert.equal(ebayPick([item({ price: { value: "55.00", currency: "AUD" } })], offers, "US"), null);
+});
+
+test("eBay: local sellers only, postage stated, priced and ranked delivered (visitor feedback 2026-10-31)", () => {
+  const ship = (value: string, currency = "USD") => ({ shippingOptions: [{ shippingCost: { value, currency } }] });
+  assert.ok(ebayPick([item({ itemLocation: { country: "JP" } })], offers, "US"), "a seller in Japan, the products' home country, stays (priced with postage)");
+  assert.equal(ebayPick([item({ itemLocation: { country: "GB" } })], offers, "US"), null, "a UK seller for a US buyer");
+  assert.equal(ebayPick([item({ shippingOptions: [{}] })], offers, "US"), null, "calculated postage");
+  assert.equal(ebayPick([item({ shippingOptions: undefined })], offers, "US"), null, "no postage at all");
+  assert.equal(ebayPick([item(ship("5.00", "JPY"))], offers, "US"), null, "postage in another currency");
+  const pick = ebayPick([item({ price: { value: "50.00", currency: "USD" }, ...ship("15.00") }), item({ price: { value: "55.00", currency: "USD" }, ...ship("4.00"), itemWebUrl: "https://www.ebay.com/itm/3" })], offers, "US");
+  assert.equal(pick?.u, "https://www.ebay.com/itm/3", "the cheapest delivered, not the cheapest item");
+  assert.equal(pick?.p, 5900);
+  assert.equal(pick?.sh, 400);
+  const eu = (country: string) => item({ price: { value: "55.00", currency: "EUR" }, itemLocation: { country }, ...ship("4.90", "EUR") });
+  const euOffers = offers.map((o) => ({ ...o }));
+  assert.ok(ebayPick([eu("FR")], euOffers, "EU"), "a French seller for an EU buyer");
+  assert.equal(ebayPick([eu("GB")], euOffers, "EU"), null, "a UK seller is outside the EU");
 });
 
 test("eBay: no store reference, no eBay row", () => {

@@ -59,8 +59,10 @@ export interface Listing {
 
 /** Cheapest real eBay Buy It Now listings for a figure (data/public/ebay.json). */
 export interface EbayPick {
-  /** price in the region currency's minor unit */
+  /** DELIVERED price (item + postage) in the region currency's minor unit (since 2026-10-31; before, the item price) */
   p: number;
+  /** the postage included in `p` (minor units; 0 = free). Absent on a row from before 2026-10-31: never shown. */
+  sh?: number;
   u: string;
   t: string;
   img: string | null;

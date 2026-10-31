@@ -37,7 +37,7 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
   if (ebayUrl)
     pinned.push({
       name: ebay ? "eBay" : "Search eBay",
-      sub: ebay ? vsBest(ebay.p, best?.p) : `New listings on ${ebayShopHost(region)?.replace("www.", "")}`,
+      sub: ebay ? `${ebay.sh ? "incl. postage" : "free postage"}, ${vsBest(ebay.p, best?.p)}` : `New listings on ${ebayShopHost(region)?.replace("www.", "")}`,
       price: ebay ? money(ebay.p, region) : null,
       status: null,
       href: ebayUrl,

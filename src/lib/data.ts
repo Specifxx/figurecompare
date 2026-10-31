@@ -5,6 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { LINES, REGIONS, type LineKey, type RegionCode } from "@/site";
 import { STORE_BY_ID } from "@/content/stores";
+import { ebayRowShown } from "./ebay";
 import { lowestOrderable } from "./history";
 import type { EbayData, Figure, History, Meta, Offer } from "./types";
 
@@ -25,7 +26,17 @@ function load<T>(file: string, fallback: T): T {
 export const getFigures = (): Figure[] => load<{ figures: Figure[] }>("figures.json", { figures: [] }).figures.filter((f) => f.offers && Object.values(f.offers).some((o) => o?.length));
 export const getMeta = (): Meta | null => load<Meta | null>("meta.json", null);
 export const getHistory = (): History => load<History>("history.json", {});
-export const getEbay = (): EbayData => load<EbayData>("ebay.json", {});
+// Rows from before 2026-10-31 carry no postage (the search took any seller anywhere): not shown (lib/ebay.ts ebayRowShown).
+let ebayShown: EbayData | null = null;
+export const getEbay = (): EbayData => {
+  if (ebayShown) return ebayShown;
+  const out: EbayData = {};
+  for (const [jan, by] of Object.entries(load<EbayData>("ebay.json", {}))) {
+    const kept = Object.fromEntries(Object.entries(by).filter(([, pick]) => ebayRowShown(pick)));
+    if (Object.keys(kept).length) out[jan] = kept;
+  }
+  return (ebayShown = out);
+};
 
 export function getFigure(slug: string): Figure | undefined {
   return getFigures().find((f) => f.slug === slug);
