@@ -18,6 +18,9 @@ export interface EbayItem {
 /** EU countries: an EU buyer's eBay row may come from a seller in any of them (no customs). */
 export const EU_COUNTRIES: ReadonlySet<string> = new Set(["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE"]);
 
+/** Where the products come from: sellers there are kept for every region, priced delivered (owner, 2026-10-31). */
+export const HOME_COUNTRY = "JP";
+
 /** eBay's two-letter country code for a region (the UK is GB on eBay). */
 export const EBAY_COUNTRY: Partial<Record<RegionCode, string>> = { US: "US", UK: "GB", CA: "CA", AU: "AU", EU: "DE" };
 
@@ -28,6 +31,8 @@ export const EBAY_COUNTRY: Partial<Record<RegionCode, string>> = { US: "US", UK:
  */
 export function localSeller(region: RegionCode, country: string | undefined): boolean {
   if (!country) return true;
+  // The products' home country (Japan) is often the cheapest genuine source: its sellers stay, priced with postage.
+  if (country === HOME_COUNTRY) return true;
   return region === "EU" ? EU_COUNTRIES.has(country) : country === EBAY_COUNTRY[region];
 }
 

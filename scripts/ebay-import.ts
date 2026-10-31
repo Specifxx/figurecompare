@@ -18,9 +18,10 @@ const read = <T>(p: string, f: T): T => {
   }
 };
 
-// Local sellers only (visitor feedback, WargameCompare 2026-10-31): the search asks for items located in the region's
-// own country (eBay Germany stands for the EU, so it keeps every EU seller and ebayPick drops the rest), and `zip`, a
-// central postcode, lets eBay quote real postage; ebayPick keeps no listing whose postage it does not state.
+// Local sellers, plus the products' home country (Japan), priced with postage (visitor feedback, WargameCompare
+// 2026-10-31; owner, the same day): the search asks for delivery to the region, ebayPick keeps sellers in the region
+// (any EU country for the EU) or in Japan, and `zip`, a central postcode, lets eBay quote real postage; ebayPick keeps
+// no listing whose postage it does not state.
 const MARKET: Partial<Record<RegionCode, { id: string; country: string; zip: string }>> = {
   US: { id: "EBAY_US", country: "US", zip: "64101" },
   UK: { id: "EBAY_GB", country: "GB", zip: "B1 1AA" },
@@ -62,7 +63,7 @@ async function main() {
   for (const { f, region } of plan) {
     const m = MARKET[region]!;
     const cur = REGIONS.find((r) => r.code === region)!.currency;
-    const url = `https://api.ebay.com/buy/browse/v1/item_summary/search?gtin=${f.jan}&limit=25&sort=price&filter=${encodeURIComponent(`buyingOptions:{FIXED_PRICE},conditionIds:{1000},deliveryCountry:${m.country},${region === "EU" ? "" : `itemLocationCountry:${m.country},`}priceCurrency:${cur}`)}`;
+    const url = `https://api.ebay.com/buy/browse/v1/item_summary/search?gtin=${f.jan}&limit=25&sort=price&filter=${encodeURIComponent(`buyingOptions:{FIXED_PRICE},conditionIds:{1000},deliveryCountry:${m.country},priceCurrency:${cur}`)}`;
     calls++;
     const r = await fetch(url, {
       headers: {

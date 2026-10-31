@@ -22,7 +22,8 @@ test("eBay: bootleg origins, too-cheap, pre-owned and other currencies are out",
 
 test("eBay: local sellers only, postage stated, priced and ranked delivered (visitor feedback 2026-10-31)", () => {
   const ship = (value: string, currency = "USD") => ({ shippingOptions: [{ shippingCost: { value, currency } }] });
-  assert.equal(ebayPick([item({ itemLocation: { country: "JP" } })], offers, "US"), null, "a seller in Japan for a US buyer");
+  assert.ok(ebayPick([item({ itemLocation: { country: "JP" } })], offers, "US"), "a seller in Japan, the products' home country, stays (priced with postage)");
+  assert.equal(ebayPick([item({ itemLocation: { country: "GB" } })], offers, "US"), null, "a UK seller for a US buyer");
   assert.equal(ebayPick([item({ shippingOptions: [{}] })], offers, "US"), null, "calculated postage");
   assert.equal(ebayPick([item({ shippingOptions: undefined })], offers, "US"), null, "no postage at all");
   assert.equal(ebayPick([item(ship("5.00", "JPY"))], offers, "US"), null, "postage in another currency");
