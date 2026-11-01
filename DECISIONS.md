@@ -288,3 +288,13 @@ reason to come back that search rankings alone don't. `/forum` (docs/forum.md):
   DiscussionForumPosting JSON-LD.
 - **Moderation:** the owner asks Claude; a post is removed by an edit to
   `forum.json` (`removeFromForum` in `src/lib/forum/core.ts`).
+
+## 2026-11-01 — Series hubs (/series/<slug>)
+
+Bill asked for SEO hubs for niches on every site. Figure searches name the franchise ("jujutsu kaisen nendoroid",
+"hololive figma"), and the site only had line hubs, so `/series` lists 22 franchises with 12 or more figures and each
+gets a prerendered page (src/content/series.ts, src/lib/series.ts; every region's prices in the HTML like every page,
+at most 96 tiles). A figure joins a series by its NAME: fine for grouping, never for matching a listing, which stays the
+JAN's job. Patterns are a series name or a character name nobody else carries ("Asuna" but not Blue Archive's Asuna
+Ichinose); `tests/series.test.ts` holds real titles. Figure pages link their series; the hubs are in the sitemap and
+the side menu.
