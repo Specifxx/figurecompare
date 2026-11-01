@@ -544,3 +544,16 @@ html[data-season="christmas"] .xmas-kicker {
   display: inline;
 }
 /* xmas-site:end */
+
+/* The beta forum (src/components/forum/forum.css) in this site's colours. */
+.fm {
+  --fm-card: rgb(var(--card));
+  --fm-sunk: rgb(var(--bg));
+  --fm-line: rgb(var(--line));
+  --fm-ink: rgb(var(--ink));
+  --fm-muted: rgb(var(--soft));
+  --fm-accent: rgb(var(--pink));
+  --fm-on-accent: #fff;
+  --fm-accent-soft: rgb(var(--pink-pale));
+  --fm-radius: 12px;
+}
