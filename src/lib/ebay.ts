@@ -79,19 +79,26 @@ export function ebayPick(items: EbayItem[], storeOffers: Offer[], region: Region
   return best;
 }
 
+/** Days a US pair's last check counts as older than it is (owner, 2026-11-01: "the eBay API for all websites should
+ *  also prioritise the US"): the US comes round first and about a day sooner on every rotation. */
+export const US_HEAD_START_DAYS = 1;
+
 /** Which (figure, region) pairs to search today: pairs where stores sell the
- *  figure, never-checked first, then oldest check, then most stores. */
+ *  figure, never-checked first, then oldest check (the US's a day older), then
+ *  the US before other regions, then most stores. */
 export function planEbay(figures: Figure[], checked: Record<string, string>, regions: RegionCode[], budget: number): { f: Figure; region: RegionCode }[] {
   const pairs: { f: Figure; region: RegionCode; at: string; n: number }[] = [];
+  const older = (day: string) => new Date(Date.parse(`${day.slice(0, 10)}T00:00:00Z`) - US_HEAD_START_DAYS * 86_400_000).toISOString().slice(0, 10);
   for (const f of figures) {
     for (const region of regions) {
       const offers = f.offers[region];
       if (!offers?.length) continue;
-      pairs.push({ f, region, at: checked[`${f.jan}:${region}`] ?? "", n: offers.length });
+      const at = checked[`${f.jan}:${region}`] ?? "";
+      pairs.push({ f, region, at: region === "US" && at && !Number.isNaN(Date.parse(at.slice(0, 10))) ? older(at) : at, n: offers.length });
     }
   }
   return pairs
-    .sort((a, b) => a.at.localeCompare(b.at) || b.n - a.n || a.f.jan.localeCompare(b.f.jan))
+    .sort((a, b) => a.at.localeCompare(b.at) || Number(b.region === "US") - Number(a.region === "US") || b.n - a.n || a.f.jan.localeCompare(b.f.jan))
     .slice(0, Math.max(0, budget))
     .map(({ f, region }) => ({ f, region }));
 }
