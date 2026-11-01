@@ -9,6 +9,7 @@ import { TileGrid } from "@/components/FigureTile";
 import { Section } from "@/components/Section";
 import { ACTIVE_REGIONS } from "@/lib/regions";
 import { EbayStrip, SITE_QUERIES } from "@/components/EbayStrip";
+import { ChristmasDecor } from "@/components/ChristmasDecor";
 
 export const metadata: Metadata = {
   title: { absolute: `${SITE.name}: compare Nendoroid, figma & POP UP PARADE prices` },
@@ -22,9 +23,13 @@ export default function Home() {
   const counts = lineCounts();
   return (
     <>
-      <section className="border-b border-line bg-card">
+      <section className="xmas-hero-host border-b border-line bg-card">
+        {/* Christmas only (1 November to Boxing Day; hidden by CSS otherwise). */}
+        <ChristmasDecor />
         <div className="mx-auto max-w-6xl px-4 pb-10 pt-10 md:pt-14">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-pink">フィギュア price check</p>
+          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-pink">
+            フィギュア price check<span className="xmas-kicker"> · メリークリスマス</span>
+          </p>
           <h1 className="h-display max-w-3xl text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
             Find the <span className="text-pink">lowest price</span> for any anime figure
           </h1>

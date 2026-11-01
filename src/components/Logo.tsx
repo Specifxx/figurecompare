@@ -2,13 +2,17 @@ import { Pumpkin } from "./Pumpkin";
 
 // The mark: a dark rounded square with a white four-point star (the one anime
 // touch) and a red dot. Same as src/app/icon.svg.
+// At Christmas Santa's hat sits on it (globals.css .xmas-logo-hat, hidden outside the season), hence the host span.
 export function LogoMark({ size = 32 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" aria-hidden>
-      <rect x="2" y="2" width="60" height="60" rx="14" fill="#181820" />
-      <path d="M32 12 l5 15 L52 32 l-15 5 L32 52 l-5 -15 L12 32 l15 -5z" fill="#fff" />
-      <circle cx="49" cy="15" r="5" fill="#e13848" />
-    </svg>
+    <span className="xmas-hat-host">
+      <svg width={size} height={size} viewBox="0 0 64 64" aria-hidden>
+        <rect x="2" y="2" width="60" height="60" rx="14" fill="#181820" />
+        <path d="M32 12 l5 15 L52 32 l-15 5 L32 52 l-5 -15 L12 32 l15 -5z" fill="#fff" />
+        <circle cx="49" cy="15" r="5" fill="#e13848" />
+      </svg>
+      <span aria-hidden="true" className="xmas-logo-hat" />
+    </span>
   );
 }
 
