@@ -307,3 +307,11 @@ their place and their "Ad"/paid-link label, but lose their brand tints and brand
 and the same button as a store. They are still never counted as a store and never re-ranked by commission. This
 reverses the 2026-10-30 "bright, catchy colour" pinned rows; eBay ad strips and panels outside the price rows keep
 their own look.
+
+## 2026-11-01 — The US comes first in the eBay rotation
+
+Owner, 2026-11-01: "the eBay API for all websites should also prioritise the US." `planEbay` rotates every
+(figure, region) pair by its last check, never-checked first, so every region came round equally. Now a US pair's last
+check counts as a day older (`US_HEAD_START_DAYS`) and the US wins a tie, so US figures are searched first and about a
+day sooner on every lap, while the other regions still turn over (a US pair checked two days after a UK one waits).
+The cap is unchanged (`EBAY_DAILY_CAP`, 2,500).

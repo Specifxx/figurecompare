@@ -44,7 +44,18 @@ test("eBay: no store reference, no eBay row", () => {
 test("eBay plan: never-checked first, within budget", () => {
   const f = (jan: string, regions: string[]): Figure => ({ jan, slug: jan, name: jan, line: "nendoroid", number: null, img: null, first: "d", offers: Object.fromEntries(regions.map((r) => [r, offers])) });
   const plan = planEbay([f("a", ["US", "AU"]), f("b", ["US"])], { "a:US": "2026-10-27" }, ["US", "AU"], 2);
-  assert.deepEqual(plan.map((p) => `${p.f.jan}:${p.region}`), ["a:AU", "b:US"]);
+  assert.deepEqual(plan.map((p) => `${p.f.jan}:${p.region}`), ["b:US", "a:AU"], "never-checked first, the US before other regions");
+});
+
+test("eBay plan: the US comes round first and a day sooner (owner, 2026-11-01)", () => {
+  const f = (jan: string, regions: string[]): Figure => ({ jan, slug: jan, name: jan, line: "nendoroid", number: null, img: null, first: "d", offers: Object.fromEntries(regions.map((r) => [r, offers])) });
+  const figs = [f("a", ["US", "UK"]), f("b", ["US", "UK"])];
+  // Checked on the same day: the US first.
+  assert.deepEqual(planEbay(figs, { "a:US": "2026-10-28", "a:UK": "2026-10-28", "b:US": "2026-10-30", "b:UK": "2026-10-30" }, ["US", "UK"], 2).map((p) => `${p.f.jan}:${p.region}`), ["a:US", "a:UK"]);
+  // A US check a day newer still ties with the older UK one, and wins it.
+  assert.deepEqual(planEbay(figs, { "a:US": "2026-10-29", "a:UK": "2026-10-28", "b:US": "2026-10-30", "b:UK": "2026-10-30" }, ["US", "UK"], 1).map((p) => `${p.f.jan}:${p.region}`), ["a:US"]);
+  // Two days newer does not: coverage of the other regions still turns over.
+  assert.deepEqual(planEbay(figs, { "a:US": "2026-10-30", "a:UK": "2026-10-28", "b:US": "2026-10-30", "b:UK": "2026-10-30" }, ["US", "UK"], 1).map((p) => `${p.f.jan}:${p.region}`), ["a:UK"]);
 });
 
 test("history records only changes and reads back by day", () => {
