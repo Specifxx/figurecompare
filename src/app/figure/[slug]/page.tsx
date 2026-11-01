@@ -15,6 +15,7 @@ import { TileGrid } from "@/components/FigureTile";
 import { OutLink } from "@/components/OutLink";
 import { ReportPrice } from "@/components/ReportForms";
 import { EbayButton, EbayStrip, lineQueries } from "@/components/EbayStrip";
+import { seriesOf } from "@/lib/series";
 
 // Prerendered at build, one static file per figure; a slug the release does
 // not know is a 404, never a render on request.
@@ -100,6 +101,11 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
             <span className="chip bg-ink text-bg">{line.name}{f.number ? ` No. ${f.number}` : ""}</span>
             <span className="chip border border-line bg-card text-soft">{line.maker}</span>
             <span className="chip border border-line bg-card text-soft">JAN {f.jan}</span>
+            {seriesOf(f).map((x) => (
+              <Link prefetch={false} key={x.slug} href={`/series/${x.slug}`} className="chip border border-line bg-card text-ink hover:border-pink">
+                {x.name}
+              </Link>
+            ))}
           </div>
           <h1 className="h-display mt-2 text-3xl leading-tight sm:text-4xl">{f.name} price</h1>
 
