@@ -18,7 +18,6 @@ export interface RowData {
   href: string;
   paid: boolean;
   highlight?: boolean;
-  tint?: string;
   event: { source: string; region: string; placement: string; jan?: string };
 }
 
@@ -48,11 +47,11 @@ export function PriceRows({ pinned, stores }: RowsData) {
   );
 }
 
-function Row({ name, sub, price, status, href, paid, highlight = false, tint = "bg-card", event }: RowData) {
+function Row({ name, sub, price, status, href, paid, highlight = false, event }: RowData) {
   const s = status ? STOCK[status] : null;
   return (
     <div
-      className={`flex items-center gap-3 rounded-xl border px-3 py-2.5 ${tint} ${
+      className={`flex items-center gap-3 rounded-xl border bg-card px-3 py-2.5 ${
         highlight ? "border-pink shadow-sticker" : "border-line"
       } ${status === "out" ? "opacity-70" : ""}`}
     >
@@ -71,7 +70,7 @@ function Row({ name, sub, price, status, href, paid, highlight = false, tint = "
         event={event}
         className={`btn-pop shrink-0 px-3 py-1.5 text-sm ${status === "out" ? "bg-card text-ink" : "bg-buy text-white"}`}
       >
-        {status === "out" ? "View" : price ? "Buy" : "Look"} <span aria-hidden>→</span>
+        {status === "out" ? "View" : price ? "Buy" : "Shop"} <span aria-hidden>→</span>
       </OutLink>
     </div>
   );

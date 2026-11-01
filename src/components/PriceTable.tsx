@@ -1,6 +1,7 @@
 // One region's price table. Stores are in price order (orderable first);
-// marketplaces (eBay, Amazon) sit pinned above them, labelled, never counted
-// as a store and never the "best price" (family rule: paid rows pinned).
+// marketplaces (eBay, Amazon) sit pinned above them, drawn exactly like a store
+// row (owner, 2026-11-01: "blend in"), labelled, never counted as a store and
+// never the "best price" (family rule: paid rows pinned).
 import { REGION_BY_CODE, type RegionCode } from "@/site";
 import { amazonSearchUrl, ebayAffiliateUrl, ebaySearchUrl, ebayShopHost, hljUrl, storePays, storeUrl, subId } from "@/lib/affiliate";
 import { storeName } from "@/lib/data";
@@ -36,24 +37,22 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
   const pinned: RowData[] = [];
   if (ebayUrl)
     pinned.push({
-      name: ebay ? "eBay" : "Search eBay",
+      name: "eBay",
       sub: ebay ? `${ebay.sh ? "incl. postage" : "free postage"}, ${vsBest(ebay.p, best?.p)}` : `New listings on ${ebayShopHost(region)?.replace("www.", "")}`,
       price: ebay ? money(ebay.p, region) : null,
       status: null,
       href: ebayUrl,
       paid: true,
-      tint: "bg-lemon-pale",
       event: { source: "ebay", region, placement: `${placement}_pinned`, jan: f.jan },
     });
   if (amazonUrl)
     pinned.push({
-      name: "Search Amazon",
+      name: "Amazon",
       sub: `${r.amazonHost?.replace("www.", "")} · check the seller · Ad`,
       price: null,
       status: null,
       href: amazonUrl,
       paid: true,
-      tint: "bg-lemon-pale",
       event: { source: "amazon", region, placement: `${placement}_pinned`, jan: f.jan },
     });
   if (hlj)
@@ -64,7 +63,6 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
       status: null,
       href: hlj,
       paid: true,
-      tint: "bg-lemon-pale",
       event: { source: "hlj", region, placement: `${placement}_pinned`, jan: f.jan },
     });
   const stores: RowData[] = offers.map((o) => ({
