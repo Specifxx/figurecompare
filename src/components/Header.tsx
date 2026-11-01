@@ -13,6 +13,7 @@ const NAV = [
   { href: "/deals", label: "Deals", emoji: "💸" },
   { href: "/preorders", label: "Pre-orders", emoji: "📅" },
   { href: "/new", label: "New", emoji: "✨" },
+  { href: "/forum", label: "Forum", emoji: "💬" },
 ];
 
 export function Header({ groups }: { groups: NavGroup[] }) {

@@ -11,7 +11,7 @@ const src = walk("src").filter((f) => /\.(ts|tsx)$/.test(f));
 const read = (f: string) => fs.readFileSync(f, "utf8");
 
 test("no page reads the request (cookies, headers, searchParams) or opts out of static", () => {
-  for (const f of src.filter((f) => f.startsWith("src/app") && !f.includes("api/ebay/marketplace-deletion") && !f.includes("api/report/"))) {
+  for (const f of src.filter((f) => f.startsWith("src/app") && !f.includes("api/ebay/marketplace-deletion") && !f.includes("api/report/") && !f.includes("api/forum/"))) {
     const s = read(f);
     assert.doesNotMatch(s, /from "next\/headers"|unstable_noStore|force-dynamic|cache: "no-store"/, f);
     assert.doesNotMatch(s, /export const revalidate/, `${f}: pages are static until the next release, no ISR timers`);
@@ -42,8 +42,9 @@ test("image optimisation stays off; only one function exists", () => {
   assert.match(read("next.config.js"), /unoptimized: true/);
   const routes = src.filter((f) => /route\.ts$/.test(f));
   const dynamic = routes.filter((f) => !/force-static/.test(read(f)));
-  // eBay's account-deletion hook, and the visitor report form's POST-only route (DECISIONS.md, 2026-10-31).
-  assert.deepEqual(dynamic.sort(), ["src/app/api/ebay/marketplace-deletion/route.ts", "src/app/api/report/route.ts"]);
+  // eBay's account-deletion hook, and the POST-only routes of the visitor report form (DECISIONS.md, 2026-10-31)
+  // and the beta forum (2026-11-01).
+  assert.deepEqual(dynamic.sort(), ["src/app/api/ebay/marketplace-deletion/route.ts", "src/app/api/forum/route.ts", "src/app/api/report/route.ts"]);
   assert.doesNotMatch(read("src/app/api/report/route.ts"), /export (async )?function GET/);
 });
 
