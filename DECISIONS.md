@@ -298,3 +298,12 @@ at most 96 tiles). A figure joins a series by its NAME: fine for grouping, never
 JAN's job. Patterns are a series name or a character name nobody else carries ("Asuna" but not Blue Archive's Asuna
 Ichinose); `tests/series.test.ts` holds real titles. Figure pages link their series; the hubs are in the sitemap and
 the side menu.
+
+## 2026-11-01: eBay and Amazon rows look like the other price rows
+
+The owner: "the ebay and amazon links should blend in and look exactly the same as the other price rows … reflect that
+change on the other sites that require it." Paid marketplace rows (eBay, Amazon, and TCGplayer where it is pinned) keep
+their place and their "Ad"/paid-link label, but lose their brand tints and brand-coloured buttons: they use the same row
+and the same button as a store. They are still never counted as a store and never re-ranked by commission. This
+reverses the 2026-10-30 "bright, catchy colour" pinned rows; eBay ad strips and panels outside the price rows keep
+their own look.
