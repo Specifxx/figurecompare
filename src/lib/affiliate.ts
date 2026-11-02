@@ -11,12 +11,17 @@ import { STORE_BY_ID } from "@/content/stores";
  *  variable overrides it. The customid tag (`figure-…`) tells the sites apart. */
 export const EBAY_CAMPAIGN_ID = "5339155912";
 
-/** Amazon Associates: each marketplace is its own program and tag. Only the US
- *  tag exists today (the family's); a region without one shows no Amazon row. */
+/** Amazon Associates: each marketplace is its own program and tag. The family's
+ *  US (riftcompare-20) and Australian (compareempire-22) tags are the defaults;
+ *  AMAZON_TAG_<REGION> sets FigureCompare's own or another marketplace's (UK, CA,
+ *  EU once the owner joins those programmes). A region without a tag shows no
+ *  Amazon row (a US tag earns nothing on amazon.com.au). */
 export function amazonTag(region: RegionCode): string | null {
-  const own = process.env[`AMAZON_TAG_${region}`];
+  const own = process.env[`AMAZON_TAG_${region}`]?.trim();
   if (own) return own;
-  return region === "US" ? process.env.AMAZON_ASSOCIATE_TAG || "riftcompare-20" : null;
+  if (region === "US") return process.env.AMAZON_ASSOCIATE_TAG?.trim() || "riftcompare-20";
+  if (region === "AU") return "compareempire-22";
+  return null;
 }
 
 /** HobbyLink Japan's affiliate query string (e.g. "ref=XXXX"), once approved. */

@@ -30,6 +30,7 @@ test("affiliate tags name the site, region, placement and product", () => {
   assert.match(ebaySearchUrl("Nendoroid Frieren", "NZ", "t")!, /ebay\.com\.au.*campid=/);
   assert.match(amazonSearchUrl("x", "US", "figure-us-y")!, /tag=.*ascsubtag=figure-us-y/);
   assert.equal(amazonSearchUrl("x", "UK", "t"), null, "no UK tag yet, no Amazon UK row");
+  assert.match(amazonSearchUrl("x", "AU", "t")!, /^https:\/\/www\.amazon\.com\.au\/s\?.*tag=compareempire-22/, "AU uses the family's AU tag");
   assert.match(storeUrl("nope", "https://shop.example/p?a=1"), /utm_source=figurecompare\.com&utm_medium=referral/);
 });
 
