@@ -1,3 +1,4 @@
+import { Flag } from "@/components/Flag";
 import type { Metadata } from "next";
 import { REGIONS } from "@/site";
 import { STORES } from "@/content/stores";
@@ -31,7 +32,7 @@ export default function Stores() {
           return (
             <section key={r.code} className="sticker p-4">
               <h2 className="h-display mb-2 text-xl">
-                {r.flag} {r.name}
+                <Flag code={r.code} /> {r.name}
               </h2>
               <ul className="space-y-1 text-sm">
                 {list.map((s) => (

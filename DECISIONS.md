@@ -431,3 +431,16 @@ The rules we keep, on every Compare Empire site:
   Amazon link or trademark in any email, SMS or printed material.
 - Every link tagged, rel="sponsored nofollow"; no incentive (cashback, discount) for buying through it.
 - Here: the footer gained the statement and trademark line; the quick view rows (/q) have no Amazon row.
+
+## 2026-11-02 — The region chooser in the home hero, with drawn flags
+
+Owner: "the region switcher must be more prevalent on all sites, on the main home page hero etc … and have
+the flags as well". The home hero has a "Prices for" row of every active region as a flag chip, above the
+search (`RegionChips` in `RegionPicker.tsx`, the same `setRegion` as the header), replacing the small select
+in the stats line. The header menu shows the region's flag and code with the native select laid invisibly
+over them; the in-page region tabs, the phone menu and /stores carry flags too.
+
+- **Flags are inline SVG (`src/components/Flag.tsx`), never emoji and never image files.** Windows draws a
+  flag emoji as two letters; image files would break the no-new-hosting rule. Japan's flag is in the set
+  for "From Japan". The page stays fully static: the chips are a client component over prerendered HTML.
+  The same file is in every Compare Empire repo that has a region switcher; keep the copies identical.
