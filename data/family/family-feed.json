@@ -1,7 +1,7 @@
 {
  "v": 1,
  "site": "figure",
- "generatedAt": "2026-11-02T03:28:56.884Z",
+ "generatedAt": "2026-11-02T14:24:43.533Z",
  "links": {
   "US": {
    "deals": "https://figurecompare.com/deals",
@@ -187,12 +187,12 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "UK",
-   "title": "Nendoroid Akemi Homura Walpurgisnacht: Rising Ver. Basic",
-   "url": "https://figurecompare.com/figure/nendoroid-akemi-homura-walpurgisnacht-rising-ver-basic-3001",
-   "cents": 3500,
+   "title": "Nendoroid Darling in the Franxx - Zero Two",
+   "url": "https://figurecompare.com/figure/nendoroid-darling-in-the-franxx-zero-two-952",
+   "cents": 4395,
    "currency": "GBP",
-   "store": "oshoppu",
-   "image": "https://cdn.shopify.com/s/files/1/0318/2649/files/eb08bafd-dfcf-4b8c-9006-4acff4601bbf.jpg?v=1773913435&width=600"
+   "store": "Hobby Figures",
+   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/products/om-G12458-1.jpg?v=1646460843&width=600"
   },
   {
    "kind": "preorder",
@@ -220,23 +220,23 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "UK",
+   "title": "Nendoroid Delicious in Dungeon - Falin Chimera",
+   "url": "https://figurecompare.com/figure/nendoroid-delicious-in-dungeon-falin-chimera-3055",
+   "cents": 4995,
+   "currency": "GBP",
+   "store": "Hobby Figures",
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232588295.png?v=1785919052&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "UK",
    "title": "Nendoroid Shuichi Saihara",
    "url": "https://figurecompare.com/figure/nendoroid-shuichi-saihara-3009",
    "cents": 5699,
    "currency": "GBP",
    "store": "Camden Anime",
    "image": "https://cdn.shopify.com/s/files/1/0318/2649/files/460257ea-3766-4470-aa2b-d6a27a39b82e.jpg?v=1772788647&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "UK",
-   "title": "Nendoroid Hatsune Miku: DecoMiku (Darkness)",
-   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-decomiku-darkness-3007",
-   "cents": 6795,
-   "currency": "GBP",
-   "store": "oshoppu",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/hatsune-miku-nendoroid-decomiku-darkness_1.jpg?v=1771569061&width=600"
   },
   {
    "kind": "preorder",
@@ -348,17 +348,6 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "CA",
-   "title": "POP UP PARADE Kaiju No. 8 - Soshiro Hoshina",
-   "url": "https://figurecompare.com/figure/pop-up-parade-kaiju-no-8-soshiro-hoshina",
-   "cents": 5999,
-   "currency": "CAD",
-   "store": "Hobby Bee Canada",
-   "image": "https://cdn.shopify.com/s/files/1/0876/7307/8075/files/8DE55B72-17CF-11EF-8960-1F63741BFA1B-L.png?v=1747167153&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "CA",
    "title": "POP UP PARADE Ruby",
    "url": "https://figurecompare.com/figure/pop-up-parade-ruby-oshi-no-ko",
    "cents": 5999,
@@ -376,6 +365,17 @@
    "currency": "CAD",
    "store": "Hobby Bee Canada",
    "image": "https://cdn.shopify.com/s/files/1/0876/7307/8075/files/5E5B4D68-DA62-11ED-AE4F-34E5EB688DD7-L_54bbf445-b746-4f99-bd47-3105f06742c4.png?v=1744066125&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "CA",
+   "title": "Nendoroid Ruby: School Uniform Ver.",
+   "url": "https://figurecompare.com/figure/nendoroid-ruby-school-uniform-ver-oshi-no-ko-2537",
+   "cents": 7999,
+   "currency": "CAD",
+   "store": "Hobby Bee Canada",
+   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/Pre-Order_ETAQ22025_Nendoroid-2537Ruby_SchoolUniformVer.-OshiNoKo-1.png?v=1720552806&width=600"
   },
   {
    "kind": "preorder",
@@ -743,6 +743,28 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "EU",
+   "title": "Nendoroid Nezuko Kamado",
+   "url": "https://figurecompare.com/figure/nendoroid-nezuko-kamado-1194",
+   "cents": 4999,
+   "currency": "EUR",
+   "store": "JumpIchiban",
+   "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/Nendoroid-Nezuko-Kamado1.png?v=1773799004&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "EU",
+   "title": "Nendoroid Giyu Tomioka",
+   "url": "https://figurecompare.com/figure/nendoroid-giyu-tomioka-1408",
+   "cents": 4999,
+   "currency": "EUR",
+   "store": "JumpIchiban",
+   "image": "https://cdn.shopify.com/s/files/1/0697/1673/8268/files/GSC36319-2-896x1024_1.jpg?v=1758705107&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "EU",
    "title": "Nendoroid Liz cosplay by Marin",
    "url": "https://figurecompare.com/figure/nendoroid-liz-cosplay-by-marin-2849",
    "cents": 4999,
@@ -754,34 +776,12 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "EU",
-   "title": "Nendoroid Akaza",
-   "url": "https://figurecompare.com/figure/nendoroid-akaza-2112",
-   "cents": 4999,
-   "currency": "EUR",
-   "store": "JumpIchiban",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828663268.png?v=1784623681&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "EU",
    "title": "Nendoroid Hatsune Miku: HMO Ver.",
    "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-hmo-ver-3065",
    "cents": 6299,
    "currency": "EUR",
    "store": "JumpIchiban",
    "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/nendoroid-hatsune-miku-hmo-version_1.jpg?v=1780038671&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "EU",
-   "title": "POP UP PARADE SP Reborn! Tsunayoshi Sawada & Reborn",
-   "url": "https://figurecompare.com/figure/pop-up-parade-sp-reborn-tsunayoshi-sawada-and-reborn",
-   "cents": 6499,
-   "currency": "EUR",
-   "store": "JumpIchiban",
-   "image": "https://cdn.shopify.com/s/files/1/0671/4769/4277/files/pop-up-parade-sp-tsunayoshi-sawada-reborn-reborn.png?v=1781046570&width=600"
   },
   {
    "kind": "deal",
@@ -882,45 +882,45 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "SG",
-   "title": "Nendoroid Annie Leonhart",
-   "url": "https://figurecompare.com/figure/nendoroid-annie-leonhart-1385",
-   "cents": 7259,
+   "title": "Nendoroid Chiikawa - Kurimanju",
+   "url": "https://figurecompare.com/figure/nendoroid-chiikawa-kurimanju-3122",
+   "cents": 5788,
    "currency": "SGD",
    "store": "Otaku House",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/products/om-G17276-1.jpg?v=1674157328&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0318/2649/files/cfb6e575-78de-4eb7-9836-62abb3dd5d65.jpg?v=1790665744&width=600"
   },
   {
    "kind": "preorder",
    "cluster": "hobby",
    "region": "SG",
-   "title": "Nendoroid Attack on Titan - Jean Kirstein",
-   "url": "https://figurecompare.com/figure/nendoroid-attack-on-titan-jean-kirstein-1383",
-   "cents": 7259,
+   "title": "Nendoroid Chiikawa - Shisa",
+   "url": "https://figurecompare.com/figure/nendoroid-chiikawa-shisa-3123",
+   "cents": 5788,
    "currency": "SGD",
    "store": "Otaku House",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/products/om-G17243-1.jpg?v=1671135484&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0318/2649/files/a829312a-4f21-4a8a-802c-13f2d47a8608.jpg?v=1790665659&width=600"
   },
   {
    "kind": "preorder",
    "cluster": "hobby",
    "region": "SG",
-   "title": "Nendoroid Attack on Titan - Reiner Braun",
-   "url": "https://figurecompare.com/figure/nendoroid-attack-on-titan-reiner-braun-1893",
-   "cents": 7259,
+   "title": "Nendoroid Blue Archive - Miyako Tsukiyuki",
+   "url": "https://figurecompare.com/figure/nendoroid-blue-archive-miyako-tsukiyuki-3150",
+   "cents": 7848,
    "currency": "SGD",
    "store": "Otaku House",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/attack-on-titan-nendoroid-reiner-braun_1.jpg?v=1789100814&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/7f26b609-9f6d-4c6a-8ab6-60510043761a-L.png?v=1792708586&width=600"
   },
   {
    "kind": "preorder",
    "cluster": "hobby",
    "region": "SG",
-   "title": "Nendoroid Attack on Titan - Sasha Braus",
-   "url": "https://figurecompare.com/figure/nendoroid-attack-on-titan-sasha-braus-1384",
-   "cents": 7259,
+   "title": "Nendoroid BanG Dream! - Miyako Fuji",
+   "url": "https://figurecompare.com/figure/nendoroid-bang-dream-miyako-fuji-3151",
+   "cents": 8142,
    "currency": "SGD",
    "store": "Otaku House",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/products/om-G17277-1.jpg?v=1676575213&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/c05de1ea-f9b3-46d4-bf53-b4b4f9ad0594-L.png?v=1792709404&width=600"
   },
   {
    "kind": "preorder",
