@@ -26,6 +26,12 @@ here, ever. Keep the feed's price the page's headline `bestIn()` (never eBay or 
 
 ## Deploys are gated: never add `[deploy]` to a commit subject
 
+**One production build per 12 hours, and production only (owner, 2026-11-02: Vercel spend capped at $5–6 a
+day).** `scripts/vercel-ignore-build.sh` skips a `[deploy]` commit within 12 hours of the last production
+deployment (it rides the next release); `[urgent]` in the subject overrides that, only when the owner says
+so. `vercel.json` disables every branch except production (`"**": false`), so no preview is ever built.
+Never dispatch a manual release just to ship a merge. DECISIONS.md, 2026-11-02.
+
 Production builds only a commit whose SUBJECT carries `[deploy]` (`scripts/vercel-ignore-build.sh`,
 `tests/vercel-ignore-build.test.ts`). The daily data commit carries it. "Push to prod" means land on `main` and ride
 the next release; use *Production deploy* (or `[deploy]`) only when the owner says it is urgent, and say so.
