@@ -347,3 +347,19 @@ every three hours for Empire HQ (riftcompare.com/admin/hq) and the one Monday re
 the file goes quiet for a day (a stopped monitor cannot mail). Only a FAILED check fails the run, which is GitHub's
 email to the owner; warnings wait for HQ and Monday. The file carries status and the monitor's own sentences only,
 the same as the public Actions log.
+
+## 2026-11-02 — Price alerts through RiftCompare's shared service
+
+The owner chose "Yes, one shared service" for email price alerts on the sister sites. The site stays fully static,
+with no database, accounts or mail key; the figure page gains an "Email me when the price drops" form.
+
+- **The form** (`components/PriceAlertForm.tsx`, the same file on every sister site; `FigureAlert.tsx` reads the
+  visitor's region with `useRegion`, since the page is one file for every region) posts
+  `{site, productId (the JAN), region, email, targetCents}` straight to `https://riftcompare.com/api/sister-alerts`.
+  RiftCompare keeps the address, sends one confirmation email (double opt-in) and checks daily. This site stores
+  nothing and holds no key; it adds no function (the form is client-side, the feed `force-static`).
+- **The prices** come from this site's own static `/alert-feed.json` (`lib/alert-feed.ts`), prerendered with each
+  release from `figures.json`: `bestIn()` per region, the page's headline (cheapest orderable store price, never eBay
+  or Amazon, never converted), Japan left out; plus the deals page's top three per region, with no reference price.
+  WargameCompare's alert emails may end with one of them.
+- The privacy page says what the form sends and links to RiftCompare's.
