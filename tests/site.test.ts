@@ -1,6 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { SISTER_SITES, regionForZone } from "@/site";
+import { readFileSync } from "node:fs";
+import { regionForZone } from "@/site";
+import { footerSisters } from "@/lib/family-network";
 import { amazonSearchUrl, ebayAffiliateUrl, ebaySearchUrl, storeUrl, subId } from "@/lib/affiliate";
 import { judgeFreshness, judgeStores } from "../scripts/ops-monitor";
 import { money } from "@/lib/format";
@@ -40,14 +42,12 @@ test("money stays in its own currency", () => {
   assert.equal(money(4999, "UK"), "£49.99");
 });
 
-test("the family footer lists every sister site once, on its canonical host", () => {
-  const urls = SISTER_SITES.map((s) => s.url);
-  assert.equal(new Set(urls).size, urls.length);
-  for (const u of ["https://riftcompare.com", "https://opcompare.app", "https://mtgcompare.app", "https://wargamecompare.com", "https://ygocompare.com"]) assert.ok(urls.includes(u), u);
-  assert.ok(!urls.some((u) => u.includes("figurecompare")));
-  assert.ok(urls.includes("https://cyberpunkcompare.com"));
-  // Owner, 2026-11-02: never tie a sister site to one country.
-  for (const s of SISTER_SITES) assert.doesNotMatch(s.anchor, /\b(Australian|Aussie|American|British|Canadian|Australia only|AU only)\b/i, s.name);
+test("footer: the hobby sisters, then the network page (owner, 2026-11-02: the full list was convoluted)", () => {
+  assert.deepEqual(footerSisters("figure").map((s) => s.url), ["https://gundamcompare.com", "https://wargamecompare.com"]);
+  const footer = readFileSync("src/components/Footer.tsx", "utf8");
+  assert.match(footer, /footerSisters\("figure"\)\.map/);
+  assert.match(footer, /href=\{NETWORK_PAGE\}/);
+  assert.doesNotMatch(footer, /nofollow|sponsored/);
 });
 
 test("search: every word must match; a barcode finds its figure", () => {

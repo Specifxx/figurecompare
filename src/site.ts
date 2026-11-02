@@ -97,18 +97,4 @@ export const LINES: Line[] = [
 
 export const LINE_BY_KEY = Object.fromEntries(LINES.map((l) => [l.key, l])) as Record<LineKey, Line>;
 
-/** The rest of Compare Empire, linked from every footer (family-links rule:
- *  descriptive anchors, plain followed links, footer only). */
-export const SISTER_SITES: { name: string; url: string; anchor: string }[] = [
-  { name: "RiftCompare", url: "https://riftcompare.com", anchor: "Riftbound card prices" },
-  { name: "OP Compare", url: "https://opcompare.app", anchor: "One Piece card prices" },
-  { name: "DexCompare", url: "https://dexcompare.app", anchor: "Pokémon sealed prices" },
-  { name: "MTG Compare", url: "https://mtgcompare.app", anchor: "Magic: The Gathering sealed prices" },
-  { name: "Gundam Compare", url: "https://gundamcompare.com", anchor: "Gundam card prices" },
-  { name: "Lorcana Compare", url: "https://lorcanacompare.com", anchor: "Lorcana card prices" },
-  { name: "YGO Compare", url: "https://ygocompare.com", anchor: "Yu-Gi-Oh! card prices" },
-  { name: "Cyberpunk Compare", url: "https://cyberpunkcompare.com", anchor: "Cyberpunk TCG prices" },
-  { name: "WargameCompare", url: "https://wargamecompare.com", anchor: "Miniature wargame prices" },
-  { name: "CamCompare", url: "https://www.camcompare.app", anchor: "Camera and lens prices" },
-  { name: "Compare Empire", url: "https://compareempire.com", anchor: "Tech and appliance prices" },
-];
+// The owner's other sites: lib/family-network.ts (FAMILY_SITES), shared by every Compare Empire site.

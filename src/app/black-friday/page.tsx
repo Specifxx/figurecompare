@@ -3,6 +3,7 @@ import Link from "next/link";
 import { REGIONS } from "@/site";
 import { dealsIn, popular } from "@/lib/data";
 import { EbayStrip, SITE_QUERIES } from "@/components/EbayStrip";
+import { FamilyCluster } from "@/components/FamilyCluster";
 import { TileGrid } from "@/components/FigureTile";
 import { PageHead } from "@/components/Section";
 import { blackFriday, cyberMonday, longDate, seasonYear } from "@/lib/black-friday";
@@ -44,6 +45,7 @@ export default function BlackFriday() {
           </div>
         );
       })}
+      <FamilyCluster kind="deal" />
       <EbayStrip className="mt-10" placement="black_friday" queries={SITE_QUERIES} figures={popular(30)} />
       <p className="mt-8 text-sm text-soft">
         <Link prefetch={false} href="/deals" className="underline">Figure deals today</Link> · <Link prefetch={false} href="/preorders" className="underline">Figure pre-orders</Link> ·{" "}

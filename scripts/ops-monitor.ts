@@ -68,6 +68,13 @@ async function main() {
     check("Data size", () =>
       size < 12e6 ? { status: "ok", detail: `${(size / 1e6).toFixed(1)} MB` } : { status: "warn", detail: `figures.json is ${(size / 1e6).toFixed(1)} MB: builds slow down; raise minStoresPerRegion or trim` },
     ),
+    // The Compare Empire family feed (DECISIONS.md "Sites that grow each other"): only ever amber, the sisters just show less.
+    check("Family feed (sister sites)", () => {
+      const f = path.join(process.cwd(), "data/family/family-feed.json");
+      if (!fs.existsSync(f)) return { status: "warn", detail: "data/family/family-feed.json not written yet" };
+      const age = (Date.now() - Date.parse((JSON.parse(fs.readFileSync(f, "utf8")) as { generatedAt: string }).generatedAt)) / 3_600_000;
+      return age > 50 ? { status: "warn", detail: `written ${age.toFixed(0)}h ago: read the Family feed step of import.yml` } : { status: "ok", detail: `${age.toFixed(1)}h old` };
+    }),
     check("eBay listings", () => {
       if (!process.env.EBAY_CLIENT_ID) return { status: "warn", detail: "EBAY_CLIENT_ID not set in GitHub secrets: no eBay listings yet" };
       if (!meta.ebay) return { status: "warn", detail: "no eBay run recorded yet" };

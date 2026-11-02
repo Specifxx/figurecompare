@@ -4,6 +4,7 @@ import { preorders, preordersIn } from "@/lib/data";
 import { TileGrid } from "@/components/FigureTile";
 import { PageHead } from "@/components/Section";
 import { EbayStrip, SITE_QUERIES } from "@/components/EbayStrip";
+import { FamilyCluster } from "@/components/FamilyCluster";
 
 export const metadata: Metadata = {
   title: "Figure pre-orders: compare prices",
@@ -24,6 +25,7 @@ export default function Preorders() {
           </div>
         );
       })}
+      <FamilyCluster kind="preorder" />
       <EbayStrip className="mt-10" placement="preorders" queries={SITE_QUERIES} figures={preorders().slice(0, 30)} />
     </div>
   );
