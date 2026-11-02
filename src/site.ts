@@ -107,7 +107,8 @@ export const SISTER_SITES: { name: string; url: string; anchor: string }[] = [
   { name: "Gundam Compare", url: "https://gundamcompare.com", anchor: "Gundam card prices" },
   { name: "Lorcana Compare", url: "https://lorcanacompare.com", anchor: "Lorcana card prices" },
   { name: "YGO Compare", url: "https://ygocompare.com", anchor: "Yu-Gi-Oh! card prices" },
+  { name: "Cyberpunk Compare", url: "https://cyberpunkcompare.com", anchor: "Cyberpunk TCG prices" },
   { name: "WargameCompare", url: "https://wargamecompare.com", anchor: "Miniature wargame prices" },
   { name: "CamCompare", url: "https://www.camcompare.app", anchor: "Camera and lens prices" },
-  { name: "Compare Empire", url: "https://compareempire.com", anchor: "Australian tech prices" },
+  { name: "Compare Empire", url: "https://compareempire.com", anchor: "Tech and appliance prices" },
 ];
