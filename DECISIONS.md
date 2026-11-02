@@ -374,6 +374,17 @@ with no database, accounts or mail key; the figure page gains an "Email me when 
   WargameCompare's alert emails may end with one of them.
 - The privacy page says what the form sends and links to RiftCompare's.
 
+## 2026-11-02 — Share buttons
+
+The owner wants word of mouth to be a big growth driver on every site (RiftCompare's DECISIONS has the twelve-site
+entry). The figure page and the quick view get a Share button: the phone's share sheet, else the link and message
+copied. No pop-up, no reward, and no function: the message (the real gap between the cheapest and dearest orderable
+store in each region, `lib/share-texts.ts`) is written at build into the page and the quick view's static JSON, and
+the button picks the visitor's region from the root's `data-region`. No per-figure share image: drawing thousands at
+build is not worth the build time while the site-wide card exists. Every shared link carries
+`utm_source=share&utm_medium=figure`; the button sends a Vercel `share` event, `ShareArrival` one `share_visit` per
+tab when a shared link brings someone, and RiftCompare's weekly growth report counts both.
+
 
 ## Sites that grow each other: the family feed, cluster blocks and short footers (2026-11-02)
 
