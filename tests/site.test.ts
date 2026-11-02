@@ -44,6 +44,9 @@ test("the family footer lists every sister site once, on its canonical host", ()
   assert.equal(new Set(urls).size, urls.length);
   for (const u of ["https://riftcompare.com", "https://opcompare.app", "https://mtgcompare.app", "https://wargamecompare.com", "https://ygocompare.com"]) assert.ok(urls.includes(u), u);
   assert.ok(!urls.some((u) => u.includes("figurecompare")));
+  assert.ok(urls.includes("https://cyberpunkcompare.com"));
+  // Owner, 2026-11-02: never tie a sister site to one country.
+  for (const s of SISTER_SITES) assert.doesNotMatch(s.anchor, /\b(Australian|Aussie|American|British|Canadian|Australia only|AU only)\b/i, s.name);
 });
 
 test("search: every word must match; a barcode finds its figure", () => {
