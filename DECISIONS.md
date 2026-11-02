@@ -357,3 +357,14 @@ component, `src/components/SaleSeasonPage.tsx`, prerendered at the daily build. 
 cover, never one country. Dates, the year a page is about (it rolls over a week after the event) and the intro are
 pure in `src/lib/sale-seasons.ts` (`tests/sale-seasons.test.ts`); Lunar New Year is a published-date table to 2040
 (6 February 2027). Footer and sitemap. Never a "was" price, a countdown or an invented sale.
+
+## 2026-11-02 — Share buttons
+
+The owner wants word of mouth to be a big growth driver on every site (RiftCompare's DECISIONS has the twelve-site
+entry). The figure page and the quick view get a Share button: the phone's share sheet, else the link and message
+copied. No pop-up, no reward, and no function: the message (the real gap between the cheapest and dearest orderable
+store in each region, `lib/share-texts.ts`) is written at build into the page and the quick view's static JSON, and
+the button picks the visitor's region from the root's `data-region`. No per-figure share image: drawing thousands at
+build is not worth the build time while the site-wide card exists. Every shared link carries
+`utm_source=share&utm_medium=figure`; the button sends a Vercel `share` event, `ShareArrival` one `share_visit` per
+tab when a shared link brings someone, and RiftCompare's weekly growth report counts both.

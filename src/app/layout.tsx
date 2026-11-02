@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/react";
+import { ShareArrival } from "@/components/ShareArrival";
 import "@fontsource-variable/inter";
 import "./globals.css";
 import { SITE } from "@/site";
@@ -57,6 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer updated={meta ? niceDate(meta.updatedAt) : null} />
         <QuickView />
         <Analytics />
+        <ShareArrival />
       </body>
     </html>
   );

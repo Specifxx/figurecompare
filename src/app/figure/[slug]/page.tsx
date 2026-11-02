@@ -13,6 +13,8 @@ import { PriceHistory } from "@/components/Sparkline";
 import { RegionTabs } from "@/components/RegionPicker";
 import { TileGrid } from "@/components/FigureTile";
 import { OutLink } from "@/components/OutLink";
+import { ShareButton } from "@/components/ShareButton";
+import { shareTexts } from "@/lib/share-texts";
 import { ReportPrice } from "@/components/ReportForms";
 import { EbayButton, EbayStrip, lineQueries } from "@/components/EbayStrip";
 import { seriesOf } from "@/lib/series";
@@ -108,6 +110,7 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
             ))}
           </div>
           <h1 className="h-display mt-2 text-3xl leading-tight sm:text-4xl">{f.name} price</h1>
+          <ShareButton title={f.name} path={`/figure/${f.slug}`} texts={shareTexts(f)} className="mt-3" />
 
           {regions.length > 1 && (
             <div className="mt-3">
