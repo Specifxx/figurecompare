@@ -93,7 +93,8 @@ test("eBay strips on every page but the legal ones, labelled and sponsored (owne
   for (const f of walk("src/app").filter((f) => /\/(page|not-found)\.tsx$/.test(f) && !legal.test(f))) {
     const src = fs.readFileSync(f, "utf8");
     const viaHub = src.includes("<LineHub") && fs.readFileSync("src/components/LineHub.tsx", "utf8").includes("<EbayStrip");
-    assert.ok(src.includes("<EbayStrip") || viaHub, `${f} has no eBay strip`);
+    const viaSale = src.includes("<SaleSeasonPage") && fs.readFileSync("src/components/SaleSeasonPage.tsx", "utf8").includes("<EbayStrip");
+    assert.ok(src.includes("<EbayStrip") || viaHub || viaSale, `${f} has no eBay strip`);
   }
   const strip = fs.readFileSync("src/components/EbayStrip.tsx", "utf8");
   assert.match(strip, /Ad · Paid link/);

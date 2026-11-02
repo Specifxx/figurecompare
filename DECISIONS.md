@@ -348,6 +348,16 @@ the file goes quiet for a day (a stopped monitor cannot mail). Only a FAILED che
 email to the owner; warnings wait for HQ and Monday. The file carries status and the monitor's own sentences only,
 the same as the public Actions log.
 
+## 2026-11-02 — Seasonal sale pages
+
+`/boxing-day`, `/january-sales`, `/lunar-new-year` and `/valentines-day` (owner-approved growth plan, 2026-11-02):
+one URL each, kept every year like `/black-friday`, built weeks ahead so they are indexed before the day, with
+the Black Friday page's rows (`dealsIn` per region, every region in the HTML, CSS showing the visitor's) from one
+component, `src/components/SaleSeasonPage.tsx`, prerendered at the daily build. The intro names every region we
+cover, never one country. Dates, the year a page is about (it rolls over a week after the event) and the intro are
+pure in `src/lib/sale-seasons.ts` (`tests/sale-seasons.test.ts`); Lunar New Year is a published-date table to 2040
+(6 February 2027). Footer and sitemap. Never a "was" price, a countdown or an invented sale.
+
 ## 2026-11-02 — Price alerts through RiftCompare's shared service
 
 The owner chose "Yes, one shared service" for email price alerts on the sister sites. The site stays fully static,
