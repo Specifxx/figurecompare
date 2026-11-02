@@ -315,3 +315,11 @@ Owner, 2026-11-01: "the eBay API for all websites should also prioritise the US.
 check counts as a day older (`US_HEAD_START_DAYS`) and the US wins a tie, so US figures are searched first and about a
 day sooner on every lap, while the other regions still turn over (a US pair checked two days after a UK one waits).
 The cap is unchanged (`EBAY_DAILY_CAP`, 2,500).
+
+## 2026-11-02 — Black Friday page
+
+`/black-friday` shows today's deals per region (`dealsIn`, the same tiles as `/deals`) under a Black Friday heading, at
+one URL kept every year so links and rankings carry over. It has to be indexed weeks before the day (27 November 2026),
+so it ships now; the footer and sitemap link it all year. Prerendered at the daily build like every page. Never a "was"
+price of our own, a countdown, "ends soon" or an invented sale. Dates are pure (`src/lib/black-friday.ts`, tested). Part
+of the passive-growth plan (owner, 2026-11-02: no daily Reddit posts).
