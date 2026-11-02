@@ -31,7 +31,10 @@ test("affiliate tags name the site, region, placement and product", () => {
   // New Zealand shops on eBay Australia (no eBay NZ in the Partner Network).
   assert.match(ebaySearchUrl("Nendoroid Frieren", "NZ", "t")!, /ebay\.com\.au.*campid=/);
   assert.match(amazonSearchUrl("x", "US", "figure-us-y")!, /tag=.*ascsubtag=figure-us-y/);
-  assert.equal(amazonSearchUrl("x", "UK", "t"), null, "no UK tag yet, no Amazon UK row");
+  assert.match(amazonSearchUrl("x", "UK", "t")!, /amazon\.co\.uk\/.*tag=compareempi03-21/, "the owner's UK account");
+  assert.match(amazonSearchUrl("x", "EU", "t")!, /amazon\.de\/.*tag=compareempire-21/);
+  assert.equal(amazonSearchUrl("x", "NZ", "t"), null, "no Amazon NZ");
+  assert.doesNotMatch(readFileSync(new URL("../src/lib/affiliate.ts", import.meta.url), "utf8"), /AMAZON_TAG_|AMAZON_ASSOCIATE_TAG/, "tags are hard-coded");
   assert.match(amazonSearchUrl("x", "AU", "t")!, /^https:\/\/www\.amazon\.com\.au\/s\?.*tag=compareempire-22/, "AU uses the family's AU tag");
   assert.match(storeUrl("nope", "https://shop.example/p?a=1"), /utm_source=figurecompare\.com&utm_medium=referral/);
 });
