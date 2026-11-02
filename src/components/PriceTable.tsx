@@ -31,7 +31,8 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
   const q = searchQuery(f);
   const sub = subId(region, `${placement}_pinned`, f.jan);
   const ebayUrl = ebay ? ebayAffiliateUrl(ebay.u, sub) : ebaySearchUrl(q, region, sub);
-  const amazonUrl = amazonSearchUrl(q, region, sub);
+  // Never in the quick view (2026-11-02): Amazon's Operating Agreement allows no Amazon link in a pop-up window.
+  const amazonUrl = placement.startsWith("quickview") ? null : amazonSearchUrl(q, region, sub);
   // HobbyLink Japan ships worldwide from Japan: shown with the Japan table.
   const hlj = region === "JP" ? hljUrl(f.jan) : null;
   const pinned: RowData[] = [];

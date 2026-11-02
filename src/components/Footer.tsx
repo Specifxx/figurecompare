@@ -77,6 +77,9 @@ export function Footer({ updated }: { updated?: string | null }) {
           Some links earn us a small commission at no cost to you; they never change the order of prices. Prices and stock change fast: the store&apos;s page is always right.
         </p>
         <p className="mt-1">
+          As an Amazon Associate we earn from qualifying purchases. Amazon and the Amazon logo are trademarks of Amazon.com, Inc. or its affiliates.
+        </p>
+        <p className="mt-1">
           FigureCompare is a fan-made price guide, not affiliated with Good Smile Company, Max Factory or any store. Product names and photos belong to their owners.
         </p>
       </div>
