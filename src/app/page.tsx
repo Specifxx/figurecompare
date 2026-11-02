@@ -4,7 +4,7 @@ import { LINES, REGIONS, SITE } from "@/site";
 import { activeStores, dealsIn, getFigures, getMeta, lineCounts, newest, newestIn, popular, popularIn, preordersIn } from "@/lib/data";
 import { ago } from "@/lib/format";
 import { SearchBox } from "@/components/SearchBox";
-import { RegionPicker } from "@/components/RegionPicker";
+import { RegionChips } from "@/components/RegionPicker";
 import { TileGrid } from "@/components/FigureTile";
 import { Section } from "@/components/Section";
 import { ACTIVE_REGIONS } from "@/lib/regions";
@@ -36,7 +36,8 @@ export default function Home() {
           <p className="mt-4 max-w-2xl text-lg text-soft">
             Nendoroid, figma and POP UP PARADE prices from {stores || "real"} figure stores, matched by the barcode on the box and checked every day.
           </p>
-          <div className="mt-6 max-w-2xl">
+          <RegionChips className="mt-6" />
+          <div className="mt-4 max-w-2xl">
             <SearchBox big />
           </div>
           <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-soft">
@@ -44,9 +45,6 @@ export default function Home() {
             <span><b className="text-ink">{stores}</b> stores</span>
             <span><b className="text-ink">{ACTIVE_REGIONS.length}</b> regions</span>
             {meta && <span>Checked {ago(meta.updatedAt)}</span>}
-            <span className="flex items-center gap-2">
-              Prices for <RegionPicker />
-            </span>
           </div>
         </div>
       </section>
