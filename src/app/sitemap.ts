@@ -23,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     u("/new", 0.7),
     u("/stores", 0.6),
     u("/widgets", 0.4),
+    u("/price-report", 0.6),
     u("/about", 0.3),
     u("/contact", 0.2),
     ...getFigures().filter(isIndexable).map((f) => u(`/figure/${f.slug}`, 0.7)),
