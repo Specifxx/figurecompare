@@ -357,3 +357,19 @@ component, `src/components/SaleSeasonPage.tsx`, prerendered at the daily build. 
 cover, never one country. Dates, the year a page is about (it rolls over a week after the event) and the intro are
 pure in `src/lib/sale-seasons.ts` (`tests/sale-seasons.test.ts`); Lunar New Year is a published-date table to 2040
 (6 February 2027). Footer and sitemap. Never a "was" price, a countdown or an invented sale.
+
+## 2026-11-02 — Price alerts through RiftCompare's shared service
+
+The owner chose "Yes, one shared service" for email price alerts on the sister sites. The site stays fully static,
+with no database, accounts or mail key; the figure page gains an "Email me when the price drops" form.
+
+- **The form** (`components/PriceAlertForm.tsx`, the same file on every sister site; `FigureAlert.tsx` reads the
+  visitor's region with `useRegion`, since the page is one file for every region) posts
+  `{site, productId (the JAN), region, email, targetCents}` straight to `https://riftcompare.com/api/sister-alerts`.
+  RiftCompare keeps the address, sends one confirmation email (double opt-in) and checks daily. This site stores
+  nothing and holds no key; it adds no function (the form is client-side, the feed `force-static`).
+- **The prices** come from this site's own static `/alert-feed.json` (`lib/alert-feed.ts`), prerendered with each
+  release from `figures.json`: `bestIn()` per region, the page's headline (cheapest orderable store price, never eBay
+  or Amazon, never converted), Japan left out; plus the deals page's top three per region, with no reference price.
+  WargameCompare's alert emails may end with one of them.
+- The privacy page says what the form sends and links to RiftCompare's.
