@@ -11,6 +11,7 @@ import Link from "next/link";
 import { LINE_BY_KEY, REGIONS, type LineKey, type RegionCode } from "@/site";
 import { PriceRows, type RowsData } from "./PriceRows";
 import { FigureImage } from "./FigureImage";
+import { ShareButton } from "./ShareButton";
 
 interface Head {
   slug: string;
@@ -24,6 +25,8 @@ interface Data {
   name: string;
   line: LineKey;
   img: string | null;
+  /** the share message per region (lib/share-link.ts) */
+  share?: Partial<Record<string, string>>;
 }
 
 // Every link to a figure page opens it (owner, 2026-10-31: "whenever I click on
@@ -119,6 +122,7 @@ export function QuickView() {
           <div className="min-w-0 flex-1">
             {line && <span className="chip border border-line bg-card text-ink">{line.name}</span>}
             <h2 className="h-display mt-1 text-lg leading-snug">{name || <span className="qv-shimmer inline-block h-5 w-48 rounded" />}</h2>
+            {data && data !== "loading" && <ShareButton title={name} path={href} texts={data.share} className="mt-2" />}
           </div>
           <button ref={closeRef} type="button" onClick={close} aria-label="Close" className="-mr-1 -mt-1 grid h-9 w-9 shrink-0 place-items-center rounded-full text-soft hover:bg-lilac-pale hover:text-ink">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
