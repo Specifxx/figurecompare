@@ -49,6 +49,7 @@ export function Footer({ updated }: { updated?: string | null }) {
             <li><Link prefetch={false} href="/terms" className="hover:text-pink-deep">Terms</Link></li>
             <li><Link prefetch={false} href="/contact" className="hover:text-pink-deep">Contact us</Link></li>
             <li><Link prefetch={false} href="/stores#suggest" className="hover:text-pink-deep">Suggest a store</Link></li>
+            <li><Link prefetch={false} href="/how-we-pick-stores" className="hover:text-pink-deep">How we pick stores</Link></li>
             <li><a href={`mailto:${SITE.email}`} className="hover:text-pink-deep">{SITE.email}</a></li>
           </ul>
         </div>
