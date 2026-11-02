@@ -1,0 +1,43 @@
+{
+ "v": 1,
+ "site": "figurecompare.com",
+ "at": "2026-11-02T03:16:06.778Z",
+ "overall": "ok",
+ "checks": [
+  {
+   "name": "Live site",
+   "status": "ok",
+   "detail": "HTTP 200"
+  },
+  {
+   "name": "Search index",
+   "status": "ok",
+   "detail": "4513 figures live"
+  },
+  {
+   "name": "Daily price import",
+   "status": "ok",
+   "detail": "15.0h old"
+  },
+  {
+   "name": "Store imports",
+   "status": "ok",
+   "detail": "136 stores read"
+  },
+  {
+   "name": "Catalogue",
+   "status": "ok",
+   "detail": "4513 figures"
+  },
+  {
+   "name": "Data size",
+   "status": "ok",
+   "detail": "6.3 MB"
+  },
+  {
+   "name": "eBay listings",
+   "status": "ok",
+   "detail": "2500/2500 calls on 2026-11-01"
+  }
+ ]
+}
