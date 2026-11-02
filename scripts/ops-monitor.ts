@@ -77,10 +77,14 @@ async function main() {
     }),
   ]);
   for (const r of results) console.log(`${r.status.toUpperCase().padEnd(4)} ${r.name}: ${r.detail}`);
-  // "not set" warnings are setup steps, not incidents.
-  const bad = results.filter((r) => r.status === "fail" || (r.status === "warn" && !/not set/.test(r.detail)));
+  // Empire HQ's copy (riftcompare.com/admin/hq and the one Monday report; owner, 2026-11-02): the
+  // workflow publishes it on the public `ops-status` branch. Status and our own sentences only.
+  const overall = results.some((r) => r.status === "fail") ? "fail" : results.some((r) => r.status === "warn") ? "warn" : "ok";
+  fs.writeFileSync(process.env.OPS_STATUS_FILE || "ops-status.json", JSON.stringify({ v: 1, site: "figurecompare.com", at: new Date().toISOString(), overall, checks: results }, null, 1) + "\n");
+  // Only red fails the run (GitHub's failed-run email is the alert); amber waits for HQ and Monday.
+  const bad = results.filter((r) => r.status === "fail");
   if (bad.length) {
-    console.error(`\n${bad.length} check(s) need a look: ${bad.map((r) => r.name).join(", ")}`);
+    console.error(`\n${bad.length} check(s) failed: ${bad.map((r) => r.name).join(", ")}`);
     process.exit(1);
   }
 }

@@ -323,3 +323,13 @@ one URL kept every year so links and rankings carry over. It has to be indexed w
 so it ships now; the footer and sitemap link it all year. Prerendered at the daily build like every page. Never a "was"
 price of our own, a countdown, "ends soon" or an invented sale. Dates are pure (`src/lib/black-friday.ts`, tested). Part
 of the passive-growth plan (owner, 2026-11-02: no daily Reddit posts).
+
+## 2026-11-02 — The monitor reports to Empire HQ; only red mails
+
+The owner asked for one Monday email instead of a mail per site (the control tower, approved 2026-11-02). The ops
+monitor now writes every result to `ops-status.json`, and its workflow force-pushes it as `status.json`, one orphan
+commit, to this repo's public `ops-status` branch (never deployed, `vercel.json`). RiftCompare's ops monitor reads it
+every three hours for Empire HQ (riftcompare.com/admin/hq) and the one Monday report, and mails the owner itself if
+the file goes quiet for a day (a stopped monitor cannot mail). Only a FAILED check fails the run, which is GitHub's
+email to the owner; warnings wait for HQ and Monday. The file carries status and the monitor's own sentences only,
+the same as the public Actions log.
