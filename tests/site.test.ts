@@ -30,6 +30,7 @@ test("affiliate tags name the site, region, placement and product", () => {
   assert.match(ebaySearchUrl("Nendoroid Frieren", "NZ", "t")!, /ebay\.com\.au.*campid=/);
   assert.match(amazonSearchUrl("x", "US", "figure-us-y")!, /tag=.*ascsubtag=figure-us-y/);
   assert.equal(amazonSearchUrl("x", "UK", "t"), null, "no UK tag yet, no Amazon UK row");
+  assert.match(amazonSearchUrl("x", "AU", "t")!, /^https:\/\/www\.amazon\.com\.au\/s\?.*tag=compareempire-22/, "AU uses the family's AU tag");
   assert.match(storeUrl("nope", "https://shop.example/p?a=1"), /utm_source=figurecompare\.com&utm_medium=referral/);
 });
 
@@ -44,6 +45,9 @@ test("the family footer lists every sister site once, on its canonical host", ()
   assert.equal(new Set(urls).size, urls.length);
   for (const u of ["https://riftcompare.com", "https://opcompare.app", "https://mtgcompare.app", "https://wargamecompare.com", "https://ygocompare.com"]) assert.ok(urls.includes(u), u);
   assert.ok(!urls.some((u) => u.includes("figurecompare")));
+  assert.ok(urls.includes("https://cyberpunkcompare.com"));
+  // Owner, 2026-11-02: never tie a sister site to one country.
+  for (const s of SISTER_SITES) assert.doesNotMatch(s.anchor, /\b(Australian|Aussie|American|British|Canadian|Australia only|AU only)\b/i, s.name);
 });
 
 test("search: every word must match; a barcode finds its figure", () => {

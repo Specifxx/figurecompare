@@ -324,6 +324,20 @@ so it ships now; the footer and sitemap link it all year. Prerendered at the dai
 price of our own, a countdown, "ends soon" or an invented sale. Dates are pure (`src/lib/black-friday.ts`, tested). Part
 of the passive-growth plan (owner, 2026-11-02: no daily Reddit posts).
 
+## 2026-11-02 — Free link badges
+
+`/widgets` gives blogs, clubs and stores plain-HTML link badges (a figure, a line, "our prices are compared here") that
+the daily outreach offers instead of asking for a link (passive-growth plan, owner 2026-11-02). The card sites have a
+live price iframe; this site doesn't, because a live badge needs a function or a script, and the site is fully static.
+Each badge is one `<a>` with inline CSS (`src/lib/link-badges.ts`, tested), so the link sits on the other site's page.
+
+## 2026-11-02 — Self-updating price report
+
+`/price-report` is one page, kept at one URL, prerendered at each daily build from that day's prices: per region, how
+many stores and figures are on sale, the typical gap between the cheapest and dearest store for the same JAN and how
+often it is 10% or more, and the median price of a figure per line. It is the citable asset the daily outreach offers
+figure writers (passive-growth plan, owner 2026-11-02), with a quote line. Pure numbers in `src/lib/price-report.ts`
+(tested; the same file as KaeYoung's).
 ## 2026-11-02 — The monitor reports to Empire HQ; only red mails
 
 The owner asked for one Monday email instead of a mail per site (the control tower, approved 2026-11-02). The ops
