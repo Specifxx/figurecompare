@@ -338,3 +338,12 @@ many stores and figures are on sale, the typical gap between the cheapest and de
 often it is 10% or more, and the median price of a figure per line. It is the citable asset the daily outreach offers
 figure writers (passive-growth plan, owner 2026-11-02), with a quote line. Pure numbers in `src/lib/price-report.ts`
 (tested; the same file as KaeYoung's).
+## 2026-11-02 — The monitor reports to Empire HQ; only red mails
+
+The owner asked for one Monday email instead of a mail per site (the control tower, approved 2026-11-02). The ops
+monitor now writes every result to `ops-status.json`, and its workflow force-pushes it as `status.json`, one orphan
+commit, to this repo's public `ops-status` branch (never deployed, `vercel.json`). RiftCompare's ops monitor reads it
+every three hours for Empire HQ (riftcompare.com/admin/hq) and the one Monday report, and mails the owner itself if
+the file goes quiet for a day (a stopped monitor cannot mail). Only a FAILED check fails the run, which is GitHub's
+email to the owner; warnings wait for HQ and Monday. The file carries status and the monitor's own sentences only,
+the same as the public Actions log.
