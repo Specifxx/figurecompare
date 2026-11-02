@@ -11,7 +11,7 @@ import { listRegions, saleHeading, saleIntro, saleYear, SALE_SEASONS, type SaleS
 // pages", 2026-11-02): one URL each kept every year, with the Black Friday page's rows (dealsIn per region), prerendered at the
 // daily build like every page. Every region's deals are in the HTML (CSS shows the visitor's), so the wording names them all.
 const year = (slug: SaleSlug) => saleYear(slug, new Date().toISOString().slice(0, 10));
-const PLACES = listRegions(REGIONS.map((r) => r.phrase.replace(/^in /, "")));
+const PLACES = listRegions(REGIONS.map((r) => r.phrase.replace(/^(in|from) /, "")));
 
 export function saleMetadata(slug: SaleSlug): Metadata {
   const y = year(slug);
