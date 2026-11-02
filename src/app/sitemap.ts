@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     u("/series", 0.8),
     ...liveSeries().map((s) => u(`/series/${s.slug}`, 0.8)),
     u("/deals", 0.8),
+    u("/black-friday", 0.8),
     u("/preorders", 0.8),
     u("/new", 0.7),
     u("/stores", 0.6),
