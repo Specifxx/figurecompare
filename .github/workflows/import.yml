@@ -43,6 +43,10 @@ jobs:
           EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
           EBAY_DAILY_CAP: ${{ vars.EBAY_DAILY_CAP }}
         run: npx tsx scripts/ebay-import.ts
+      # The Compare Empire network (DECISIONS.md "Sites that grow each other"): this site's best deals and
+      # pre-orders for the sister sites, and the hobby sisters' feeds for the deals pages. Never fails the run.
+      - name: Family feed
+        run: npx tsx scripts/family-sync.ts
       - name: Commit data (this commit is the daily release)
         run: |
           set -euo pipefail

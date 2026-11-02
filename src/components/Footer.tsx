@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { LINES, SISTER_SITES, SITE } from "@/site";
+import { LINES, SITE } from "@/site";
+import { NETWORK_PAGE, footerSisters } from "@/lib/family-network";
 import { LogoMark } from "./Logo";
 
 export function Footer({ updated }: { updated?: string | null }) {
@@ -52,15 +53,22 @@ export function Footer({ updated }: { updated?: string | null }) {
           </ul>
         </div>
         <div>
-          <h2 className="h-display mb-2 text-base">More price comparison</h2>
+          {/* One short list (owner, 2026-11-02: the old list of every site was "convoluted"): the hobby sisters,
+              then the network page that lists every site (lib/family-network.ts, DECISIONS.md "Sites that grow each other"). */}
+          <h2 className="h-display mb-2 text-base">Sister sites</h2>
           <ul className="space-y-1">
-            {SISTER_SITES.map((s) => (
-              <li key={s.url}>
-                <a href={s.url} className="hover:text-pink-deep">
-                  {s.anchor} · {s.name}
+            {footerSisters("figure").map((s) => (
+              <li key={s.id}>
+                <a href={s.url} rel="noopener" title={s.label} className="hover:text-pink-deep">
+                  {s.name}
                 </a>
               </li>
             ))}
+            <li>
+              <a href={NETWORK_PAGE} rel="noopener" className="hover:text-pink-deep">
+                A Compare Empire site →
+              </a>
+            </li>
           </ul>
         </div>
       </div>

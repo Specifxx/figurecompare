@@ -4,6 +4,7 @@ import { dealsIn, popular } from "@/lib/data";
 import { TileGrid } from "@/components/FigureTile";
 import { PageHead } from "@/components/Section";
 import { EbayStrip, SITE_QUERIES } from "@/components/EbayStrip";
+import { FamilyCluster } from "@/components/FamilyCluster";
 
 export const metadata: Metadata = {
   title: "Anime figure deals today",
@@ -28,6 +29,7 @@ export default function Deals() {
           </div>
         );
       })}
+      <FamilyCluster kind="deal" />
       <EbayStrip className="mt-10" placement="deals" queries={SITE_QUERIES} figures={popular(30)} />
     </div>
   );
