@@ -16,6 +16,8 @@ import { OutLink } from "@/components/OutLink";
 import { ShareButton } from "@/components/ShareButton";
 import { shareTexts } from "@/lib/share-texts";
 import { ReportPrice } from "@/components/ReportForms";
+import { FigureAlert } from "@/components/FigureAlert";
+import { ALERT_SITE_KEY, alertPrices } from "@/lib/alert-feed";
 import { EbayButton, EbayStrip, lineQueries } from "@/components/EbayStrip";
 import { seriesOf } from "@/lib/series";
 
@@ -186,6 +188,8 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
             product={`${f.name} (JAN ${f.jan})`}
             stores={REGIONS.flatMap((r) => (f.offers[r.code] ?? []).map((o) => ({ name: `${storeName(o.s)} (${r.code})`, price: money(o.p, r.code) })))}
           />
+          {/* RiftCompare's shared alert service emails when it drops (lib/alert-feed.ts, DECISIONS.md 2026-11-02). */}
+          <FigureAlert site={ALERT_SITE_KEY} jan={f.jan} prices={alertPrices(f)} />
         </div>
 
         <aside className="space-y-6">

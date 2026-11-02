@@ -17,6 +17,13 @@ stores in the US, UK, Canada, Australia, New Zealand, Europe and Singapore. A Co
 - The visitor's region is chosen in the browser (time zone, then their own pick in localStorage) by the script in
   `src/app/layout.tsx`; every region's prices are in the HTML and CSS shows one (`.rp-XX` in `globals.css`).
 
+## Price alerts: RiftCompare's shared service (owner, 2026-11-02)
+
+The figure page's "Email me when the price drops" form (`src/components/PriceAlertForm.tsx`, `FigureAlert.tsx`) posts
+to `https://riftcompare.com/api/sister-alerts`; RiftCompare keeps the address, confirms it and emails, reading this
+site's prerendered `/alert-feed.json` (`src/lib/alert-feed.ts`) once a day. No function, no address and no mail key
+here, ever. Keep the feed's price the page's headline `bestIn()` (never eBay or Amazon).
+
 ## Deploys are gated: never add `[deploy]` to a commit subject
 
 Production builds only a commit whose SUBJECT carries `[deploy]` (`scripts/vercel-ignore-build.sh`,
