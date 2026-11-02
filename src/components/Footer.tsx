@@ -37,6 +37,7 @@ export function Footer({ updated }: { updated?: string | null }) {
           <ul className="space-y-1">
             <li><Link prefetch={false} href="/about" className="hover:text-pink-deep">About &amp; how matching works</Link></li>
             <li><Link prefetch={false} href="/forum" className="hover:text-pink-deep">Community forum (beta)</Link></li>
+            <li><Link prefetch={false} href="/widgets" className="hover:text-pink-deep">Free price links for your site</Link></li>
             <li><Link prefetch={false} href="/disclosure" className="hover:text-pink-deep">Affiliate disclosure</Link></li>
             <li><Link prefetch={false} href="/privacy" className="hover:text-pink-deep">Privacy</Link></li>
             <li><Link prefetch={false} href="/terms" className="hover:text-pink-deep">Terms</Link></li>
