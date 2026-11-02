@@ -139,7 +139,6 @@ export const STORES: Store[] = [
   { id: "nabema", name: "Nabema Collectibles", region: "CA", base: "https://www.nabemacollectibles.com", platform: "shopify", collections: ["all"] },
   { id: "oomomo", name: "Oomomo Canada", region: "CA", base: "https://www.oomomostore.com", platform: "shopify", collections: ["all"] },
   { id: "prexhobby", name: "P-Rex Hobby", region: "CA", base: "https://www.prexhobby.com", platform: "shopify", collections: ["all"] },
-  { id: "unifig", name: "UniFig", region: "CA", base: "https://unifigshop.com", platform: "shopify", collections: ["all"] },
   { id: "camdenanime", name: "Camden Anime", region: "UK", base: "https://camdenanime.co.uk", platform: "shopify", collections: ["all"] },
   { id: "charmingsushi", name: "CharmingSushi", region: "UK", base: "https://www.charmingsushi.co.uk", platform: "shopify", collections: ["all"] },
   { id: "curibo", name: "Curibo", region: "UK", base: "https://curibo.co.uk", platform: "shopify", collections: ["all"] },
