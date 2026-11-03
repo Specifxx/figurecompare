@@ -35,7 +35,7 @@ test("affiliate tags name the site, region, placement and product", () => {
   assert.match(amazonSearchUrl("x", "EU", "t")!, /amazon\.de\/.*tag=compareempire-21/);
   assert.equal(amazonSearchUrl("x", "NZ", "t"), null, "no Amazon NZ");
   assert.doesNotMatch(readFileSync(new URL("../src/lib/affiliate.ts", import.meta.url), "utf8"), /AMAZON_TAG_|AMAZON_ASSOCIATE_TAG/, "tags are hard-coded");
-  assert.match(amazonSearchUrl("x", "AU", "t")!, /^https:\/\/www\.amazon\.com\.au\/s\?.*tag=compareempire-22/, "AU uses the family's AU tag");
+  assert.match(amazonSearchUrl("x", "AU", "t")!, /^https:\/\/www\.amazon\.com\.au\/s\?.*tag=figurecompare-22/, "AU uses the family's AU tag");
   assert.match(storeUrl("nope", "https://shop.example/p?a=1"), /utm_source=figurecompare\.com&utm_medium=referral/);
 });
 
