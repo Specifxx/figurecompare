@@ -10,11 +10,33 @@ import { Section } from "@/components/Section";
 import { ACTIVE_REGIONS } from "@/lib/regions";
 import { EbayStrip, SITE_QUERIES } from "@/components/EbayStrip";
 import { ChristmasDecor } from "@/components/ChristmasDecor";
+import { JsonLd, faqLd, siteLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: { absolute: `${SITE.name}: compare Nendoroid, figma & POP UP PARADE prices` },
+  // 60 characters or fewer, keyword first, brand last (SEO audit, 2026-11-03).
+  title: { absolute: `Nendoroid, figma & POP UP PARADE Prices | ${SITE.name}` },
+  description: SITE.description,
   alternates: { canonical: "/" },
 };
+
+const FAQ: [string, string][] = [
+  [
+    "Where is the cheapest place to buy a Nendoroid or figma?",
+    "It changes from figure to figure: a different store is cheapest for different releases, and pre-order prices move. We compare every real figure store's own price for the same JAN barcode every day and show the cheapest in-stock or pre-order price first for your country.",
+  ],
+  [
+    "How do you avoid bootleg figures?",
+    "We only list specialist figure shops and hobby stores, never open marketplaces where bootlegs hide, and match listings only by the JAN barcode printed on the box. Pre-owned, damaged, bundles and lucky bags are left out.",
+  ],
+  [
+    "Do the prices include shipping or import charges?",
+    "No. They are each store's listed item price in its own currency, never converted. Shipping, tax and import charges depend on where you live, so check the checkout before you buy.",
+  ],
+  [
+    "Which countries do you compare?",
+    "The United States, the United Kingdom, Canada, Australia, New Zealand, Europe and Singapore, plus stores shipping from Japan. Each region compares only stores charging in its own currency.",
+  ],
+];
 
 export default function Home() {
   const meta = getMeta();
@@ -116,6 +138,35 @@ export default function Home() {
             ))}
           </ol>
         </section>
+
+        <section className="mt-14">
+          <h2 className="h-display mb-4 text-2xl sm:text-3xl">Browse figures</h2>
+          <ul className="grid gap-x-6 gap-y-2 text-sm sm:grid-cols-2">
+            {LINES.map((l) => (
+              <li key={l.key}>
+                <Link prefetch={false} href={`/${l.key}`} className="font-medium text-ink underline-offset-4 hover:underline">{l.name} prices</Link>
+              </li>
+            ))}
+            <li><Link prefetch={false} href="/series" className="font-medium text-ink underline-offset-4 hover:underline">Figures by series</Link></li>
+            <li><Link prefetch={false} href="/preorders" className="font-medium text-ink underline-offset-4 hover:underline">Pre-orders</Link></li>
+            <li><Link prefetch={false} href="/deals" className="font-medium text-ink underline-offset-4 hover:underline">Deals</Link></li>
+            <li><Link prefetch={false} href="/price-report" className="font-medium text-ink underline-offset-4 hover:underline">Monthly price report</Link></li>
+          </ul>
+        </section>
+
+        <section className="mt-14 max-w-3xl">
+          <h2 className="h-display mb-4 text-2xl sm:text-3xl">Questions</h2>
+          <div className="space-y-5">
+            {FAQ.map(([q, a]) => (
+              <div key={q}>
+                <h3 className="font-bold">{q}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-soft">{a}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+        <JsonLd data={siteLd()} />
+        <JsonLd data={faqLd(FAQ)} />
       </div>
     </>
   );
