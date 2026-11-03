@@ -82,7 +82,7 @@ function Tiles({ region, placement, picks }: { region: RegionCode; placement: st
           >
             <span className="grid aspect-square place-items-center bg-white p-2">
               {pick.img ? (
-                <img src={pick.img} alt="" loading="lazy" decoding="async" referrerPolicy="no-referrer" className="h-full w-full object-contain text-transparent" />
+                <img src={pick.img} alt={`${f.name} on eBay`} loading="lazy" decoding="async" referrerPolicy="no-referrer" className="h-full w-full object-contain text-transparent" />
               ) : null}
             </span>
             <span className="flex flex-1 flex-col gap-1 p-2">

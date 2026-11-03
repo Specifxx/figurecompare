@@ -483,3 +483,11 @@ as a link network and looks odd to a reader. The owner said do it.
   one owner, not paid, so no `sponsored`/`nofollow`.
 - Kept: the "Other card games" / hobby / tech price blocks on deals, Black Friday and pre-order pages
   (`clusterSisters`). They sit on a few pages, show real prices a reader of that page may want, and are not sitewide.
+
+## 2026-11-03 SEO audit: homepage schema, breadcrumbs, llms.txt, 55-char title
+
+Bill's network SEO audit found no JSON-LD on the homepage, 12 empty `alt`s and a 61-character title. The homepage now
+carries Organization + WebSite + a printed FAQ with FAQPage and links every line hub; figure, line hub and series pages
+show a breadcrumb trail with a matching BreadcrumbList (`src/lib/seo.tsx`). The eBay strip and family cluster photos are
+named. Product/AggregateOffer already existed on figure pages. `/llms.txt` is a static route. The sitemap (about 4,000
+URLs) stays one file. hreflang is deliberately absent: every page is ONE URL for all regions. `tests/seo.test.ts`.

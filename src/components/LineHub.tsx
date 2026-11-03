@@ -4,6 +4,7 @@ import { figuresOfLine, storeCount } from "@/lib/data";
 import { TileGrid } from "./FigureTile";
 import { PageHead } from "./Section";
 import { EbayStrip, lineQueries } from "./EbayStrip";
+import { Crumbs } from "@/lib/seo";
 
 export const PER_PAGE = 48;
 
@@ -24,6 +25,7 @@ export function LineHub({ line, page }: { line: LineKey; page: number }) {
   const href = (p: number) => (p === 1 ? `/${line}` : `/${line}/page/${p}`);
   return (
     <div className="mx-auto max-w-6xl px-4">
+      <Crumbs items={[{ name: l.name, path: href(1) }]} />
       <PageHead
         emoji={l.emoji}
         title={`${l.name} prices${page > 1 ? ` (page ${page})` : ""}`}

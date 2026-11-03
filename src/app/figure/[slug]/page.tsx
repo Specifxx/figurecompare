@@ -20,6 +20,7 @@ import { FigureAlert } from "@/components/FigureAlert";
 import { ALERT_SITE_KEY, alertPrices } from "@/lib/alert-feed";
 import { EbayButton, EbayStrip, lineQueries } from "@/components/EbayStrip";
 import { seriesOf } from "@/lib/series";
+import { JsonLd, breadcrumbLd } from "@/lib/seo";
 
 // Prerendered at build, one static file per figure; a slug the release does
 // not know is a 404, never a render on request.
@@ -86,6 +87,7 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
   return (
     <div className="mx-auto max-w-6xl px-4 pb-28 pt-4 md:pb-10">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={breadcrumbLd([{ name: line.name, path: `/${line.key}` }, { name: f.name, path: `/figure/${f.slug}` }])} />
       <nav aria-label="Breadcrumb" className="mb-3 text-sm text-soft">
         <Link prefetch={false} href="/" className="hover:text-pink-deep">Home</Link> ›{" "}
         <Link prefetch={false} href={`/${line.key}`} className="hover:text-pink-deep">{line.name}</Link> ›{" "}

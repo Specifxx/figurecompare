@@ -7,6 +7,7 @@ import { EbayStrip } from "@/components/EbayStrip";
 import { TileGrid } from "@/components/FigureTile";
 import { PageHead } from "@/components/Section";
 import { figuresOfSeries, liveSeries } from "@/lib/series";
+import { Crumbs } from "@/lib/seo";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => liveSeries().map((s) => ({ slug: s.slug }));
@@ -38,6 +39,7 @@ export default function SeriesPage({ params }: { params: { slug: string } }) {
   const others = liveSeries().filter((x) => x.slug !== s.slug);
   return (
     <div className="mx-auto max-w-6xl px-4">
+      <Crumbs items={[{ name: "Series", path: "/series" }, { name: s.name, path: `/series/${s.slug}` }]} />
       <PageHead
         title={`${s.name} figures`}
         sub={
