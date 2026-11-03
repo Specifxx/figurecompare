@@ -1,6 +1,10 @@
 "use client";
 // Every outbound buy link. The href is already tagged at build time; the click
-// is a Vercel Analytics event (no function, no cookie).
+// is a Vercel Analytics event (no function, no cookie):
+//   buy_click { retailer: "<store id> (<region>)", placement }
+// EXACTLY two properties, the same shape WargameCompare and MTG Compare send:
+// Vercel's Pro plan keeps two custom-event properties per event and drops the
+// rest, so the old four (source, region, placement, jan) lost placement.
 import { track } from "@vercel/analytics";
 import type { ReactNode } from "react";
 
@@ -26,7 +30,10 @@ export function OutLink({
       className={className}
       onClick={() => {
         try {
-          track("buy_click", event);
+          track("buy_click", {
+            retailer: `${event.source} (${event.region})`.slice(0, 255),
+            placement: event.placement.slice(0, 255),
+          });
         } catch {}
       }}
     >
