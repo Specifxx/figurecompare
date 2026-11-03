@@ -1,7 +1,7 @@
 {
  "v": 1,
  "site": "figure",
- "generatedAt": "2026-11-02T14:24:43.533Z",
+ "generatedAt": "2026-11-03T13:35:15.676Z",
  "links": {
   "US": {
    "deals": "https://figurecompare.com/deals",
@@ -48,12 +48,34 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "US",
-   "title": "Nendoroid Akemi Homura Walpurgisnacht: Rising Ver. Basic",
-   "url": "https://figurecompare.com/figure/nendoroid-akemi-homura-walpurgisnacht-rising-ver-basic-3001",
-   "cents": 3588,
+   "title": "Nendoroid Rascal Does Not Dream of Bunny Girl Senpai - Mai Sakurajima",
+   "url": "https://figurecompare.com/figure/nendoroid-rascal-does-not-dream-of-bunny-girl-senpai-mai-sakurajima-1124",
+   "cents": 3611,
    "currency": "USD",
-   "store": "Kappa Hobby",
-   "image": "https://cdn.shopify.com/s/files/1/0318/2649/files/eb08bafd-dfcf-4b8c-9006-4acff4601bbf.jpg?v=1773913435&width=600"
+   "store": "Japan Figure Store",
+   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/c1a3dd4a-a395-4a37-8ade-4cd526419bab-L.png?v=1792704337&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "US",
+   "title": "Nendoroid Mai Sakurajima: Bunny Girl Ver.",
+   "url": "https://figurecompare.com/figure/nendoroid-mai-sakurajima-bunny-girl-ver-2417",
+   "cents": 4499,
+   "currency": "USD",
+   "store": "The Anime Throne",
+   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/be19b19f-eac4-410d-9756-51a809bfa223-L.png?v=1792704339&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "US",
+   "title": "Nendoroid Rascal Does Not Dream Series - Knapsack Kid",
+   "url": "https://figurecompare.com/figure/nendoroid-knapsack-kid-3168",
+   "cents": 4499,
+   "currency": "USD",
+   "store": "The Anime Throne",
+   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/dff7c25e-86e9-409e-81e3-bc2c2548bc4a-L.png?v=1792704351&width=600"
   },
   {
    "kind": "preorder",
@@ -70,48 +92,12 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "US",
-   "title": "Nendoroid Umamusume: Pretty Derby - Symboli Rudolf",
-   "url": "https://figurecompare.com/figure/nendoroid-umamusume-pretty-derby-symboli-rudolf-2619",
-   "cents": 4800,
-   "currency": "USD",
-   "store": "Good Game Anime",
-   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/e2d24c8f-1202-484e-a24e-a3e224a2aeac-L.png?v=1792704343&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "US",
-   "title": "Nendoroid Blue Archive - Miyako Tsukiyuki",
-   "url": "https://figurecompare.com/figure/nendoroid-blue-archive-miyako-tsukiyuki-3150",
-   "cents": 4895,
-   "currency": "USD",
-   "store": "Galactic Toys & Collectibles",
-   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/7f26b609-9f6d-4c6a-8ab6-60510043761a-L.png?v=1792708586&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "US",
    "title": "Nendoroid Megurine Luka 2.0",
    "url": "https://figurecompare.com/figure/nendoroid-megurine-luka-2-0-2842",
    "cents": 5599,
    "currency": "USD",
    "store": "animate USA",
    "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828662728.png?v=1758028494&width=600"
-  },
-  {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "UK",
-   "title": "Nendoroid Dokibird",
-   "url": "https://figurecompare.com/figure/nendoroid-dokibird-dokibird-2685",
-   "cents": 3299,
-   "currency": "GBP",
-   "store": "Loaded Dice",
-   "image": "https://cdn.shopify.com/s/files/1/0876/7307/8075/files/2685.png?v=1767482395&width=600",
-   "refCents": 8250,
-   "refLabel": "dearest store",
-   "savingPct": 60
   },
   {
    "kind": "deal",
@@ -145,6 +131,20 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "UK",
+   "title": "Nendoroid Hatsune Miku: DecoMiku (Darkness)",
+   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-decomiku-darkness-3007",
+   "cents": 4995,
+   "currency": "GBP",
+   "store": "Hobby Figures",
+   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/hatsune-miku-nendoroid-decomiku-darkness_1.jpg?v=1771569061&width=600",
+   "refCents": 9895,
+   "refLabel": "dearest store",
+   "savingPct": 50
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "UK",
    "title": "Nendoroid Blue Archive - Toki Asuma",
    "url": "https://figurecompare.com/figure/nendoroid-blue-archive-toki-asuma-2812",
    "cents": 3399,
@@ -173,26 +173,15 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "UK",
-   "title": "POP UP PARADE Gridman Universe - L Yomogi Asanaka",
-   "url": "https://figurecompare.com/figure/pop-up-parade-gridman-universe-l-yomogi-asanaka",
-   "cents": 3099,
+   "title": "Nendoroid Sayaka Miki - Walpurgisnacht: Rising Ver. (Basic)",
+   "url": "https://figurecompare.com/figure/nendoroid-sayaka-miki-walpurgisnacht-rising-ver-basic-3004",
+   "cents": 2899,
    "currency": "GBP",
    "store": "Loaded Dice",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/gridman-universe-pop-up-parade-yomogi-asanaka-l-size-1.jpg?v=1744964220&width=600",
-   "refCents": 5795,
+   "image": "https://cdn.shopify.com/s/files/1/0318/2649/files/c9a26da6-70e1-4646-8f77-562444fe67ba.jpg?v=1775208371&width=600",
+   "refCents": 5095,
    "refLabel": "dearest store",
-   "savingPct": 47
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "UK",
-   "title": "Nendoroid Darling in the Franxx - Zero Two",
-   "url": "https://figurecompare.com/figure/nendoroid-darling-in-the-franxx-zero-two-952",
-   "cents": 4395,
-   "currency": "GBP",
-   "store": "Hobby Figures",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/products/om-G12458-1.jpg?v=1646460843&width=600"
+   "savingPct": 43
   },
   {
    "kind": "preorder",
@@ -220,12 +209,12 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "UK",
-   "title": "Nendoroid Delicious in Dungeon - Falin Chimera",
-   "url": "https://figurecompare.com/figure/nendoroid-delicious-in-dungeon-falin-chimera-3055",
-   "cents": 4995,
+   "title": "Nendoroid Akemi Homura Walpurgisnacht: Rising Ver. Basic",
+   "url": "https://figurecompare.com/figure/nendoroid-akemi-homura-walpurgisnacht-rising-ver-basic-3001",
+   "cents": 5095,
    "currency": "GBP",
-   "store": "Hobby Figures",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232588295.png?v=1785919052&width=600"
+   "store": "oshoppu",
+   "image": "https://cdn.shopify.com/s/files/1/0318/2649/files/eb08bafd-dfcf-4b8c-9006-4acff4601bbf.jpg?v=1773913435&width=600"
   },
   {
    "kind": "preorder",
@@ -248,6 +237,17 @@
    "currency": "GBP",
    "store": "Camden Anime",
    "image": "https://cdn.shopify.com/s/files/1/0318/2649/files/9611f1ed-4d19-440e-89a3-337265172c5e.jpg?v=1770974203&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "UK",
+   "title": "Nendoroid Hatsune Miku: DecoMiku (Darkness)",
+   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-decomiku-darkness-3007",
+   "cents": 9895,
+   "currency": "GBP",
+   "store": "oshoppu",
+   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/hatsune-miku-nendoroid-decomiku-darkness_1.jpg?v=1771569061&width=600"
   },
   {
    "kind": "deal",
