@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { LINES, SITE } from "@/site";
-import { NETWORK_PAGE, footerSisters } from "@/lib/family-network";
+import { NETWORK_PAGE } from "@/lib/family-network";
 import { LogoMark } from "./Logo";
 
 export function Footer({ updated }: { updated?: string | null }) {
   return (
     <footer className="relative mt-16 border-t border-line bg-card pt-10 text-sm">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 pb-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 pb-8 sm:grid-cols-2 lg:grid-cols-3">
         <div>
           <div className="flex items-center gap-2">
             <LogoMark size={28} />
@@ -51,25 +51,9 @@ export function Footer({ updated }: { updated?: string | null }) {
             <li><Link prefetch={false} href="/stores#suggest" className="hover:text-pink-deep">Suggest a store</Link></li>
             <li><Link prefetch={false} href="/how-we-pick-stores" className="hover:text-pink-deep">How we pick stores</Link></li>
             <li><a href={`mailto:${SITE.email}`} className="hover:text-pink-deep">{SITE.email}</a></li>
-          </ul>
-        </div>
-        <div>
-          {/* One short list (owner, 2026-11-02: the old list of every site was "convoluted"): the hobby sisters,
-              then the network page that lists every site (lib/family-network.ts, DECISIONS.md "Sites that grow each other"). */}
-          <h2 className="h-display mb-2 text-base">Sister sites</h2>
-          <ul className="space-y-1">
-            {footerSisters("figure").map((s) => (
-              <li key={s.id}>
-                <a href={s.url} rel="noopener" title={s.label} className="hover:text-pink-deep">
-                  {s.name}
-                </a>
-              </li>
-            ))}
-            <li>
-              <a href={NETWORK_PAGE} rel="noopener" className="hover:text-pink-deep">
-                A Compare Empire site →
-              </a>
-            </li>
+            {/* No sister-site list (owner, 2026-11-03: a figure site listing card and tech sites reads as a link
+                network): one link to the page that lists every Compare Empire site (lib/family-network.ts). */}
+            <li><a href={NETWORK_PAGE} rel="noopener" className="hover:text-pink-deep">A Compare Empire site →</a></li>
           </ul>
         </div>
       </div>

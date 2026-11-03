@@ -45,10 +45,10 @@ test("money stays in its own currency", () => {
   assert.equal(money(4999, "UK"), "£49.99");
 });
 
-test("footer: the hobby sisters, then the network page (owner, 2026-11-02: the full list was convoluted)", () => {
-  assert.deepEqual(footerSisters("figure").map((s) => s.url), ["https://gundamcompare.com", "https://wargamecompare.com"]);
+test("footer: no sister list, one link to the network page (owner, 2026-11-03)", () => {
+  assert.deepEqual(footerSisters("figure"), []);
   const footer = readFileSync("src/components/Footer.tsx", "utf8");
-  assert.match(footer, /footerSisters\("figure"\)\.map/);
+  assert.doesNotMatch(footer, /footerSisters|Sister sites/);
   assert.match(footer, /href=\{NETWORK_PAGE\}/);
   assert.doesNotMatch(footer, /nofollow|sponsored/);
 });
