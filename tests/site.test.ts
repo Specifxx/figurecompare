@@ -114,3 +114,13 @@ test("eBay sits beside every buy button and first in every price list (owner, 20
   // Owner, 2026-10-30: no wording about the order; the row is simply first.
   assert.doesNotMatch(table, /Shown first/);
 });
+
+test("buy_click sends exactly retailer + placement, like the sister sites (Vercel Pro keeps two properties)", async () => {
+  const fs = await import("node:fs");
+  const out = fs.readFileSync("src/components/OutLink.tsx", "utf8");
+  const call = out.slice(out.indexOf('track("buy_click"'), out.indexOf("});", out.indexOf('track("buy_click"')));
+  assert.match(call, /retailer:/);
+  assert.match(call, /placement:/);
+  assert.equal((call.match(/^\s+\w+:/gm) ?? []).length, 2, "exactly two properties");
+  assert.match(fs.readFileSync("src/app/layout.tsx", "utf8"), /<Analytics/);
+});
