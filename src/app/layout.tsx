@@ -3,12 +3,14 @@ import { Analytics } from "@vercel/analytics/react";
 import { ShareArrival } from "@/components/ShareArrival";
 import "@fontsource-variable/inter";
 import "./globals.css";
+import "@/components/site-reviews/site-reviews.css";
 import { SITE } from "@/site";
 import { ACTIVE_REGIONS } from "@/lib/regions";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SideNav } from "@/components/SideNav";
 import { QuickView } from "@/components/QuickView";
+import { RateCard } from "@/components/site-reviews/RateCard";
 import { EbayNavBox } from "@/components/EbayStrip";
 import { navGroups } from "@/lib/nav";
 import { getMeta, lineCounts } from "@/lib/data";
@@ -57,6 +59,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
         <Footer updated={meta ? niceDate(meta.updatedAt) : null} />
         <QuickView />
+        {/* Rate us (owner, 2026-11-03): the corner card, asking only after real use; RiftCompare keeps the ratings. */}
+        <RateCard />
         <Analytics />
         <ShareArrival />
       </body>
