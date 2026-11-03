@@ -17,7 +17,7 @@ export const EBAY_CAMPAIGN_ID = "5339155912";
 export function amazonTag(region: RegionCode): string | null {
   const tags: Partial<Record<RegionCode, string>> = {
     US: "riftcompare-20",
-    AU: "compareempire-22",
+    AU: "figurecompare-22",
     UK: "compareempi03-21",
     CA: "compareempire-20",
     EU: "compareempire-21",
