@@ -11,6 +11,7 @@ import { ACTIVE_REGIONS } from "@/lib/regions";
 import { EbayStrip, SITE_QUERIES } from "@/components/EbayStrip";
 import { ChristmasDecor } from "@/components/ChristmasDecor";
 import { JsonLd, faqLd, siteLd } from "@/lib/seo";
+import { SiteReviews } from "@/components/site-reviews/SiteReviews";
 
 export const metadata: Metadata = {
   // 60 characters or fewer, keyword first, brand last (SEO audit, 2026-11-03).
@@ -153,6 +154,9 @@ export default function Home() {
             <li><Link prefetch={false} href="/price-report" className="font-medium text-ink underline-offset-4 hover:underline">Monthly price report</Link></li>
           </ul>
         </section>
+
+        {/* The site's own star score and approved reviews (owner, 2026-11-03), loaded in the browser; nothing until there is a rating. */}
+        <SiteReviews className="mt-14" />
 
         <section className="mt-14 max-w-3xl">
           <h2 className="h-display mb-4 text-2xl sm:text-3xl">Questions</h2>

@@ -557,3 +557,14 @@ html[data-season="christmas"] .xmas-kicker {
   --fm-accent-soft: rgb(var(--pink-pale));
   --fm-radius: 12px;
 }
+
+/* Rate us card and "What people say" (components/site-reviews): drawn in the site's own theme, light and dark. */
+:root {
+  --srv-bg: rgb(var(--card));
+  --srv-fg: rgb(var(--ink));
+  --srv-muted: rgb(var(--soft));
+  --srv-line: rgb(var(--line));
+  --srv-accent: rgb(var(--pink));
+  --srv-accent-fg: #fff;
+  --srv-field: rgb(var(--bg));
+}

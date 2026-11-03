@@ -2,6 +2,7 @@ import Link from "next/link";
 import { LINES, SITE } from "@/site";
 import { NETWORK_PAGE } from "@/lib/family-network";
 import { LogoMark } from "./Logo";
+import { RateUsLink } from "./site-reviews/SiteReviews";
 
 export function Footer({ updated }: { updated?: string | null }) {
   return (
@@ -48,6 +49,7 @@ export function Footer({ updated }: { updated?: string | null }) {
             <li><Link prefetch={false} href="/privacy" className="hover:text-pink-deep">Privacy</Link></li>
             <li><Link prefetch={false} href="/terms" className="hover:text-pink-deep">Terms</Link></li>
             <li><Link prefetch={false} href="/contact" className="hover:text-pink-deep">Contact us</Link></li>
+            <li><RateUsLink className="hover:text-pink-deep">Rate us</RateUsLink></li>
             <li><Link prefetch={false} href="/stores#suggest" className="hover:text-pink-deep">Suggest a store</Link></li>
             <li><Link prefetch={false} href="/how-we-pick-stores" className="hover:text-pink-deep">How we pick stores</Link></li>
             <li><a href={`mailto:${SITE.email}`} className="hover:text-pink-deep">{SITE.email}</a></li>

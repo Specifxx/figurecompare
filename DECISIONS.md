@@ -507,3 +507,15 @@ carries Organization + WebSite + a printed FAQ with FAQPage and links every line
 show a breadcrumb trail with a matching BreadcrumbList (`src/lib/seo.tsx`). The eBay strip and family cluster photos are
 named. Product/AggregateOffer already existed on figure pages. `/llms.txt` is a static route. The sitemap (about 4,000
 URLs) stays one file. hreflang is deliberately absent: every page is ONE URL for all regions. `tests/seo.test.ts`.
+
+## Rate us and "What people say", run by RiftCompare (2026-11-03)
+
+The owner wanted RiftCompare's rating pop-up on every site, each site's reviews public, and every written review approved in
+RiftCompare's admin; star ratings count at once. This site stores nothing and gains no function: the corner card
+(`components/site-reviews/RateCard.tsx`, in the root layout) posts cross-origin to `https://riftcompare.com/api/site-reviews`,
+and the homepage's "What people say" reads the score and approved reviews from `https://riftcompare.com/api/site-reviews/figure`
+in the browser (public JSON, CDN six hours), so every page stays a static file. The card copies RiftCompare's corner card, not
+its rating drive: never on arrival, after 4 pages and 3 minutes or on return from a store tab, at most three times 14 days
+apart, always closable (no pop-up policy breach: it is a small corner card, not an interstitial); "Rate us" in the footer opens
+it. While no ad script is on the page it says "We don't run banner ads, so if this helped, please leave us a review." No email
+asked for, never review markup. RiftCompare's DECISIONS.md, "Every site's reviews, approved in one queue".
