@@ -519,3 +519,18 @@ its rating drive: never on arrival, after 4 pages and 3 minutes or on return fro
 apart, always closable (no pop-up policy breach: it is a small corner card, not an interstitial); "Rate us" in the footer opens
 it. While no ad script is on the page it says "We don't run banner ads, so if this helped, please leave us a review." No email
 asked for, never review markup. RiftCompare's DECISIONS.md, "Every site's reviews, approved in one queue".
+
+## 2026-11-03: A Creators page and a homepage bubble, like RiftCompare's
+
+Owner: "having the creators page for all of these sites as well is really, really good. Like just a bubble and then a
+really nice formatted creators page, just like how RiftCompare does it." Word of mouth from creators and visitors is the
+sites' main growth channel, so every site gets one.
+
+`/creators` is RiftCompare's page in FigureCompare's theme, without the parts that need a database: the list is the
+static array in `src/lib/creators.ts` (empty until the first creator agrees; the grid shows "Your channel here" spots,
+never an invented creator), applying is a pre-filled email to `SITE.email`, and there are no creator codes. "Buy them a
+coffee" is the creator's own Ko-fi, Patreon or tip page: the site never handles the money. No emoji or character art
+(the design rules): the marks are the logo's star and a coffee cup, drawn inline. `CreatorsCornerBadge` is the bubble in
+the homepage hero (top-right from sm, a pill above the kicker on a phone); the sidebar's "More", the footer and the
+sitemap link the page. Prerendered like every page, with the usual eBay strip at the foot. Not called "partners"
+anywhere: that word means the affiliate links.
