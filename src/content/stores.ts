@@ -163,6 +163,22 @@ export const STORES: Store[] = [
   { id: "treasuretrip", name: "Treasure Trip", region: "NZ", base: "https://treasuretrip.co.nz", platform: "woo" },
   { id: "otakuhouse", name: "Otaku House", region: "SG", base: "https://shop.otakuhouse.com", platform: "shopify", collections: ["all"] },
   { id: "toycoin", name: "ToyCoin", region: "SG", base: "https://toycoin.com.sg", platform: "shopify", collections: ["all"] },
+  // Round 2 (2026-11-04, probe/results.json): the big-store gap research. Each read 10+ of our lines by JAN in its
+  // region's currency; Good Smile's official partner shops among them (MegaCulture, Animeworks, Toy Or Game).
+  { id: "animeworks", name: "Animeworks", region: "AU", base: "https://animeworks.com.au", platform: "shopify", collections: ["all"] },
+  { id: "megaculture", name: "MegaCulture", region: "AU", base: "https://megaculture.com.au", platform: "shopify", collections: ["all"] },
+  { id: "onestopanime", name: "One Stop Anime", region: "AU", base: "https://onestopanime.com.au", platform: "shopify", collections: ["all"] },
+  { id: "navitoworld", name: "Navito World", region: "CA", base: "https://www.navitoworld.com", platform: "shopify", collections: ["all"] },
+  { id: "dokidokiland", name: "Doki Doki Land", region: "CA", base: "https://dokidokiland.ca", platform: "shopify", collections: ["all"] },
+  { id: "finanime", name: "Finanime", region: "EU", base: "https://finanime.fi", platform: "woo" },
+  { id: "manganim", name: "Manganim", region: "EU", base: "https://manganim.fr", platform: "shopify", collections: ["all"] },
+  { id: "animuchuu", name: "AniMuchuu", region: "EU", base: "https://animuchuu.nl", platform: "shopify", collections: ["all"] },
+  { id: "amuzzi", name: "Amuzzi", region: "EU", base: "https://www.amuzzi.com", platform: "shopify", collections: ["all"] },
+  { id: "candytoyo", name: "Candytoyo", region: "SG", base: "https://www.candytoyo.sg", platform: "shopify", collections: ["all"] },
+  { id: "toyorgame", name: "Toy Or Game", region: "SG", base: "https://toyorgame.com.sg", platform: "shopify", collections: ["all"] },
+  { id: "animecha", name: "Ani Mecha", region: "SG", base: "https://ani-mecha.com", platform: "shopify", collections: ["all"] },
+  { id: "chroniclesinc", name: "Chronicles INC", region: "SG", base: "https://chroniclesinc.sg", platform: "shopify", collections: ["all"] },
+  { id: "kinokuniya", name: "Books Kinokuniya USA", region: "US", base: "https://usa.kinokuniya.com", platform: "shopify", collections: ["all"] },
 ];
 
 export const STORE_BY_ID: Record<string, Store> = Object.fromEntries(STORES.map((s) => [s.id, s]));
