@@ -51,7 +51,7 @@ export function Footer({ updated }: { updated?: string | null }) {
             <li><Link prefetch={false} href="/terms" className="hover:text-pink-deep">Terms</Link></li>
             <li><Link prefetch={false} href="/contact" className="hover:text-pink-deep">Contact us</Link></li>
             <li><RateUsLink className="hover:text-pink-deep">Rate us</RateUsLink></li>
-            <li><Link prefetch={false} href="/stores#suggest" className="hover:text-pink-deep">Suggest a store</Link></li>
+            <li><Link prefetch={false} href="/list-your-store" className="hover:text-pink-deep">List your store</Link></li>
             <li><Link prefetch={false} href="/how-we-pick-stores" className="hover:text-pink-deep">How we pick stores</Link></li>
             <li><a href={`mailto:${SITE.email}`} className="hover:text-pink-deep">{SITE.email}</a></li>
             {/* No sister-site list (owner, 2026-11-03: a figure site listing card and tech sites reads as a link
