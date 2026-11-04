@@ -19,6 +19,7 @@ export function navGroups(counts: Record<LineKey, number>): NavGroup[] {
         { href: "/deals", label: "Deals", emoji: "💸" },
         { href: "/preorders", label: "Pre-orders", emoji: "📅" },
         { href: "/new", label: "New arrivals", emoji: "✨" },
+        { href: "/blog", label: "Blog", emoji: "📝" },
       ],
     },
     {
