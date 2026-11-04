@@ -534,3 +534,21 @@ coffee" is the creator's own Ko-fi, Patreon or tip page: the site never handles 
 the homepage hero (top-right from sm, a pill above the kicker on a phone); the sidebar's "More", the footer and the
 sitemap link the page. Prerendered like every page, with the usual eBay strip at the foot. Not called "partners"
 anywhere: that word means the affiliate links.
+
+## 2026-11-04: 14 stores from the big-store gap research (probe round 2)
+
+Owner: "ensure all big stores are captured with no gaps … I don't have domain knowledge outside of Australia". A
+research pass per region (Good Smile's partner-shop list, the r/AnimeFigures trusted-store list, Kotobukiya's and
+Bandai Spirits' stockist lists, the country guides) named 86 figure shops not on the list. The probe
+(`probe/results.json`) read them the way the import does; 14 read ten or more of our lines by JAN in their region's
+currency and were added: Australia Animeworks, MegaCulture, One Stop Anime; Canada Navito World (3,900 JAN-matched
+listings), Doki Doki Land; Europe Finanime (WooCommerce), Manganim, AniMuchuu, Amuzzi; Singapore Candytoyo, Toy Or
+Game, Ani Mecha, Chronicles INC; US Books Kinokuniya USA. Left out: Shopify shops whose feed carries no JAN
+(Nakama Toys, Otaku Pop US, Anime House NZ, Aniverse NZ, Unifig, Tistaminis, The Mad Shop, Global Gear, Good Smile
+Europe's feed, Animefigures UK and the other Woo shops with 0 matched).
+
+**The biggest names cannot be read**, and stay off until an adapter exists: BigBadToyStore, Entertainment Earth,
+Tokyo Otaku Mode, Crunchyroll Store (US/AU), Kinokuniya aside; UK Forbidden Planet (forbiddenplanet.com), Zavvi, HMV,
+Gamersheek; Figuya, Yorokonde, Archonia, Anime Island (EU); Anime Kaika, Mighty Ape, Popcultcha, Sugo Toys, Gamesmen
+(AU); Mighty Ape NZ: custom platforms, no Shopify or WooCommerce feed, several behind bot walls. PrestaShop shops
+(Mangatori, Myth Factory, Nekonokoe) have no feed either.
