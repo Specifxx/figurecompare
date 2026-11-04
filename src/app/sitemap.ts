@@ -4,6 +4,7 @@ import { getFigures, getMeta } from "@/lib/data";
 import { isIndexable } from "@/lib/index-tiers";
 import { pageCount } from "@/components/LineHub";
 import { liveSeries } from "@/lib/series";
+import { POSTS } from "@/content/blog";
 
 // Only pages worth landing on (src/lib/index-tiers.ts): hubs, and figures
 // someone can order with 2+ stores compared. Sold-out figures stay reachable
@@ -22,6 +23,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...["/boxing-day", "/january-sales", "/lunar-new-year", "/valentines-day"].map((p) => u(p, 0.7)),
     u("/preorders", 0.8),
     u("/new", 0.7),
+    u("/blog", 0.7),
+    ...POSTS.map((p) => u(`/blog/${p.slug}`, 0.7)),
     u("/stores", 0.6),
     u("/widgets", 0.4),
     u("/price-report", 0.6),
