@@ -29,6 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     u("/creators", 0.4),
     u("/contact", 0.2),
     u("/how-we-pick-stores", 0.3),
+    u("/list-your-store", 0.3),
     ...getFigures().filter(isIndexable).map((f) => u(`/figure/${f.slug}`, 0.7)),
   ];
 }
