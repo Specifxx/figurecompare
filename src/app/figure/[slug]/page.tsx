@@ -79,6 +79,8 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
           highPrice: decimal(Math.max(...ps), r),
           offerCount: orderable.length,
           availability: orderable.some((o) => o.st === "in") ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
+          // Prices refresh on the daily import: good until tomorrow (schema.org priceValidUntil).
+          priceValidUntil: new Date(Date.now() + 86400e3).toISOString().slice(0, 10),
         };
       })
       .filter(Boolean),
