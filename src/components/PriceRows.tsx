@@ -3,6 +3,7 @@
 // labelled, never counted as a store and never the "best price".
 import type { Offer } from "@/lib/types";
 import { OutLink } from "./OutLink";
+import { AMAZON_PRICE_DISCLAIMER, AmazonPrice } from "./AmazonPrice";
 
 const STOCK: Record<Offer["st"], { label: string; cls: string }> = {
   in: { label: "In stock", cls: "bg-mint-pale text-mint" },
@@ -18,6 +19,8 @@ export interface RowData {
   href: string;
   paid: boolean;
   highlight?: boolean;
+  /** Amazon's own price from the Creators API (lib/amazon-live.ts): shown with its time, hidden after 24 hours. */
+  live?: { at: string; timeZone: string; zoneLabel: string };
   event: { source: string; region: string; placement: string; jan?: string };
 }
 
@@ -34,6 +37,7 @@ export function PriceRows({ pinned, stores }: RowsData) {
           {pinned.map((r) => (
             <Row key={r.event.source} {...r} />
           ))}
+          {pinned.some((r) => r.live) && <p className="px-1 text-[11px] text-soft">* Amazon price: {AMAZON_PRICE_DISCLAIMER}</p>}
         </div>
       )}
       <ol className="space-y-2">
@@ -47,7 +51,7 @@ export function PriceRows({ pinned, stores }: RowsData) {
   );
 }
 
-function Row({ name, sub, price, status, href, paid, highlight = false, event }: RowData) {
+function Row({ name, sub, price, status, href, paid, highlight = false, live, event }: RowData) {
   const s = status ? STOCK[status] : null;
   return (
     <div
@@ -63,7 +67,8 @@ function Row({ name, sub, price, status, href, paid, highlight = false, event }:
           {paid && <span>Paid link</span>}
         </p>
       </div>
-      {price && <span className={`font-display text-lg font-bold ${highlight ? "text-pink-deep" : ""}`}>{price}</span>}
+      {price && live && <AmazonPrice price={price} at={live.at} timeZone={live.timeZone} zoneLabel={live.zoneLabel} />}
+      {price && !live && <span className={`font-display text-lg font-bold ${highlight ? "text-pink-deep" : ""}`}>{price}</span>}
       <OutLink
         href={href}
         paid={paid}
