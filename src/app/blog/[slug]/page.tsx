@@ -28,39 +28,10 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
 
 const fmt = (n: number) => n.toLocaleString("en-US");
 
-export default function PostPage({ params }: { params: { slug: string } }) {
-  const p = POST_BY_SLUG[params.slug];
-  if (!p) notFound();
-  const figures = getFigures();
-  const meta = getMeta();
-  const s = marketStats(figures);
-  const us = s.regions.find((x) => x.r.code === "US");
-  const line = (k: LineKey) => LINES.find((l) => l.key === k)!;
-  const m = (cents: number | null, code: RegionCode) => (cents == null ? "—" : money(cents, code));
+/** The November 2026 market post, written around marketStats. */
+function MarketBody({ s, meta, us, line, m }: { s: ReturnType<typeof marketStats>; meta: ReturnType<typeof getMeta>; us: ReturnType<typeof marketStats>["regions"][number] | undefined; line: (k: LineKey) => (typeof LINES)[number]; m: (cents: number | null, code: RegionCode) => string }) {
   return (
-    <article className="mx-auto max-w-4xl px-4">
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Article",
-          headline: p.title,
-          description: p.description,
-          datePublished: p.date,
-          image: `${SITE.url}${p.image.src}`,
-          author: { "@type": "Organization", name: SITE.name, url: SITE.url },
-          publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
-          mainEntityOfPage: `${SITE.url}/blog/${p.slug}`,
-        }}
-      />
-      <Crumbs items={[{ name: "Blog", path: "/blog" }, { name: p.title, path: `/blog/${p.slug}` }]} />
-      <PageHead title={p.title} sub={<p>{p.description}</p>} />
-      <p className="mb-4 text-sm text-soft">
-        Published {niceDate(p.date)}
-        {meta ? <> · prices as of {niceDate(meta.updatedAt)}</> : null}
-      </p>
-      {/* The post's own thumbnail, a static file in public/blog: no optimiser, no function. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={p.image.src} alt={p.image.alt} width={1200} height={630} className="mb-6 aspect-[1200/630] w-full rounded-2xl border border-line object-cover" />
+    <>
       <Prose>
         <p>
           FigureCompare matches store listings to figures by the barcode on the box, so for the first time we can say something about the hobby that is not an impression: how
@@ -167,6 +138,142 @@ export default function PostPage({ params }: { params: { slug: string } }) {
           store&rsquo;s own page is always the final word.
         </p>
       </Prose>
+    </>
+  );
+}
+
+/** How to spot a bootleg: the checks, then the day's median Nendoroid price per region as the price test. */
+function BootlegBody({ s, meta, m }: { s: ReturnType<typeof marketStats>; meta: ReturnType<typeof getMeta>; m: (cents: number | null, code: RegionCode) => string }) {
+  const nendo = s.regions.filter((x) => x.median.nendoroid != null);
+  return (
+    <>
+      <Prose>
+        <p>
+          Bootleg Nendoroids are the hobby&rsquo;s oldest problem, and they have got better. The crude ones with melted faces are still sold, but the copies that cost
+          people money now come in a box that photographs like the real thing and sell for a price that is just low enough to tempt. This guide is the checks that
+          catch them, in the order that costs you least effort, followed by the one test that needs no figure in hand: what a real Nendoroid costs at a real store in
+          your country this morning. The numbers are computed from the day&rsquo;s prices when the page is built, so they move with the market.
+        </p>
+
+        <h2>1. The price</h2>
+        <p>
+          Start here, because it rules out most listings before you read them. A new Nendoroid from Good Smile Company has a Japanese list price of around &yen;5,000 to
+          &yen;7,500, and a store in your country sells it for that plus import and margin. The table below is the median price of an orderable Nendoroid (in stock or
+          on pre-order, cheapest store) at the stores we compare in each region today. A listing at a quarter of that figure is not a bargain: it is a bootleg, and
+          the same goes for a sold-out figure from years ago offered &ldquo;new in box&rdquo; at under its original price.
+        </p>
+      </Prose>
+      <div className="sticker mt-4 overflow-x-auto p-2">
+        <table className="w-full text-sm">
+          <caption className="sr-only">Median orderable Nendoroid price by region today</caption>
+          <thead>
+            <tr className="border-b border-line text-left text-soft">
+              <th className="px-3 py-2">Region</th>
+              <th className="px-3 py-2 text-right">Median Nendoroid price</th>
+              <th className="px-3 py-2 text-right">Figures listed</th>
+              <th className="px-3 py-2 text-right">Stores</th>
+            </tr>
+          </thead>
+          <tbody>
+            {nendo.map((x) => (
+              <tr key={x.r.code} className="border-b border-line last:border-0">
+                <td className="px-3 py-2 font-semibold">{x.r.name}</td>
+                <td className="px-3 py-2 text-right tabular-nums">{m(x.median.nendoroid, x.r.code)}</td>
+                <td className="px-3 py-2 text-right tabular-nums">{fmt(x.listed)}</td>
+                <td className="px-3 py-2 text-right tabular-nums">{x.stores}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <Prose>
+        <p>
+          Every figure page on this site shows each store&rsquo;s price for that exact barcode, so you can see in a moment what the real range is. Real stores do go
+          under the list price on old stock, but by a fifth, not by three quarters.
+        </p>
+
+        <h2>2. The seller</h2>
+        <p>
+          We compare real figure stores only, never marketplaces, for exactly this reason: the bootleg trade lives on marketplaces. On AliExpress, Temu, Wish and
+          the China-based sellers on eBay and Amazon, a &ldquo;Nendoroid&rdquo; at a tenth of the price is a copy, whatever the listing says, and a listing that
+          names a popular character but not a Nendoroid number is a copy with a different name. A seller who has every sold-out Nendoroid of the last decade in
+          stock at once does not exist in the real trade. The stores we list are on <Link prefetch={false} href="/stores">the stores page</Link>; each sells sealed
+          product from the Japanese distributor or a licensed regional one.
+        </p>
+
+        <h2>3. The box</h2>
+        <p>
+          Good Smile Company puts a holographic authenticity sticker on its boxes, and the bootleggers copy it, so the sticker alone proves nothing: look at the
+          printing around it. A real box has crisp text, correct Japanese, the Nendoroid number on the front and the barcode (a JAN starting 45 or 49) on the back or
+          side that matches the figure. Bootleg boxes are softer and often slightly the wrong size, the colours are off, the window film is cloudy, and the
+          small print has spelling mistakes or a blurred copyright line. A box that lists the figure&rsquo;s number but shows a different pose on the photo is a
+          copy of a different release.
+        </p>
+
+        <h2>4. The figure</h2>
+        <p>
+          Out of the box, a bootleg gives itself away in the paint and the joints. Real Nendoroid paint is even, with sharp edges where colours meet and no bleed
+          into the face; bootlegs have smudged edges, pupils that are not symmetrical, and skin tones that are too pink or too grey. The plastic is softer and often
+          slightly translucent in the hair, seams are rough, the joints are loose or so stiff they crack, and the spare face plates do not sit flush. Accessories are
+          missing or moulded in one colour. Hold the figure to the light and compare it with photos of the real release on the figure&rsquo;s page here.
+        </p>
+
+        <h2>5. The number</h2>
+        <p>
+          Every Nendoroid has a number, printed on the box, and the number identifies the release: the same character can have several Nendoroids, and a
+          re-release keeps the number of the original. Search the name on this site and open the figure whose number matches. If the seller&rsquo;s box shows a
+          number that belongs to a different character, or no number at all, it is not a Good Smile Company release. The <Link prefetch={false} href="/nendoroid">Nendoroid hub</Link>
+          lists every number stores are selling now.
+        </p>
+
+        <h2>What to do if you have one</h2>
+        <p>
+          Marketplaces refund counterfeit goods: open a case with photos beside the real release&rsquo;s product images and quote the price and box checks above. Do not
+          resell it, even described as a copy. And if the figure you wanted is sold out everywhere, wait: Good Smile re-releases popular Nendoroids regularly, and the
+          <Link prefetch={false} href="/preorders"> pre-orders page</Link> lists every re-release the stores we compare are taking orders for.
+        </p>
+        <p>
+          Data as of {meta ? niceDate(meta.updatedAt) : "today"}: {fmt(s.total)} figures across {s.stores} stores, matched by barcode, in each store&rsquo;s own currency and before delivery.
+        </p>
+      </Prose>
+    </>
+  );
+}
+
+export default function PostPage({ params }: { params: { slug: string } }) {
+  const p = POST_BY_SLUG[params.slug];
+  if (!p) notFound();
+  const figures = getFigures();
+  const meta = getMeta();
+  const s = marketStats(figures);
+  const us = s.regions.find((x) => x.r.code === "US");
+  const line = (k: LineKey) => LINES.find((l) => l.key === k)!;
+  const m = (cents: number | null, code: RegionCode) => (cents == null ? "—" : money(cents, code));
+  return (
+    <article className="mx-auto max-w-4xl px-4">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: p.title,
+          description: p.description,
+          datePublished: p.date,
+          image: `${SITE.url}${p.image.src}`,
+          author: { "@type": "Organization", name: SITE.name, url: SITE.url },
+          publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+          mainEntityOfPage: `${SITE.url}/blog/${p.slug}`,
+        }}
+      />
+      <Crumbs items={[{ name: "Blog", path: "/blog" }, { name: p.title, path: `/blog/${p.slug}` }]} />
+      <PageHead title={p.title} sub={<p>{p.description}</p>} />
+      <p className="mb-4 text-sm text-soft">
+        Published {niceDate(p.date)}
+        {meta ? <> · prices as of {niceDate(meta.updatedAt)}</> : null}
+      </p>
+      {/* The post's own thumbnail, a static file in public/blog: no optimiser, no function. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={p.image.src} alt={p.image.alt} width={1200} height={630} className="mb-6 aspect-[1200/630] w-full rounded-2xl border border-line object-cover" />
+      {p.slug === "how-to-spot-bootleg-nendoroids" ? <BootlegBody s={s} meta={meta} m={m} /> : <MarketBody s={s} meta={meta} us={us} line={line} m={m} />}
       <EbayStrip className="mt-10" placement="blog_post" queries={SITE_QUERIES} />
       <p className="mt-6 text-sm text-soft">
         <Link prefetch={false} href="/blog" className="font-semibold text-pink-deep hover:underline">More posts</Link> · Data as of {meta ? niceDate(meta.updatedAt) : "today"} from {s.stores} stores.

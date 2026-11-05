@@ -13,6 +13,14 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "how-to-spot-bootleg-nendoroids",
+    title: "How to spot a bootleg Nendoroid: the price test, the box, the paint and the number",
+    description:
+      "Five checks that catch a fake Nendoroid before it costs you money, starting with the one that needs no figure in hand: what a real Nendoroid costs at real stores in your country today, computed from the day's prices.",
+    date: "2026-11-05",
+    image: { src: "/blog/how-to-spot-bootleg-nendoroids.jpg", alt: "How to spot a bootleg Nendoroid: the five checks" },
+  },
+  {
     slug: "anime-figure-market-november-2026",
     title: "The anime figure market in November 2026: Nendoroid past #3300, POP UP PARADE's rise, and what a figure costs where",
     description:
