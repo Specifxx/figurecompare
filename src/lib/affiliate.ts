@@ -108,6 +108,14 @@ export function ebaySearchUrl(query: string, region: RegionCode, sub: string): s
   return ebayAffiliateUrl(u, sub);
 }
 
+/** Amazon's own page of an item the Creators API matched by JAN (lib/amazon-live.ts), tagged the same way. */
+export function amazonItemUrl(asin: string, region: RegionCode, sub: string): string | null {
+  const tag = amazonTag(region);
+  const h = REGION_BY_CODE[region].amazonHost;
+  if (!tag || !h || !/^[A-Z0-9]{10}$/.test(asin)) return null;
+  return `https://${h}/dp/${asin}?tag=${encodeURIComponent(tag)}&ascsubtag=${encodeURIComponent(sub)}`;
+}
+
 export function amazonSearchUrl(query: string, region: RegionCode, sub: string): string | null {
   const tag = amazonTag(region);
   const h = REGION_BY_CODE[region].amazonHost;

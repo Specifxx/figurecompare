@@ -7,3 +7,4 @@ out
 *.tsbuildinfo
 .vercel
 data/.cache
+data/amazon-live/

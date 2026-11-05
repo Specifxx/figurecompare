@@ -564,3 +564,27 @@ The request is filed as a `suggest-store` report with `issue: "owner"`; RiftComp
 those first and asks for a reply within two days. No email is asked for (the reports branch is public); no pop-up,
 no cold email. RiftCompare and OP Compare keep their `/stores/suggest` page (now the owner pitch) and redirect
 `/list-your-store` to it.
+
+## 2026-11-05: Amazon's own price on the Amazon row, from the Creators API, by barcode
+
+The owner's US Associates account was approved today and he asked for Amazon's API prices as price rows on every
+site ("especially Compare Empire"; until now only CamCompare and Compare Empire had the machinery, and both wait
+on Amazon granting access). Ported from KaeYoung the same day. Here it is the simplest shape the barcode allows: `scripts/fetch-amazon-prices.ts`
+runs first in every Vercel build and asks the Creators API `getItems` for each product BY JAN (ten a call, one
+call a second, `AMAZON_BUILD_CALLS` calls a region, 30 by default: the 300 products with the most stores), in
+every region we have a tag for (US, UK, CA, AU, EU). No title matching and no ASIN finder: the barcode is the
+match, as it is for the stores. The result goes to the git-ignored `data/amazon-live/<REGION>.json`; nothing is
+committed (Amazon's licence lets a price be kept 24 hours and shown with its time). The product page's Amazon
+row (`PriceTable.tsx`, through `lib/amazon-live.ts`) then shows Amazon's new, in-stock, buy-box price with "as of
+<time> <region clock>" and the licence's disclaimer, links to the item's own `/dp/` page instead of a search, and
+the browser hides the price after 24 hours (`AmazonPrice.tsx`) since the static page may be served that long.
+A price under 60% or over 160% of the region's store median is dropped (a re-release, a bootleg, a fantasy
+seller). Never a sort, the cheapest badge, deals, history, the alert feed, metadata or the quick view
+(`tests/amazon-api.test.ts` pins the reader to the price table and the client to the build).
+
+One credential serves every store: `AMAZON_CREATORS_AU_CLIENT_ID` / `_CLIENT_SECRET` / `_VERSION` as Vercel
+Production variables (the same values as Compare Empire's and KaeYoung's; `AMAZON_CREATORS_<REGION>_*` would override for
+one store). Access is per marketplace and opens by itself once that store's account has qualifying sales
+(about 10 in 30 days); a refused store is skipped and the row keeps its search link, so the feature costs
+nothing until then and switches on without a code change. The ops monitor cannot see a Vercel build, so a
+failed fetch is silent by design: the fallback is the row as it was.
