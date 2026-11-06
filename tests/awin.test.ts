@@ -31,6 +31,7 @@ test("the committed Awin list is an empty, public-only default and the build fet
 
 test("store links and Paid link labels follow the joined Awin list", () => {
   const src = readFileSync("src/lib/affiliate.ts", "utf8");
-  assert.match(src, /return awinUrl\(u\.toString\(\), clickref\(SITE\.key, storeId\)\) \?\? u\.toString\(\);/);
+  // Awin first; only a store it does not cover can go straight to checkout (lib/checkout-link.ts).
+  assert.match(src, /const awin = awinUrl\(u\.toString\(\), clickref\(SITE\.key, storeId\)\);\n\s*if \(awin\) return awin;/);
   assert.match(src, /awinProgrammeFor\(store\.base\)/);
 });

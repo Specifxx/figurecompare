@@ -5,6 +5,7 @@
 // Store links get utm_source so a store sees what we send it (the start of a
 // partner-code conversation).
 import { REGION_BY_CODE, SITE, type RegionCode } from "@/site";
+import { shopifyCartUrl } from "./checkout-link";
 import { awinProgrammeFor, awinUrl, clickref } from "./awin";
 import { STORE_BY_ID } from "@/content/stores";
 
@@ -88,7 +89,19 @@ export function storeUrl(storeId: string, url: string): string {
       u.searchParams.set("utm_medium", "referral");
     }
     // A store that accepted us on Awin (src/lib/awin.ts): the same page through its tracked deep link.
-    if (!(store?.affiliate && aff)) return awinUrl(u.toString(), clickref(SITE.key, storeId)) ?? u.toString();
+    if (!(store?.affiliate && aff)) {
+      const awin = awinUrl(u.toString(), clickref(SITE.key, storeId));
+      if (awin) return awin;
+      // Straight to checkout (lib/checkout-link.ts, owner 2026-11-06): an orderable Shopify listing
+      // opens the store's cart with its variant in it. Never for a store that pays (its tracking
+      // runs on its own pages, which checkout skips).
+      const cart = store?.platform === "shopify" ? shopifyCartUrl(u.toString()) : null;
+      if (cart) {
+        const c = new URL(cart);
+        c.searchParams.set("utm_content", "checkout");
+        return c.toString();
+      }
+    }
     return u.toString();
   } catch {
     return url;
