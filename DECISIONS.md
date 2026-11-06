@@ -657,3 +657,13 @@ empty. Now:
 - Still out: AmiAmi (a script-drawn shop behind an anti-bot layer; its private API is not ours to call), Good Smile's
   global shop (offline since 23 October 2026 after a security breach; recheck when it reopens). Yen-priced Shopify
   shops in Japan were sent through the store probe the same day (`probe/candidates.txt`, round 3).
+
+## 2026-11-06 — Awin: a store that accepts us pays from the next build, with no step by hand
+
+**Decision (owner: "check if we are making the most of Awin, and if it's not there, just do it"):** the family's Awin
+account (Compare Empire, publisher 3144410) is read each morning by Compare Empire's `scripts/awin-sync.ts`, which
+publishes the programmes that accepted us, with their tracked domains, in its public `data/awin/programmes.json`. This
+site copies that file first in every build (`scripts/fetch-awin.ts` → `src/lib/awin-programmes.json`; the committed copy is
+an empty list, so a failed fetch only leaves links untracked). `storeUrl` turns a link to a joined advertiser's own domain
+into its Awin deep link to the same page (`clickref=<site>-<store>`), and `storePays` marks the row "Paid link". A store's
+own affiliate variable, when set, still wins. Order and prices never change; eBay and Amazon are never wrapped.

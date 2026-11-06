@@ -5,7 +5,7 @@
   "description": "FigureCompare — compare Nendoroid, figma and POP UP PARADE prices across real anime figure stores.",
   "scripts": {
     "dev": "next dev",
-    "build": "(tsx scripts/fetch-amazon-prices.ts || true) && next build",
+    "build": "(tsx scripts/fetch-amazon-prices.ts || true) && (tsx scripts/fetch-awin.ts || true) && next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "lint": "next lint",
