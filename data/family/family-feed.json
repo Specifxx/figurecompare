@@ -1,7 +1,7 @@
 {
  "v": 1,
  "site": "figure",
- "generatedAt": "2026-11-06T11:35:42.064Z",
+ "generatedAt": "2026-11-06T13:59:59.782Z",
  "links": {
   "US": {
    "deals": "https://figurecompare.com/deals",
@@ -475,7 +475,7 @@
    "cents": 8795,
    "currency": "AUD",
    "store": "Gameology",
-   "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/berserk_nendoroid_guts_re_run__c68e1.jpg?v=1782448195&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232586161.png?v=1785919168&width=600"
   },
   {
    "kind": "preorder",
@@ -486,7 +486,7 @@
    "cents": 8795,
    "currency": "AUD",
    "store": "Gameology",
-   "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/final_fantasy_xiv_nendoroid_y_shtola_5edc8.jpg?v=1781766714&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232585195.png?v=1785919181&width=600"
   },
   {
    "kind": "preorder",
@@ -750,7 +750,7 @@
    "cents": 3000,
    "currency": "SGD",
    "store": "ToyCoin",
-   "image": "https://cdn.shopify.com/s/files/1/0712/7279/2357/products/Studio-Project_19_057e6571-7640-4879-a348-8f434d8c2f39.png?v=1680293598&width=600",
+   "image": "https://cdn.shopify.com/s/files/1/0440/6493/1998/files/NendoroidNarutoShippudenHinataHyuga_1_1024x1024_1.jpg?v=1695618897&width=600",
    "refCents": 6100,
    "refLabel": "dearest store",
    "savingPct": 51
