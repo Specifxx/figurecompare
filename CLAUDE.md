@@ -37,11 +37,15 @@ Production builds only a commit whose SUBJECT carries `[deploy]` (`scripts/verce
 the next release; use *Production deploy* (or `[deploy]`) only when the owner says it is urgent, and say so.
 Previews build only with `[preview]`, when the owner asks. `claude/*` branches never deploy (`vercel.json`).
 
-## Matching: the barcode or nothing
+## Matching: the barcode or nothing (BigBadToyStore excepted)
 
 - A listing is matched ONLY by its JAN (Japanese EAN-13, prefix 45/49, valid check digit; `src/lib/jan.ts`), read
   from the variant barcode, the SKU or a labelled "JAN:" in the description. No JAN, no listing. Never match on a
-  title (re-releases, exclusives, "Ver. 2.0" and bootlegs look alike).
+  title (re-releases, exclusives, "Ver. 2.0" and bootlegs look alike). **The one exception (owner, 2026-11-06):**
+  BigBadToyStore (`platform: "bbts"`, `src/lib/import/bbts.ts`) prints no barcode, so it is matched by Nendoroid /
+  figma catalogue number AND a shared name word, only when that number belongs to exactly one JAN in the day's
+  catalogue; POP UP PARADE never; read last, from its product sitemaps (never its search pages), one page a second.
+  Never extend number matching to another store without the owner.
 - The title decides only whether a listing belongs (`src/lib/title.ts`): our lines, new, one figure. Pre-owned,
   damaged, bootleg, bundles, lucky bags, parts, plush, Nendoroid More/Doll/Plus and figma Styles are refused. Every
   rule changed gets a real store title in `tests/title.test.ts`.

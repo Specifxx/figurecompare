@@ -186,7 +186,7 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
             </div>
           ))}
           <p className="mt-3 text-xs text-soft">
-            Prices are what each store showed at our last check and exclude shipping. Every listing here carries this figure&apos;s barcode (JAN {f.jan}), so it is the same product, not a look-alike.
+            Prices are what each store showed at our last check and exclude shipping. Every listing here carries this figure&apos;s barcode (JAN {f.jan}), so it is the same product, not a look-alike. The one exception is BigBadToyStore, which prints no barcode: its listing is matched by the Nendoroid or figma catalogue number and the character&apos;s name, and only when that number belongs to one figure.
           </p>
           <ReportPrice
             product={`${f.name} (JAN ${f.jan})`}
@@ -289,7 +289,7 @@ function Faq({ f, regions }: { f: ReturnType<typeof getFigure> & {}; regions: Re
   }
   qa.push([
     `How do you know every store sells the same ${f.name}?`,
-    `We match listings only by the barcode printed on the box (JAN ${f.jan}). A listing without a barcode is left out rather than guessed, so re-releases, exclusives and look-alikes never get mixed up.`,
+    `We match listings by the barcode printed on the box (JAN ${f.jan}). A listing without a barcode is left out rather than guessed, so re-releases, exclusives and look-alikes never get mixed up. The one exception is BigBadToyStore, whose pages carry no barcode: it is matched by the Nendoroid or figma catalogue number together with the character's name, and only when that number belongs to a single figure.`,
   ]);
   qa.push(["Are these prices with shipping?", "No: they are the store's own listed price. Shipping, tax and import charges depend on where you live, so check the store's checkout before you buy."]);
   const ld = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: qa.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) };

@@ -13,7 +13,8 @@ export interface Store {
   region: RegionCode;
   /** https://host, no trailing slash */
   base: string;
-  platform: "shopify" | "woo";
+  /** bbts: BigBadToyStore's own platform, matched by catalogue number (src/lib/import/bbts.ts). */
+  platform: "shopify" | "woo" | "bbts";
   /** Shopify: the figure collections the probe found. Each run first looks for
    *  Nendoroid / figma / POP UP PARADE / Good Smile collections in the store's
    *  /collections.json and reads those; these are the fallback. */
@@ -186,6 +187,9 @@ export const STORES: Store[] = [
   { id: "animecha", name: "Ani Mecha", region: "SG", base: "https://ani-mecha.com", platform: "shopify", collections: ["all"] },
   { id: "chroniclesinc", name: "Chronicles INC", region: "SG", base: "https://chroniclesinc.sg", platform: "shopify", collections: ["all"] },
   { id: "kinokuniya", name: "Books Kinokuniya USA", region: "US", base: "https://usa.kinokuniya.com", platform: "shopify", collections: ["all"] },
+  // The one store matched by Nendoroid / figma number, not barcode (owner, 2026-11-06; DECISIONS.md). Read last,
+  // against the day's catalogue, by src/lib/import/bbts.ts.
+  { id: "bigbadtoystore", name: "BigBadToyStore", region: "US", base: "https://www.bigbadtoystore.com", platform: "bbts" },
 ];
 
 export const STORE_BY_ID: Record<string, Store> = Object.fromEntries(STORES.map((s) => [s.id, s]));
