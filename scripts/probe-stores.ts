@@ -71,6 +71,8 @@ async function probe(host: string): Promise<Result> {
       } catch {}
       await sleep(700);
     }
+    // A shop priced in yen is read as a Japan store (owner, 2026-11-06: yen prices are shown converted).
+    if (r.currency === "JPY") regions.unshift("JP");
     r.regions = regions;
     r.perRegion = {};
     // Read once, in the region of the shop's own currency (products.json is

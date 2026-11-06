@@ -77,7 +77,11 @@ export function storeUrl(storeId: string, url: string): string {
     const u = new URL(url);
     const store = STORE_BY_ID[storeId];
     const aff = store?.affiliate && process.env[store.affiliate.envVar];
-    if (store?.affiliate && aff) u.searchParams.set(store.affiliate.param, aff);
+    // An empty param means the variable holds whole "key=value" pairs (HLJ_AFFILIATE_REF).
+    if (store?.affiliate && aff) {
+      if (store.affiliate.param) u.searchParams.set(store.affiliate.param, aff);
+      else for (const [k, v] of new URLSearchParams(aff)) u.searchParams.set(k, v);
+    }
     if (!u.searchParams.has("utm_source")) {
       u.searchParams.set("utm_source", SITE.domain);
       u.searchParams.set("utm_medium", "referral");

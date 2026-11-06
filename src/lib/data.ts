@@ -8,6 +8,7 @@ import { STORE_BY_ID } from "@/content/stores";
 import { ebayRowShown } from "./ebay";
 import { lowestOrderable } from "./history";
 import type { EbayData, Figure, History, Meta, Offer } from "./types";
+import type { Fx } from "./fx";
 
 // FIGURE_DATA_DIR points local development and tests at a fixture; production
 // always reads the committed files.
@@ -26,6 +27,7 @@ function load<T>(file: string, fallback: T): T {
 export const getFigures = (): Figure[] => load<{ figures: Figure[] }>("figures.json", { figures: [] }).figures.filter((f) => f.offers && Object.values(f.offers).some((o) => o?.length));
 export const getMeta = (): Meta | null => load<Meta | null>("meta.json", null);
 export const getHistory = (): History => load<History>("history.json", {});
+export const getFx = (): Fx | null => load<Fx | null>("fx.json", null);
 // Rows from before 2026-10-31 carry no postage (the search took any seller anywhere): not shown (lib/ebay.ts ebayRowShown).
 let ebayShown: EbayData | null = null;
 export const getEbay = (): EbayData => {

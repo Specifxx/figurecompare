@@ -22,7 +22,8 @@ interface Head {
 }
 interface Data {
   rows: Partial<Record<RegionCode, RowsData | null>>;
-  japan: RowsData | null;
+  /** the Japan table per region, converted into that region's currency */
+  japan: Partial<Record<RegionCode, { note: string; rows: RowsData }>> | null;
   name: string;
   line: LineKey;
   img: string | null;
@@ -153,19 +154,20 @@ export function QuickView() {
             <>
               {REGIONS.filter((r) => r.code !== "JP").map((r) => {
                 const rows = data.rows[r.code];
+                const japan = data.japan?.[r.code];
                 return (
                   <div key={r.code} className={`rp rp-${r.code}`}>
                     {rows ? <PriceRows {...rows} /> : <p className="rounded-xl border border-line p-4 text-sm text-soft">No store {r.phrase} lists this figure yet. The full page shows where it is sold.</p>}
+                    {japan && (
+                      <div className="mt-5">
+                        <h3 className="mb-1 text-sm font-bold">Or import from Japan</h3>
+                        <p className="mb-2 text-xs text-soft">{japan.note}</p>
+                        <PriceRows {...japan.rows} />
+                      </div>
+                    )}
                   </div>
                 );
               })}
-              {data.japan && (
-                <div className="mt-5">
-                  <h3 className="mb-1 text-sm font-bold">Or import from Japan</h3>
-                  <p className="mb-2 text-xs text-soft">Prices in yen, before international shipping and any import tax.</p>
-                  <PriceRows {...data.japan} />
-                </div>
-              )}
             </>
           ) : (
             <p className="rounded-xl border border-line p-4 text-sm text-soft">Prices did not load. The full page has every store&apos;s price.</p>

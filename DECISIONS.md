@@ -631,3 +631,29 @@ Checked and left out the same day: AmiAmi (yen, a script-drawn shop with a priva
 Smile's global shop (yen; the JP region is hidden because prices are never converted), Good Smile Europe (its
 storefront feed publishes one product and SKUs are internal codes), Entertainment Earth, Crunchyroll Store and Tokyo
 Otaku Mode (custom platforms, no feed, no number in a slug to match on).
+
+## 2026-11-06: Japan stores, shown in every region converted from yen
+
+The owner, on the same visitor's question: "even if it's priced in yen, you can convert it ... as long as you can
+ship to that country, it's fine ... we want to cover." Until now no price was ever converted and the JP region sat
+empty. Now:
+
+- Japan stores are region JP, priced in yen (their offers stay in yen in `figures.json`). Every other region's
+  figure page and quick view shows them under "Or import from Japan", each price as "≈ US$40.80" with "¥6,182 ·
+  ships from Japan" beside it, converted at the day's European Central Bank reference rate. The import writes the
+  rates to `data/public/fx.json` (Frankfurter, no key); a failed fetch keeps yesterday's, and rates older than seven
+  days are not used (the rows fall back to yen). The ops monitor shows the rates' age (amber only).
+- A converted price is never the region's "Cheapest" headline, a deal, an alert price, an eBay or Amazon reference,
+  metadata or JSON-LD: it excludes international shipping and import tax, and the rate moves. Where a region has no
+  store at all, the headline box says "From Japan: ≈ US$40.80 at HobbyLink Japan (¥6,182, plus international
+  shipping)" with a link, never "cheapest in the US".
+- One local store plus one Japan store now qualifies a figure page (`mergeListings`); a Japan store alone does not.
+- First Japan store: HobbyLink Japan (`platform: "hlj"`, `src/lib/import/hlj.ts`). No feed or sitemap, but every
+  product page has JSON-LD with the barcode (gtin13), the yen price and the stock, so it is matched by JAN like the
+  Shopify stores. The list comes from its search pages for the three lines (robots.txt allows them); only titles
+  `readTitle` accepts and HLJ marks in stock, pre-order or back-order are opened, one a second, `HLJ_PAGES` (2,500) a
+  run. Its affiliate reference (`HLJ_AFFILIATE_REF`, whole `key=value` pairs) is added to its rows; its pinned
+  "search by barcode" row stays only on figures HLJ has no offer for.
+- Still out: AmiAmi (a script-drawn shop behind an anti-bot layer; its private API is not ours to call), Good Smile's
+  global shop (offline since 23 October 2026 after a security breach; recheck when it reopens). Yen-priced Shopify
+  shops in Japan were sent through the store probe the same day (`probe/candidates.txt`, round 3).

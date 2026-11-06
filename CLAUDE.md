@@ -54,7 +54,11 @@ Previews build only with `[preview]`, when the owner asks. `claude/*` branches n
   majority, and is dropped on a tie (`src/lib/merge.ts`).
 - Real stores only, never marketplaces (fakes). Stores live in `src/content/stores.ts`; read two at a time; a 403,
   429 or captcha stops that store (never worked around).
-- Prices are never converted between currencies. A store charging another currency than its region's is skipped.
+- Prices are never converted between currencies, with ONE exception (owner, 2026-11-06): Japan stores (region JP,
+  yen) are shown under every region's "Or import from Japan" table converted at the day's ECB rate
+  (`data/public/fx.json`, `src/lib/fx.ts`), marked "≈" with the yen price beside it. A converted price is never a
+  region's best price, deal, alert price, eBay reference or JSON-LD. A store charging another currency than its
+  region's is still skipped. One local store plus one Japan store qualifies a figure page.
 - Slugs are kept forever (`data/state/slugs.json`): a figure's URL never changes.
 
 ## Money
