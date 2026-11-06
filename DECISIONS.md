@@ -738,3 +738,16 @@ Frieren …"): the tile's name now drops the leading line label (`withoutLine`, 
 screen readers). Pages that carried an eBay strip at the top AND the bottom (series, deals, pre-orders, new, line hubs)
 and the home page's second strip now keep one, the bottom strip with figures, so a shopper sees store prices first.
 The Christmas look stays: the owner approved it on 1 November (season.ts window).
+
+## 2026-11-06: The quick view carries the tagged Amazon link (owner)
+
+Since 2026-11-02 the quick view showed no Amazon link (or, on KaeYoung and ScentCompare, an "Amazon" row that opened our
+own product page), read as Amazon's ban on links in pop-ups. The owner noticed the quick view sends nobody to Amazon and
+chose (2026-11-06) to put the product page's own tagged Amazon link there. Amazon's Participation Requirements, item
+(o): "You will not post or serve any Special Links … within any pop-up or pop-under windows, transitional page ads, or
+layer ads, except for pop-up windows in conjunction with your Site promoting Products closely associated with the
+materials on your Site." A quick view the visitor opens for one product, showing that same product, fits the exception;
+the owner accepted the remaining risk. The quick view shows the link only (the item's own page where the ASIN is known,
+else the tagged search), never Amazon's price: that stays on the product page under the 24-hour licence. Uninvited
+overlays (a phone ad dock, a corner card, an exit pop-up) still never carry Amazon, and an Amazon page is never framed
+(item (n)).
