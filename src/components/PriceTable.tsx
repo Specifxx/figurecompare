@@ -55,18 +55,25 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
       name: "eBay",
       sub: ebay ? `${ebay.sh ? "incl. postage" : "free postage"}, ${vsBest(ebay.p, best?.p)}` : `New listings on ${ebayShopHost(region)?.replace("www.", "")}`,
       price: ebay ? money(ebay.p, region) : null,
-      status: null,
+      // Like a store row (owner, 2026-11-06): a Buy It Now listing is in stock, with thumbs and the cart list.
+      status: ebay ? "in" : null,
       href: ebayUrl,
       paid: true,
+      pin: "ebay",
+      vote: ebay?.u ?? ebayUrl,
+      ...(ebay && region !== "JP" ? { cart: { title: f.name, image: f.img, priceCents: ebay.p, currency: r.currency } } : {}),
       event: { source: "ebay", region, placement: `${placement}_pinned`, jan: f.jan },
     });
   if (amazonUrl)
     pinned.push({
       name: "Amazon",
-      sub: liveUrl ? `${r.amazonHost?.replace("www.", "")} · new, this exact JAN · Ad` : `${r.amazonHost?.replace("www.", "")} · check the seller · Ad`,
+      sub: liveUrl ? `${r.amazonHost?.replace("www.", "")} · new, this exact JAN · Ad` : `Also check on Amazon · ${r.amazonHost?.replace("www.", "")} · Ad`,
       price: liveUrl && live ? money(live.p, region) : null,
-      status: null,
+      status: liveUrl && live ? "in" : null,
       href: amazonUrl,
+      pin: "amazon",
+      vote: amazonUrl,
+      ...(liveUrl && live && region !== "JP" ? { cart: { title: f.name, image: f.img, priceCents: live.p, currency: r.currency } } : {}),
       live: liveUrl && live && clock ? { at: live.at, timeZone: clock.timeZone, zoneLabel: clock.label } : undefined,
       paid: true,
       event: { source: "amazon", region, placement: `${placement}_pinned`, jan: f.jan },

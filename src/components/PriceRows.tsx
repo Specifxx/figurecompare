@@ -28,7 +28,15 @@ export interface RowData {
   vote?: string;
   /** In-stock stores only: the cart list's line (components/cart, owner 2026-11-06). */
   cart?: { title: string; image: string | null; priceCents: number; currency: string };
+  /** eBay and Amazon (owner, 2026-11-06: they work exactly like a store row, on top, each with its own coloured outline). */
+  pin?: "ebay" | "amazon";
 }
+
+/** The pinned rows' outlines: eBay green, Amazon amber. Inset, so the row keeps its size. */
+export const PIN_OUTLINE = {
+  ebay: "outline outline-2 -outline-offset-2 outline-[#16a34a]",
+  amazon: "outline outline-2 -outline-offset-2 outline-[#f59e0b]",
+} as const;
 
 export interface RowsData {
   pinned: RowData[];
@@ -57,13 +65,13 @@ export function PriceRows({ pinned, stores }: RowsData) {
   );
 }
 
-function Row({ name, sub, price, status, href, paid, highlight = false, live, event, vote, cart }: RowData) {
+function Row({ name, sub, price, status, href, paid, highlight = false, live, event, vote, cart, pin }: RowData) {
   const s = status ? STOCK[status] : null;
   return (
     <div
       className={`flex items-center gap-3 rounded-xl border bg-card px-3 py-2.5 ${
         highlight ? "border-pink shadow-sticker" : "border-line"
-      } ${status === "out" ? "opacity-70" : ""}`}
+      } ${status === "out" ? "opacity-70" : ""} ${pin ? PIN_OUTLINE[pin] : ""}`}
     >
       <div className="min-w-0 flex-1">
         <p className="flex flex-wrap items-center gap-x-2 gap-y-0.5 font-bold">
