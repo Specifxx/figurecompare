@@ -11,6 +11,8 @@ import { recordHistory } from "@/lib/history";
 import { readShopify, shopifyCurrency, shopifyOwnCurrency, PRODUCT_LOOKUPS_PER_RUN, type BarcodeCache, type ReadResult } from "@/lib/import/shopify";
 import { readWoo } from "@/lib/import/woo";
 import { indexByNumber, readBbts, BBTS_PAGES_PER_RUN } from "@/lib/import/bbts";
+import { readHlj } from "@/lib/import/hlj";
+import { fetchFx, type Fx } from "@/lib/fx";
 import type { History, Listing, Meta, StoreRun } from "@/lib/types";
 
 const DATA = path.join(process.cwd(), "data");
@@ -31,6 +33,7 @@ const budget = { lookups: PRODUCT_LOOKUPS_PER_RUN };
 async function readStore(store: Store, cache: BarcodeCache): Promise<ReadResult> {
   if (store.platform === "woo") return readWoo(store);
   if (store.platform === "bbts") throw new Error("read after the barcode stores");
+  if (store.platform === "hlj") return readHlj(store);
   const want = REGION_BY_CODE[store.region].currency;
   const own = await shopifyOwnCurrency(store);
   if (own && own !== want) throw new Error(`prices in ${own}, region needs ${want}`);
@@ -114,6 +117,12 @@ async function main() {
   write("public/figures.json", { figures });
   write("public/history.json", history);
   write("public/meta.json", meta, true);
+  // The day's yen rates for the Japan table (lib/fx.ts). A failed fetch keeps yesterday's file.
+  try {
+    write("public/fx.json", await fetchFx(), true);
+  } catch (e) {
+    console.log(`! FX rates not refreshed: ${(e as Error).message} (keeping ${read<Fx | null>("public/fx.json", null)?.date ?? "none"})`);
+  }
   write("state/barcodes.json", cache);
   write("state/slugs.json", state.slugs, true);
   write("state/first-seen.json", state.first, true);

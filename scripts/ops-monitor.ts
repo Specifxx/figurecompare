@@ -75,6 +75,14 @@ async function main() {
       const age = (Date.now() - Date.parse((JSON.parse(fs.readFileSync(f, "utf8")) as { generatedAt: string }).generatedAt)) / 3_600_000;
       return age > 50 ? { status: "warn", detail: `written ${age.toFixed(0)}h ago: read the Family feed step of import.yml` } : { status: "ok", detail: `${age.toFixed(1)}h old` };
     }),
+    // Yen rates for the Japan table (lib/fx.ts): stale rates only drop the conversion, so amber at worst.
+    check("Yen exchange rates", () => {
+      const f = path.join(DATA, "fx.json");
+      if (!fs.existsSync(f)) return { status: "warn", detail: "data/public/fx.json not written yet: Japan prices show in yen only" };
+      const fx = JSON.parse(fs.readFileSync(f, "utf8")) as { at: string; date: string };
+      const age = (Date.now() - Date.parse(fx.at)) / 86_400_000;
+      return age > 3 ? { status: "warn", detail: `rates fetched ${age.toFixed(1)} days ago (ECB ${fx.date}); after 7 the Japan table falls back to yen` } : { status: "ok", detail: `ECB ${fx.date}` };
+    }),
     check("eBay listings", () => {
       if (!process.env.EBAY_CLIENT_ID) return { status: "warn", detail: "EBAY_CLIENT_ID not set in GitHub secrets: no eBay listings yet" };
       if (!meta.ebay) return { status: "warn", detail: "no eBay run recorded yet" };

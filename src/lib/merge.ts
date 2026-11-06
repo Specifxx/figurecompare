@@ -110,6 +110,10 @@ export function mergeListings(listings: Listing[], state: MergeState, today: str
       offers[region.code] = kept;
       if (kept.length >= SITE.minStoresPerRegion) qualifies = true;
     }
+    // A Japan store ships to every region and is shown there converted (lib/fx.ts, owner 2026-11-06), so one
+    // local store plus one Japan store is two stores to compare.
+    const jp = offers.JP?.length ?? 0;
+    if (!qualifies && jp && REGIONS.some((r) => r.code !== "JP" && (offers[r.code]?.length ?? 0) + jp >= SITE.minStoresPerRegion)) qualifies = true;
     if (!qualifies) continue;
 
     // Names from English-language listings outside Japan first.

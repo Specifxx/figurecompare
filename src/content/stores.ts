@@ -14,7 +14,7 @@ export interface Store {
   /** https://host, no trailing slash */
   base: string;
   /** bbts: BigBadToyStore's own platform, matched by catalogue number (src/lib/import/bbts.ts). */
-  platform: "shopify" | "woo" | "bbts";
+  platform: "shopify" | "woo" | "bbts" | "hlj";
   /** Shopify: the figure collections the probe found. Each run first looks for
    *  Nendoroid / figma / POP UP PARADE / Good Smile collections in the store's
    *  /collections.json and reads those; these are the fallback. */
@@ -190,6 +190,9 @@ export const STORES: Store[] = [
   // The one store matched by Nendoroid / figma number, not barcode (owner, 2026-11-06; DECISIONS.md). Read last,
   // against the day's catalogue, by src/lib/import/bbts.ts.
   { id: "bigbadtoystore", name: "BigBadToyStore", region: "US", base: "https://www.bigbadtoystore.com", platform: "bbts" },
+  // Japan stores (region JP, priced in yen): shown on every region's page under "Or import from Japan", converted at
+  // the day's ECB rate (owner, 2026-11-06; lib/fx.ts). HobbyLink Japan: JAN and price in each product page's JSON-LD.
+  { id: "hlj", name: "HobbyLink Japan", region: "JP", base: "https://www.hlj.com", platform: "hlj", affiliate: { param: "", envVar: "HLJ_AFFILIATE_REF" } },
 ];
 
 export const STORE_BY_ID: Record<string, Store> = Object.fromEntries(STORES.map((s) => [s.id, s]));

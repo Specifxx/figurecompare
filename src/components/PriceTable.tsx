@@ -4,7 +4,8 @@
 // never the "best price" (family rule: paid rows pinned).
 import { REGION_BY_CODE, type RegionCode } from "@/site";
 import { amazonItemUrl, amazonSearchUrl, ebayAffiliateUrl, ebaySearchUrl, ebayShopHost, hljUrl, storePays, storeUrl, subId } from "@/lib/affiliate";
-import { storeName } from "@/lib/data";
+import { getFx, storeName } from "@/lib/data";
+import { convertYen } from "@/lib/fx";
 import { AMAZON_CLOCK, amazonLive } from "@/lib/amazon-live";
 import { money } from "@/lib/format";
 import type { EbayPick, Figure } from "@/lib/types";
@@ -25,7 +26,7 @@ function vsBest(p: number, bestP: number | undefined): string {
 /** One region's rows: eBay first, Amazon second (then HobbyLink Japan on the
  *  Japan table), then the stores in price order. Plain data, so the quick view
  *  (/q/<slug>) draws the same rows as the figure page. */
-export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placement = "table"): RowsData {
+export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placement = "table", view?: RegionCode): RowsData {
   const offers = f.offers[region] ?? [];
   const r = REGION_BY_CODE[region];
   const best = offers.find((o) => o.st !== "out");
@@ -39,7 +40,15 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
   const amazonUrl = placement.startsWith("quickview") ? null : (liveUrl ?? amazonSearchUrl(q, region, sub));
   const clock = AMAZON_CLOCK[region];
   // HobbyLink Japan ships worldwide from Japan: shown with the Japan table.
-  const hlj = region === "JP" ? hljUrl(f.jan) : null;
+  // When HobbyLink Japan is one of the stores, its own row replaces the search.
+  const hlj = region === "JP" && !offers.some((o) => o.s === "hlj") ? hljUrl(f.jan) : null;
+  // The Japan table under another region: yen converted at the day's rate, the yen price beside it (lib/fx.ts).
+  const convert = region === "JP" && view && view !== "JP" ? view : null;
+  const fx = convert ? getFx() : null;
+  const shown = (p: number) => {
+    const c = convert ? convertYen(p, convert, fx) : null;
+    return c == null ? money(p, region) : `≈ ${money(c, convert!)}`;
+  };
   const pinned: RowData[] = [];
   if (ebayUrl)
     pinned.push({
@@ -74,8 +83,10 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
     });
   const stores: RowData[] = offers.map((o) => ({
     name: storeName(o.s),
-    sub: o === best ? "Cheapest store" : null,
-    price: money(o.p, region),
+    sub: convert
+      ? [o === best ? "Cheapest in Japan" : null, convertYen(o.p, convert, fx) != null ? `${money(o.p, region)} · ships from Japan` : "ships from Japan"].filter(Boolean).join(" · ")
+      : o === best ? "Cheapest store" : null,
+    price: shown(o.p),
     status: o.st,
     href: storeUrl(o.s, o.u),
     paid: storePays(o.s),
@@ -85,6 +96,6 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
   return { pinned, stores };
 }
 
-export function PriceTable({ f, region, ebay, placement = "table" }: { f: Figure; region: RegionCode; ebay?: EbayPick; placement?: string }) {
-  return <PriceRows {...priceRows(f, region, ebay, placement)} />;
+export function PriceTable({ f, region, ebay, placement = "table", view }: { f: Figure; region: RegionCode; ebay?: EbayPick; placement?: string; view?: RegionCode }) {
+  return <PriceRows {...priceRows(f, region, ebay, placement, view)} />;
 }

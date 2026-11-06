@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LINE_BY_KEY, REGIONS, SITE, type RegionCode } from "@/site";
-import { bestIn, figuresOfLine, getEbay, getFigure, getFigures, getHistory, regionsOf, spreadIn, storeCount, storeName } from "@/lib/data";
+import { bestIn, figuresOfLine, getEbay, getFigure, getFigures, getHistory, regionsOf, spreadIn, storeCount, storeName, getFx } from "@/lib/data";
 import { dayNumber, lowestOrderable } from "@/lib/history";
 import { decimal, money, niceDate, pct } from "@/lib/format";
 import { isIndexable } from "@/lib/index-tiers";
@@ -21,6 +21,8 @@ import { ALERT_SITE_KEY, alertPrices } from "@/lib/alert-feed";
 import { EbayButton, EbayStrip, lineQueries } from "@/components/EbayStrip";
 import { seriesOf } from "@/lib/series";
 import { JsonLd, breadcrumbLd } from "@/lib/seo";
+import { fxNote } from "@/lib/fx-note";
+import { convertYen } from "@/lib/fx";
 
 // Prerendered at build, one static file per figure; a slug the release does
 // not know is a 404, never a render on request.
@@ -156,6 +158,19 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
                     <p className="font-bold">
                       {f.offers[r.code]?.length ? `Sold out at every store ${r.phrase} right now.` : `No store ${r.phrase} lists this figure yet.`}
                     </p>
+                    {(() => {
+                      // A Japan store ships here: its price converted (lib/fx.ts), never called this region's best price.
+                      const jp = r.code !== "JP" ? bestIn(f, "JP") : null;
+                      const c = jp ? convertYen(jp.offer.p, r.code, getFx()) : null;
+                      return jp && c != null ? (
+                        <p className="mt-1">
+                          From Japan: <strong>≈ {money(c, r.code)}</strong> at {storeName(jp.offer.s)} ({money(jp.offer.p, "JP")}, plus international shipping).{" "}
+                          <OutLink href={storeUrl(jp.offer.s, jp.offer.u)} event={{ source: jp.offer.s, region: r.code, placement: "hero_japan", jan: f.jan }} className="font-bold underline">
+                            View at {storeName(jp.offer.s)}
+                          </OutLink>
+                        </p>
+                      ) : null;
+                    })()}
                     {regions.filter((x) => x !== r.code).length > 0 && (
                       <p className="mt-1 text-soft">
                         It is sold {regions.filter((x) => x !== r.code).map((x) => REGIONS.find((y) => y.code === x)!.phrase).join(", ")}: pick a region above, or check eBay.
@@ -179,8 +194,8 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
               {r.code !== "JP" && f.offers.JP?.length ? (
                 <div className="mt-6">
                   <h3 className="h-display mb-1 text-lg">🇯🇵 Or import from Japan</h3>
-                  <p className="mb-2 text-xs text-soft">Prices in yen, before international shipping and any import tax.</p>
-                  <PriceTable f={f} region="JP" placement="japan" />
+                  <p className="mb-2 text-xs text-soft">{fxNote(r.code)}</p>
+                  <PriceTable f={f} region="JP" placement="japan" view={r.code} />
                 </div>
               ) : null}
             </div>
