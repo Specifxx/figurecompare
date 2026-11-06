@@ -50,7 +50,7 @@ export default function Stores() {
       </div>
       <section id="suggest" className="mt-10">
         <h2 className="h-display mb-1 text-2xl">Suggest a store</h2>
-        <p className="mb-2 text-sm text-soft">A real figure shop we don&apos;t check yet? We look at every suggestion and add the store if it lists barcodes we can read. Store owners welcome: listing is free.</p>
+        <p className="mb-2 text-sm text-soft">A real figure shop we don&apos;t check yet? We look at every suggestion and add the store if it lists barcodes we can read (BigBadToyStore, which prints none, is matched by Nendoroid and figma catalogue number instead). Store owners welcome: listing is free.</p>
         <SuggestStore regions={REGIONS.map((r) => [r.code, r.name])} what="figures" buttonClassName="btn-pop bg-pink text-white" />
       </section>
       <EbayStrip className="mt-10" placement="stores" queries={SITE_QUERIES} figures={popular(30)} title="Figures on eBay" />

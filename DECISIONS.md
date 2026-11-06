@@ -604,3 +604,30 @@ day, and the JP region is hidden because prices are never converted), AmiAmi (ye
 private API, never worked around), Good Smile Europe (its storefront feed publishes one product and SKUs are
 internal codes), BigBadToyStore and Entertainment Earth (custom platforms; BigBadToyStore's product pages carry
 a price in JSON-LD but no barcode, and the rule is the barcode or nothing: see the next entry if that changes).
+
+## 2026-11-06: BigBadToyStore, matched by catalogue number: the one exception to "the barcode or nothing"
+
+The same visitor asked about BigBadToyStore, the largest US figure shop, and the owner wants US listings ten times
+Australia's. BigBadToyStore runs its own platform: no product feed, grids drawn by script, its search pages disallowed
+by robots.txt, and no barcode on a product page. What it does have is schema.org JSON-LD on every product page (name,
+price in USD, stock, photo) and the Nendoroid or figma catalogue number in every slug and title. So this ONE store is
+matched by number, not barcode (`src/lib/import/bbts.ts`, `platform: "bbts"`), under rules that keep the barcode rule's
+promise:
+
+- Nendoroid and figma only; POP UP PARADE has no number and is never matched.
+- The number must belong to exactly one JAN in the day's catalogue (built from the barcode stores' listings after
+  they are read, `indexByNumber`). 409 of the catalogue's 3,690 numbered figures share their number with another JAN
+  (re-releases, DX versions, a store's mislabelling): those are dropped, not guessed.
+- The store's title must share a name word with the catalogue's name, so a mistyped number never attaches the wrong
+  character; the title still goes through `readTitle`, so dolls, Nendoroid More, parts, pre-owned and bundles are
+  refused as everywhere else. Several packaging grades of one product ("Mint", "Mint Pro") are one offer, the cheapest
+  orderable.
+- Read last, from the product sitemaps robots.txt names, one page a second, at most `BBTS_PAGES` (2,500) a run: about
+  2,000 pages on the 2026-11-06 sample (69% of its numbered Nendoroid and figma slugs are in the catalogue).
+- Every public line that said "only by barcode" (the figure page's note and FAQ, the stores page, List your store,
+  CLAUDE.md) now names the exception. Never extend number matching to another store without the owner.
+
+Checked and left out the same day: AmiAmi (yen, a script-drawn shop with a private API, never worked around), Good
+Smile's global shop (yen; the JP region is hidden because prices are never converted), Good Smile Europe (its
+storefront feed publishes one product and SKUs are internal codes), Entertainment Earth, Crunchyroll Store and Tokyo
+Otaku Mode (custom platforms, no feed, no number in a slug to match on).

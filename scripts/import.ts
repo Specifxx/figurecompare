@@ -10,6 +10,7 @@ import { dropMirrors, mergeListings, type MergeState } from "@/lib/merge";
 import { recordHistory } from "@/lib/history";
 import { readShopify, shopifyCurrency, shopifyOwnCurrency, PRODUCT_LOOKUPS_PER_RUN, type BarcodeCache, type ReadResult } from "@/lib/import/shopify";
 import { readWoo } from "@/lib/import/woo";
+import { indexByNumber, readBbts, BBTS_PAGES_PER_RUN } from "@/lib/import/bbts";
 import type { History, Listing, Meta, StoreRun } from "@/lib/types";
 
 const DATA = path.join(process.cwd(), "data");
@@ -29,6 +30,7 @@ const budget = { lookups: PRODUCT_LOOKUPS_PER_RUN };
 
 async function readStore(store: Store, cache: BarcodeCache): Promise<ReadResult> {
   if (store.platform === "woo") return readWoo(store);
+  if (store.platform === "bbts") throw new Error("read after the barcode stores");
   const want = REGION_BY_CODE[store.region].currency;
   const own = await shopifyOwnCurrency(store);
   if (own && own !== want) throw new Error(`prices in ${own}, region needs ${want}`);
@@ -39,7 +41,8 @@ async function readStore(store: Store, cache: BarcodeCache): Promise<ReadResult>
 
 async function main() {
   const only = process.env.STORES?.split(",").filter(Boolean);
-  const stores = only ? STORES.filter((s) => only.includes(s.id)) : STORES;
+  const stores = (only ? STORES.filter((s) => only.includes(s.id)) : STORES).filter((s) => s.platform !== "bbts");
+  const numbered = (only ? STORES.filter((s) => only.includes(s.id)) : STORES).filter((s) => s.platform === "bbts");
   const cache = read<BarcodeCache>("state/barcodes.json", {});
   const state: MergeState = { slugs: read("state/slugs.json", {}), first: read("state/first-seen.json", {}) };
   const prevMeta = read<Meta | null>("public/meta.json", null);
@@ -63,6 +66,20 @@ async function main() {
     }
   }
   await Promise.all([worker(), worker()]);
+
+  // The number-matched store(s) read last, against the barcode stores' catalogue of the day.
+  for (const s of numbered) {
+    const t0 = Date.now();
+    try {
+      const r = await readBbts(s, indexByNumber(listings), BBTS_PAGES_PER_RUN);
+      listings.push(...r.listings);
+      runs[s.id] = { ok: true, listings: r.seen, matched: r.listings.length, refused: r.refused, noJan: r.noJan, ms: Date.now() - t0 };
+      console.log(`✓ ${s.id}: ${r.seen} product pages, ${r.listings.length} matched by number and name, ${r.noJan} with no unique number`);
+    } catch (e) {
+      runs[s.id] = { ok: false, error: (e as Error).message.slice(0, 200), listings: 0, matched: 0, refused: {}, noJan: 0, ms: Date.now() - t0 };
+      console.log(`✗ ${s.id}: ${(e as Error).message}`);
+    }
+  }
 
   // A store that failed today keeps yesterday's offers (marked as they were),
   // so one timeout does not drop a figure under the two-store rule. Its

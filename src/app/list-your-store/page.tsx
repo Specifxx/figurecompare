@@ -32,7 +32,7 @@ export default function Page() {
           suggestHref="/stores#suggest"
           buttonClassName="btn-pop bg-pink text-white"
         >
-          <li><strong>The JAN barcode on each listing.</strong> We match figures only by their barcode (in the variant barcode, the SKU or a &ldquo;JAN:&rdquo; line), never by title, so a listing without one is left out.</li>
+          <li><strong>The JAN barcode on each listing.</strong> We match figures only by their barcode (in the variant barcode, the SKU or a &ldquo;JAN:&rdquo; line), never by title, so a listing without one is left out. (BigBadToyStore is the one store matched by Nendoroid and figma catalogue number, because it prints no barcode.)</li>
         </ListYourStore>
       </Prose>
     </div>
