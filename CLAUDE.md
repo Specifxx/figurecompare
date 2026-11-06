@@ -71,11 +71,16 @@ Previews build only with `[preview]`, when the owner asks. `claude/*` branches n
   never from CN/HK sellers, 60%–300% of the store median, no row without a store reference). The keys are GitHub
   secrets only, never Vercel. The keyset is shared with WargameCompare (5,000 calls a day, 2,500 each; owner,
   2026-10-29): never raise `EBAY_DAILY_CAP` (default 2,500) without the owner.
-- Amazon's own price on the Amazon row (owner, 2026-11-05): `scripts/fetch-amazon-prices.ts` runs first in every build
-  and asks the Creators API by JAN, in every region with a tag, into the git-ignored `data/amazon-live/`; the row shows
-  it with its time for 24 hours only (`lib/amazon-live.ts`, `AmazonPrice.tsx`). Never committed, never a sort, badge,
-  deal, feed or quick view. Credentials `AMAZON_CREATORS_AU_*` (Vercel only) serve every store; a store without API
-  access is skipped. `tests/amazon-api.test.ts` pins it.
+- Amazon's own price on the Amazon row (owner, 2026-11-05; ASINs 2026-11-06): the Creators API's getItems takes
+  ASINs only, so `scripts/amazon-asins.ts` (daily import) finds each product's ASIN with searchItems (the JAN,
+  then the figure's name) and keeps it only when Amazon's own externalIds carry our JAN; ASINs and misses are committed in
+  `data/amazon/` (prices never). `scripts/fetch-amazon-prices.ts` runs first in every build and asks getItems for those
+  ASINs into the git-ignored `data/amazon-live/`; the row shows the price with its time for 24 hours only
+  (`lib/amazon-live.ts`, `AmazonPrice.tsx`), else its tagged search link. Never committed, never a sort, badge, deal,
+  feed or quick view. Credentials `AMAZON_CREATORS_<US|UK|CA|EU|AU>_*` (GitHub secrets + Vercel Production): each
+  country's own (a credential works only for its own account's tags; AU is the fallback). Amazon refuses a store
+  until its account has 10 qualifying sales in 30 days; the ops check "Amazon ASINs" shows that.
+  `tests/amazon-api.test.ts` pins it.
 - No pop-ups, no interstitials (family pop-up policy). No ads beside a buy button.
 
 ## Design

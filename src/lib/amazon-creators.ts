@@ -9,9 +9,15 @@
  * store (401/403/429) is skipped and the row keeps its "check the seller" search link. Limits: 1 request a
  * second and 8,640 a day at first; one getItems call carries ten items.
  *
- * Credentials: AMAZON_CREATORS_AU_CLIENT_ID / _CLIENT_SECRET / _VERSION (Vercel Production variables, never in
- * the repo) serve every store; AMAZON_CREATORS_<REGION>_* override them for one. The version (3.1 NA, 3.2 EU,
- * 3.3 FE) is printed beside the credential and picks the Login with Amazon token endpoint.
+ * Credentials: AMAZON_CREATORS_<US|UK|CA|EU|AU>_CLIENT_ID / _CLIENT_SECRET / _VERSION (GitHub secrets for the
+ * ASIN finder, Vercel Production variables for the build's price fetch; never in the repo). A credential belongs
+ * to the Associates account that made it: the AU one answers every US and UK call with 400 InvalidAssociate
+ * ("Your credential is not linked to the partner tag", Compare Empire 2026-11-06), so the US store needs the US
+ * credential (StoreID riftcompare-20, version 3.1). The AU variables stay the fallback, and a store they cannot
+ * serve ends quietly as refused. The version (3.1 NA, 3.2 EU, 3.3 FE) picks the Login with Amazon token endpoint.
+ *
+ * getItems takes ASINs only (the docs list no EAN or UPC itemIdType), so scripts/amazon-asins.ts finds each
+ * product's ASIN first with searchItems and keeps it only when Amazon's own externalIds carry our barcode.
  * Docs: https://affiliate-program.amazon.com/creatorsapi/docs/en-us/get-started/using-curl
  */
 import type { RegionCode } from "@/site";
@@ -100,6 +106,16 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 export class AmazonRefused extends Error {}
 
+/** Amazon's answer when the credential is not linked to this store's tag (another country's account). */
+export const isWrongAccount = (body: string) => /InvalidAssociate|not linked to the partner tag/i.test(body);
+
+/** Whether Amazon's own barcodes for an item include ours (a 13-digit EAN; a UPC-A is that EAN minus its 0). */
+export function barcodeMatches(item: Item, ean: string): boolean {
+  const ours = new Set([ean, ean.replace(/^0/, ""), `0${ean}`]);
+  const theirs = [...(item.itemInfo?.externalIds?.eans?.displayValues ?? []), ...(item.itemInfo?.externalIds?.upcs?.displayValues ?? [])];
+  return theirs.some((b) => ours.has(b.trim()));
+}
+
 /** A signed-in caller for one store: one request a second, stops on 401/403/429 (access closed or limit hit). */
 export async function creatorsClient(region: RegionCode, tag: string, creds: Credentials) {
   const market = MARKETS[region];
@@ -121,7 +137,12 @@ export async function creatorsClient(region: RegionCode, tag: string, creds: Cre
     });
     await sleep(1100);
     if (res.status === 401 || res.status === 403 || res.status === 429) throw new AmazonRefused(`${op} ${res.status} ${(await res.text()).slice(0, 160)}`);
-    if (!res.ok) throw new Error(`${op} ${res.status} ${(await res.text()).slice(0, 160)}`);
+    if (!res.ok) {
+      const text = (await res.text()).slice(0, 160);
+      // Every call would fail the same way: stop this store, not just this batch.
+      if (isWrongAccount(text) || /AssociateNotEligible/i.test(text)) throw new AmazonRefused(`${op} ${res.status} ${text}`);
+      throw new Error(`${op} ${res.status} ${text}`);
+    }
     return itemsOf((await res.json()) as Body);
   }
   return { call, calls: () => calls };
