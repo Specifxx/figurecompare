@@ -159,13 +159,20 @@ async function storeCollections(store: Store): Promise<string[]> {
   return pickCollections(handles, store.collections ?? []);
 }
 
+/** The feeds to page: the whole catalogue for an `allProducts` store, else the
+ *  figure collections /collections.json names. */
+export async function productPaths(store: Store): Promise<string[]> {
+  if (store.allProducts) return ["/products.json"];
+  const collections = await storeCollections(store);
+  if (!collections.length) throw new Error("no figure collection found");
+  return collections.map((c) => `/collections/${c}/products.json`);
+}
+
 export async function readShopify(store: Store, cache: BarcodeCache, budget: { lookups: number }): Promise<ReadResult> {
   const country = REGION_BY_CODE[store.region].shopifyCountry;
   const res: ReadResult = { listings: [], seen: 0, refused: {}, noJan: 0 };
   const seen = new Set<number>();
-  const collections = await storeCollections(store);
-  if (!collections.length) throw new Error("no figure collection found");
-  const paths = collections.map((c) => `/collections/${c}/products.json`);
+  const paths = await productPaths(store);
   for (const path of paths) {
     for (let page = 1; page <= MAX_PAGES; page++) {
       const data = await fetchJson<{ products: ShopifyProduct[] }>(`${store.base}${path}?limit=250&page=${page}&country=${country}`);
