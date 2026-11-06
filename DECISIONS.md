@@ -730,3 +730,11 @@ see today's price on Amazon. With no Amazon price the row reads "Also check on A
 is counted as a store, "Best price", a deal, an alert price or the reference price; TCGplayer and Cardmarket stay
 references (no thumbs, no cart line); no Amazon link in a pop-up.
 FigureCompare: the Japan table's eBay and Amazon rows get no cart line (yen is shown converted), as its store rows.
+
+## 2026-11-06: Tiles name the figure once, one eBay block per page
+
+Underperformer review (owner: "fix everything"). Tiles showed the line twice ("POP UP PARADE" chip, then "POP UP PARADE
+Frieren …"): the tile's name now drops the leading line label (`withoutLine`, the full name stays in the alt text and for
+screen readers). Pages that carried an eBay strip at the top AND the bottom (series, deals, pre-orders, new, line hubs)
+and the home page's second strip now keep one, the bottom strip with figures, so a shopper sees store prices first.
+The Christmas look stays: the owner approved it on 1 November (season.ts window).

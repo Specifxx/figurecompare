@@ -4,6 +4,7 @@ import { bestIn, spreadIn } from "@/lib/data";
 import { money, pct } from "@/lib/format";
 import type { Figure } from "@/lib/types";
 import { FigureImage } from "./FigureImage";
+import { withoutLine } from "@/lib/title";
 
 /** A figure card. With `region` it shows that region's price only (lists
  *  already split by region); without, every region's, switched by CSS. */
@@ -37,7 +38,11 @@ export function FigureTile({ f, i = 0, region }: { f: Figure; i?: number; region
         })}
       </div>
       <div className="flex flex-1 flex-col gap-1 p-3">
-        <h3 className="line-clamp-2 text-sm font-bold leading-snug">{f.name}</h3>
+        <h3 className="line-clamp-2 text-sm font-bold leading-snug">
+          {/* The chip above already names the line; repeating it here read "POP UP PARADE … POP UP PARADE". */}
+          <span className="sr-only">{line.name} </span>
+          {withoutLine(f.name, line.name)}
+        </h3>
         <div className="mt-auto text-sm">
           {regions.map((r) => {
             const b = bestIn(f, r.code);

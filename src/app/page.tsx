@@ -122,7 +122,6 @@ export default function Home() {
           );
         })}
 
-        <EbayStrip className="mt-10" placement="home_new" queries={SITE_QUERIES} figures={newest(30)} title="New on eBay" />
 
         <section className="mt-14">
           <h2 className="h-display mb-4 text-2xl sm:text-3xl">

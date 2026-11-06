@@ -55,7 +55,6 @@ export default function SeriesPage({ params }: { params: { slug: string } }) {
           </p>
         }
       />
-      <EbayStrip className="mb-8" placement="series_top" queries={queries(s.name)} />
       <TileGrid figures={all.slice(0, MAX)} />
       {all.length > MAX && <p className="mt-4 text-center text-sm text-soft">Showing the {MAX} figures most stores carry. Search for the rest.</p>}
       <section className="mt-10">
