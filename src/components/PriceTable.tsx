@@ -33,11 +33,14 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
   const q = searchQuery(f);
   const sub = subId(region, `${placement}_pinned`, f.jan);
   const ebayUrl = ebay ? ebayAffiliateUrl(ebay.u, sub) : ebaySearchUrl(q, region, sub);
-  // Never in the quick view (2026-11-02): Amazon's Operating Agreement allows no Amazon link in a pop-up window.
   // Amazon's own listing and price when this build's Creators API lookup matched the JAN (2026-11-05), else a search.
-  const live = placement.startsWith("quickview") ? null : amazonLive(f.jan, region);
-  const liveUrl = live && amazonItemUrl(live.asin, region, sub);
-  const amazonUrl = placement.startsWith("quickview") ? null : (liveUrl ?? amazonSearchUrl(q, region, sub));
+  // The quick view carries the same tagged link (owner, 2026-11-06: a visitor-opened view of this one figure is the
+  // Associates policy's "pop-up windows in conjunction with your Site promoting Products closely associated with the
+  // materials on your Site"), but never Amazon's price: that stays on the figure page (24-hour licence, CLAUDE.md).
+  const found = amazonLive(f.jan, region);
+  const liveUrl = found && amazonItemUrl(found.asin, region, sub);
+  const live = placement.startsWith("quickview") ? null : found;
+  const amazonUrl = liveUrl ?? amazonSearchUrl(q, region, sub);
   const clock = AMAZON_CLOCK[region];
   // HobbyLink Japan ships worldwide from Japan: shown with the Japan table.
   // When HobbyLink Japan is one of the stores, its own row replaces the search.

@@ -114,3 +114,9 @@ test("pages never read the ASIN files; the import finds ASINs with the credentia
   assert.match(wf, /npx tsx scripts\/amazon-asins\.ts/);
   for (const r of ["US", "UK", "CA", "EU", "AU"]) assert.match(wf, new RegExp(`AMAZON_CREATORS_${r}_CLIENT_SECRET: \\$\\{\\{ secrets\\.AMAZON_CREATORS_${r}_CLIENT_SECRET \\}\\}`));
 });
+
+test("the quick view's Amazon row is the tagged Amazon link itself, never Amazon's price (owner, 2026-11-06)", () => {
+  const src = fs.readFileSync("src/components/PriceTable.tsx", "utf8");
+  assert.doesNotMatch(src, /startsWith\("quickview"\) \? null : \(?liveUrl/, "the quick view keeps the Amazon link");
+  assert.match(src, /const live = [^;]*quick[^;]*\? null : found;/, "Amazon's price stays on the product page");
+});
