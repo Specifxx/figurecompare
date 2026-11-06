@@ -93,6 +93,9 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
     paid: storePays(o.s),
     highlight: o === best,
     event: { source: o.s, region, placement, jan: f.jan },
+    // The cart list (components/cart, owner 2026-11-06): orderable rows in the region's own
+    // currency. Never the Japan table (yen has no minor unit, and it is shown converted).
+    ...(o.st !== "out" && region !== "JP" ? { cart: { title: f.name, image: f.img, priceCents: o.p, currency: r.currency } } : {}),
   }));
   return { pinned, stores };
 }

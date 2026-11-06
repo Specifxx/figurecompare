@@ -6,6 +6,7 @@ import { SearchBox } from "./SearchBox";
 import { ThemeToggle } from "./ThemeToggle";
 import { MobileMenu } from "./MobileMenu";
 import { EbayNavBox } from "./EbayStrip";
+import { CartHeaderLink } from "./cart/CartHeaderLink";
 import type { NavGroup } from "@/lib/nav";
 
 const NAV = [
@@ -21,7 +22,7 @@ export function Header({ groups }: { groups: NavGroup[] }) {
     <header className="sticky top-0 z-40 border-b border-line bg-card/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-2.5 xl:max-w-[1440px]">
         <Link href="/" prefetch={false} className="shrink-0" aria-label="FigureCompare home">
-          <Logo />
+          <Logo wordmark="hidden min-[400px]:inline" />
         </Link>
         <div className="hidden flex-1 md:block">
           <SearchBox />
@@ -29,11 +30,16 @@ export function Header({ groups }: { groups: NavGroup[] }) {
         <div className="ml-auto flex items-center gap-2">
           <RegionPicker compact />
           <ThemeToggle />
+          {/* The cart list (components/cart, owner 2026-11-06); below md it sits beside the search. */}
+          <CartHeaderLink className="hidden text-soft hover:text-ink md:inline-flex" />
           <MobileMenu groups={groups} footer={<EbayNavBox placement="menu" />} />
         </div>
       </div>
-      <div className="px-4 pb-2 md:hidden">
-        <SearchBox />
+      <div className="flex items-center gap-1 px-4 pb-2 md:hidden">
+        <div className="min-w-0 flex-1">
+          <SearchBox />
+        </div>
+        <CartHeaderLink className="shrink-0 text-soft hover:text-ink md:hidden" />
       </div>
       {/* Below xl the quick chips; from xl the sidebar carries them. */}
       <nav aria-label="Sections" className="mx-auto max-w-6xl overflow-x-auto px-4 pb-2 [scrollbar-width:none] xl:hidden">

@@ -5,6 +5,7 @@ import type { Offer } from "@/lib/types";
 import { OutLink } from "./OutLink";
 import { AMAZON_PRICE_DISCLAIMER, AmazonPrice } from "./AmazonPrice";
 import { StoreVote } from "./StoreVote";
+import { CartAddButton } from "./cart/CartAddButton";
 
 const STOCK: Record<Offer["st"], { label: string; cls: string }> = {
   in: { label: "In stock", cls: "bg-mint-pale text-mint" },
@@ -25,6 +26,8 @@ export interface RowData {
   event: { source: string; region: string; placement: string; jan?: string };
   /** Stores only: the store's own listing URL, for the shared thumbs up / down (StoreVote.tsx). */
   vote?: string;
+  /** In-stock stores only: the cart list's line (components/cart, owner 2026-11-06). */
+  cart?: { title: string; image: string | null; priceCents: number; currency: string };
 }
 
 export interface RowsData {
@@ -54,7 +57,7 @@ export function PriceRows({ pinned, stores }: RowsData) {
   );
 }
 
-function Row({ name, sub, price, status, href, paid, highlight = false, live, event, vote }: RowData) {
+function Row({ name, sub, price, status, href, paid, highlight = false, live, event, vote, cart }: RowData) {
   const s = status ? STOCK[status] : null;
   return (
     <div
@@ -71,10 +74,17 @@ function Row({ name, sub, price, status, href, paid, highlight = false, live, ev
           {s && <span className={`chip ${s.cls}`}>{s.label}</span>}
           {sub && <span className={highlight ? "font-bold text-pink-deep" : ""}>{sub}</span>}
           {paid && <span>Paid link</span>}
+          {/* Phones: the cart list's add button as a word on this line, where the row has no width to spare. */}
+          {cart && vote && (
+            <CartAddButton inline href={href} productUrl={vote} storeName={name} title={cart.title} priceCents={cart.priceCents} currency={cart.currency} image={cart.image} className="text-xs sm:hidden" />
+          )}
         </p>
       </div>
       {price && live && <AmazonPrice price={price} at={live.at} timeZone={live.timeZone} zoneLabel={live.zoneLabel} />}
       {price && !live && <span className={`font-display text-lg font-bold ${highlight ? "text-pink-deep" : ""}`}>{price}</span>}
+      {cart && vote && (
+        <CartAddButton href={href} productUrl={vote} storeName={name} title={cart.title} priceCents={cart.priceCents} currency={cart.currency} image={cart.image} className="hidden text-soft sm:inline-flex" />
+      )}
       <OutLink
         href={href}
         paid={paid}
