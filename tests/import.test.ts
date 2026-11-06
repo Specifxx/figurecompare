@@ -21,7 +21,8 @@ test("a Shopify product with a JAN in its SKU becomes a listing", () => {
   assert.equal(l.jan, "4580590174528");
   assert.equal(l.cents, 8995);
   assert.equal(l.st, "in");
-  assert.equal(l.url, "https://shop.example/products/nendoroid-2345-frieren");
+  // An orderable listing names its variant: the buy button opens the store's checkout with it.
+  assert.equal(l.url, "https://shop.example/products/nendoroid-2345-frieren?variant=9");
   assert.match(l.img!, /width=600/);
 });
 

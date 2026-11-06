@@ -679,3 +679,14 @@ sites shares its thumbs; this site stores nothing and fetches the tally in the b
 step). One vote per browser per store, a few per network, marketplaces (eBay, Amazon, TCGplayer…) get none. Votes never
 order prices, hide a store or decide the cheapest. RiftCompare's DECISIONS.md, 2026-11-06, has the rules; change the
 component there first and copy it.
+
+## 2026-11-06 — Buy links open the store's checkout
+
+**Decision (owner: "for all the sites that we can, send them directly to the checkout page, with the item in the
+basket"):** an orderable listing at a Shopify store that pays us nothing opens that store's checkout with the figure in
+the cart, through Shopify's cart permalink (`/cart/<variant id>:1`), as RiftCompare (#340), OP Compare (#99) and
+KaeYoung (#58) do. The import names the variant on an orderable Shopify listing's URL (`?variant=<id>`, still the
+product page), and `storeUrl` turns it into the cart link at build with `utm_content=checkout`. A store with its own
+affiliate code or on Awin keeps its product page (its tracking runs there); eBay, Amazon, BBTS, HLJ and WooCommerce
+stores are unchanged. `buy_click` stays retailer + placement (two properties). `lib/checkout-link.ts`,
+`tests/checkout-link.test.ts`.

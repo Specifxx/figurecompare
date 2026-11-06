@@ -101,7 +101,9 @@ export function listingFromProduct(store: Store, p: ShopifyProduct, cachedJan?: 
     jan,
     cents: Math.round(Number(v.price) * minor),
     st: stockOf(v.available, preorder),
-    url: `${store.base}/products/${p.handle}`,
+    // An orderable listing names its variant: the buy button opens the store's checkout
+    // with exactly it in the cart (lib/checkout-link.ts, owner 2026-11-06).
+    url: `${store.base}/products/${p.handle}${v.available && v.id ? `?variant=${v.id}` : ""}`,
     img: sizedImage(p.images?.[0]?.src),
   };
 }
