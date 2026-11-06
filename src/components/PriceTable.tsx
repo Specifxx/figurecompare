@@ -89,6 +89,7 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
     price: shown(o.p),
     status: o.st,
     href: storeUrl(o.s, o.u),
+    vote: o.u,
     paid: storePays(o.s),
     highlight: o === best,
     event: { source: o.s, region, placement, jan: f.jan },
