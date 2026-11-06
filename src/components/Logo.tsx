@@ -16,11 +16,13 @@ export function LogoMark({ size = 32 }: { size?: number }) {
   );
 }
 
-export function Logo() {
+/** `wordmark` sets when the name shows: the header hides it below 400px, where the mark, the region,
+ *  the theme switch and the menu need the row's whole width (the link keeps its aria-label). */
+export function Logo({ wordmark = "" }: { wordmark?: string }) {
   return (
     <span className="flex items-center gap-2">
       <LogoMark />
-      <span className="h-display text-xl leading-none sm:text-[22px]">
+      <span className={`h-display text-xl leading-none sm:text-[22px] ${wordmark}`}>
         Figure<span className="text-pink">Compare</span>
       </span>
       <Pumpkin />

@@ -92,7 +92,8 @@ test("one contact address everywhere (owner, 2026-10-28)", async () => {
 test("eBay strips on every page but the legal ones, labelled and sponsored (owner, 2026-10-28)", async () => {
   const fs = await import("node:fs");
   const walk = (d: string): string[] => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(`${d}/${e.name}`) : [`${d}/${e.name}`]));
-  const legal = /\/(terms|privacy|disclosure|contact|how-we-pick-stores|list-your-store)\/page\.tsx$/;
+  // The cart (owner 2026-11-06) is the visitor's own checkout list: no ad strip beside the checkout buttons.
+  const legal = /\/(terms|privacy|disclosure|contact|how-we-pick-stores|list-your-store|cart)\/page\.tsx$/;
   for (const f of walk("src/app").filter((f) => /\/(page|not-found)\.tsx$/.test(f) && !legal.test(f))) {
     const src = fs.readFileSync(f, "utf8");
     const viaHub = src.includes("<LineHub") && fs.readFileSync("src/components/LineHub.tsx", "utf8").includes("<EbayStrip");
