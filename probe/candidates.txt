@@ -1,23 +1,2 @@
-# Round 3 (2026-11-06): shops in Japan that sell abroad, now that yen prices are shown converted.
-nippon-yasan.com
-hobbygenki.com
-kyouhobbyshop.com
-plazajapan.com
-japanimport.com
-otakurepublic.com
-ninningame.com
-cdjapan.co.jp
-buyfigure.com
-jp.goodsmile.com
-myfigurecollection.net
-amiami.com
-1999.co.jp
-akibaheroes.com
-kawaii-shop-japan.com
-zenpop.jp
-tokyolifestyle.jp
-japan-mart.com
-animenouveau.com
-otaku-store.jp
-figurelove.jp
-hobbyjapan.co.jp
+# Round 3b (2026-11-06): can GitHub's runners reach HobbyLink Japan? (custom platform: a result with no error is a yes)
+www.hlj.com
