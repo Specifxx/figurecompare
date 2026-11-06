@@ -1,7 +1,7 @@
 {
  "v": 1,
  "site": "figure",
- "generatedAt": "2026-11-05T14:08:18.452Z",
+ "generatedAt": "2026-11-06T11:35:42.064Z",
  "links": {
   "US": {
    "deals": "https://figurecompare.com/deals",
@@ -37,7 +37,7 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "US",
-   "title": "Nendoroid Reze: Casual Outfit Ver. [Basic]",
+   "title": "Nendoroid Chainsaw Man - The Movie: Reze Arc - Reze: Casual Outfit Ver. [Basic]",
    "url": "https://figurecompare.com/figure/nendoroid-reze-casual-outfit-ver-basic-3041",
    "cents": 3588,
    "currency": "USD",
@@ -92,12 +92,12 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "US",
-   "title": "Nendoroid Megurine Luka 2.0",
-   "url": "https://figurecompare.com/figure/nendoroid-megurine-luka-2-0-2842",
-   "cents": 5599,
+   "title": "Nendoroid Umamusume: Pretty Derby - Symboli Rudolf",
+   "url": "https://figurecompare.com/figure/nendoroid-umamusume-pretty-derby-symboli-rudolf-2619",
+   "cents": 4800,
    "currency": "USD",
-   "store": "animate USA",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828662728.png?v=1758028494&width=600"
+   "store": "Good Game Anime",
+   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/e2d24c8f-1202-484e-a24e-a3e224a2aeac-L.png?v=1792704343&width=600"
   },
   {
    "kind": "deal",
@@ -123,6 +123,20 @@
    "currency": "GBP",
    "store": "Hobby Figures",
    "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/hatsune-miku-nendoroid-decomiku-darkness_1.jpg?v=1771569061&width=600",
+   "refCents": 9895,
+   "refLabel": "dearest store",
+   "savingPct": 50
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "UK",
+   "title": "Nendoroid Hatsune Miku: DecoMiku (Lightness)",
+   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-decomiku-lightness-3006",
+   "cents": 4995,
+   "currency": "GBP",
+   "store": "Hobby Figures",
+   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/hatsune-miku-nendoroid-decomiku-lightness_1.jpg?v=1771569151&width=600",
    "refCents": 9895,
    "refLabel": "dearest store",
    "savingPct": 50
@@ -170,20 +184,6 @@
    "savingPct": 43
   },
   {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "UK",
-   "title": "Nendoroid Hatsune Miku: Deep Sea Girl Ver.",
-   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-deep-sea-girl-ver-2925",
-   "cents": 5195,
-   "currency": "GBP",
-   "store": "Hobby Figures",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828668232.png?v=1765288351&width=600",
-   "refCents": 8595,
-   "refLabel": "dearest store",
-   "savingPct": 40
-  },
-  {
    "kind": "preorder",
    "cluster": "hobby",
    "region": "UK",
@@ -209,17 +209,6 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "UK",
-   "title": "Nendoroid Hatsune Miku: DecoMiku (Lightness)",
-   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-decomiku-lightness-3006",
-   "cents": 4995,
-   "currency": "GBP",
-   "store": "Hobby Figures",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/hatsune-miku-nendoroid-decomiku-lightness_1.jpg?v=1771569151&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "UK",
    "title": "Nendoroid Danganronpa V3: Killing Harmony - Action Shuichi Saihara 10 cm",
    "url": "https://figurecompare.com/figure/nendoroid-shuichi-saihara-3009",
    "cents": 5699,
@@ -231,7 +220,7 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "UK",
-   "title": "Nendoroid Arknights - Action Dusk 10 cm",
+   "title": "Nendoroid Arknights - Dusk",
    "url": "https://figurecompare.com/figure/nendoroid-arknights-action-dusk-10-cm-3002",
    "cents": 6799,
    "currency": "GBP",
@@ -248,6 +237,17 @@
    "currency": "GBP",
    "store": "oshoppu",
    "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/hatsune-miku-nendoroid-decomiku-darkness_1.jpg?v=1771569061&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "UK",
+   "title": "Nendoroid Hatsune Miku: DecoMiku (Lightness)",
+   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-decomiku-lightness-3006",
+   "cents": 9895,
+   "currency": "GBP",
+   "store": "oshoppu",
+   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/hatsune-miku-nendoroid-decomiku-lightness_1.jpg?v=1771569151&width=600"
   },
   {
    "kind": "deal",
@@ -475,7 +475,7 @@
    "cents": 8795,
    "currency": "AUD",
    "store": "Gameology",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232586161.png?v=1785919168&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/berserk_nendoroid_guts_re_run__c68e1.jpg?v=1782448195&width=600"
   },
   {
    "kind": "preorder",
@@ -486,7 +486,7 @@
    "cents": 8795,
    "currency": "AUD",
    "store": "Gameology",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232585195.png?v=1785919181&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/final_fantasy_xiv_nendoroid_y_shtola_5edc8.jpg?v=1781766714&width=600"
   },
   {
    "kind": "preorder",
@@ -514,7 +514,7 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "AU",
-   "title": "Nendoroid Goddess of Victory Nikke - Guren",
+   "title": "Nendoroid Goddess of Victory: Nikke - Guren",
    "url": "https://figurecompare.com/figure/nendoroid-goddess-of-victory-nikke-guren",
    "cents": 13345,
    "currency": "AUD",
@@ -734,7 +734,7 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "EU",
-   "title": "Nendoroid Arknights: Endfield - Action Perlica 10 cm",
+   "title": "Nendoroid Arknights: Endfield - Perlica",
    "url": "https://figurecompare.com/figure/nendoroid-arknights-endfield-perlica-3043",
    "cents": 7500,
    "currency": "EUR",
