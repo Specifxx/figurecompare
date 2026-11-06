@@ -93,3 +93,12 @@ test("every store's title becomes one name shape", () => {
   assert.equal(t("Nendoroid 0544 Kirby", "nendoroid", "544"), "Nendoroid Kirby");
   assert.equal(t("Hatsune Miku - Nendoroid Hatsune Miku - (NT Ver.)", "nendoroid", null), "Nendoroid Hatsune Miku - Hatsune Miku (NT Ver.)");
 });
+
+// Live tiles, 2026-11-06: the line chip above the name read "POP UP PARADE", then the name "POP UP PARADE Frieren …".
+test("a tile's name drops the line label the chip already shows", async () => {
+  const { withoutLine } = await import("../src/lib/title");
+  assert.equal(withoutLine("POP UP PARADE Frieren: Beyond Journey's End - Frieren", "POP UP PARADE"), "Frieren: Beyond Journey's End - Frieren");
+  assert.equal(withoutLine("Nendoroid Kobeni", "Nendoroid"), "Kobeni");
+  assert.equal(withoutLine("POP UP PARADE", "POP UP PARADE"), "POP UP PARADE");
+  assert.equal(withoutLine("Kanata Konoe", "POP UP PARADE"), "Kanata Konoe");
+});

@@ -151,3 +151,9 @@ export function pickName(titles: string[], number: string | null): string {
     (count.get(n.toLowerCase()) ?? 0) * 1000 + (number && n.includes(number) ? 500 : 0) - Math.abs(n.length - 48);
   return names.slice().sort((a, b) => score(b) - score(a) || a.localeCompare(b))[0];
 }
+
+/** The figure's name without the line label it starts with ("POP UP PARADE Frieren" -> "Frieren"). */
+export function withoutLine(name: string, lineName: string): string {
+  const rest = name.startsWith(lineName + " ") ? name.slice(lineName.length + 1).trim() : "";
+  return rest || name;
+}
