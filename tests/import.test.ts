@@ -103,6 +103,13 @@ test("collections: a line's own first, then anime figures; never dolls, parts or
   assert.deepEqual(pickCollections([], []), []);
 });
 
+test("an allProducts store pages the whole catalogue, not its collections", async () => {
+  const { productPaths } = await import("@/lib/import/shopify");
+  const { STORE_BY_ID } = await import("@/content/stores");
+  assert.deepEqual(await productPaths({ ...STORE_BY_ID.goodsmileus }), ["/products.json"]);
+  assert.equal(STORE_BY_ID.goodsmileus.allProducts, true);
+});
+
 test("a barcode found once is kept; a missing one is asked again after 30 days", () => {
   const now = Date.parse("2026-11-30T00:00:00Z");
   assert.equal(cachedJan(undefined, now), undefined);

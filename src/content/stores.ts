@@ -18,6 +18,11 @@ export interface Store {
    *  Nendoroid / figma / POP UP PARADE / Good Smile collections in the store's
    *  /collections.json and reads those; these are the fallback. */
   collections?: string[];
+  /** Shopify: read the whole catalogue through /products.json instead of
+   *  picking collections. For a maker's own shop (Good Smile US: 13,000+
+   *  products, every line, the JAN in every SKU), where the collection
+   *  finder lands on a few small franchise collections and misses the rest. */
+  allProducts?: boolean;
   /** Woo: search terms (default: the three lines). */
   search?: string[];
   /** Pays us a commission (shown as "Paid link" and pinned only if cheapest). */
@@ -108,7 +113,9 @@ export const STORES: Store[] = [
   { id: "cosmicdestroyers", name: "Cosmic Destroyer's Collectibles", region: "US", base: "https://cosmicdestroyers.com", platform: "shopify", collections: ["all"] },
   { id: "exfigure", name: "Exfigure", region: "US", base: "https://exfigure.com", platform: "shopify", collections: ["all"] },
   { id: "goodgameanime", name: "Good Game Anime", region: "US", base: "https://goodgameanime.com", platform: "shopify", collections: ["all"] },
-  { id: "goodsmileus", name: "Good Smile US", region: "US", base: "https://www.goodsmileus.com", platform: "shopify", collections: ["all"] },
+  // Good Smile's own US shop: 13,680 products, the JAN in every SKU. Its /collections.json has 250+ franchise
+  // collections, so the collection finder read 75 products until 2026-11-06 (a visitor asked why it was not compared).
+  { id: "goodsmileus", name: "Good Smile US", region: "US", base: "https://www.goodsmileus.com", platform: "shopify", allProducts: true },
   { id: "gundamplanet", name: "Gundam Planet", region: "US", base: "https://www.gundamplanet.com", platform: "shopify", collections: ["all"] },
   { id: "japanfigure", name: "Japan Figure Store", region: "US", base: "https://japan-figure.com", platform: "shopify", collections: ["all"] },
   { id: "kappahobby", name: "Kappa Hobby", region: "US", base: "https://www.kappahobby.com", platform: "shopify", collections: ["all"] },

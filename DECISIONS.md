@@ -588,3 +588,19 @@ one store). Access is per marketplace and opens by itself once that store's acco
 (about 10 in 30 days); a refused store is skipped and the row keeps its search link, so the feature costs
 nothing until then and switches on without a code change. The ops monitor cannot see a Vercel build, so a
 failed fetch is silent by design: the fallback is the row as it was.
+
+## 2026-11-06: Good Smile US is read whole, not through its collections
+
+A visitor asked why Good Smile (US and Global), AmiAmi and BigBadToyStore were not compared. Good Smile US was
+listed since 2026-10-28, but the collection finder (`pickCollections`) read 75 of its products: its
+`/collections.json` has 250+ franchise collections, the ones named "good-smile-…" are small, and the whole
+catalogue (1,614 published products, 570 of our lines, 538 with the JAN as the SKU) sat in collections it never
+picked. A store can now say `allProducts: true` (`src/content/stores.ts`) and the reader pages `/products.json`
+instead: the maker's own shop is the one place every line is, and the title filter keeps the rest out. Checked
+by hand on 2026-11-06: 156 orderable Nendoroid / figma / POP UP PARADE products, all with a JAN.
+
+The others stay out, and why: Good Smile's global shop (goodsmile.com, priced in yen; under maintenance on the
+day, and the JP region is hidden because prices are never converted), AmiAmi (yen, a script-drawn shop with a
+private API, never worked around), Good Smile Europe (its storefront feed publishes one product and SKUs are
+internal codes), BigBadToyStore and Entertainment Earth (custom platforms; BigBadToyStore's product pages carry
+a price in JSON-LD but no barcode, and the rule is the barcode or nothing: see the next entry if that changes).
