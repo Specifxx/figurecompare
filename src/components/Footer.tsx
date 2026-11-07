@@ -30,6 +30,7 @@ export function Footer({ updated }: { updated?: string | null }) {
             ))}
             <li><Link prefetch={false} href="/deals" className="hover:text-pink-deep">Figure deals today</Link></li>
             <li><Link prefetch={false} href="/black-friday" className="hover:text-pink-deep">Black Friday figure deals</Link></li>
+            <li><Link prefetch={false} href="/cyber-monday" className="hover:text-pink-deep">Cyber Monday figure deals</Link></li>
             <li><Link prefetch={false} href="/boxing-day" className="hover:text-pink-deep">Boxing Day figure deals</Link></li>
             <li><Link prefetch={false} href="/january-sales" className="hover:text-pink-deep">January sales</Link></li>
             <li><Link prefetch={false} href="/lunar-new-year" className="hover:text-pink-deep">Lunar New Year deals</Link></li>

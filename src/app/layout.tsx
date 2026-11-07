@@ -9,6 +9,7 @@ import "@/components/site-reviews/site-reviews.css";
 import { SITE } from "@/site";
 import { ACTIVE_REGIONS } from "@/lib/regions";
 import { Header } from "@/components/Header";
+import { HolidayStrip } from "@/components/HolidayStrip";
 import { Footer } from "@/components/Footer";
 import { SideNav } from "@/components/SideNav";
 import { QuickView } from "@/components/QuickView";
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <Header groups={groups} />
+        <HolidayStrip />
         {/* From xl the left side of a wide screen is the sidebar; the pages keep their own width. */}
         <div className="mx-auto flex max-w-[1440px]">
           <SideNav groups={groups} footer={<EbayNavBox placement="sidebar" />} />

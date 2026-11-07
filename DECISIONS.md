@@ -765,3 +765,17 @@ Also: a store row over the maker's own price for that JAN (Good Smile US in the 
 Japan table) by 2% and $1/¥100 says "Above Good Smile …'s price" (never a re-rank); the figure page states the last
 check time and links `/stores`, which now lists the big stores we can't compare and why (AmiAmi, Good Smile Europe,
 Entertainment Earth, Crunchyroll Store, Tokyo Otaku Mode), with the store count and last check.
+
+## 2026-11-07 — Black Friday strip and Cyber Monday page (owner: "capture all of the Black Friday SEO")
+
+Black Friday is 27 November 2026 and Cyber Monday 30 November. Three additions, this site:
+
+- **`/cyber-monday`**, its own URL for its own searches ("nendoroid cyber monday deals"), kept every year like
+  `/black-friday`, listing the same real store deals. In the sitemap and footer; the two pages link each other.
+- **The holiday strip**: one line under the header on every page, in the server HTML, linking `/black-friday`
+  from 1 November to the Saturday after it, then `/cyber-monday` to the day after Cyber Monday, then nothing
+  (`saleStrip` in `lib/black-friday.ts`, tested). The same link leads the nav while it shows. A link, never a
+  pop-up (pop-up policy: no uninvited interruption on a visit's first page), never a countdown or "ends soon".
+- **More on both pages, nothing taken away**: the URL, title and h1 of `/black-friday` are unchanged; below the
+  existing tiles come four visible questions (the dates, whether stores have sales, shipping, how often it updates). No FAQ rich-result markup:
+  Google shows those only for government and health sites since 2023, so the text is what ranks.

@@ -38,3 +38,45 @@ export function addDays(iso: string, n: number): string {
 export function longDate(iso: string): string {
   return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", timeZone: "UTC" });
 }
+
+export type HolidayEvent = "black-friday" | "cyber-monday";
+
+/**
+ * The one-line strip under the header on every page, and the nav link (DECISIONS.md, "Black Friday strip and Cyber Monday
+ * page", 2026-11-07): Black Friday from 1 November to the Saturday after it, then Cyber Monday to the day after Cyber Monday,
+ * then nothing. A link in the server HTML, never a pop-up, a countdown or "ends soon".
+ */
+export function saleStrip(today: string): { href: "/black-friday" | "/cyber-monday"; name: string } | null {
+  const y = Number(today.slice(0, 4));
+  if (today < `${y}-11-01`) return null;
+  if (today <= addDays(blackFriday(y), 1)) return { href: "/black-friday", name: "Black Friday" };
+  if (today <= addDays(cyberMonday(y), 1)) return { href: "/cyber-monday", name: "Cyber Monday" };
+  return null;
+}
+
+/** The questions both pages answer in visible text. `what` names the products in a sentence ("K-beauty"). */
+export function holidayFaq(event: HolidayEvent, year: number, what: string): { q: string; a: string }[] {
+  const bf = longDate(blackFriday(year));
+  const cm = longDate(cyberMonday(year));
+  const name = event === "black-friday" ? "Black Friday" : "Cyber Monday";
+  return [
+    {
+      q: `When is ${name} ${year}?`,
+      a: event === "black-friday"
+        ? `Black Friday ${year} is ${bf}, the day after US Thanksgiving. Cyber Monday follows on ${cm}. Many stores start their sales the week before and run them through the weekend.`
+        : `Cyber Monday ${year} is ${cm}, the Monday after Black Friday (${bf}). Online stores often keep their Black Friday prices through the weekend and end them on Cyber Monday night.`,
+    },
+    {
+      q: `Do ${what} stores have ${name} sales?`,
+      a: `Many do, and the same product can still cost very different amounts at two stores on the same day. This page lists prices, not promises: every product is in stock today, the same figure at every store, with the cheapest at least 10% under the dearest.`,
+    },
+    {
+      q: "Are these prices before or after shipping?",
+      a: "Item prices, before shipping. Open a product to compare every store side by side, and check the store's own page before you buy.",
+    },
+    {
+      q: "How often does this page update?",
+      a: "Every day, from that day's store prices, through the sales and after them. The URL stays the same every year, so bookmark it.",
+    },
+  ];
+}

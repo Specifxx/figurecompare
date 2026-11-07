@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...liveSeries().map((s) => u(`/series/${s.slug}`, 0.8)),
     u("/deals", 0.8),
     u("/black-friday", 0.8),
+    u("/cyber-monday", 0.8),
     ...["/boxing-day", "/january-sales", "/lunar-new-year", "/valentines-day"].map((p) => u(p, 0.7)),
     u("/preorders", 0.8),
     u("/new", 0.7),

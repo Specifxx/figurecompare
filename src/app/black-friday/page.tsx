@@ -6,7 +6,7 @@ import { EbayStrip, SITE_QUERIES } from "@/components/EbayStrip";
 import { FamilyCluster } from "@/components/FamilyCluster";
 import { TileGrid } from "@/components/FigureTile";
 import { PageHead } from "@/components/Section";
-import { blackFriday, cyberMonday, longDate, seasonYear } from "@/lib/black-friday";
+import { blackFriday, cyberMonday, holidayFaq, longDate, seasonYear } from "@/lib/black-friday";
 
 // The Black Friday page (DECISIONS.md, "Black Friday page", 2026-11-02): today's deals at one URL kept every year,
 // prerendered at the daily build like every page.
@@ -48,9 +48,19 @@ export default function BlackFriday() {
       <FamilyCluster kind="deal" />
       <EbayStrip className="mt-10" placement="black_friday" queries={SITE_QUERIES} figures={popular(30)} />
       <p className="mt-8 text-sm text-soft">
+        <Link prefetch={false} href="/cyber-monday" className="underline">Cyber Monday deals</Link> ·{" "}
         <Link prefetch={false} href="/deals" className="underline">Figure deals today</Link> · <Link prefetch={false} href="/preorders" className="underline">Figure pre-orders</Link> ·{" "}
         <Link prefetch={false} href="/stores" className="underline">Where to buy anime figures</Link>
       </p>
+      <section className="mt-10 max-w-3xl">
+        <h2 className="font-display text-xl font-semibold">Black Friday {y}: questions</h2>
+        {holidayFaq("black-friday", y, "anime figure").map((f) => (
+          <div key={f.q} className="mt-3 text-sm">
+            <h3 className="font-semibold">{f.q}</h3>
+            <p className="text-soft">{f.a}</p>
+          </div>
+        ))}
+      </section>
     </div>
   );
 }
