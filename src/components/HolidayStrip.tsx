@@ -11,7 +11,7 @@ export function HolidayStrip({ today = new Date().toISOString().slice(0, 10) }: 
     <div className="border-b border-line bg-card" data-holiday-strip={s.href.slice(1)}>
       <p className="mx-auto max-w-6xl truncate px-4 py-1.5 text-center text-xs sm:text-sm">
         <Link prefetch={false} href={s.href} className="hover:underline">
-          <b>{s.name} anime figure deals</b> · today&apos;s cheapest figure stores, updated daily · <span className="font-semibold text-pink-deep">see the deals →</span>
+          <b>{s.name} anime figure deals</b><span className="hidden sm:inline"> · today&apos;s cheapest figure stores, updated daily</span> · <span className="font-semibold text-pink-deep">see the deals →</span>
         </Link>
       </p>
     </div>
