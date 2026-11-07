@@ -751,3 +751,17 @@ the owner accepted the remaining risk. The quick view shows the link only (the i
 else the tagged search), never Amazon's price: that stays on the product page under the 24-hour licence. Uninvited
 overlays (a phone ad dock, a corner card, an exit pop-up) still never carry Amazon, and an Amazon page is never framed
 (item (n)).
+
+## 2026-11-07 — Good Smile Global read again; maker's price, last check and the stores we can't compare (Reddit)
+
+r/Nendoroid asked why Good Smile Global/US, AmiAmi and BigBadToyStore weren't compared. Good Smile US (#55) and
+BBTS (#56) were already added on 6 Nov. Good Smile's global shop (goodsmile.com/en, offline since its October breach)
+partly reopened on 6 Nov: product pages carry Product JSON-LD with the JAN (`gtin`), the yen price and the stock, and
+its list pages come from a keyless same-origin HTML fragment (`/en/search/list`, 60 a page). No robots.txt, no key
+from page JS, one request a second. So it is read like HobbyLink Japan (`src/lib/import/goodsmile.ts`, region JP,
+only pre-order and in-stock items of the three lines, ~240 on 7 Nov), shown converted under "Or import from Japan".
+
+Also: a store row over the maker's own price for that JAN (Good Smile US in the US table, Good Smile Global in the
+Japan table) by 2% and $1/¥100 says "Above Good Smile …'s price" (never a re-rank); the figure page states the last
+check time and links `/stores`, which now lists the big stores we can't compare and why (AmiAmi, Good Smile Europe,
+Entertainment Earth, Crunchyroll Store, Tokyo Otaku Mode), with the store count and last check.

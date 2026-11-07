@@ -2,7 +2,7 @@ import { Flag } from "@/components/Flag";
 import type { Metadata } from "next";
 import { REGIONS } from "@/site";
 import { STORES } from "@/content/stores";
-import { activeStores, popular } from "@/lib/data";
+import { activeStores, getMeta, popular } from "@/lib/data";
 import { storeUrl } from "@/lib/affiliate";
 import { PageHead } from "@/components/Section";
 import { EbayStrip, SITE_QUERIES } from "@/components/EbayStrip";
@@ -14,8 +14,23 @@ export const metadata: Metadata = {
   alternates: { canonical: "/stores" },
 };
 
+/**
+ * Big figure stores we don't compare, and why (Reddit, r/Nendoroid, 2026-11-07: "Curious why GoodSmile Global, US and
+ * others aren't compared? And I didn't notice AmiAmi or BigBadToys"). From the 2026-11-06 store check; Good Smile Global came
+ * back that day and is read now. A store leaves this list once it has a figure on the site.
+ */
+const NOT_YET: { id?: string; name: string; why: string }[] = [
+  { name: "AmiAmi", why: "Its shop is drawn by a private API behind bot protection,. We never work around a store's protection." },
+  { name: "Good Smile Europe", why: "Its public product feed lists almost nothing and has no barcodes." },
+  { name: "Entertainment Earth", why: "Its pages block automated price checks." },
+  { name: "Crunchyroll Store", why: "Its pages block automated price checks." },
+  { name: "Tokyo Otaku Mode", why: "No product feed and no barcodes on its pages." },
+];
+
 export default function Stores() {
   const counts = activeStores();
+  const meta = getMeta();
+  const total = Object.values(counts).filter((n) => n > 0).length;
   return (
     <div className="mx-auto max-w-6xl px-4">
       <PageHead
@@ -48,6 +63,23 @@ export default function Stores() {
           );
         })}
       </div>
+      <p className="mt-4 text-sm text-soft">
+        {total} stores have a figure on the site today.{" "}
+        {meta ? <>Every store was last checked {new Date(meta.updatedAt).toLocaleString("en-US", { timeZone: "UTC", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" })} UTC. </> : null}
+        Japan stores (HobbyLink Japan, Good Smile Global) are shown on every region&apos;s figure pages under &ldquo;Or import from Japan&rdquo;, converted from yen.
+      </p>
+      <section className="mt-10">
+        <h2 className="h-display mb-1 text-2xl">Stores we can&apos;t compare yet</h2>
+        <p className="mb-2 text-sm text-soft">Big names you might expect, and the honest reason they&apos;re missing. Check them yourself before you buy.</p>
+        <ul className="sticker divide-y divide-line p-0 text-sm">
+          {NOT_YET.filter((n) => !(counts[n.id ?? ""] > 0)).map((n) => (
+            <li key={n.name} className="px-4 py-3">
+              <b>{n.name}</b>
+              <span className="block text-soft">{n.why}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
       <section id="suggest" className="mt-10">
         <h2 className="h-display mb-1 text-2xl">Suggest a store</h2>
         <p className="mb-2 text-sm text-soft">A real figure shop we don&apos;t check yet? We look at every suggestion and add the store if it lists barcodes we can read (BigBadToyStore, which prints none, is matched by Nendoroid and figma catalogue number instead). Store owners welcome: listing is free.</p>
