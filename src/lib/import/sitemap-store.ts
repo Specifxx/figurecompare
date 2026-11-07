@@ -157,7 +157,7 @@ export async function productUrls(cfg: SitemapConfig): Promise<string[]> {
   return [...out];
 }
 
-/** The pages to open this run: orderable last time first, then never read, then the rest oldest first. */
+/** The pages to open this run: orderable last time first, then never read (newest first), then the rest oldest first. */
 export function pickPages(urls: string[], cache: PageCache, pages: number): string[] {
   const rank = (u: string) => {
     const c = cache[u];
@@ -166,7 +166,8 @@ export function pickPages(urls: string[], cache: PageCache, pages: number): stri
   };
   return urls
     .map((u, k) => ({ u, k, r: rank(u), d: cache[u]?.d ?? "" }))
-    .sort((a, b) => a.r - b.r || a.d.localeCompare(b.d) || a.k - b.k)
+    // Pages never read: the sitemap's end first, where these shops put their newest products (old ones often lack a JAN).
+    .sort((a, b) => a.r - b.r || a.d.localeCompare(b.d) || (a.r === 1 ? b.k - a.k : a.k - b.k))
     .slice(0, pages)
     .map((x) => x.u);
 }

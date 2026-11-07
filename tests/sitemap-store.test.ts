@@ -55,6 +55,7 @@ test("pages to read: orderable last time first, then never read, then the rest o
     d: { j: null, p: 0, s: "out", n: "", i: null, d: "2026-10-20" },
   };
   assert.deepEqual(pickPages(["a", "b", "c", "d"], cache, 10), ["b", "c", "d", "a"]);
+  assert.deepEqual(pickPages(["e", "a", "b", "c", "d"], cache, 3), ["b", "c", "e"]);
   assert.deepEqual(pickPages(["a", "b", "c", "d"], cache, 2), ["b", "c"]);
   assert.ok(CACHE_DAYS <= 7);
 });
