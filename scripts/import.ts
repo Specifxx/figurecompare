@@ -13,6 +13,7 @@ import { readWoo } from "@/lib/import/woo";
 import { indexByNumber, readBbts, BBTS_PAGES_PER_RUN } from "@/lib/import/bbts";
 import { readHlj } from "@/lib/import/hlj";
 import { readGoodSmile } from "@/lib/import/goodsmile";
+import { readSitemapStore, type PageCache } from "@/lib/import/sitemap-store";
 import { fetchFx, type Fx } from "@/lib/fx";
 import type { History, Listing, Meta, StoreRun } from "@/lib/types";
 import { demandSlugs, focusCatalog } from "@/lib/focus";
@@ -32,12 +33,15 @@ const write = (p: string, v: unknown, pretty = false) => {
 };
 
 const budget = { lookups: PRODUCT_LOOKUPS_PER_RUN };
+/** What each sitemap store's product pages said last time (lib/import/sitemap-store.ts). */
+const pageCache = read<PageCache>("state/page-cache.json", {});
 
 async function readStore(store: Store, cache: BarcodeCache): Promise<ReadResult> {
   if (store.platform === "woo") return readWoo(store);
   if (store.platform === "bbts") throw new Error("read after the barcode stores");
   if (store.platform === "hlj") return readHlj(store);
   if (store.platform === "goodsmile") return readGoodSmile(store);
+  if (store.platform === "sitemap") return readSitemapStore(store, pageCache);
   const want = REGION_BY_CODE[store.region].currency;
   const own = await shopifyOwnCurrency(store);
   if (own && own !== want) throw new Error(`prices in ${own}, region needs ${want}`);
@@ -147,6 +151,7 @@ async function main() {
     console.log(`! FX rates not refreshed: ${(e as Error).message} (keeping ${read<Fx | null>("public/fx.json", null)?.date ?? "none"})`);
   }
   write("state/barcodes.json", cache);
+  write("state/page-cache.json", pageCache);
   write("state/slugs.json", state.slugs, true);
   write("state/first-seen.json", state.first, true);
   console.log(`\n${figures.length} figures from ${listings.length} listings (${failed.size} store(s) failed, ${PRODUCT_LOOKUPS_PER_RUN - budget.lookups} barcode lookups).`);

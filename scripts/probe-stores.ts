@@ -8,6 +8,8 @@ import { REGIONS, type RegionCode } from "@/site";
 import type { Store } from "@/content/stores";
 import { readShopify, type ShopifyProduct } from "@/lib/import/shopify";
 import { readWoo } from "@/lib/import/woo";
+import { readSitemapStore } from "@/lib/import/sitemap-store";
+import { STORES } from "@/content/stores";
 import { readTitle } from "@/lib/title";
 import { fetchJson, sleep } from "@/lib/import/http";
 
@@ -49,6 +51,19 @@ async function probe(host: string): Promise<Result> {
     r.base = await finalBase(host);
   } catch (e) {
     return { ...r, error: `home: ${(e as Error).message}` };
+  }
+  // A store already configured as a sitemap store: read a few of its product pages the way the import does.
+  const known = STORES.find((s) => s.platform === "sitemap" && new URL(s.base).host === new URL(r.base!).host);
+  if (known?.sitemap) {
+    try {
+      const res = await readSitemapStore({ ...known, sitemap: { ...known.sitemap, pages: LOOKUPS } }, {});
+      r.name = known.name;
+      r.regions = [known.region];
+      r.perRegion = { [known.region]: summary(res) };
+    } catch (e) {
+      r.error = `sitemap: ${(e as Error).message}`;
+    }
+    return r;
   }
   // Shopify?
   let shopify = false;
