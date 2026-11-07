@@ -1,2 +1,5 @@
-# Round 3b (2026-11-06): can GitHub's runners reach HobbyLink Japan? (custom platform: a result with no error is a yes)
-www.hlj.com
+# Round 4 (2026-11-07): can GitHub's runners reach the big custom-platform EU shops? (a result with no error is a yes)
+figuya.com
+kurogami.com
+www.yorokonde.de
+www.archonia.com
