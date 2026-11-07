@@ -4,10 +4,16 @@
 // so the two never disagree (owner, 2026-10-28: the DexCompare / MTG Compare
 // navigation on every new site). Static links to pages that exist.
 // No data import here: the client menus import isActive from this file.
+import { saleStrip } from "@/lib/black-friday";
 import { LINES, type LineKey } from "@/site";
 
 export type NavItem = { href: string; label: string; emoji: string; count?: number };
 export type NavGroup = { title: string; links: NavItem[] };
+
+function saleLinks(): NavItem[] {
+  const s = saleStrip(new Date().toISOString().slice(0, 10));
+  return s ? [{ href: s.href, label: `${s.name} deals`, emoji: "🛍️" }] : [];
+}
 
 export function navGroups(counts: Record<LineKey, number>): NavGroup[] {
   return [
@@ -15,6 +21,8 @@ export function navGroups(counts: Record<LineKey, number>): NavGroup[] {
     {
       title: "Deals & stock",
       links: [
+        // Black Friday, then Cyber Monday, while the strip shows (lib/black-friday.ts saleStrip).
+        ...saleLinks(),
         { href: "/series", label: "By series", emoji: "📚" },
         { href: "/deals", label: "Deals", emoji: "💸" },
         { href: "/preorders", label: "Pre-orders", emoji: "📅" },
