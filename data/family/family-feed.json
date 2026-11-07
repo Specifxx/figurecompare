@@ -1,7 +1,7 @@
 {
  "v": 1,
  "site": "figure",
- "generatedAt": "2026-11-06T13:59:59.782Z",
+ "generatedAt": "2026-11-07T15:04:23.927Z",
  "links": {
   "US": {
    "deals": "https://figurecompare.com/deals",
@@ -514,7 +514,7 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "AU",
-   "title": "Nendoroid Goddess of Victory: Nikke - Guren",
+   "title": "Nendoroid Goddess of Victory: Nikke - Action Guren 10 cm",
    "url": "https://figurecompare.com/figure/nendoroid-goddess-of-victory-nikke-guren",
    "cents": 13345,
    "currency": "AUD",
@@ -615,7 +615,7 @@
    "currency": "EUR",
    "store": "fictionary world",
    "image": "https://cdn.shopify.com/s/files/1/0876/7307/8075/files/11DBBF28-327B-11EF-A71C-B1FE4E1BFA1B-L.png?v=1747167264&width=600",
-   "refCents": 4490,
+   "refCents": 4499,
    "refLabel": "dearest store",
    "savingPct": 56
   },
@@ -679,45 +679,34 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "EU",
-   "title": "Nendoroid Nezuko Kamado",
-   "url": "https://figurecompare.com/figure/nendoroid-nezuko-kamado-1194",
-   "cents": 4999,
-   "currency": "EUR",
-   "store": "JumpIchiban",
-   "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/Nendoroid-Nezuko-Kamado1.png?v=1773799004&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "EU",
-   "title": "Nendoroid Demon Slayer - Zenitsu Agatsuma",
-   "url": "https://figurecompare.com/figure/nendoroid-demon-slayer-kimetsu-no-yaiba-zenitsu-agatsuma-1334-63220",
-   "cents": 4999,
-   "currency": "EUR",
-   "store": "JumpIchiban",
-   "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/Nendoroid-Zenitsu-Agatsuma1.png?v=1773798937&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "EU",
-   "title": "Nendoroid Darling in the Franxx - Action Zero Two 10 cm",
-   "url": "https://figurecompare.com/figure/nendoroid-darling-in-the-franxx-zero-two-952",
-   "cents": 5599,
-   "currency": "EUR",
-   "store": "AniMuchuu",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/products/om-G12458-1.jpg?v=1646460843&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "EU",
-   "title": "Nendoroid Hatsune Miku: Senbonzakura Ver.",
-   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-senbonzakura-ver-480",
-   "cents": 6300,
+   "title": "Nendoroid Rebuild of Evangelion - Action Rei Ayanami: Long Hair Ver. 10 cm",
+   "url": "https://figurecompare.com/figure/nendoroid-rei-ayanami-long-hair-ver-3018",
+   "cents": 6200,
    "currency": "EUR",
    "store": "Amuzzi",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828670983.png?v=1768310762&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828676145.png?v=1785919200&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "EU",
+   "title": "Nendoroid Umamusume: Pretty Derby - Agnes Tachyon",
+   "url": "https://figurecompare.com/figure/nendoroid-agnes-tachyon-2512",
+   "cents": 6200,
+   "currency": "EUR",
+   "store": "Amuzzi",
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828678231.png?v=1785919204&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "EU",
+   "title": "Nendoroid Genshin Impact - Xiao",
+   "url": "https://figurecompare.com/figure/nendoroid-genshin-impact-xiao-2668",
+   "cents": 6799,
+   "currency": "EUR",
+   "store": "Mangatori",
+   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/Nendoroid-2668Xiao-GenshinImpact-1.png?v=1773789337&width=600"
   },
   {
    "kind": "preorder",
@@ -734,12 +723,23 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "EU",
-   "title": "Nendoroid Arknights: Endfield - Perlica",
+   "title": "Nendoroid Arknights: Endfield - Action Perlica 10 cm",
    "url": "https://figurecompare.com/figure/nendoroid-arknights-endfield-perlica-3043",
    "cents": 7500,
    "currency": "EUR",
    "store": "Amuzzi",
    "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/arknights-endfield-nendoroid-perlica_1.jpg?v=1777626204&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "EU",
+   "title": "Nendoroid Honkai: Star Rail - Anaxa",
+   "url": "https://figurecompare.com/figure/nendoroid-honkai-star-rail-anaxa-2969",
+   "cents": 7699,
+   "currency": "EUR",
+   "store": "AniMuchuu",
+   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/honkai-star-rail-nendoroid-anaxa_1.jpg?v=1781851182&width=600"
   },
   {
    "kind": "deal",
@@ -750,7 +750,7 @@
    "cents": 3000,
    "currency": "SGD",
    "store": "ToyCoin",
-   "image": "https://cdn.shopify.com/s/files/1/0440/6493/1998/files/NendoroidNarutoShippudenHinataHyuga_1_1024x1024_1.jpg?v=1695618897&width=600",
+   "image": "https://cdn.shopify.com/s/files/1/0712/7279/2357/products/Studio-Project_19_057e6571-7640-4879-a348-8f434d8c2f39.png?v=1680293598&width=600",
    "refCents": 6100,
    "refLabel": "dearest store",
    "savingPct": 51
