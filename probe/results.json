@@ -2,21 +2,56 @@
  {
   "host": "figuya.com",
   "base": "https://figuya.com",
-  "platform": null
+  "name": "Figuya",
+  "regions": [
+   "EU"
+  ],
+  "perRegion": {
+   "EU": {
+    "listings": 5,
+    "noJan": 10,
+    "seen": 15,
+    "inStock": 0,
+    "lines": {
+     "nendoroid": 5
+    }
+   }
+  }
  },
  {
   "host": "kurogami.com",
   "base": "https://kurogami.com",
-  "platform": null
- },
- {
-  "host": "www.archonia.com",
-  "base": "https://www.archonia.com",
-  "platform": null
+  "name": "Kurogami",
+  "regions": [
+   "EU"
+  ],
+  "perRegion": {
+   "EU": {
+    "listings": 12,
+    "noJan": 2,
+    "seen": 15,
+    "inStock": 12,
+    "lines": {
+     "nendoroid": 12
+    }
+   }
+  }
  },
  {
   "host": "www.yorokonde.de",
   "base": "https://www.yorokonde.de",
-  "platform": null
+  "name": "Yorokonde",
+  "regions": [
+   "EU"
+  ],
+  "perRegion": {
+   "EU": {
+    "listings": 0,
+    "noJan": 15,
+    "seen": 15,
+    "inStock": 0,
+    "lines": {}
+   }
+  }
  }
 ]
