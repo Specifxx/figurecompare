@@ -41,6 +41,8 @@ export interface StoreRun {
 export interface Meta {
   updatedAt: string;
   figures: number;
+  /** Figures the merge produced before the low-traction cull (lib/focus.ts); the import's half-size guard compares this. */
+  merged?: number;
   stores: Record<string, StoreRun>;
   ebay?: { at: string; day: string; calls: number; budget: number; listings: number; skipped?: string };
 }
