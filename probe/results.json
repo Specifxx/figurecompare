@@ -1,7 +1,22 @@
 [
  {
-  "host": "www.hlj.com",
-  "base": "https://www.hlj.com",
+  "host": "figuya.com",
+  "base": "https://figuya.com",
+  "platform": null
+ },
+ {
+  "host": "kurogami.com",
+  "base": "https://kurogami.com",
+  "platform": null
+ },
+ {
+  "host": "www.archonia.com",
+  "base": "https://www.archonia.com",
+  "platform": null
+ },
+ {
+  "host": "www.yorokonde.de",
+  "base": "https://www.yorokonde.de",
   "platform": null
  }
 ]
