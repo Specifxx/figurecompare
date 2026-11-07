@@ -36,6 +36,9 @@ export interface RowData {
 export const PIN_OUTLINE = {
   ebay: "outline outline-2 -outline-offset-2 outline-[#16a34a]",
   amazon: "outline outline-2 -outline-offset-2 outline-[#f59e0b]",
+  /** The cheapest store row (owner, 2026-11-07: "the cheapest listing should also have an outline too"): sky blue, the same
+   *  across the family, never read as eBay's green or Amazon's amber. */
+  cheapest: "outline outline-2 -outline-offset-2 outline-[#0ea5e9]",
 } as const;
 
 export interface RowsData {
@@ -71,7 +74,7 @@ function Row({ name, sub, price, status, href, paid, highlight = false, live, ev
     <div
       className={`flex items-center gap-3 rounded-xl border bg-card px-3 py-2.5 ${
         highlight ? "border-pink shadow-sticker" : "border-line"
-      } ${status === "out" ? "opacity-70" : ""} ${pin ? PIN_OUTLINE[pin] : ""}`}
+      } ${status === "out" ? "opacity-70" : ""} ${pin ? PIN_OUTLINE[pin] : highlight ? PIN_OUTLINE.cheapest : ""}`}
     >
       <div className="min-w-0 flex-1">
         <p className="flex flex-wrap items-center gap-x-2 gap-y-0.5 font-bold">
