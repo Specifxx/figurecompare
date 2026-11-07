@@ -12,6 +12,7 @@ import { readShopify, shopifyCurrency, shopifyOwnCurrency, PRODUCT_LOOKUPS_PER_R
 import { readWoo } from "@/lib/import/woo";
 import { indexByNumber, readBbts, BBTS_PAGES_PER_RUN } from "@/lib/import/bbts";
 import { readHlj } from "@/lib/import/hlj";
+import { readGoodSmile } from "@/lib/import/goodsmile";
 import { fetchFx, type Fx } from "@/lib/fx";
 import type { History, Listing, Meta, StoreRun } from "@/lib/types";
 
@@ -34,6 +35,7 @@ async function readStore(store: Store, cache: BarcodeCache): Promise<ReadResult>
   if (store.platform === "woo") return readWoo(store);
   if (store.platform === "bbts") throw new Error("read after the barcode stores");
   if (store.platform === "hlj") return readHlj(store);
+  if (store.platform === "goodsmile") return readGoodSmile(store);
   const want = REGION_BY_CODE[store.region].currency;
   const own = await shopifyOwnCurrency(store);
   if (own && own !== want) throw new Error(`prices in ${own}, region needs ${want}`);

@@ -91,11 +91,20 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
       paid: true,
       event: { source: "hlj", region, placement: `${placement}_pinned`, jan: f.jan },
     });
+  // The maker's own price as the reference (Reddit feedback, 2026-11-07: "flag prices above RRP"): in the US, Good
+  // Smile US's price for this JAN; in Japan's own table, Good Smile Global's. A row more than $1/¥100 and 2% over it
+  // says so. Never a re-rank and never a dropped row.
+  const maker = offers.find((o) => o.s === (region === "JP" ? "goodsmile-global" : "goodsmileus"));
+  const overMaker = (o: { s: string; p: number }) => !!maker && o.s !== maker.s && o.p > maker.p * 1.02 + 100; // cents, or yen
+  const makerName = region === "JP" ? "Good Smile Global" : "Good Smile US";
   const stores: RowData[] = offers.map((o) => ({
     name: storeName(o.s),
-    sub: convert
-      ? [o === best ? "Cheapest in Japan" : null, convertYen(o.p, convert, fx) != null ? `${money(o.p, region)} · ships from Japan` : "ships from Japan"].filter(Boolean).join(" · ")
-      : o === best ? "Cheapest store" : null,
+    sub: [
+      convert
+        ? [o === best ? "Cheapest in Japan" : null, convertYen(o.p, convert, fx) != null ? `${money(o.p, region)} · ships from Japan` : "ships from Japan"].filter(Boolean).join(" · ")
+        : o === best ? "Cheapest store" : null,
+      overMaker(o) ? `Above ${makerName}'s ${money(maker!.p, region)}` : null,
+    ].filter(Boolean).join(" · ") || null,
     price: shown(o.p),
     status: o.st,
     href: storeUrl(o.s, o.u),

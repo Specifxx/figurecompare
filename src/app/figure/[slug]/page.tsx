@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LINE_BY_KEY, REGIONS, SITE, type RegionCode } from "@/site";
-import { bestIn, figuresOfLine, getEbay, getFigure, getFigures, getHistory, regionsOf, spreadIn, storeCount, storeName, getFx } from "@/lib/data";
+import { bestIn, figuresOfLine, getEbay, getFigure, getFigures, getHistory, regionsOf, spreadIn, storeCount, storeName, getFx, getMeta } from "@/lib/data";
 import { dayNumber, lowestOrderable } from "@/lib/history";
 import { decimal, money, niceDate, pct } from "@/lib/format";
 import { isIndexable } from "@/lib/index-tiers";
@@ -52,6 +52,7 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
   if (!f) notFound();
   const line = LINE_BY_KEY[f.line];
   const regions = regionsOf(f);
+  const meta = getMeta();
   const ebay = getEbay()[f.jan] ?? {};
   const history = getHistory()[f.jan] ?? {};
   const today = dayNumber(new Date().toISOString().slice(0, 10));
@@ -201,7 +202,7 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
             </div>
           ))}
           <p className="mt-3 text-xs text-soft">
-            Prices are what each store showed at our last check and exclude shipping. Every listing here carries this figure&apos;s barcode (JAN {f.jan}), so it is the same product, not a look-alike. The one exception is BigBadToyStore, which prints no barcode: its listing is matched by the Nendoroid or figma catalogue number and the character&apos;s name, and only when that number belongs to one figure.
+            Prices are what each store showed at our last check{meta ? <> ({new Date(meta.updatedAt).toLocaleString("en-US", { timeZone: "UTC", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" })} UTC)</> : null} and exclude shipping. Compared across {storeCount(f)} store{storeCount(f) === 1 ? "" : "s"}; see <Link prefetch={false} href="/stores" className="underline">every store we check, and the ones we can&apos;t yet</Link>. Every listing here carries this figure&apos;s barcode (JAN {f.jan}), so it is the same product, not a look-alike. The one exception is BigBadToyStore, which prints no barcode: its listing is matched by the Nendoroid or figma catalogue number and the character&apos;s name, and only when that number belongs to one figure.
           </p>
           <ReportPrice
             product={`${f.name} (JAN ${f.jan})`}
