@@ -20,7 +20,7 @@ export const metadata: Metadata = {
  * back that day and is read now. A store leaves this list once it has a figure on the site.
  */
 const NOT_YET: { id?: string; name: string; why: string }[] = [
-  { name: "AmiAmi", why: "Its shop is drawn by a private API behind bot protection,. We never work around a store's protection." },
+  { name: "AmiAmi", why: "Its shop is drawn by a private API behind bot protection. We never work around a store's protection." },
   { name: "Good Smile Europe", why: "Its public product feed lists almost nothing and has no barcodes." },
   { name: "Entertainment Earth", why: "Its pages block automated price checks." },
   { name: "Crunchyroll Store", why: "Its pages block automated price checks." },
