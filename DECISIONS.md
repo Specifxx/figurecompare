@@ -765,3 +765,12 @@ Also: a store row over the maker's own price for that JAN (Good Smile US in the 
 Japan table) by 2% and $1/¥100 says "Above Good Smile …'s price" (never a re-rank); the figure page states the last
 check time and links `/stores`, which now lists the big stores we can't compare and why (AmiAmi, Good Smile Europe,
 Entertainment Earth, Crunchyroll Store, Tokyo Otaku Mode), with the store count and last check.
+
+## 2026-11-07: The sitemap lists a lean core
+
+The owner's Search Console and Bing audit (2026-11-07) found FigureCompare's sitemap at 4,182 URLs on a domain Google
+was still processing. The family's young domains are stuck in "Discovered – currently not indexed": with few links,
+Google samples a few templated pages instead of indexing thousands. The sitemap now lists the hubs, series and guides as
+before plus the 300 most widely stocked indexable figures (`sitemapFigures`, `SITEMAP_FIGURES`); line page 2+ left it.
+Nothing was noindexed, removed or moved: every other figure stays live, indexable and linked from its line, series and
+the lists. Widen `SITEMAP_FIGURES` once Search Console shows the core mostly indexed (recheck ~25 Nov).

@@ -35,3 +35,14 @@ test("no product photo has empty alt text", () => {
 test("llms.txt is a static route", () => {
   assert.match(read("src/app/llms.txt/route.ts"), /force-static/);
 });
+
+test("the sitemap's figures are a lean core: indexable, most widely stocked first, capped", async () => {
+  const { SITEMAP_FIGURES, sitemapFigures } = await import("../src/lib/index-tiers");
+  const offer = { st: "in" } as never;
+  const fig = (slug: string, us: number, uk = 0) => ({ slug, offers: { US: Array(us).fill(offer), UK: Array(uk).fill(offer) } }) as never;
+  const all = [fig("one-store", 1), fig("two", 2), fig("wide", 3, 2), ...Array.from({ length: SITEMAP_FIGURES + 5 }, (_, i) => fig(`f${i}`, 2))];
+  const out = sitemapFigures(all).map((f: { slug: string }) => f.slug);
+  assert.equal(out[0], "wide");
+  assert.ok(!out.includes("one-store"));
+  assert.equal(out.length, SITEMAP_FIGURES);
+});
