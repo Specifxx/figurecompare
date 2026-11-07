@@ -1,56 +1,30 @@
 [
  {
-  "host": "figuya.com",
-  "base": "https://figuya.com",
-  "name": "Figuya",
+  "host": "animeimport.it",
+  "base": "https://animeimport.it",
+  "error": "sitemap: https://animeimport.it/product/guts-berserker-armor-ver-nendoroid/: HTTP 403"
+ },
+ {
+  "host": "www.archonia.com",
+  "base": "https://www.archonia.com",
+  "error": "sitemap: https://www.archonia.com/sitemap.xml.gz: HTTP 403"
+ },
+ {
+  "host": "www.mangatori.fr",
+  "base": "https://www.mangatori.fr",
+  "name": "Mangatori",
   "regions": [
    "EU"
   ],
   "perRegion": {
    "EU": {
-    "listings": 5,
+    "listings": 4,
     "noJan": 10,
     "seen": 15,
-    "inStock": 0,
+    "inStock": 4,
     "lines": {
-     "nendoroid": 5
+     "nendoroid": 4
     }
-   }
-  }
- },
- {
-  "host": "kurogami.com",
-  "base": "https://kurogami.com",
-  "name": "Kurogami",
-  "regions": [
-   "EU"
-  ],
-  "perRegion": {
-   "EU": {
-    "listings": 12,
-    "noJan": 2,
-    "seen": 15,
-    "inStock": 12,
-    "lines": {
-     "nendoroid": 12
-    }
-   }
-  }
- },
- {
-  "host": "www.yorokonde.de",
-  "base": "https://www.yorokonde.de",
-  "name": "Yorokonde",
-  "regions": [
-   "EU"
-  ],
-  "perRegion": {
-   "EU": {
-    "listings": 0,
-    "noJan": 15,
-    "seen": 15,
-    "inStock": 0,
-    "lines": {}
    }
   }
  }
