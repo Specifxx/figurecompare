@@ -13,7 +13,7 @@ import { readWoo } from "@/lib/import/woo";
 import { indexByNumber, readBbts, BBTS_PAGES_PER_RUN } from "@/lib/import/bbts";
 import { readHlj } from "@/lib/import/hlj";
 import { readGoodSmile } from "@/lib/import/goodsmile";
-import { indexByName, readSitemapStore, type PageCache } from "@/lib/import/sitemap-store";
+import { readSitemapStore, type PageCache } from "@/lib/import/sitemap-store";
 import { fetchFx, type Fx } from "@/lib/fx";
 import type { History, Listing, Meta, StoreRun } from "@/lib/types";
 import { demandSlugs, focusCatalog } from "@/lib/focus";
@@ -66,9 +66,8 @@ function readDemand(): Set<string> {
 
 async function main() {
   const only = process.env.STORES?.split(",").filter(Boolean);
-  const afterBarcodes = (s: Store) => s.platform === "bbts" || Boolean(s.sitemap?.byName);
-  const stores = (only ? STORES.filter((s) => only.includes(s.id)) : STORES).filter((s) => !afterBarcodes(s));
-  const numbered = (only ? STORES.filter((s) => only.includes(s.id)) : STORES).filter(afterBarcodes);
+  const stores = (only ? STORES.filter((s) => only.includes(s.id)) : STORES).filter((s) => s.platform !== "bbts");
+  const numbered = (only ? STORES.filter((s) => only.includes(s.id)) : STORES).filter((s) => s.platform === "bbts");
   const cache = read<BarcodeCache>("state/barcodes.json", {});
   const state: MergeState = { slugs: read("state/slugs.json", {}), first: read("state/first-seen.json", {}) };
   const prevMeta = read<Meta | null>("public/meta.json", null);
@@ -97,7 +96,7 @@ async function main() {
   for (const s of numbered) {
     const t0 = Date.now();
     try {
-      const r = s.platform === "bbts" ? await readBbts(s, indexByNumber(listings), BBTS_PAGES_PER_RUN) : await readSitemapStore(s, pageCache, indexByName(listings));
+      const r = await readBbts(s, indexByNumber(listings), BBTS_PAGES_PER_RUN);
       listings.push(...r.listings);
       runs[s.id] = { ok: true, listings: r.seen, matched: r.listings.length, refused: r.refused, noJan: r.noJan, ms: Date.now() - t0 };
       console.log(`✓ ${s.id}: ${r.seen} product pages, ${r.listings.length} matched by number and name, ${r.noJan} with no unique number`);

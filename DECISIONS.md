@@ -815,19 +815,13 @@ WooCommerce; the large ones run their own platforms, which the 2026-10-29 probe 
   out and listed on /stores under "Stores we can't compare yet"; the owner was asked.
 - Not yet looked at closely: Mangatori (FR, PrestaShop, JANs appear on its category pages) and Anime Import (IT,
   WordPress with the Store API off). Next round.
-## 2026-11-07 — Mangatori, Anime Import, and Archonia matched by name (owner: "add all of them in one pass")
+## 2026-11-07 — Mangatori added; Anime Import and Archonia block GitHub's runners (owner: "add all of them in one pass")
 
-- **Mangatori** (France, PrestaShop: JSON-LD `gtin13`, the JAN also ends each product URL) and **Anime Import**
-  (Italy, WooCommerce + Elementor with the Store API off: `parseWooPage` reads the h1, the first `p.price`, its
-  "EAN: …" line and the add-to-cart button) join the sitemap reader, inside the barcode rule.
-- **Archonia** (Belgium) prints no barcode anywhere, so the owner's "add all of them" is read as approving the
-  second exception to the barcode rule after BigBadToyStore. `sitemap.byName`, read after the barcode stores:
-  `matchByName` lands an Archonia title on a figure only when (1) same line, and the same catalogue number when both
-  give one; (2) every word of its name (makers, "PVC figure" and other filler dropped) is a word some store uses for
-  that figure; (3) some store's whole name for that figure is inside Archonia's words, so a base figure and its
-  "Snow Ver." never swap; (4) exactly one figure fits (a tie is no match); and (5) its price is within 60–160% of
-  the other stores' median for that figure in Europe (none there, no match). readTitle still refuses dolls, Nendoroid
-  More and the rest. Prices are the en-us storefront's euro prices, VAT included (checked against fictionary world
-  and Nendo Addicts for Nendoroid Sunna: €82.99 vs €75.90/€90).
-- If an Archonia match is ever reported wrong, tighten `matchByName` and add the title to
-  `tests/sitemap-store.test.ts`; never loosen it to raise the count.
+- **Mangatori** (France, PrestaShop: JSON-LD `gtin13`, the JAN also ends each product URL) joins the sitemap reader,
+  inside the barcode rule. A runner read 15 pages: 4 listed, the oldest pages carry no JAN.
+- **Anime Import** (Italy) answers GitHub's runners 403 on product pages, and **Archonia** (Belgium) 403 on its
+  sitemap, though both load in a browser. That is bot protection, which we never work around, so both stay out and
+  are on /stores under "Stores we can't compare yet". For Archonia the owner had also approved matching by whole
+  name (it prints no barcode); the matcher was written (commit ed0f26b on this PR's branch: line + number + both-ways
+  name words + one figure only + 60–160% of the EU median) and removed unused. Bring it back from there if Archonia
+  ever lets the runners in.
