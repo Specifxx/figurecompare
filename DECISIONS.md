@@ -796,3 +796,22 @@ or 10+ impressions on its page (the `demand` branch). ≈4,660 → 2,880 figures
 history.json keeps every merged figure and slugs are kept forever, so a figure that qualifies again returns with its chart. The
 site has no functions, so a culled figure's page is gone (404) rather than redirected; 2 figure pages had any search demand and
 both stay. The half-size guard compares the merge's count before the cull (`meta.merged`).
+## 2026-11-07 — The big European shops on their own platforms: Figuya, Kurogami, Yorokonde (Archonia not yet)
+
+Owner, 2026-11-07: "you're definitely missing Archonia … and other European shops". Every EU store we had was Shopify or
+WooCommerce; the large ones run their own platforms, which the 2026-10-29 probe could not read. Checked by hand that day:
+
+- **Figuya** (Berlin, ~5,900 Nendoroid/figma/POP UP PARADE pages), **Kurogami** (Spain, ~610) and **Yorokonde**
+  (Germany, ~1,600) publish product sitemaps and print the JAN on every product page (JSON-LD `gtin13`; Yorokonde's
+  Shopware 5 `itemprop="gtin13"`). Added as `platform: "sitemap"` (`src/lib/import/sitemap-store.ts`): URLs only from
+  the sitemaps robots.txt names, kept when the URL names a line, then the page's own JAN and title decide, as for every
+  store. No search or filter page is read (all three disallow them). One page a second.
+- **The page cache.** Figuya's pages are too many for one run, so `data/state/page-cache.json` keeps what each page said;
+  a run (`SITEMAP_PAGES`, 1,500 pages a store) re-reads pages that were orderable first, then pages never read, then the
+  rest oldest first, and a page read in the last 7 days lists from the cache with the stock it had. Its prices are public
+  store prices, so the file may be public. Figuya's backlog fills in about four runs.
+- **Archonia** (Belgium) is readable (product sitemaps, JSON-LD with price and stock) but shows NO barcode and its titles
+  carry no catalogue number ("Nendoroid Sunna"), so it would need title matching, which the barcode rule forbids. Left
+  out and listed on /stores under "Stores we can't compare yet"; the owner was asked.
+- Not yet looked at closely: Mangatori (FR, PrestaShop, JANs appear on its category pages) and Anime Import (IT,
+  WordPress with the Store API off). Next round.
