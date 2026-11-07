@@ -1,4 +1,4 @@
-# Round 4b (2026-11-07): read 15 product pages from each new sitemap store the way the import does
-figuya.com
-kurogami.com
-www.yorokonde.de
+# Round 4c (2026-11-07): read 15 product pages from Mangatori, Anime Import and Archonia the way the import does
+www.mangatori.fr
+animeimport.it
+www.archonia.com

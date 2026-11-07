@@ -56,7 +56,7 @@ async function probe(host: string): Promise<Result> {
   const known = STORES.find((s) => s.platform === "sitemap" && new URL(s.base).host === new URL(r.base!).host);
   if (known?.sitemap) {
     try {
-      const res = await readSitemapStore({ ...known, sitemap: { ...known.sitemap, pages: LOOKUPS } }, {});
+      const res = await readSitemapStore({ ...known, sitemap: { ...known.sitemap, pages: LOOKUPS } }, {}, {});
       r.name = known.name;
       r.regions = [known.region];
       r.perRegion = { [known.region]: summary(res) };

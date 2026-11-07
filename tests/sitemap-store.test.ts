@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { CACHE_DAYS, locsOf, parseProductPage, pickPages, type PageCache } from "../src/lib/import/sitemap-store";
+import { CACHE_DAYS, inBand, indexByName, locsOf, matchByName, parseProductPage, pickPages, type PageCache } from "../src/lib/import/sitemap-store";
 import { STORES } from "../src/content/stores";
 
 // Real markup, 2026-11-07 (trimmed): figuya.com/en/products/nendoroid-1536-kagome-higurashi.
@@ -88,4 +88,73 @@ test("each sitemap store's URL pattern keeps its figure pages and nothing else",
     const re = new RegExp(s.sitemap.match, "i");
     for (const [u, want] of urls) assert.equal(re.test(u), want, `${id}: ${u}`);
   }
+});
+
+// mangatori.fr (PrestaShop JSON-LD, 2026-11-07, trimmed).
+const MANGATORI = `<script type="application/ld+json">{ "@context": "http://schema.org/", "@type": "Product", "name": "Hatsune Miku GT Project figurine Nendoroid Racing Miku: 2026 Ver. 10 cm", "image" :"/3081055-home_default/good-smile-company-gsc67321-hatsune-miku-gt-project-figurine-nendoroid.jpg", "sku": "GSC67321", "gtin13": "4580828673212", "offers": { "@type": "Offer", "priceCurrency": "EUR", "price": "89.99", "gtin13": "4580828673212", "availability": "http://schema.org/InStock" } }</script>`;
+
+// animeimport.it (WooCommerce + Elementor, no JSON-LD; a related product's price follows).
+const ANIMEIMPORT = (button: string) => `<h1 class="product_title entry-title elementor-heading-title elementor-size-default">Nagito Komaeda Nendoroid</h1>
+<p class="price nasa-single-product-price"><del aria-hidden="true"><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&euro;</span>65,00</bdi></span></del> <ins><span class="woocommerce-Price-amount amount"><bdi><span class="woocommerce-Price-currencySymbol">&euro;</span>55,00</bdi></span></ins></p>
+<p class="elementor-heading-title elementor-size-default">EAN: 4570232594333</p>
+<form class="cart">${button ? `<button type="submit" name="add-to-cart" value="187514" class="ns-single-add-btn single_add_to_cart_button button alt">${button}</button>` : ""}</form>
+<meta property="og:image" content="https://animeimport.it/wp-content/uploads/2026/10/4570232594333_1.webp" />
+<p class="price"><span class="woocommerce-Price-amount amount">&euro;59,00</span></p>`;
+
+test("Mangatori: JSON-LD with a relative photo", () => {
+  const p = parseProductPage(MANGATORI, "https://www.mangatori.fr");
+  assert.equal(p?.jan, "4580828673212");
+  assert.equal(p?.price, 89.99);
+  assert.equal(p?.st, "in");
+  assert.equal(p?.img, "https://www.mangatori.fr/3081055-home_default/good-smile-company-gsc67321-hatsune-miku-gt-project-figurine-nendoroid.jpg");
+});
+
+test("Anime Import: the sale price, the EAN line, stock from the button", () => {
+  const p = parseProductPage(ANIMEIMPORT("Pre-ordina"), "https://animeimport.it");
+  assert.deepEqual(p, { name: "Nagito Komaeda Nendoroid", jan: "4570232594333", price: 55, currency: "EUR", st: "pre", img: "https://animeimport.it/wp-content/uploads/2026/10/4570232594333_1.webp" });
+  assert.equal(parseProductPage(ANIMEIMPORT("Aggiungi al carrello"), "https://animeimport.it")?.st, "in");
+  assert.equal(parseProductPage(ANIMEIMPORT(""), "https://animeimport.it")?.st, "out");
+});
+
+const L = (jan: string, title: string, cents = 8000, region: "EU" | "US" = "EU") => ({ store: "s", region, title, jan, cents, st: "in" as const, url: "", img: null });
+
+test("Archonia: a name names one figure, both ways, or none", () => {
+  const idx = indexByName([
+    L("4570232590250", "Nendoroid Zenless Zone Zero - Sunna"),
+    L("4570232590250", "Zenless Zone Zero Sunna Nendoroid Figur Good Smile Company"),
+    L("4580590100000", "Nendoroid Hatsune Miku"),
+    L("4580590100001", "Nendoroid Hatsune Miku: Snow Ver."),
+    L("4580590123489", "Nendoroid 1536 Kagome Higurashi"),
+  ]);
+  assert.equal(matchByName("Zenless Zone Zero PVC Figure - Nendoroid Sunna", idx), "4570232590250");
+  // The base figure, not the Snow version, and the Snow version, not the base.
+  assert.equal(matchByName("Vocaloid PVC Figure - Nendoroid Hatsune Miku", idx), null); // "vocaloid" is no store's word for it
+  assert.equal(matchByName("PVC Figure - Nendoroid Hatsune Miku", idx), "4580590100000");
+  assert.equal(matchByName("PVC Figure - Nendoroid Hatsune Miku Snow Ver", idx), "4580590100001");
+  // A variant the catalogue doesn't have is no match.
+  assert.equal(matchByName("Zenless Zone Zero PVC Figure - Nendoroid Sunna Swimsuit", idx), null);
+  // A different line, or a different number, is no match.
+  assert.equal(matchByName("Zenless Zone Zero - Pop Up Parade Sunna", idx), null);
+  assert.equal(matchByName("Inuyasha PVC Figure - Nendoroid 1537 Kagome Higurashi", idx), null);
+  // Refused titles stay refused.
+  assert.equal(matchByName("Zenless Zone Zero - Nendoroid Doll Sunna", idx), null);
+});
+
+test("Archonia: a name match also needs a nearby price from another store in its region", () => {
+  assert.equal(inBand(8299, [7590, 9000]), true);
+  assert.equal(inBand(20000, [7590, 9000]), false);
+  assert.equal(inBand(8299, undefined), false);
+  const idx = indexByName([L("4570232590250", "Nendoroid Zenless Zone Zero - Sunna", 7590, "US")]);
+  assert.equal(idx["4570232590250"].prices.EU, undefined);
+});
+
+test("the URL patterns of Mangatori, Anime Import and Archonia", () => {
+  const re = (id: string) => new RegExp(STORES.find((s) => s.id === id)!.sitemap!.match, "i");
+  assert.ok(re("mangatori").test("https://www.mangatori.fr/hatsune-miku/860520-good-smile-company-gsc67321-hatsune-miku-gt-project-figurine-nendoroid-4580828673212.html"));
+  assert.ok(!re("mangatori").test("https://www.mangatori.fr/57161-nendoroid"));
+  assert.ok(re("animeimport").test("https://animeimport.it/product/nagito-komaeda-nendoroid/"));
+  assert.ok(!re("animeimport").test("https://animeimport.it/product-category/figure/nendoroid-figure/"));
+  assert.ok(re("archonia").test("https://www.archonia.com/en-us/product/561741/zenless-zone-zero-pvc-figure-nendoroid-sunna"));
+  assert.ok(!re("archonia").test("https://www.archonia.com/nl-be/product/561741/zenless-zone-zero-pvc-figure-nendoroid-sunna"));
+  assert.equal(STORES.find((s) => s.id === "archonia")!.sitemap!.byName, true);
 });

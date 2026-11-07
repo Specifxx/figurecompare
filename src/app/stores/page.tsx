@@ -25,7 +25,6 @@ const NOT_YET: { id?: string; name: string; why: string }[] = [
   { name: "Entertainment Earth", why: "Its pages block automated price checks." },
   { name: "Crunchyroll Store", why: "Its pages block automated price checks." },
   { name: "Tokyo Otaku Mode", why: "No product feed and no barcodes on its pages." },
-  { name: "Archonia", why: "Its product pages show no barcode, and its titles carry no catalogue number, so a price can't be tied to one figure for sure." },
 ];
 
 export default function Stores() {
