@@ -1,0 +1,58 @@
+{
+ "v": 1,
+ "site": "figurecompare.com",
+ "at": "2026-11-07T10:43:56.392Z",
+ "overall": "warn",
+ "checks": [
+  {
+   "name": "Live site",
+   "status": "ok",
+   "detail": "HTTP 200"
+  },
+  {
+   "name": "Search index",
+   "status": "ok",
+   "detail": "4663 figures live"
+  },
+  {
+   "name": "Daily price import",
+   "status": "ok",
+   "detail": "20.7h old"
+  },
+  {
+   "name": "Store imports",
+   "status": "warn",
+   "detail": "bigbadtoystore: https://www.bigbadtoystore.com/sitemap-index.xml: HTTP 403"
+  },
+  {
+   "name": "Catalogue",
+   "status": "ok",
+   "detail": "4663 figures"
+  },
+  {
+   "name": "Data size",
+   "status": "ok",
+   "detail": "8.3 MB"
+  },
+  {
+   "name": "Family feed (sister sites)",
+   "status": "ok",
+   "detail": "20.7h old"
+  },
+  {
+   "name": "Yen exchange rates",
+   "status": "ok",
+   "detail": "ECB 2026-11-05"
+  },
+  {
+   "name": "Amazon ASINs",
+   "status": "ok",
+   "detail": "no Amazon ASIN run recorded yet: the Amazon rows are tagged searches"
+  },
+  {
+   "name": "eBay listings",
+   "status": "ok",
+   "detail": "1/2500 calls on 2026-11-06"
+  }
+ ]
+}
