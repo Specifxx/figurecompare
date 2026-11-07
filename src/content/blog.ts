@@ -13,6 +13,14 @@ export interface Post {
 
 export const POSTS: Post[] = [
   {
+    slug: "anime-figure-black-friday-2026",
+    title: "Anime figure Black Friday 2026: the prices to beat, and five checks before you pay",
+    description:
+      "Black Friday and Cyber Monday 2026 for Nendoroid, figma and POP UP PARADE: what a figure costs at the cheapest store in each region today, how far stores' prices spread, and what tends to be on sale.",
+    date: "2026-11-07",
+    image: { src: "/blog/anime-figure-black-friday-2026.jpg", alt: "Anime figure Black Friday 2026: the same figure's lowest and highest price at US shops today" },
+  },
+  {
     slug: "how-to-spot-bootleg-nendoroids",
     title: "How to spot a bootleg Nendoroid: the price test, the box, the paint and the number",
     description:

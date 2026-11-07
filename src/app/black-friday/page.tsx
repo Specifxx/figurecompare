@@ -50,7 +50,8 @@ export default function BlackFriday() {
       <p className="mt-8 text-sm text-soft">
         <Link prefetch={false} href="/cyber-monday" className="underline">Cyber Monday deals</Link> ·{" "}
         <Link prefetch={false} href="/deals" className="underline">Figure deals today</Link> · <Link prefetch={false} href="/preorders" className="underline">Figure pre-orders</Link> ·{" "}
-        <Link prefetch={false} href="/stores" className="underline">Where to buy anime figures</Link>
+        <Link prefetch={false} href="/stores" className="underline">Where to buy anime figures</Link> ·{" "}
+        <Link prefetch={false} href="/blog/anime-figure-black-friday-2026" className="underline">Black Friday: the prices to beat</Link>
       </p>
       <section className="mt-10 max-w-3xl">
         <h2 className="font-display text-xl font-semibold">Black Friday {y}: questions</h2>

@@ -825,3 +825,11 @@ WooCommerce; the large ones run their own platforms, which the 2026-10-29 probe 
   name (it prints no barcode); the matcher was written (commit ed0f26b on this PR's branch: line + number + both-ways
   name words + one figure only + 60–160% of the EU median) and removed unused. Bring it back from there if Archonia
   ever lets the runners in.
+
+## Black Friday indexing push (2026-11-07)
+
+Owner: get every Black Friday page indexed. The daily IndexNow ping sent only the hubs it named, so the sale pages
+(`/black-friday`, `/cyber-monday`, the other seasonal pages) and the blog posts never went out; they are named now
+(the sitemap already listed them). A Black Friday blog post goes live on 8 November (on 7 November for Figure; Scent's,
+written for the 14th, moved up because it is only useful before the sales) and the two sale pages link to it once it is live. Every price in it is a live table of
+the day's prices; no countdown, no "was" price.

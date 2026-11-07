@@ -4,15 +4,17 @@
 import { LINES, SITE } from "@/site";
 import { getFigures } from "@/lib/data";
 import { isIndexable } from "@/lib/index-tiers";
+import { POSTS } from "@/content/blog";
 
 async function main() {
   const key = process.env.INDEXNOW_KEY;
   if (!key) return console.log("[indexnow] INDEXNOW_KEY not set: skipped");
   const site = SITE.url;
   const week = new Date(Date.now() - 7 * 86_400_000).toISOString().slice(0, 10);
-  const hubs = ["", "/deals", "/preorders", "/new", ...LINES.map((l) => `/${l.key}`)].map((p) => `${site}${p}`);
+  const hubs = ["", "/deals", "/black-friday", "/cyber-monday", "/boxing-day", "/january-sales", "/lunar-new-year", "/valentines-day", "/preorders", "/new", ...LINES.map((l) => `/${l.key}`)].map((p) => `${site}${p}`);
   const fresh = getFigures().filter((f) => f.first >= week && isIndexable(f)).map((f) => `${site}/figure/${f.slug}`);
-  const urls = [...new Set([...hubs, ...fresh])].slice(0, 1000);
+  const posts = ["/blog", ...POSTS.map((p) => `/blog/${p.slug}`)].map((p) => `${site}${p}`);
+  const urls = [...new Set([...hubs, ...posts, ...fresh])].slice(0, 1000);
   const res = await fetch("https://api.indexnow.org/indexnow", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
