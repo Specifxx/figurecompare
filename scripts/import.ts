@@ -15,6 +15,8 @@ import { readHlj } from "@/lib/import/hlj";
 import { readGoodSmile } from "@/lib/import/goodsmile";
 import { fetchFx, type Fx } from "@/lib/fx";
 import type { History, Listing, Meta, StoreRun } from "@/lib/types";
+import { demandSlugs, focusCatalog } from "@/lib/focus";
+import { execFileSync } from "node:child_process";
 
 const DATA = path.join(process.cwd(), "data");
 const read = <T>(p: string, fallback: T): T => {
@@ -42,6 +44,20 @@ async function readStore(store: Store, cache: BarcodeCache): Promise<ReadResult>
   const cur = await shopifyCurrency(store);
   if (cur && cur !== want) throw new Error(`charges ${cur}, region needs ${want}`);
   return readShopify(store, cache, budget);
+}
+
+/** Search Console page demand from this repo's `demand` branch (RiftCompare's sister-demand job); none when unreadable. */
+function readDemand(): Set<string> {
+  try {
+    execFileSync("git", ["fetch", "--quiet", "--depth=1", "origin", "demand"], { stdio: "ignore", timeout: 60_000 });
+    const raw = execFileSync("git", ["show", "FETCH_HEAD:gsc-pages.json"], { encoding: "utf8", timeout: 30_000 });
+    const s = demandSlugs((JSON.parse(raw) as { pages?: Record<string, number[]> }).pages ?? {});
+    console.log(`focus: ${s.size} figure pages with search demand`);
+    return s;
+  } catch {
+    console.log("focus: no demand branch, the stocking rule alone decides");
+    return new Set();
+  }
 }
 
 async function main() {
@@ -107,15 +123,20 @@ async function main() {
   }
 
   const today = new Date().toISOString().slice(0, 10);
-  const figures = mergeListings(mirrored.listings, state, today);
-  // Refuse to publish an empty catalogue over a good one.
-  if (prevFigures.length > 50 && figures.length < prevFigures.length * 0.5) {
-    console.error(`Figures fell from ${prevFigures.length} to ${figures.length}; not publishing.`);
+  const merged = mergeListings(mirrored.listings, state, today);
+  // Refuse to publish an empty catalogue over a good one. Compared before the cull, against the last run's merged count.
+  const prevMerged = prevMeta?.merged ?? prevFigures.length;
+  if (prevMerged > 50 && merged.length < prevMerged * 0.5) {
+    console.error(`Figures fell from ${prevMerged} to ${merged.length}; not publishing.`);
     process.exit(1);
   }
-  const history = recordHistory(read<History>("public/history.json", {}), figures, today);
+  // The low-traction cull (lib/focus.ts): only figures two stores can sell today, or that people find through search.
+  const figures = focusCatalog(merged, readDemand());
+  console.log(`focus: ${figures.length} of ${merged.length} figures listed`);
+  // History keeps every merged figure, so one that is listed again returns with its chart.
+  const history = recordHistory(read<History>("public/history.json", {}), merged, today);
 
-  const meta: Meta = { updatedAt: new Date().toISOString(), figures: figures.length, stores: runs, ebay: prevMeta?.ebay };
+  const meta: Meta = { updatedAt: new Date().toISOString(), figures: figures.length, merged: merged.length, stores: runs, ebay: prevMeta?.ebay };
   write("public/figures.json", { figures });
   write("public/history.json", history);
   write("public/meta.json", meta, true);

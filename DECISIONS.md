@@ -787,3 +787,12 @@ Black Friday is 27 November 2026 and Cyber Monday 30 November. Three additions, 
 - **More on both pages, nothing taken away**: the URL, title and h1 of `/black-friday` are unchanged; below the
   existing tiles come four visible questions (the dates, whether stores have sales, shipping, how often it updates). No FAQ rich-result markup:
   Google shows those only for government and health sites since 2023, so the text is what ranks.
+## 2026-11-07 — The low-traction cull: a figure needs two stores that can sell it today
+
+Owner, 2026-11-07: apply Compare Empire's focus cull to every site. The merge's two-stores rule counted stores listing a figure
+sold out (27,376 of 46,610 offers on 2026-11-07). `lib/focus.ts`, applied by `scripts/import.ts` after the merge, lists a figure
+only when the same rule holds counting stores that can sell it today (in stock or pre-order), or when Search Console shows a click
+or 10+ impressions on its page (the `demand` branch). ≈4,660 → 2,880 figures, so every build prerenders ~40% fewer pages.
+history.json keeps every merged figure and slugs are kept forever, so a figure that qualifies again returns with its chart. The
+site has no functions, so a culled figure's page is gone (404) rather than redirected; 2 figure pages had any search demand and
+both stay. The half-size guard compares the merge's count before the cull (`meta.merged`).
