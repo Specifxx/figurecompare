@@ -89,3 +89,17 @@ test("each sitemap store's URL pattern keeps its figure pages and nothing else",
     for (const [u, want] of urls) assert.equal(re.test(u), want, `${id}: ${u}`);
   }
 });
+
+// mangatori.fr (PrestaShop JSON-LD, 2026-11-07, trimmed).
+const MANGATORI = `<script type="application/ld+json">{ "@context": "http://schema.org/", "@type": "Product", "name": "Hatsune Miku GT Project figurine Nendoroid Racing Miku: 2026 Ver. 10 cm", "image" :"/3081055-home_default/good-smile-company-gsc67321-hatsune-miku-gt-project-figurine-nendoroid.jpg", "sku": "GSC67321", "gtin13": "4580828673212", "offers": { "@type": "Offer", "priceCurrency": "EUR", "price": "89.99", "gtin13": "4580828673212", "availability": "http://schema.org/InStock" } }</script>`;
+
+test("Mangatori: JSON-LD with a relative photo, and its URL pattern", () => {
+  const p = parseProductPage(MANGATORI, "https://www.mangatori.fr");
+  assert.equal(p?.jan, "4580828673212");
+  assert.equal(p?.price, 89.99);
+  assert.equal(p?.st, "in");
+  assert.equal(p?.img, "https://www.mangatori.fr/3081055-home_default/good-smile-company-gsc67321-hatsune-miku-gt-project-figurine-nendoroid.jpg");
+  const re = new RegExp(STORES.find((s) => s.id === "mangatori")!.sitemap!.match, "i");
+  assert.ok(re.test("https://www.mangatori.fr/hatsune-miku/860520-good-smile-company-gsc67321-hatsune-miku-gt-project-figurine-nendoroid-4580828673212.html"));
+  assert.ok(!re.test("https://www.mangatori.fr/57161-nendoroid"));
+});

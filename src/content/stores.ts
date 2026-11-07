@@ -204,6 +204,7 @@ export const STORES: Store[] = [
   { id: "figuya", name: "Figuya", region: "EU", base: "https://figuya.com", platform: "sitemap", sitemap: { maps: ["https://figuya.com/sitemaps/sitemap.xml.gz"], match: "^https://figuya\\.com/en/products/[^/]*(nendoroid|figma|pop-up-parade)" } },
   { id: "kurogami", name: "Kurogami", region: "EU", base: "https://kurogami.com", platform: "sitemap", sitemap: { maps: ["https://kurogami.com/sitemap.xml"], match: "^https://kurogami\\.com/en/product/[^/]*(nendoroid|figma|pop-up-parade)" } },
   { id: "yorokonde", name: "Yorokonde", region: "EU", base: "https://www.yorokonde.de", platform: "sitemap", sitemap: { maps: ["https://www.yorokonde.de/eng/sitemap_index.xml"], match: "^https://www\\.yorokonde\\.de/eng/.*(nendoroid|figma|pop-up-parade).*\\.html$" } },
+  { id: "mangatori", name: "Mangatori", region: "EU", base: "https://www.mangatori.fr", platform: "sitemap", sitemap: { maps: ["https://www.mangatori.fr/sitemap_indexMGFR.xml"], match: "^https://www\\.mangatori\\.fr/.*(nendoroid|figma|pop-up-parade).*\\.html$" } },
 ];
 
 export const STORE_BY_ID: Record<string, Store> = Object.fromEntries(STORES.map((s) => [s.id, s]));

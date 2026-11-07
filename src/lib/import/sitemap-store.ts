@@ -1,5 +1,6 @@
 // Reads a store that runs its own platform (no Shopify or WooCommerce feed) but publishes product sitemaps and
-// prints the barcode on every product page: Figuya (Berlin), Kurogami (Spain) and Yorokonde (Germany), the large
+// prints the barcode on every product page: Figuya (Berlin), Kurogami (Spain), Yorokonde (Germany) and Mangatori
+// (France), the large
 // European figure shops a visitor named on 2026-11-07 (DECISIONS.md). It stays inside the barcode rule: a page is
 // listed only when the page itself carries a Japanese JAN, from schema.org JSON-LD (`gtin13` / `gtin`) or, on a
 // Shopware 5 shop, its `itemprop="gtin13"` microdata. Product URLs come only from the sitemaps robots.txt names

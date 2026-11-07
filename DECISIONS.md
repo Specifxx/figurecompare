@@ -815,3 +815,13 @@ WooCommerce; the large ones run their own platforms, which the 2026-10-29 probe 
   out and listed on /stores under "Stores we can't compare yet"; the owner was asked.
 - Not yet looked at closely: Mangatori (FR, PrestaShop, JANs appear on its category pages) and Anime Import (IT,
   WordPress with the Store API off). Next round.
+## 2026-11-07 — Mangatori added; Anime Import and Archonia block GitHub's runners (owner: "add all of them in one pass")
+
+- **Mangatori** (France, PrestaShop: JSON-LD `gtin13`, the JAN also ends each product URL) joins the sitemap reader,
+  inside the barcode rule. A runner read 15 pages: 4 listed, the oldest pages carry no JAN.
+- **Anime Import** (Italy) answers GitHub's runners 403 on product pages, and **Archonia** (Belgium) 403 on its
+  sitemap, though both load in a browser. That is bot protection, which we never work around, so both stay out and
+  are on /stores under "Stores we can't compare yet". For Archonia the owner had also approved matching by whole
+  name (it prints no barcode); the matcher was written (commit ed0f26b on this PR's branch: line + number + both-ways
+  name words + one figure only + 60–160% of the EU median) and removed unused. Bring it back from there if Archonia
+  ever lets the runners in.
