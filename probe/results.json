@@ -2,12 +2,12 @@
  {
   "host": "animeimport.it",
   "base": "https://animeimport.it",
-  "error": "sitemap: https://animeimport.it/product/guts-berserker-armor-ver-nendoroid/: HTTP 403"
+  "platform": null
  },
  {
   "host": "www.archonia.com",
   "base": "https://www.archonia.com",
-  "error": "sitemap: https://www.archonia.com/sitemap.xml.gz: HTTP 403"
+  "platform": null
  },
  {
   "host": "www.mangatori.fr",
