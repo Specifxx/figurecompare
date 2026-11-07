@@ -240,6 +240,93 @@ function BootlegBody({ s, meta, m }: { s: ReturnType<typeof marketStats>; meta: 
   );
 }
 
+/** Black Friday 2026: the day's median price per line and region as the prices to beat, the spread, and the checks. */
+function BlackFridayBody({ s, meta, m }: { s: ReturnType<typeof marketStats>; meta: ReturnType<typeof getMeta>; m: (cents: number | null, code: RegionCode) => string }) {
+  return (
+    <>
+      <Prose>
+        <p>
+          Black Friday is 27 November 2026 and Cyber Monday is 30 November. Figure stores do run sales that week, mostly as site-wide codes and clearance of older
+          stock, but anime figures are not a category where everything gets cheaper at once: a new Nendoroid&rsquo;s price is set by the Japanese list price and the
+          import, and the best price on a new release is usually its pre-order. The useful thing to do before the sales is to know what a figure really costs, so you can
+          tell a deal from a normal price with a banner on it. The numbers below are computed from the day&rsquo;s prices when the page is built, so they move with the market.
+        </p>
+        <p>
+          The deals themselves are on our <Link prefetch={false} href="/black-friday">anime figure Black Friday deals</Link> page: every figure in stock today where the cheapest
+          store is at least 10% under the dearest in your region, updated every day through the sales, and <Link prefetch={false} href="/cyber-monday">Cyber Monday deals</Link> does
+          the same that weekend.
+        </p>
+
+        <h2>The prices to beat</h2>
+        <p>
+          The median orderable price (in stock or on pre-order, cheapest store) of each line in each region today, in the region&rsquo;s own currency. A Black Friday price for an
+          ordinary current figure that is not under this is not a deal; it is the going rate.
+        </p>
+      </Prose>
+      <div className="sticker mt-4 overflow-x-auto p-2">
+        <table className="w-full text-sm">
+          <caption className="sr-only">Median orderable price of each figure line by region today</caption>
+          <thead>
+            <tr className="border-b border-line text-left text-soft">
+              <th className="px-3 py-2">Region</th>
+              {LINES.map((l) => (
+                <th key={l.key} className="px-3 py-2 text-right">{l.name}</th>
+              ))}
+              <th className="px-3 py-2 text-right">Stores</th>
+            </tr>
+          </thead>
+          <tbody>
+            {s.regions.map((x) => (
+              <tr key={x.r.code} className="border-b border-line last:border-0">
+                <td className="px-3 py-2 font-semibold">{x.r.name}</td>
+                {LINES.map((l) => (
+                  <td key={l.key} className="px-3 py-2 text-right tabular-nums">{m(x.median[l.key], x.r.code)}</td>
+                ))}
+                <td className="px-3 py-2 text-right tabular-nums">{x.stores}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <Prose>
+        <h2>The gap between stores is bigger than the sale</h2>
+        <p>
+          For figures three or more stores sell in a region, the dearest store charges, at the median,{" "}
+          {s.regions
+            .filter((x) => x.spread != null && x.spreadN >= 50)
+            .map((x, i, a) => (
+              <span key={x.r.code}>
+                {i ? (i === a.length - 1 ? " and " : ", ") : ""}
+                {x.spread!.toFixed(2)} times the cheapest in {x.r.name === "United States" ? "the US" : x.r.name === "United Kingdom" ? "the UK" : x.r.name}
+              </span>
+            ))}
+          . A 20% code at the dearest store can still cost more than the cheapest store charges on an ordinary day, so compare the figure&rsquo;s every store before you count
+          the discount. Every figure page here lists each store&rsquo;s price for that exact barcode.
+        </p>
+
+        <h2>Five checks before you pay</h2>
+        <ol>
+          <li><b>Compare with today&rsquo;s cheapest store, not the &ldquo;was&rdquo; price.</b> Crossed-out prices are often the original pre-order price of a figure that has sold for less for months.</li>
+          <li><b>Add the delivery.</b> Figures are bulky; a few dollars off with paid shipping can lose to a dearer store with free shipping over a threshold.</li>
+          <li><b>Check it is in stock.</b> A pre-order is often the best price for a new release, but it ships months later; a backorder may never ship.</li>
+          <li><b>Be wary of prices far under every store.</b> A Nendoroid at a quarter of the table above is a bootleg, not a doorbuster. See <Link prefetch={false} href="/blog/how-to-spot-bootleg-nendoroids">how to spot a bootleg Nendoroid</Link>.</li>
+          <li><b>Read the code&rsquo;s terms.</b> Stores often leave pre-orders and new releases out of site-wide codes.</li>
+        </ol>
+
+        <h2>What tends to be on sale</h2>
+        <p>
+          In our view the week&rsquo;s real savings are on older in-stock figures that stores want to clear before the new year, and on POP UP PARADE, where more stores compete.
+          New Nendoroids and figma rarely drop much in the first months after release. If a figure you want is already at a good price today, waiting can cost more than it saves:
+          popular figures sell out in December. Otherwise, set a price alert on its page and we will email you when it drops.
+        </p>
+        <p>
+          Data as of {meta ? niceDate(meta.updatedAt) : "today"}: {fmt(s.total)} figures across {s.stores} stores, matched by barcode, in each store&rsquo;s own currency and before delivery.
+        </p>
+      </Prose>
+    </>
+  );
+}
+
 export default function PostPage({ params }: { params: { slug: string } }) {
   const p = POST_BY_SLUG[params.slug];
   if (!p) notFound();
@@ -273,7 +360,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
       {/* The post's own thumbnail, a static file in public/blog: no optimiser, no function. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={p.image.src} alt={p.image.alt} width={1200} height={630} className="mb-6 aspect-[1200/630] w-full rounded-2xl border border-line object-cover" />
-      {p.slug === "how-to-spot-bootleg-nendoroids" ? <BootlegBody s={s} meta={meta} m={m} /> : <MarketBody s={s} meta={meta} us={us} line={line} m={m} />}
+      {p.slug === "anime-figure-black-friday-2026" ? <BlackFridayBody s={s} meta={meta} m={m} /> : p.slug === "how-to-spot-bootleg-nendoroids" ? <BootlegBody s={s} meta={meta} m={m} /> : <MarketBody s={s} meta={meta} us={us} line={line} m={m} />}
       <EbayStrip className="mt-10" placement="blog_post" queries={SITE_QUERIES} />
       <p className="mt-6 text-sm text-soft">
         <Link prefetch={false} href="/blog" className="font-semibold text-pink-deep hover:underline">More posts</Link> · Data as of {meta ? niceDate(meta.updatedAt) : "today"} from {s.stores} stores.
