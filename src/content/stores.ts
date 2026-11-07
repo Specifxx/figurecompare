@@ -14,7 +14,7 @@ export interface Store {
   /** https://host, no trailing slash */
   base: string;
   /** bbts: BigBadToyStore's own platform, matched by catalogue number (src/lib/import/bbts.ts). */
-  platform: "shopify" | "woo" | "bbts" | "hlj" | "goodsmile";
+  platform: "shopify" | "woo" | "bbts" | "hlj" | "goodsmile" | "sitemap";
   /** Shopify: the figure collections the probe found. Each run first looks for
    *  Nendoroid / figma / POP UP PARADE / Good Smile collections in the store's
    *  /collections.json and reads those; these are the fallback. */
@@ -24,6 +24,9 @@ export interface Store {
    *  products, every line, the JAN in every SKU), where the collection
    *  finder lands on a few small franchise collections and misses the rest. */
   allProducts?: boolean;
+  /** sitemap: a store on its own platform read from its product sitemaps, matched by the JAN its product pages
+   *  print (src/lib/import/sitemap-store.ts). */
+  sitemap?: import("@/lib/import/sitemap-store").SitemapConfig;
   /** Woo: search terms (default: the three lines). */
   search?: string[];
   /** Pays us a commission (shown as "Paid link" and pinned only if cheapest). */
@@ -196,6 +199,11 @@ export const STORES: Store[] = [
   // Good Smile Company's own global shop, reopened 2026-11-06: JAN, yen price and stock in each product page's
   // JSON-LD, the product list from its own keyless list fragment (src/lib/import/goodsmile.ts).
   { id: "goodsmile-global", name: "Good Smile Global", region: "JP", base: "https://www.goodsmile.com", platform: "goodsmile" },
+  // The big European shops on their own platforms (visitor, 2026-11-07): product sitemaps, and the JAN printed on
+  // every product page (JSON-LD gtin13; Yorokonde's Shopware microdata). src/lib/import/sitemap-store.ts.
+  { id: "figuya", name: "Figuya", region: "EU", base: "https://figuya.com", platform: "sitemap", sitemap: { maps: ["https://figuya.com/sitemaps/sitemap.xml.gz"], match: "^https://figuya\\.com/en/products/[^/]*(nendoroid|figma|pop-up-parade)" } },
+  { id: "kurogami", name: "Kurogami", region: "EU", base: "https://kurogami.com", platform: "sitemap", sitemap: { maps: ["https://kurogami.com/sitemap.xml"], match: "^https://kurogami\\.com/en/product/[^/]*(nendoroid|figma|pop-up-parade)" } },
+  { id: "yorokonde", name: "Yorokonde", region: "EU", base: "https://www.yorokonde.de", platform: "sitemap", sitemap: { maps: ["https://www.yorokonde.de/eng/sitemap_index.xml"], match: "^https://www\\.yorokonde\\.de/eng/.*(nendoroid|figma|pop-up-parade).*\\.html$" } },
 ];
 
 export const STORE_BY_ID: Record<string, Store> = Object.fromEntries(STORES.map((s) => [s.id, s]));

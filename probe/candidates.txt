@@ -1,5 +1,4 @@
-# Round 4 (2026-11-07): can GitHub's runners reach the big custom-platform EU shops? (a result with no error is a yes)
+# Round 4b (2026-11-07): read 15 product pages from each new sitemap store the way the import does
 figuya.com
 kurogami.com
 www.yorokonde.de
-www.archonia.com
