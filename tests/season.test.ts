@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import vm from "node:vm";
+import { readFileSync } from "node:fs";
 import { isHalloween, isChristmas, seasonAt, SEASON_BOOT_SCRIPT } from "../src/lib/season";
 
 test("the Halloween look runs 29–31 October 2026 only, by the visitor's own date", () => {
@@ -51,4 +52,13 @@ test("the boot script stamps Christmas, and ?season= previews or hides it", () =
   for (const d of [new Date(2026, 9, 30), new Date(2026, 10, 1), new Date(2026, 11, 26), new Date(2026, 11, 27), new Date(2027, 2, 3)]) assert.equal(run(d), seasonAt(d), d.toDateString());
   assert.equal(run(new Date(2027, 2, 3), "?season=christmas"), "christmas");
   assert.equal(run(new Date(2026, 10, 20), "?season=off"), null);
+});
+
+test("Christmas is at most one quiet line, never a costume (owner, 2026-11-08: the theme must match the domain)", () => {
+  const css = readFileSync("src/app/globals.css", "utf8");
+  for (const gone of [".xmas-snow", ".xmas-lights", ".xmas-art", ".xmas-logo-hat", ".xmas-banner", "/xmas/", "#dc2626 0 10px"]) {
+    assert.ok(!css.includes(gone), `${gone} is gone`);
+  }
+  assert.doesNotMatch(css, /data-season="christmas"\][^{]*\{[^}]*--(brand|spark|lilac)/, "no palette swap");
+  assert.match(css, /\.xmas-pill \{[^}]*color: inherit;/, "the one line is drawn in the site's own colours");
 });
