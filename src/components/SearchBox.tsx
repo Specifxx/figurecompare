@@ -70,6 +70,11 @@ export function SearchBox({ big = false, autoFocus = false }: { big?: boolean; a
         role="search"
         action="/search"
         onSubmit={(e) => {
+          if (/^\s*(https?:\/\/|[a-z0-9-]+(\.[a-z0-9-]+)+\/)/i.test(q)) {
+            e.preventDefault();
+            window.location.href = `/is-this-a-good-price#link=${encodeURIComponent(q.trim())}`;
+            return;
+          }
           if (results[active]) {
             e.preventDefault();
             go(results[active][0]);
