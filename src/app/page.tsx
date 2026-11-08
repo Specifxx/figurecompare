@@ -9,7 +9,6 @@ import { TileGrid } from "@/components/FigureTile";
 import { Section } from "@/components/Section";
 import { ACTIVE_REGIONS } from "@/lib/regions";
 import { EbayStrip, SITE_QUERIES } from "@/components/EbayStrip";
-import { ChristmasDecor } from "@/components/ChristmasDecor";
 import { CreatorsCornerBadge } from "@/components/creators/CreatorsCornerBadge";
 import { JsonLd, faqLd, siteLd } from "@/lib/seo";
 import { SiteReviews } from "@/components/site-reviews/SiteReviews";
@@ -47,14 +46,12 @@ export default function Home() {
   const counts = lineCounts();
   return (
     <>
-      <section className="xmas-hero-host border-b border-line bg-card">
-        {/* Christmas only (1 November to Boxing Day; hidden by CSS otherwise). */}
-        <ChristmasDecor />
+      <section className="border-b border-line bg-card">
         <div className="relative mx-auto max-w-6xl px-4 pb-10 pt-10 md:pt-14">
           {/* The creators hub, above the fold (owner, 2026-11-03): top-right corner from sm, a pill above the kicker on a phone. */}
           <CreatorsCornerBadge />
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-pink">
-            フィギュア price check<span className="xmas-kicker"> · メリークリスマス</span>
+            フィギュア price check
           </p>
           <h1 className="h-display max-w-3xl text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
             Find the <span className="text-pink">lowest price</span> for any anime figure
