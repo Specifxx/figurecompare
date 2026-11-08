@@ -4,6 +4,7 @@ import { STORES } from "@/content/stores";
 import { PageHead } from "@/components/Section";
 import { Prose } from "@/components/Prose";
 import { ListYourStore } from "@/components/ListYourStore";
+import { storeBadge } from "@/lib/store-badge";
 
 // The store-owner page every Compare Empire site shares (owner, 2026-11-04).
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function Page() {
       <PageHead title="List your store on FigureCompare" />
       <Prose>
         <ListYourStore
+          badge={storeBadge(`${SITE.url}/stores`, "Figure prices compared on FigureCompare")}
           showTitle={false}
           site="FigureCompare"
           what="anime figures"
