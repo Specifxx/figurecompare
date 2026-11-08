@@ -20,6 +20,7 @@ import { FigureAlert } from "@/components/FigureAlert";
 import { ALERT_SITE_KEY, alertPrices } from "@/lib/alert-feed";
 import { EbayButton, EbayStrip, lineQueries } from "@/components/EbayStrip";
 import { seriesOf } from "@/lib/series";
+import { charactersOf } from "@/lib/characters";
 import { JsonLd, breadcrumbLd } from "@/lib/seo";
 import { fxNote } from "@/lib/fx-note";
 import { convertYen } from "@/lib/fx";
@@ -114,6 +115,11 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
             <span className="chip border border-line bg-card text-soft">JAN {f.jan}</span>
             {seriesOf(f).map((x) => (
               <Link prefetch={false} key={x.slug} href={`/series/${x.slug}`} className="chip border border-line bg-card text-ink hover:border-pink">
+                {x.name}
+              </Link>
+            ))}
+            {charactersOf(f).slice(0, 2).map((x) => (
+              <Link prefetch={false} key={x.slug} href={`/character/${x.slug}`} className="chip border border-line bg-card text-ink hover:border-pink" title={`Every ${x.name} figure`}>
                 {x.name}
               </Link>
             ))}

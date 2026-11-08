@@ -3,6 +3,7 @@ import { LINES, SITE } from "@/site";
 import { getFigures, getMeta } from "@/lib/data";
 import { sitemapFigures } from "@/lib/index-tiers";
 import { liveSeries } from "@/lib/series";
+import { liveCharacters } from "@/lib/characters";
 import { POSTS } from "@/content/blog";
 
 // A lean core (SEO audit 2026-11-07, src/lib/index-tiers.ts sitemapFigures): hubs, series, guides and
@@ -16,6 +17,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...LINES.map((l) => u(`/${l.key}`, 0.9)),
     u("/series", 0.8),
     ...liveSeries().map((s) => u(`/series/${s.slug}`, 0.8)),
+    // Character hubs (src/content/characters.ts): only characters with CHARACTER_MIN+ figures have a page.
+    u("/characters", 0.7),
+    ...liveCharacters().map((c) => u(`/character/${c.slug}`, 0.7)),
     u("/deals", 0.8),
     u("/black-friday", 0.8),
     u("/cyber-monday", 0.8),
