@@ -45,12 +45,14 @@ test("money stays in its own currency", () => {
   assert.equal(money(4999, "UK"), "£49.99");
 });
 
-test("footer: no sister list, one link to the network page (owner, 2026-11-03)", () => {
+test("footer: no sister list, one internal link to /our-sites (owner, 2026-11-03; 2026-11-08)", () => {
   assert.deepEqual(footerSisters("figure"), []);
   const footer = readFileSync("src/components/Footer.tsx", "utf8");
   assert.doesNotMatch(footer, /footerSisters|Sister sites/);
-  assert.match(footer, /href=\{NETWORK_PAGE\}/);
-  assert.doesNotMatch(footer, /nofollow|sponsored/);
+  // 2026-11-08: one internal link to /our-sites, which lists every other family site once.
+  assert.doesNotMatch(footer, /NETWORK_PAGE/);
+  assert.match(footer, /href="\/our-sites"/);
+  assert.doesNotMatch(readFileSync("src/app/our-sites/page.tsx", "utf8"), /nofollow|sponsored/);
 });
 
 test("search: every word must match; a barcode finds its figure", () => {
@@ -93,7 +95,8 @@ test("eBay strips on every page but the legal ones, labelled and sponsored (owne
   const fs = await import("node:fs");
   const walk = (d: string): string[] => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(`${d}/${e.name}`) : [`${d}/${e.name}`]));
   // The cart (owner 2026-11-06) is the visitor's own checkout list: no ad strip beside the checkout buttons.
-  const legal = /\/(terms|privacy|disclosure|contact|how-we-pick-stores|list-your-store|cart)\/page\.tsx$/;
+  // /our-sites (2026-11-08) is a list of our own sites: no ad strip either.
+  const legal = /\/(terms|privacy|disclosure|contact|how-we-pick-stores|list-your-store|cart|our-sites)\/page\.tsx$/;
   for (const f of walk("src/app").filter((f) => /\/(page|not-found)\.tsx$/.test(f) && !legal.test(f))) {
     const src = fs.readFileSync(f, "utf8");
     const viaHub = src.includes("<LineHub") && fs.readFileSync("src/components/LineHub.tsx", "utf8").includes("<EbayStrip");
