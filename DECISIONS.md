@@ -853,3 +853,12 @@ logo, candy-cane stripes and seasonal palette swaps) is gone, with its art in `p
 touch, and here it keeps none: the hero loses its snow, lights and メリークリスマス kicker, the header its candy-cane
 stripe, the logo its hat, and the lilac no longer turns pine green. `tests/season.test.ts` pins that none comes back. Black Friday and Cyber Monday (strip, pages, nav) are
 unchanged. The same rule went to every sister site: the site's own identity first.
+
+## 2026-11-08 — Store badges, free price data and My collection (competitor scan)
+
+The owner approved the competitor scan's ideas (Collectr and PriceCharting keep people coming back with "what is my
+collection worth"; Scryfall grew on free data credited with a link; price sites earn links from the stores they list).
+- **Store badge.** `/list-your-store` ends with "Already listed? Add our badge": a plain-HTML (`lib/store-badge.ts`) "prices compared on"
+  badge (an ordinary link: no iframe, script, image or tracking) and its code to copy. `ListYourStore.tsx` takes it as the
+  optional `badge` prop and stays the same file in every site. Stores see it when they come to us; nobody is emailed about it
+  (cold outreach stays stopped).
