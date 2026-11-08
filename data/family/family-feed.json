@@ -1,7 +1,7 @@
 {
  "v": 1,
  "site": "figure",
- "generatedAt": "2026-11-07T15:04:23.927Z",
+ "generatedAt": "2026-11-08T15:18:34.555Z",
  "links": {
   "US": {
    "deals": "https://figurecompare.com/deals",
@@ -117,34 +117,6 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "UK",
-   "title": "Nendoroid Hatsune Miku: DecoMiku (Darkness)",
-   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-decomiku-darkness-3007",
-   "cents": 4995,
-   "currency": "GBP",
-   "store": "Hobby Figures",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/hatsune-miku-nendoroid-decomiku-darkness_1.jpg?v=1771569061&width=600",
-   "refCents": 9895,
-   "refLabel": "dearest store",
-   "savingPct": 50
-  },
-  {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "UK",
-   "title": "Nendoroid Hatsune Miku: DecoMiku (Lightness)",
-   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-decomiku-lightness-3006",
-   "cents": 4995,
-   "currency": "GBP",
-   "store": "Hobby Figures",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/hatsune-miku-nendoroid-decomiku-lightness_1.jpg?v=1771569151&width=600",
-   "refCents": 9895,
-   "refLabel": "dearest store",
-   "savingPct": 50
-  },
-  {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "UK",
    "title": "Nendoroid Blue Archive - Toki Asuma",
    "url": "https://figurecompare.com/figure/nendoroid-blue-archive-toki-asuma-2812",
    "cents": 3399,
@@ -173,15 +145,43 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "UK",
-   "title": "Nendoroid Puella Magi Madoka Magica the Movie -Walpurgisnacht: Rising - Basic Action Sayaka Miki - Walpurgisnacht: Rising Ver. 10,0 cm",
-   "url": "https://figurecompare.com/figure/nendoroid-sayaka-miki-walpurgisnacht-rising-ver-basic-3004",
-   "cents": 2899,
+   "title": "Nendoroid Hatsune Miku: Deep Sea Girl Ver.",
+   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-deep-sea-girl-ver-2925",
+   "cents": 5195,
+   "currency": "GBP",
+   "store": "Hobby Figures",
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828668232.png?v=1765288351&width=600",
+   "refCents": 8595,
+   "refLabel": "dearest store",
+   "savingPct": 40
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "UK",
+   "title": "Nendoroid Frieren: Apprentice Era Ver.",
+   "url": "https://figurecompare.com/figure/nendoroid-frieren-apprentice-era-ver-2986",
+   "cents": 4295,
+   "currency": "GBP",
+   "store": "Hobby Figures",
+   "image": "https://cdn.shopify.com/s/files/1/0876/7307/8075/files/47_44047bf1-7de0-42a2-8e4a-0988872aecb8.png?v=1790830422&width=600",
+   "refCents": 6995,
+   "refLabel": "dearest store",
+   "savingPct": 39
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "UK",
+   "title": "Nendoroid Oozora Subaru: Suspender Outfit Ver.",
+   "url": "https://figurecompare.com/figure/nendoroid-oozora-subaru-suspender-outfit-ver-2854",
+   "cents": 4799,
    "currency": "GBP",
    "store": "Loaded Dice",
-   "image": "https://cdn.shopify.com/s/files/1/0318/2649/files/c9a26da6-70e1-4646-8f77-562444fe67ba.jpg?v=1775208371&width=600",
-   "refCents": 5095,
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828662650.png?v=1784623655&width=600",
+   "refCents": 7595,
    "refLabel": "dearest store",
-   "savingPct": 43
+   "savingPct": 37
   },
   {
    "kind": "preorder",
@@ -209,6 +209,28 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "UK",
+   "title": "Nendoroid Delicious in Dungeon - Falin (Chimera)",
+   "url": "https://figurecompare.com/figure/nendoroid-delicious-in-dungeon-falin-chimera-3055",
+   "cents": 4995,
+   "currency": "GBP",
+   "store": "Hobby Figures",
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232588295.png?v=1785919052&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "UK",
+   "title": "Nendoroid Doki Doki Literature Club! - Natsuki",
+   "url": "https://figurecompare.com/figure/nendoroid-doki-doki-literature-club-natsuki-2077-80534",
+   "cents": 5395,
+   "currency": "GBP",
+   "store": "Hobby Figures",
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232580534.png?v=1785918893&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "UK",
    "title": "Nendoroid Danganronpa V3: Killing Harmony - Action Shuichi Saihara 10 cm",
    "url": "https://figurecompare.com/figure/nendoroid-shuichi-saihara-3009",
    "cents": 5699,
@@ -226,28 +248,6 @@
    "currency": "GBP",
    "store": "Camden Anime",
    "image": "https://cdn.shopify.com/s/files/1/0318/2649/files/9611f1ed-4d19-440e-89a3-337265172c5e.jpg?v=1770974203&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "UK",
-   "title": "Nendoroid Hatsune Miku: DecoMiku (Darkness)",
-   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-decomiku-darkness-3007",
-   "cents": 9895,
-   "currency": "GBP",
-   "store": "oshoppu",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/hatsune-miku-nendoroid-decomiku-darkness_1.jpg?v=1771569061&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "UK",
-   "title": "Nendoroid Hatsune Miku: DecoMiku (Lightness)",
-   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-decomiku-lightness-3006",
-   "cents": 9895,
-   "currency": "GBP",
-   "store": "oshoppu",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/hatsune-miku-nendoroid-decomiku-lightness_1.jpg?v=1771569151&width=600"
   },
   {
    "kind": "deal",
@@ -295,7 +295,7 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "CA",
-   "title": "Nendoroid Hell's Paradise: Jigokuraku - Yamada Asaemon Sagiri",
+   "title": "Nendoroid Yamada Asaemon Sagiri",
    "url": "https://figurecompare.com/figure/nendoroid-hells-paradise-yamada-asaemon-sagiri-2185",
    "cents": 4500,
    "currency": "CAD",
@@ -475,7 +475,7 @@
    "cents": 8795,
    "currency": "AUD",
    "store": "Gameology",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232586161.png?v=1785919168&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/berserk_nendoroid_guts_re_run__c68e1.jpg?v=1782448195&width=600"
   },
   {
    "kind": "preorder",
@@ -486,7 +486,7 @@
    "cents": 8795,
    "currency": "AUD",
    "store": "Gameology",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232585195.png?v=1785919181&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/final_fantasy_xiv_nendoroid_y_shtola_5edc8.jpg?v=1781766714&width=600"
   },
   {
    "kind": "preorder",
@@ -679,23 +679,23 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "EU",
-   "title": "Nendoroid Rebuild of Evangelion - Action Rei Ayanami: Long Hair Ver. 10 cm",
-   "url": "https://figurecompare.com/figure/nendoroid-rei-ayanami-long-hair-ver-3018",
-   "cents": 6200,
+   "title": "Nendoroid Hatsune Miku: Senbonzakura Ver.",
+   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-senbonzakura-ver-480",
+   "cents": 5190,
    "currency": "EUR",
-   "store": "Amuzzi",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828676145.png?v=1785919200&width=600"
+   "store": "Yorokonde",
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828670983.png?v=1768310762&width=600"
   },
   {
    "kind": "preorder",
    "cluster": "hobby",
    "region": "EU",
-   "title": "Nendoroid Umamusume: Pretty Derby - Agnes Tachyon",
-   "url": "https://figurecompare.com/figure/nendoroid-agnes-tachyon-2512",
-   "cents": 6200,
+   "title": "Nendoroid Doki Doki Literature Club! - Yuri",
+   "url": "https://figurecompare.com/figure/nendoroid-doki-doki-literature-club-yuri-2283",
+   "cents": 6199,
    "currency": "EUR",
-   "store": "Amuzzi",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828678231.png?v=1785919204&width=600"
+   "store": "Mangatori",
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232580541.png?v=1785919179&width=600"
   },
   {
    "kind": "preorder",
@@ -703,9 +703,9 @@
    "region": "EU",
    "title": "Nendoroid Genshin Impact - Xiao",
    "url": "https://figurecompare.com/figure/nendoroid-genshin-impact-xiao-2668",
-   "cents": 6799,
+   "cents": 6899,
    "currency": "EUR",
-   "store": "Mangatori",
+   "store": "AniMuchuu",
    "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/Nendoroid-2668Xiao-GenshinImpact-1.png?v=1773789337&width=600"
   },
   {
@@ -723,23 +723,23 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "EU",
-   "title": "Nendoroid Arknights: Endfield - Action Perlica 10 cm",
-   "url": "https://figurecompare.com/figure/nendoroid-arknights-endfield-perlica-3043",
-   "cents": 7500,
-   "currency": "EUR",
-   "store": "Amuzzi",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/arknights-endfield-nendoroid-perlica_1.jpg?v=1777626204&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "EU",
    "title": "Nendoroid Honkai: Star Rail - Anaxa",
    "url": "https://figurecompare.com/figure/nendoroid-honkai-star-rail-anaxa-2969",
    "cents": 7699,
    "currency": "EUR",
    "store": "AniMuchuu",
    "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/honkai-star-rail-nendoroid-anaxa_1.jpg?v=1781851182&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "EU",
+   "title": "Nendoroid Hatsune Miku: Happy 16th Birthday Ver.",
+   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-happy-16th-birthday-ver-2222",
+   "cents": 9900,
+   "currency": "EUR",
+   "store": "Amuzzi",
+   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/4580590175976.jpg?v=1691188761&width=600"
   },
   {
    "kind": "deal",
@@ -750,7 +750,7 @@
    "cents": 3000,
    "currency": "SGD",
    "store": "ToyCoin",
-   "image": "https://cdn.shopify.com/s/files/1/0712/7279/2357/products/Studio-Project_19_057e6571-7640-4879-a348-8f434d8c2f39.png?v=1680293598&width=600",
+   "image": "https://cdn.shopify.com/s/files/1/0440/6493/1998/files/NendoroidNarutoShippudenHinataHyuga_1_1024x1024_1.jpg?v=1695618897&width=600",
    "refCents": 6100,
    "refLabel": "dearest store",
    "savingPct": 51
