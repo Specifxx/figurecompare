@@ -29,3 +29,10 @@ test("the form posts only to the shared service and the feed is a static file", 
   assert.ok(!/localStorage|document\.cookie/.test(fs.readFileSync("src/components/PriceAlertForm.tsx", "utf8")));
   assert.match(fs.readFileSync("src/app/alert-feed.json/route.ts", "utf8"), /export const dynamic = "force-static";/);
 });
+
+test("the weekly price drops box is opt-in: unticked, and sent only as the visitor left it (2026-11-08)", () => {
+  const src = fs.readFileSync("src/components/PriceAlertForm.tsx", "utf8");
+  assert.match(src, /<input type="checkbox" name="weekly" style=\{\{ marginTop: 3 \}\} \/>/);
+  assert.ok(!/defaultChecked|checked=/.test(src), "never pre-ticked");
+  assert.match(src, /const weekly = f\.get\("weekly"\) === "on";/);
+});
