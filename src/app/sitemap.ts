@@ -31,6 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     u("/stores", 0.6),
     u("/widgets", 0.4),
     u("/price-report", 0.6),
+    u("/is-this-a-good-price", 0.6),
     u("/about", 0.3),
     u("/creators", 0.4),
     u("/contact", 0.2),

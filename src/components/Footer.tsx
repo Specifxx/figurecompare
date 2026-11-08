@@ -45,6 +45,7 @@ export function Footer({ updated }: { updated?: string | null }) {
             <li><Link prefetch={false} href="/forum" className="hover:text-pink-deep">Community forum (beta)</Link></li>
             <li><Link prefetch={false} href="/creators" className="hover:text-pink-deep">Creators</Link></li>
             <li><Link prefetch={false} href="/price-report" className="hover:text-pink-deep">Monthly figure price report</Link></li>
+            <li><Link prefetch={false} href="/is-this-a-good-price" className="text-soft hover:text-ink">Is this a good price?</Link></li>
             <li><Link prefetch={false} href="/widgets" className="hover:text-pink-deep">Free price links for your site</Link></li>
             <li><Link prefetch={false} href="/disclosure" className="hover:text-pink-deep">Affiliate disclosure</Link></li>
             <li><Link prefetch={false} href="/privacy" className="hover:text-pink-deep">Privacy</Link></li>
