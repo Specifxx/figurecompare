@@ -871,3 +871,16 @@ collection worth"; Scryfall grew on free data credited with a link; price sites 
   badge (an ordinary link: no iframe, script, image or tracking) and its code to copy. `ListYourStore.tsx` takes it as the
   optional `badge` prop and stays the same file in every site. Stores see it when they come to us; nobody is emailed about it
   (cold outreach stays stopped).
+## 2026-11-08 — Character hubs: every figure of one character
+
+Owner approved the competitor scan's search-by-need hubs (2026-11-08). Fans search "Gojo Nendoroid" or "Frieren figure", and
+the series hubs (/series, 2026-11-01) are a level up. `/character/<slug>` lists every figure of one character, with
+`/characters` as the index (`src/content/characters.ts`, `src/lib/characters.ts`). Like a series, a figure joins a
+character by its NAME only, which is fine for grouping and never for matching a listing (that stays the JAN's job). Each
+pattern is the full name or one nobody else carries; namesakes from other shows (Oshi no Ko's Aqua, To Love-Ru Darkness,
+Power Rangers) are kept out and pinned in `tests/characters.test.ts`.
+
+- A character has a page only with 3+ figures (`CHARACTER_MIN`, owner: 3+): ≈58 today, all prerendered at the release
+  build and listed in the sitemap.
+- A character page links its series and its series' other characters; a figure page shows up to two character chips
+  beside its series chip. The nav has "By character".

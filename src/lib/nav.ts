@@ -24,6 +24,7 @@ export function navGroups(counts: Record<LineKey, number>): NavGroup[] {
         // Black Friday, then Cyber Monday, while the strip shows (lib/black-friday.ts saleStrip).
         ...saleLinks(),
         { href: "/series", label: "By series", emoji: "📚" },
+        { href: "/characters", label: "By character", emoji: "🎎" },
         { href: "/deals", label: "Deals", emoji: "💸" },
         { href: "/preorders", label: "Pre-orders", emoji: "📅" },
         { href: "/new", label: "New arrivals", emoji: "✨" },
