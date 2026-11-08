@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { LINES, SITE } from "@/site";
-import { NETWORK_PAGE } from "@/lib/family-network";
 import { LogoMark } from "./Logo";
 import { RateUsLink } from "./site-reviews/SiteReviews";
 
@@ -55,9 +54,9 @@ export function Footer({ updated }: { updated?: string | null }) {
             <li><Link prefetch={false} href="/list-your-store" className="hover:text-pink-deep">List your store</Link></li>
             <li><Link prefetch={false} href="/how-we-pick-stores" className="hover:text-pink-deep">How we pick stores</Link></li>
             <li><a href={`mailto:${SITE.email}`} className="hover:text-pink-deep">{SITE.email}</a></li>
-            {/* No sister-site list (owner, 2026-11-03: a figure site listing card and tech sites reads as a link
-                network): one link to the page that lists every Compare Empire site (lib/family-network.ts). */}
-            <li><a href={NETWORK_PAGE} rel="noopener" className="hover:text-pink-deep">A Compare Empire site →</a></li>
+            {/* No sister-site list (owner, 2026-11-03), and since 2026-11-08 no link to another of our domains on every
+                page: one internal link to /our-sites, which lists every Compare Empire site once (DECISIONS.md). */}
+            <li><Link href="/our-sites" prefetch={false} className="hover:text-pink-deep">Our other price comparison sites →</Link></li>
           </ul>
         </div>
       </div>
