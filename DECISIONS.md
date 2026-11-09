@@ -916,3 +916,17 @@ the line, so there is no separate maker page), then the series or the character 
 - The search box's short placeholder names what it finds (figure, character, series).
 - Unchanged: URLs, titles, canonicals, h1s, BreadcrumbList. Not done: a filter bar on line hubs (the KY engine's `Browse`),
   and the footer's one /our-sites link (the owner's 2026-11-08 call).
+
+## 2026-11-09, Header mega menus replace the side panel (Bill)
+
+Bill: navigation is very important, prefers dropdown menus, wants the best modern pattern across the family.
+
+- **`components/HeaderMenus.tsx`** (lg up): Figure lines (Nendoroid, figma, POP UP PARADE), Series, Characters, Deals & more. Panels are plain
+  links in the server HTML (closed ones only hidden by CSS), opened by hover with a ~90 ms intent delay, click or tap, and keyboard
+  (ArrowDown/Enter open, Tab walks, Escape closes and refocuses); `aria-expanded`/`aria-controls`; no library, no layout shift.
+- **One source**: `headerMenus()` in `lib/nav.ts` takes the same `navGroups` the phone menu draws, plus `menuFacts()` (`lib/menu-facts.ts`,
+  data already loaded): 14 series and 14 characters with figures (`lib/menu-facts.ts`). Each link carries the markets that have products and is
+  drawn with the engine's `rp rp-XX` classes, so a visitor sees only what their market lists; a link with none anywhere is dropped.
+- **Sidebar kept** from xl: it carries the owner-approved eBay box (2026-10-28), so removing it is the owner's call. The quick chips below lg
+  are now drawn from the same groups (they were a second hand-written list); the phone menu is unchanged.
+- Unchanged: every URL, title, canonical, h1, JSON-LD. No new fetch, no revalidate change.

@@ -132,12 +132,32 @@ test("buy_click sends exactly retailer + placement, like the sister sites (Verce
 
 test("navigation (Bill, 2026-11-09): series and characters one tap from every page, and from each line's hub", () => {
   const header = readFileSync("src/components/Header.tsx", "utf8");
-  assert.match(header, /href: "\/series"/);
-  assert.match(header, /href: "\/characters"/);
+  assert.match(header, /"\/series"/);
+  assert.match(header, /"\/characters"/);
   const hub = readFileSync("src/components/LineHub.tsx", "utf8");
   assert.match(hub, /by series/);
   assert.match(hub, /by character/);
   const groups = navGroups({ nendoroid: 1, figma: 1, "pop-up-parade": 1 } as never, [{ slug: "hololive", name: "hololive" }]);
   const hrefs = groups.flatMap((g) => g.links.map((l) => l.href));
   assert.ok(hrefs.includes("/series/hololive") && hrefs.includes("/series") && hrefs.includes("/characters"));
+});
+
+test("header mega menus (Bill, 2026-11-09): built from the nav groups, empty markets dropped, keyboard and region support", async () => {
+  const { headerMenus } = await import("@/lib/nav");
+  const groups = navGroups({ nendoroid: 1, figma: 1, "pop-up-parade": 1 } as never, [{ slug: "hololive", name: "hololive" }]);
+  const menus = headerMenus(groups, {
+    lineRegions: { nendoroid: ["US"], figma: [] },
+    series: [{ href: "/series/a", label: "A" }, { href: "/series/none", label: "None", regions: [] }],
+    characters: [{ href: "/character/b", label: "B", regions: ["US", "JP"] }],
+  });
+  assert.ok(menus.length <= 7);
+  const flat = menus.flatMap((m) => m.columns.flatMap((c) => c.links));
+  assert.ok(!flat.some((l) => l.href === "/series/none" || l.href === "/figma"), "a link with no figures anywhere is left out");
+  assert.deepEqual(flat.find((l) => l.href === "/nendoroid")!.regions, ["US"]);
+  const dest = new Set(groups.flatMap((g) => g.links.map((l) => l.href)));
+  for (const m of menus) assert.ok(dest.has(m.all.href), m.all.href);
+  const comp = readFileSync("src/components/HeaderMenus.tsx", "utf8");
+  assert.match(comp, /Escape/);
+  assert.match(comp, /aria-expanded/);
+  assert.match(comp, /rp-\$\{r\}/);
 });

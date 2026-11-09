@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { LINES } from "@/site";
 import { Logo } from "./Logo";
 import { RegionPicker } from "./RegionPicker";
 import { SearchBox } from "./SearchBox";
@@ -7,25 +6,21 @@ import { ThemeToggle } from "./ThemeToggle";
 import { MobileMenu } from "./MobileMenu";
 import { EbayNavBox } from "./EbayStrip";
 import { CartHeaderLink } from "./cart/CartHeaderLink";
-import type { NavGroup } from "@/lib/nav";
+import { HeaderMenus } from "./HeaderMenus";
+import type { HeaderMenu, NavGroup } from "@/lib/nav";
 
-const NAV = [
-  ...LINES.map((l) => ({ href: `/${l.key}`, label: l.name, emoji: l.emoji })),
-  { href: "/series", label: "Series", emoji: "📚" },
-  { href: "/characters", label: "Characters", emoji: "🎎" },
-  { href: "/deals", label: "Deals", emoji: "💸" },
-  { href: "/preorders", label: "Pre-orders", emoji: "📅" },
-  { href: "/new", label: "New", emoji: "✨" },
-];
 
-export function Header({ groups }: { groups: NavGroup[] }) {
+export function Header({ groups, menus }: { groups: NavGroup[]; menus: HeaderMenu[] }) {
+  const links = (t: string) => groups.find((g) => g.title === t)?.links ?? [];
+  const quick = [...links("Figure lines"), ...links("Series & characters").filter((l) => l.href === "/series" || l.href === "/characters"), ...links("Deals & stock").filter((l) => ["/deals", "/preorders", "/new"].includes(l.href))];
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-card/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-2.5 xl:max-w-[1440px]">
         <Link href="/" prefetch={false} className="shrink-0" aria-label="FigureCompare home">
           <Logo wordmark="hidden min-[400px]:inline" />
         </Link>
-        <div className="hidden flex-1 md:block">
+        <HeaderMenus menus={menus} />
+        <div className="hidden min-w-0 flex-1 md:block">
           <SearchBox />
         </div>
         <div className="ml-auto flex items-center gap-2">
@@ -42,10 +37,10 @@ export function Header({ groups }: { groups: NavGroup[] }) {
         </div>
         <CartHeaderLink className="shrink-0 text-soft hover:text-ink md:hidden" />
       </div>
-      {/* Below xl the quick chips (the lines, then series and characters, how a collector looks); from xl the sidebar carries them. */}
-      <nav aria-label="Sections" className="mx-auto max-w-6xl overflow-x-auto px-4 pb-2 [scrollbar-width:none] xl:hidden">
+      {/* Below lg the quick chips (the lines, then series and characters, how a collector looks, drawn from the same groups); from lg the header menus carry them. */}
+      <nav aria-label="Sections" className="mx-auto max-w-6xl overflow-x-auto px-4 pb-2 [scrollbar-width:none] lg:hidden">
         <ul className="flex gap-1.5 whitespace-nowrap">
-          {NAV.map((n) => (
+          {quick.map((n) => (
             <li key={n.href}>
               <Link prefetch={false} href={n.href} className="chip border border-line bg-card px-3 py-1 text-sm text-ink transition hover:border-soft">
                 {n.label}
