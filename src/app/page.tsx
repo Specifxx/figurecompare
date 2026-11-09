@@ -11,6 +11,7 @@ import { ACTIVE_REGIONS } from "@/lib/regions";
 import { EbayStrip, SITE_QUERIES } from "@/components/EbayStrip";
 import { CreatorsCornerBadge } from "@/components/creators/CreatorsCornerBadge";
 import { JsonLd, faqLd, siteLd } from "@/lib/seo";
+import { POSTS } from "@/content/blog";
 import { SiteReviews } from "@/components/site-reviews/SiteReviews";
 
 export const metadata: Metadata = {
@@ -155,6 +156,24 @@ export default function Home() {
         </section>
 
         {/* The site's own star score and approved reviews (owner, 2026-11-03), loaded in the browser; nothing until there is a rating. */}
+        {/* Guides with thumbnails (owner, 2026-11-09): every post on the home page, server-rendered, below the figures. */}
+        <Section title="Guides" href="/blog" more="All guides">
+          <ul role="list" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[...POSTS].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 6).map((p) => (
+              <li key={p.slug}>
+                <Link prefetch={false} href={`/blog/${p.slug}`} className="sticker tile-hover group flex h-full flex-col overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={p.image.src} alt={p.image.alt} width={1200} height={630} loading="lazy" decoding="async" className="aspect-[1200/630] w-full object-cover" />
+                  <span className="flex flex-1 flex-col p-4">
+                    <span className="font-semibold leading-snug group-hover:underline">{p.title}</span>
+                    <span className="mt-1.5 line-clamp-2 text-sm text-soft">{p.description}</span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Section>
+
         <SiteReviews className="mt-14" />
 
         <section className="mt-14 max-w-3xl">
