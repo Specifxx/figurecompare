@@ -901,3 +901,18 @@ card sites): a visitor pastes a store's product link at `/is-this-a-good-price` 
   above it "you can pay less", with the saving. A listing that was out of stock says so instead. Amazon, eBay, marketplaces, stores
   we don't read and unmatched pages offer a search with the link's words.
 - A link pasted into the header search opens the checker (`#link=` in the fragment). Linked from the footer and the sitemap.
+
+## 2026-11-09 — Navigation audit (Bill): series and characters one tap away
+
+Bill: a collector deep in one space must reach it fast. A figure buyer picks the line (Nendoroid, figma, POP UP PARADE; the maker is
+the line, so there is no separate maker page), then the series or the character they collect.
+
+- The header's chip row (below xl) is now the three lines, Series, Characters, Deals, Pre-orders, New. The forum chip left it (it
+  stays in the sidebar, the phone menu and the footer).
+- The sidebar and phone menu have a "Series & characters" group (the eight biggest live series, All series, All characters) instead of
+  two links buried under "Deals & stock".
+- Each line's hub lists its biggest series and characters (3 or more figures in that line) with counts, and "All series" /
+  "All characters". Rows are read from the series and character lists already loaded; nothing new is fetched.
+- The search box's short placeholder names what it finds (figure, character, series).
+- Unchanged: URLs, titles, canonicals, h1s, BreadcrumbList. Not done: a filter bar on line hubs (the KY engine's `Browse`),
+  and the footer's one /our-sites link (the owner's 2026-11-08 call).

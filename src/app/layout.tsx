@@ -16,6 +16,7 @@ import { QuickView } from "@/components/QuickView";
 import { RateCard } from "@/components/site-reviews/RateCard";
 import { EbayNavBox } from "@/components/EbayStrip";
 import { navGroups } from "@/lib/nav";
+import { liveSeries } from "@/lib/series";
 import { getMeta, lineCounts } from "@/lib/data";
 import { niceDate } from "@/lib/format";
 import { SEASON_BOOT_SCRIPT } from "@/lib/season";
@@ -42,7 +43,12 @@ const BOOT = `(function(){var d=document.documentElement;try{var r=localStorage.
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const meta = getMeta();
-  const groups = navGroups(lineCounts());
+  const groups = navGroups(
+    lineCounts(),
+    liveSeries()
+      .slice(0, 8)
+      .map((x) => ({ slug: x.slug, name: x.name })),
+  );
   return (
     <html lang="en" suppressHydrationWarning>
       <head>

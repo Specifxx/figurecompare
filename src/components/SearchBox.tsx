@@ -101,7 +101,7 @@ export function SearchBox({ big = false, autoFocus = false }: { big?: boolean; a
             if (e.key === "ArrowUp") setActive((a) => Math.max(a - 1, 0));
             if (e.key === "Escape") setOpen(false);
           }}
-          placeholder={big ? "Search a Nendoroid, figma or character…" : "Search figures…"}
+          placeholder={big ? "Search a Nendoroid, figma or character…" : "Search figure, character, series…"}
           aria-label="Search figures"
           autoComplete="off"
           className={`min-w-0 flex-1 bg-transparent font-sans text-ink placeholder:text-soft focus:outline-none ${big ? "text-lg" : "text-sm"}`}
