@@ -1,7 +1,7 @@
 {
  "v": 1,
  "site": "figure",
- "generatedAt": "2026-11-08T15:18:34.555Z",
+ "generatedAt": "2026-11-09T17:19:49.814Z",
  "links": {
   "US": {
    "deals": "https://figurecompare.com/deals",
@@ -475,7 +475,7 @@
    "cents": 8795,
    "currency": "AUD",
    "store": "Gameology",
-   "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/berserk_nendoroid_guts_re_run__c68e1.jpg?v=1782448195&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232586161.png?v=1785919168&width=600"
   },
   {
    "kind": "preorder",
@@ -486,7 +486,7 @@
    "cents": 8795,
    "currency": "AUD",
    "store": "Gameology",
-   "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/final_fantasy_xiv_nendoroid_y_shtola_5edc8.jpg?v=1781766714&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232585195.png?v=1785919181&width=600"
   },
   {
    "kind": "preorder",
@@ -679,34 +679,45 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "EU",
-   "title": "Nendoroid Hatsune Miku: Senbonzakura Ver.",
-   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-senbonzakura-ver-480",
-   "cents": 5190,
-   "currency": "EUR",
-   "store": "Yorokonde",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828670983.png?v=1768310762&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "EU",
-   "title": "Nendoroid Doki Doki Literature Club! - Yuri",
-   "url": "https://figurecompare.com/figure/nendoroid-doki-doki-literature-club-yuri-2283",
-   "cents": 6199,
-   "currency": "EUR",
-   "store": "Mangatori",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232580541.png?v=1785919179&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "EU",
-   "title": "Nendoroid Genshin Impact - Xiao",
-   "url": "https://figurecompare.com/figure/nendoroid-genshin-impact-xiao-2668",
-   "cents": 6899,
+   "title": "POP UP PARADE Okami - Amaterasu 13 cm",
+   "url": "https://figurecompare.com/figure/pop-up-parade-okami-amaterasu",
+   "cents": 4499,
    "currency": "EUR",
    "store": "AniMuchuu",
-   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/Nendoroid-2668Xiao-GenshinImpact-1.png?v=1773789337&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/2467/9979/products/PopUpParade-Amaterasu1.jpg?v=1635439491&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "EU",
+   "title": "Nendoroid Ace Attorney - Phoenix Wright",
+   "url": "https://figurecompare.com/figure/nendoroid-ace-attorney-phoenix-wright-1761",
+   "cents": 4999,
+   "currency": "EUR",
+   "store": "Figuya",
+   "image": "https://cdn.shopify.com/s/files/1/0878/5254/files/4570232592810_1.jpg?v=1790306466&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "EU",
+   "title": "Nendoroid Demon Slayer - Zenitsu Agatsuma",
+   "url": "https://figurecompare.com/figure/nendoroid-demon-slayer-kimetsu-no-yaiba-zenitsu-agatsuma-1334-63220",
+   "cents": 4999,
+   "currency": "EUR",
+   "store": "JumpIchiban",
+   "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/Nendoroid-Zenitsu-Agatsuma1.png?v=1773798937&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "EU",
+   "title": "Nendoroid Ace Attorney - Miles Edgeworth",
+   "url": "https://figurecompare.com/figure/nendoroid-ace-attorney-miles-edgeworth-1762",
+   "cents": 5890,
+   "currency": "EUR",
+   "store": "Yorokonde",
+   "image": "https://cdn.shopify.com/s/files/1/0878/5254/files/4570232592827_1.jpg?v=1790306464&width=600"
   },
   {
    "kind": "preorder",
@@ -723,23 +734,12 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "EU",
-   "title": "Nendoroid Honkai: Star Rail - Anaxa",
-   "url": "https://figurecompare.com/figure/nendoroid-honkai-star-rail-anaxa-2969",
-   "cents": 7699,
+   "title": "Nendoroid Genshin Impact - Action Traveler (Aether) 10 cm",
+   "url": "https://figurecompare.com/figure/nendoroid-traveler-aether-1717",
+   "cents": 8290,
    "currency": "EUR",
-   "store": "AniMuchuu",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/honkai-star-rail-nendoroid-anaxa_1.jpg?v=1781851182&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "EU",
-   "title": "Nendoroid Hatsune Miku: Happy 16th Birthday Ver.",
-   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-happy-16th-birthday-ver-2222",
-   "cents": 9900,
-   "currency": "EUR",
-   "store": "Amuzzi",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/4580590175976.jpg?v=1691188761&width=600"
+   "store": "Yorokonde",
+   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/products/om-G12626-1.jpg?v=1646533716&width=600"
   },
   {
    "kind": "deal",
@@ -848,6 +848,17 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "SG",
+   "title": "Nendoroid Danganronpa V3 Killing Harmony - Kokichi Oma",
+   "url": "https://figurecompare.com/figure/nendoroid-danganronpa-v3-killing-harmony-kokichi-oma-2802",
+   "cents": 7259,
+   "currency": "SGD",
+   "store": "Otaku House",
+   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/53c3fc1c-99ad-44df-9577-0b01f19097ff-L.png?v=1792708642&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "SG",
    "title": "Nendoroid Blue Archive - Miyako Tsukiyuki",
    "url": "https://figurecompare.com/figure/nendoroid-blue-archive-miyako-tsukiyuki-3150",
    "cents": 7848,
@@ -865,17 +876,6 @@
    "currency": "SGD",
    "store": "Otaku House",
    "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/c05de1ea-f9b3-46d4-bf53-b4b4f9ad0594-L.png?v=1792709404&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "SG",
-   "title": "Nendoroid Chill with You: Lo-Fi Story - Satone",
-   "url": "https://figurecompare.com/figure/nendoroid-chill-with-you-lo-fi-story-satone-3155",
-   "cents": 8437,
-   "currency": "SGD",
-   "store": "Otaku House",
-   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/6c26ed1e-af7f-4025-b851-8f182dcc5649-L.png?v=1792709429&width=600"
   }
  ]
 }
