@@ -15,7 +15,8 @@ import { SideNav } from "@/components/SideNav";
 import { QuickView } from "@/components/QuickView";
 import { RateCard } from "@/components/site-reviews/RateCard";
 import { EbayNavBox } from "@/components/EbayStrip";
-import { navGroups } from "@/lib/nav";
+import { headerMenus, navGroups } from "@/lib/nav";
+import { menuFacts } from "@/lib/menu-facts";
 import { liveSeries } from "@/lib/series";
 import { getMeta, lineCounts } from "@/lib/data";
 import { niceDate } from "@/lib/format";
@@ -58,7 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-md focus:bg-card focus:px-3 focus:py-1">
           Skip to content
         </a>
-        <Header groups={groups} />
+        <Header groups={groups} menus={headerMenus(groups, menuFacts())} />
         <HolidayStrip />
         {/* From xl the left side of a wide screen is the sidebar; the pages keep their own width. */}
         <div className="mx-auto flex max-w-[1440px]">
