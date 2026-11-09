@@ -161,7 +161,7 @@ export default function Home() {
           <ul role="list" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[...POSTS].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 6).map((p) => (
               <li key={p.slug}>
-                <Link prefetch={false} href={`/blog/${p.slug}`} className="card group flex h-full flex-col overflow-hidden">
+                <Link prefetch={false} href={`/blog/${p.slug}`} className="sticker tile-hover group flex h-full flex-col overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={p.image.src} alt={p.image.alt} width={1200} height={630} loading="lazy" decoding="async" className="aspect-[1200/630] w-full object-cover" />
                   <span className="flex flex-1 flex-col p-4">
