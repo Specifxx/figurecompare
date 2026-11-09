@@ -5,6 +5,17 @@ import { TileGrid } from "./FigureTile";
 import { PageHead } from "./Section";
 import { EbayStrip, lineQueries } from "./EbayStrip";
 import { Crumbs } from "@/lib/seo";
+import { liveCharacters, figuresOfCharacter } from "@/lib/characters";
+import { liveSeries, figuresOfSeries } from "@/lib/series";
+
+/** The live series or characters with the most figures in this line (at least 3 there), for the hub's "by series" rows. */
+function inLine<T extends { slug: string; name: string }>(list: T[], figuresOf: (slug: string) => { line: LineKey }[], line: LineKey, max = 14) {
+  return list
+    .map((x) => ({ x, n: figuresOf(x.slug).filter((f) => f.line === line).length }))
+    .filter((c) => c.n >= 3)
+    .sort((a, b) => b.n - a.n || a.x.name.localeCompare(b.x.name))
+    .slice(0, max);
+}
 
 export const PER_PAGE = 48;
 
@@ -35,6 +46,31 @@ export function LineHub({ line, page }: { line: LineKey; page: number }) {
           </p>
         }
       />
+      {[
+        { title: `${l.name} by series`, all: { href: "/series", label: "All series" }, base: "/series", items: inLine(liveSeries(), figuresOfSeries, line) },
+        { title: `${l.name} by character`, all: { href: "/characters", label: "All characters" }, base: "/character", items: inLine(liveCharacters(), figuresOfCharacter, line) },
+      ].map(
+        (row) =>
+          row.items.length > 0 && (
+            <nav key={row.title} aria-label={row.title} className="mb-4">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-soft">{row.title}</p>
+              <ul className="flex flex-wrap gap-1.5">
+                {row.items.map(({ x, n }) => (
+                  <li key={x.slug}>
+                    <Link prefetch={false} href={`${row.base}/${x.slug}`} className="chip border border-line bg-card px-3 py-1 text-sm text-ink hover:border-pink">
+                      {x.name} <span className="text-soft">{n}</span>
+                    </Link>
+                  </li>
+                ))}
+                <li>
+                  <Link prefetch={false} href={row.all.href} className="chip px-3 py-1 text-sm font-semibold text-pink-deep">
+                    {row.all.label} →
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          ),
+      )}
       {list.length ? <TileGrid figures={list} /> : <p className="sticker p-6 text-center text-soft">No {l.name} figures in stock anywhere yet.</p>}
       {pages > 1 && (
         <nav aria-label="Pages" className="mt-8 flex flex-wrap justify-center gap-2">

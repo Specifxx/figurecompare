@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
+import { navGroups } from "@/lib/nav";
 import { regionForZone } from "@/site";
 import { footerSisters } from "@/lib/family-network";
 import { amazonSearchUrl, ebayAffiliateUrl, ebaySearchUrl, storeUrl, subId } from "@/lib/affiliate";
@@ -127,4 +128,16 @@ test("buy_click sends exactly retailer + placement, like the sister sites (Verce
   assert.match(call, /placement:/);
   assert.equal((call.match(/^\s+\w+:/gm) ?? []).length, 2, "exactly two properties");
   assert.match(fs.readFileSync("src/app/layout.tsx", "utf8"), /<Analytics/);
+});
+
+test("navigation (Bill, 2026-11-09): series and characters one tap from every page, and from each line's hub", () => {
+  const header = readFileSync("src/components/Header.tsx", "utf8");
+  assert.match(header, /href: "\/series"/);
+  assert.match(header, /href: "\/characters"/);
+  const hub = readFileSync("src/components/LineHub.tsx", "utf8");
+  assert.match(hub, /by series/);
+  assert.match(hub, /by character/);
+  const groups = navGroups({ nendoroid: 1, figma: 1, "pop-up-parade": 1 } as never, [{ slug: "hololive", name: "hololive" }]);
+  const hrefs = groups.flatMap((g) => g.links.map((l) => l.href));
+  assert.ok(hrefs.includes("/series/hololive") && hrefs.includes("/series") && hrefs.includes("/characters"));
 });

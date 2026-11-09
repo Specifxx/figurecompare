@@ -11,10 +11,11 @@ import type { NavGroup } from "@/lib/nav";
 
 const NAV = [
   ...LINES.map((l) => ({ href: `/${l.key}`, label: l.name, emoji: l.emoji })),
+  { href: "/series", label: "Series", emoji: "📚" },
+  { href: "/characters", label: "Characters", emoji: "🎎" },
   { href: "/deals", label: "Deals", emoji: "💸" },
   { href: "/preorders", label: "Pre-orders", emoji: "📅" },
   { href: "/new", label: "New", emoji: "✨" },
-  { href: "/forum", label: "Forum", emoji: "💬" },
 ];
 
 export function Header({ groups }: { groups: NavGroup[] }) {
@@ -41,7 +42,7 @@ export function Header({ groups }: { groups: NavGroup[] }) {
         </div>
         <CartHeaderLink className="shrink-0 text-soft hover:text-ink md:hidden" />
       </div>
-      {/* Below xl the quick chips; from xl the sidebar carries them. */}
+      {/* Below xl the quick chips (the lines, then series and characters, how a collector looks); from xl the sidebar carries them. */}
       <nav aria-label="Sections" className="mx-auto max-w-6xl overflow-x-auto px-4 pb-2 [scrollbar-width:none] xl:hidden">
         <ul className="flex gap-1.5 whitespace-nowrap">
           {NAV.map((n) => (

@@ -15,16 +15,23 @@ function saleLinks(): NavItem[] {
   return s ? [{ href: s.href, label: `${s.name} deals`, emoji: "🛍️" }] : [];
 }
 
-export function navGroups(counts: Record<LineKey, number>): NavGroup[] {
+export function navGroups(counts: Record<LineKey, number>, topSeries: { slug: string; name: string }[] = []): NavGroup[] {
   return [
     { title: "Figure lines", links: LINES.map((l) => ({ href: `/${l.key}`, label: l.name, emoji: l.emoji, count: counts[l.key] })) },
+    {
+      // How a collector looks once the line is picked (Bill, 2026-11-09): the franchise, then the character.
+      title: "Series & characters",
+      links: [
+        ...topSeries.map((x) => ({ href: `/series/${x.slug}`, label: x.name, emoji: "📚" })),
+        { href: "/series", label: "All series", emoji: "📚" },
+        { href: "/characters", label: "All characters", emoji: "🎎" },
+      ],
+    },
     {
       title: "Deals & stock",
       links: [
         // Black Friday, then Cyber Monday, while the strip shows (lib/black-friday.ts saleStrip).
         ...saleLinks(),
-        { href: "/series", label: "By series", emoji: "📚" },
-        { href: "/characters", label: "By character", emoji: "🎎" },
         { href: "/deals", label: "Deals", emoji: "💸" },
         { href: "/preorders", label: "Pre-orders", emoji: "📅" },
         { href: "/new", label: "New arrivals", emoji: "✨" },
