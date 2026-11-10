@@ -83,10 +83,26 @@ export function ebayPick(items: EbayItem[], storeOffers: Offer[], region: Region
  *  also prioritise the US"): the US comes round first and about a day sooner on every rotation. */
 export const US_HEAD_START_DAYS = 1;
 
+/**
+ * Each region's share of the day's calls (owner, 2026-11-10: calls follow visitors, the US at least half). Measured
+ * 8-10 Nov the rotation gave US 1,013 / CA 600 / EU 463 / AU 254 / UK 170; these make it about US 1,250 / CA 400 /
+ * EU 350 / AU 250 / UK 250 of 2,500. A region not listed gets no share of its own, only calls left over.
+ */
+export const EBAY_REGION_SHARE: Partial<Record<RegionCode, number>> = { US: 0.5, CA: 0.16, EU: 0.14, AU: 0.1, UK: 0.1 };
+
 /** Which (figure, region) pairs to search today: pairs where stores sell the
  *  figure, never-checked first, then oldest check (the US's a day older), then
- *  the US before other regions, then most stores. */
-export function planEbay(figures: Figure[], checked: Record<string, string>, regions: RegionCode[], budget: number): { f: Figure; region: RegionCode }[] {
+ *  the US before other regions, then most stores. With `shares`, each region
+ *  first takes its share of the budget in that order; calls a region cannot use
+ *  go to the rest in the same order. The US is searched first, so a quota stop
+ *  never cuts it. */
+export function planEbay(
+  figures: Figure[],
+  checked: Record<string, string>,
+  regions: RegionCode[],
+  budget: number,
+  shares?: Partial<Record<RegionCode, number>>,
+): { f: Figure; region: RegionCode }[] {
   const pairs: { f: Figure; region: RegionCode; at: string; n: number }[] = [];
   const older = (day: string) => new Date(Date.parse(`${day.slice(0, 10)}T00:00:00Z`) - US_HEAD_START_DAYS * 86_400_000).toISOString().slice(0, 10);
   for (const f of figures) {
@@ -97,8 +113,22 @@ export function planEbay(figures: Figure[], checked: Record<string, string>, reg
       pairs.push({ f, region, at: region === "US" && at && !Number.isNaN(Date.parse(at.slice(0, 10))) ? older(at) : at, n: offers.length });
     }
   }
-  return pairs
-    .sort((a, b) => a.at.localeCompare(b.at) || Number(b.region === "US") - Number(a.region === "US") || b.n - a.n || a.f.jan.localeCompare(b.f.jan))
-    .slice(0, Math.max(0, budget))
-    .map(({ f, region }) => ({ f, region }));
+  const sorted = pairs.sort((a, b) => a.at.localeCompare(b.at) || Number(b.region === "US") - Number(a.region === "US") || b.n - a.n || a.f.jan.localeCompare(b.f.jan));
+  const n = Math.max(0, budget);
+  if (!shares) return sorted.slice(0, n).map(({ f, region }) => ({ f, region }));
+  const take = new Set<number>();
+  const used: Partial<Record<RegionCode, number>> = {};
+  sorted.forEach((p, i) => {
+    const quota = Math.floor((shares[p.region] ?? 0) * n);
+    if (take.size < n && (used[p.region] ?? 0) < quota) {
+      take.add(i);
+      used[p.region] = (used[p.region] ?? 0) + 1;
+    }
+  });
+  for (let i = 0; i < sorted.length && take.size < n; i++) take.add(i);
+  return sorted
+    .map((p, i) => ({ p, i }))
+    .filter(({ i }) => take.has(i))
+    .sort((a, b) => Number(b.p.region === "US") - Number(a.p.region === "US") || a.i - b.i)
+    .map(({ p: { f, region } }) => ({ f, region }));
 }

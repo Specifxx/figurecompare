@@ -949,3 +949,15 @@ with its price, already sits beside the store's Buy button there; the candidates
 hidden in the browser after 24 hours, as the table does) and any store on a joined programme. It is the row's real
 price, never called cheaper, never the best price, never a reorder. Clicks are `buy_click` placement `hero_alt` /
 `buybar_alt`. On 10 Nov no store pays, so it shows only where the build fetched an Amazon price.
+
+## 2026-11-10: eBay calls split by region, the US at least half (owner)
+
+The planner was one rotation over every (figure, region) pair, oldest check first, so each region's calls followed how
+many figures its stores sell, not who visits: measured 8-10 Nov, US 1,013 / CA 600 / EU 463 / AU 254 / UK 170 of 2,500.
+The owner approved the split brief (`strategy/ebay-region-split-brief-2026-11-10.md`): about US 1,250 / CA 400 / EU 350 /
+AU 250 / UK 250, cap unchanged.
+
+`EBAY_REGION_SHARE` in `lib/ebay.ts` (US 0.50, CA 0.16, EU 0.14, AU 0.10, UK 0.10) gives each region its share of the
+day's budget, filled in the old order (never-checked first, oldest check, the US's a day older); calls a region cannot use
+(fewer pairs than its share) go to the rest in the same order, and the US is searched first so a quota stop never cuts
+it. The run logs its calls by region. Dry run on today's data: US 1,250 / CA 400 / EU 350 / AU 250 / UK 250.

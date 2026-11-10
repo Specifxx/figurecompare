@@ -70,7 +70,9 @@ Previews build only with `[preview]`, when the owner asks. `claude/*` branches n
 - eBay listings come only from `scripts/ebay-import.ts` in GitHub Actions (Browse API by GTIN, new, Buy It Now,
   never from CN/HK sellers, 60%–300% of the store median, no row without a store reference). The keys are GitHub
   secrets only, never Vercel. The keyset is shared with WargameCompare (5,000 calls a day, 2,500 each; owner,
-  2026-10-29): never raise `EBAY_DAILY_CAP` (default 2,500) without the owner.
+  2026-10-29): never raise `EBAY_DAILY_CAP` (default 2,500) without the owner. The day is split by
+  `EBAY_REGION_SHARE` (owner, 2026-11-10: US 50%, CA 16%, EU 14%, AU 10%, UK 10%), the US searched first; a share a
+  region cannot use goes to the rest. Keep the US at least half.
 - Amazon's own price on the Amazon row (owner, 2026-11-05; ASINs 2026-11-06): the Creators API's getItems takes
   ASINs only, so `scripts/amazon-asins.ts` (daily import) finds each product's ASIN with searchItems (the JAN,
   then the figure's name) and keeps it only when Amazon's own externalIds carry our JAN; ASINs and misses are committed in

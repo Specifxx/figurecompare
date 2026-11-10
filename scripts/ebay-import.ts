@@ -1,12 +1,13 @@
 // eBay listings for each figure, looked up by its barcode through the Browse
 // API (GitHub Actions only: the website never calls eBay and holds no eBay
 // key). Off until EBAY_CLIENT_ID / EBAY_CLIENT_SECRET exist (a green no-op).
-// One call per (figure, region), oldest-checked first, capped per day.
+// One call per (figure, region), oldest-checked first within each region's share of the day
+// (EBAY_REGION_SHARE, the US first), capped per day.
 import fs from "node:fs";
 import path from "node:path";
 import { REGIONS, type RegionCode } from "@/site";
 import { getFigures } from "@/lib/data";
-import { ebayPick, planEbay, type EbayItem } from "@/lib/ebay";
+import { EBAY_REGION_SHARE, ebayPick, planEbay, type EbayItem } from "@/lib/ebay";
 import type { EbayData, Meta } from "@/lib/types";
 
 const DATA = path.join(process.cwd(), "data");
@@ -55,7 +56,8 @@ async function main() {
   // A row from before 2026-10-31 (any seller, postage unknown) is hidden until it is searched again: search it first.
   for (const [jan, by] of Object.entries(data)) for (const [region, pick] of Object.entries(by)) if (pick && pick.sh == null) delete checked[`${jan}:${region}`];
   const figures = getFigures();
-  const plan = planEbay(figures, checked, Object.keys(MARKET) as RegionCode[], budget);
+  // Each region's share of the day (owner, 2026-11-10: the US at least half, EBAY_REGION_SHARE).
+  const plan = planEbay(figures, checked, Object.keys(MARKET) as RegionCode[], budget, EBAY_REGION_SHARE);
   const tok = await token();
   const today = new Date().toISOString().slice(0, 10);
   let calls = 0;
@@ -99,6 +101,9 @@ async function main() {
     meta.ebay = { at: new Date().toISOString(), day: today, calls, budget, listings: Object.keys(data).length };
     fs.writeFileSync(metaPath, JSON.stringify(meta, null, 1) + "\n");
   }
+  const by: Record<string, number> = {};
+  for (const { region } of plan.slice(0, calls)) by[region] = (by[region] ?? 0) + 1;
+  console.log(`eBay calls by region: ${Object.entries(by).map(([r, k]) => `${r} ${k}`).join(", ")}`);
   console.log(`eBay: ${calls} calls of ${budget}; ${Object.keys(data).length} figures with an eBay listing.`);
 }
 
