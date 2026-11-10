@@ -46,3 +46,8 @@ test("the sitemap's figures are a lean core: indexable, most widely stocked firs
   assert.ok(!out.includes("one-store"));
   assert.equal(out.length, SITEMAP_FIGURES);
 });
+
+test("category page 2+ is noindex, follow (site review X4, 2026-11-10)", () => {
+  const s = read("src/app/[line]/page/[n]/page.tsx");
+  assert.match(s, /robots: \{ index: false, follow: true \}/);
+});
