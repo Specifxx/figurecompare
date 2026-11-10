@@ -62,11 +62,12 @@ test("an item link goes to Amazon's own page with the region's tag and the sub i
 
 const walk = (d: string): string[] => fs.readdirSync(d).flatMap((f) => (fs.statSync(path.join(d, f)).isDirectory() ? walk(path.join(d, f)) : [path.join(d, f)]));
 
-test("the Creators API client stays build-side; only the price table reads live Amazon prices; prices are never committed", () => {
+test("the Creators API client stays build-side; only the price table and its paid alternative read live Amazon prices; prices are never committed", () => {
   for (const f of [...walk("src/app"), ...walk("src/components"), ...walk("src/lib")].filter((f) => /\.tsx?$/.test(f))) {
     const s = fs.readFileSync(f, "utf8");
     if (f !== "src/lib/amazon-creators.ts") assert.ok(!/amazon-creators/.test(s), `${f} imports the Creators API client`);
-    if (/from "@\/lib\/amazon-live"/.test(s)) assert.equal(f, "src/components/PriceTable.tsx", `${f} reads live Amazon prices`);
+    // The price table, and the paid alternative under the hero's cheapest store, which quotes that same row (2026-11-10).
+    if (/from "(@\/lib|\.)\/amazon-live"/.test(s)) assert.ok(["src/components/PriceTable.tsx", "src/lib/paid-alternative.ts"].includes(f), `${f} reads live Amazon prices`);
     assert.ok(!/AMAZON_CREATORS/.test(s) || f === "src/lib/amazon-creators.ts", `${f} names the credentials`);
   }
   assert.match(fs.readFileSync(".gitignore", "utf8"), /^data\/amazon-live\/$/m);

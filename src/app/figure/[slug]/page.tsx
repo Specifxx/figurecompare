@@ -13,6 +13,8 @@ import { PriceHistory } from "@/components/Sparkline";
 import { RegionTabs } from "@/components/RegionPicker";
 import { TileGrid } from "@/components/FigureTile";
 import { OutLink } from "@/components/OutLink";
+import { PaidAlt } from "@/components/PaidAlt";
+import { paidAlternativeFor } from "@/lib/paid-alternative";
 import { ShareButton } from "@/components/ShareButton";
 import { shareTexts } from "@/lib/share-texts";
 import { ReportPrice } from "@/components/ReportForms";
@@ -159,6 +161,21 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
                       </OutLink>
                       <EbayButton f={f} region={r.code} pick={ebay[r.code]} placement="hero_ebay" className="px-5 py-2.5" />
                     </div>
+                    {(() => {
+                      // Amazon or a paying store within 20% when the cheapest store pays nothing (lib/paid-alternative.ts).
+                      const alt = paidAlternativeFor(f, r.code, "hero_alt");
+                      return alt ? (
+                        <PaidAlt
+                          className="relative mt-2"
+                          price={money(alt.c.p, r.code)}
+                          name={alt.c.name}
+                          pctMore={alt.pctMore}
+                          href={alt.c.href}
+                          at={alt.c.at}
+                          event={{ source: alt.c.source, region: r.code, placement: "hero_alt", jan: f.jan }}
+                        />
+                      ) : null;
+                    })()}
                   </div>
                 ) : (
                   <div className="sticker bg-card p-4 text-sm">
@@ -275,6 +292,7 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
       {/* Phone buy bar: the region's cheapest orderable store, always in reach. */}
       {REGIONS.map((r) => {
         const low = lowestOrderable(f.offers[r.code]);
+        const alt = low ? paidAlternativeFor(f, r.code, "buybar_alt") : null;
         return (
           <div key={r.code} className={`rp rp-${r.code}`}>
             <div className="fixed inset-x-0 bottom-0 z-30 flex items-center gap-2 border-t border-line bg-card/95 px-4 py-2 backdrop-blur md:hidden">
@@ -283,6 +301,17 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
                   <>
                     <p className="truncate text-xs text-soft">Cheapest {r.phrase}: {storeName(low.s)}</p>
                     <p className="h-display text-xl text-pink-deep">{money(low.p, r.code)}</p>
+                    {alt && (
+                      <PaidAlt
+                        className="text-xs"
+                        price={money(alt.c.p, r.code)}
+                        name={alt.c.name}
+                        pctMore={alt.pctMore}
+                        href={alt.c.href}
+                        at={alt.c.at}
+                        event={{ source: alt.c.source, region: r.code, placement: "buybar_alt", jan: f.jan }}
+                      />
+                    )}
                   </>
                 ) : (
                   <p className="text-sm text-soft">No store {r.phrase} has it in stock</p>
