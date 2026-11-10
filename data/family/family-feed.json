@@ -1,7 +1,7 @@
 {
  "v": 1,
  "site": "figure",
- "generatedAt": "2026-11-09T17:19:49.814Z",
+ "generatedAt": "2026-11-10T16:52:46.449Z",
  "links": {
   "US": {
    "deals": "https://figurecompare.com/deals",
@@ -33,17 +33,6 @@
   }
  },
  "items": [
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "US",
-   "title": "Nendoroid Chainsaw Man - The Movie: Reze Arc - Reze: Casual Outfit Ver. [Basic]",
-   "url": "https://figurecompare.com/figure/nendoroid-reze-casual-outfit-ver-basic-3041",
-   "cents": 3588,
-   "currency": "USD",
-   "store": "Kappa Hobby",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/chainsaw-man-the-movie-reze-arc-nendoroid-reze-casual-outfit-version-basic_1.jpg?v=1775117578&width=600"
-  },
   {
    "kind": "preorder",
    "cluster": "hobby",
@@ -100,6 +89,17 @@
    "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/e2d24c8f-1202-484e-a24e-a3e224a2aeac-L.png?v=1792704343&width=600"
   },
   {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "US",
+   "title": "Nendoroid Hatsune Miku: DecoMiku (Darkness)",
+   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-decomiku-darkness-3007",
+   "cents": 5000,
+   "currency": "USD",
+   "store": "Good Game Anime",
+   "image": "https://cdn.shopify.com/s/files/1/0428/3347/7798/files/Character_Vocal_Series_01_Nendoroid__3007_Hatsune_Miku__DecoMiku__Darkness_5.png?v=1794264032&width=600"
+  },
+  {
    "kind": "deal",
    "cluster": "hobby",
    "region": "UK",
@@ -112,6 +112,34 @@
    "refCents": 6595,
    "refLabel": "dearest store",
    "savingPct": 53
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "UK",
+   "title": "Nendoroid Hatsune Miku: DecoMiku (Darkness)",
+   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-decomiku-darkness-3007",
+   "cents": 4995,
+   "currency": "GBP",
+   "store": "Hobby Figures",
+   "image": "https://cdn.shopify.com/s/files/1/0428/3347/7798/files/Character_Vocal_Series_01_Nendoroid__3007_Hatsune_Miku__DecoMiku__Darkness_5.png?v=1794264032&width=600",
+   "refCents": 9895,
+   "refLabel": "dearest store",
+   "savingPct": 50
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "UK",
+   "title": "Nendoroid Hatsune Miku: DecoMiku (Lightness)",
+   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-decomiku-lightness-3006",
+   "cents": 4995,
+   "currency": "GBP",
+   "store": "Hobby Figures",
+   "image": "https://cdn.shopify.com/s/files/1/0428/3347/7798/files/602311927_jpg.webp?v=1794264033&width=600",
+   "refCents": 9895,
+   "refLabel": "dearest store",
+   "savingPct": 50
   },
   {
    "kind": "deal",
@@ -145,43 +173,15 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "UK",
-   "title": "Nendoroid Hatsune Miku: Deep Sea Girl Ver.",
-   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-deep-sea-girl-ver-2925",
-   "cents": 5195,
-   "currency": "GBP",
-   "store": "Hobby Figures",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828668232.png?v=1765288351&width=600",
-   "refCents": 8595,
-   "refLabel": "dearest store",
-   "savingPct": 40
-  },
-  {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "UK",
-   "title": "Nendoroid Frieren: Apprentice Era Ver.",
-   "url": "https://figurecompare.com/figure/nendoroid-frieren-apprentice-era-ver-2986",
-   "cents": 4295,
-   "currency": "GBP",
-   "store": "Hobby Figures",
-   "image": "https://cdn.shopify.com/s/files/1/0876/7307/8075/files/47_44047bf1-7de0-42a2-8e4a-0988872aecb8.png?v=1790830422&width=600",
-   "refCents": 6995,
-   "refLabel": "dearest store",
-   "savingPct": 39
-  },
-  {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "UK",
-   "title": "Nendoroid Oozora Subaru: Suspender Outfit Ver.",
-   "url": "https://figurecompare.com/figure/nendoroid-oozora-subaru-suspender-outfit-ver-2854",
-   "cents": 4799,
+   "title": "Nendoroid Puella Magi Madoka Magica the Movie -Walpurgisnacht: Rising - Basic Action Sayaka Miki - Walpurgisnacht: Rising Ver. 10,0 cm",
+   "url": "https://figurecompare.com/figure/nendoroid-sayaka-miki-walpurgisnacht-rising-ver-basic-3004",
+   "cents": 2899,
    "currency": "GBP",
    "store": "Loaded Dice",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828662650.png?v=1784623655&width=600",
-   "refCents": 7595,
+   "image": "https://cdn.shopify.com/s/files/1/0318/2649/files/c9a26da6-70e1-4646-8f77-562444fe67ba.jpg?v=1775208371&width=600",
+   "refCents": 5095,
    "refLabel": "dearest store",
-   "savingPct": 37
+   "savingPct": 43
   },
   {
    "kind": "preorder",
@@ -192,7 +192,7 @@
    "cents": 4395,
    "currency": "GBP",
    "store": "Hobby Figures",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/products/om-G12458-1.jpg?v=1646460843&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0428/3347/7798/files/4580828676220_1.webp?v=1794265330&width=600"
   },
   {
    "kind": "preorder",
@@ -231,12 +231,12 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "UK",
-   "title": "Nendoroid Danganronpa V3: Killing Harmony - Action Shuichi Saihara 10 cm",
+   "title": "Nendoroid Shuichi Saihara",
    "url": "https://figurecompare.com/figure/nendoroid-shuichi-saihara-3009",
    "cents": 5699,
    "currency": "GBP",
    "store": "Camden Anime",
-   "image": "https://cdn.shopify.com/s/files/1/0318/2649/files/460257ea-3766-4470-aa2b-d6a27a39b82e.jpg?v=1772788647&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0428/3347/7798/files/05cd90f7647c18f50093f6d0.webp?v=1794264044&width=600"
   },
   {
    "kind": "preorder",
@@ -723,23 +723,23 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "EU",
-   "title": "Nendoroid Hatsune Miku: LAWSON 50th Anniversary Special Live Ver.",
-   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-lawson-50th-anniversary-special-live-ver-2959",
-   "cents": 7499,
+   "title": "Nendoroid Agnes Tachyon",
+   "url": "https://figurecompare.com/figure/nendoroid-agnes-tachyon-2512",
+   "cents": 6200,
    "currency": "EUR",
-   "store": "AniMuchuu",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/nendoroid-hatsune-miku-lawson-50th-anniversary-special-live-version_1.jpg?v=1769152863&width=600"
+   "store": "Amuzzi",
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828678231.png?v=1785919204&width=600"
   },
   {
    "kind": "preorder",
    "cluster": "hobby",
    "region": "EU",
-   "title": "Nendoroid Genshin Impact - Action Traveler (Aether) 10 cm",
-   "url": "https://figurecompare.com/figure/nendoroid-traveler-aether-1717",
-   "cents": 8290,
+   "title": "Nendoroid Hatsune Miku: LAWSON 50th Anniversary Special Live Ver.",
+   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-lawson-50th-anniversary-special-live-ver-2959",
+   "cents": 7499,
    "currency": "EUR",
-   "store": "Yorokonde",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/products/om-G12626-1.jpg?v=1646533716&width=600"
+   "store": "AniMuchuu",
+   "image": "https://cdn.shopify.com/s/files/1/0428/3347/7798/files/101_1b64801b-3c6a-4e55-baec-387ded97733c.jpg?v=1794264034&width=600"
   },
   {
    "kind": "deal",
