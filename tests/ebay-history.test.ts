@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { ebayPick, planEbay, type EbayItem } from "@/lib/ebay";
+import { EBAY_REGION_SHARE, ebayPick, planEbay, type EbayItem } from "@/lib/ebay";
 import { dayNumber, priceOn, recordHistory } from "@/lib/history";
 import type { Figure, Offer } from "@/lib/types";
 
@@ -71,4 +71,20 @@ test("history records only changes and reads back by day", () => {
 test("sold-out everywhere records nothing", () => {
   const fig: Figure = { jan: "k", slug: "k", name: "k", line: "figma", number: null, img: null, first: "d", offers: { US: [{ ...offers[0], st: "out" }] } };
   assert.deepEqual(recordHistory({}, [fig], "2026-10-01"), { k: {} });
+});
+
+test("eBay plan: each region takes its share, the US first, spare calls to the rest (owner, 2026-11-10)", () => {
+  const f = (jan: string, regions: string[]): Figure => ({ jan, slug: jan, name: jan, line: "nendoroid", number: null, img: null, first: "d", offers: Object.fromEntries(regions.map((r) => [r, offers])) });
+  const figs = Array.from({ length: 20 }, (_, i) => f(`f${String(i).padStart(2, "0")}`, ["US", "CA", "UK"]));
+  // The UK's checks are all oldest, but it gets only its share.
+  const checked = Object.fromEntries(figs.flatMap((x) => [[`${x.jan}:UK`, "2026-10-01"], [`${x.jan}:US`, "2026-11-01"], [`${x.jan}:CA`, "2026-11-01"]]));
+  const plan = planEbay(figs, checked, ["US", "CA", "UK"], 10, { US: 0.5, CA: 0.3, UK: 0.2 });
+  const by = (r: string) => plan.filter((p) => p.region === r).length;
+  assert.deepEqual([by("US"), by("CA"), by("UK")], [5, 3, 2]);
+  assert.equal(plan[0].region, "US", "the US is searched first");
+  // A region with fewer pairs than its share gives the rest away.
+  const few = planEbay([f("a", ["US", "UK"]), f("b", ["UK"]), f("c", ["UK"])], {}, ["US", "UK"], 3, { US: 0.9, UK: 0.1 });
+  assert.equal(few.length, 3);
+  assert.ok(Math.abs(Object.values(EBAY_REGION_SHARE).reduce((a, b) => a + (b ?? 0), 0) - 1) < 1e-9, "shares add up to the day");
+  assert.ok((EBAY_REGION_SHARE.US ?? 0) >= 0.5, "the US at least half");
 });
