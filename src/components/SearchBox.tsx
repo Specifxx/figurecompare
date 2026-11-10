@@ -3,7 +3,6 @@
 // fetched the first time the box is focused. A keystroke never reaches a server.
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRegion } from "./RegionPicker";
-import { compareSearchHref } from "@/lib/compare-search";
 import { money } from "@/lib/format";
 import type { RegionCode } from "@/site";
 
@@ -115,13 +114,6 @@ export function SearchBox({ big = false, autoFocus = false }: { big?: boolean; a
         <ul className="sticker absolute left-0 right-0 top-full z-50 mt-2 max-h-[70vh] overflow-auto p-1.5 text-left">
           {!rows && <li className="px-3 py-2 text-sm text-soft">Loading the figure list…</li>}
           {rows && !results.length && <li className="px-3 py-2 text-sm text-soft">No figure matches yet. Try the character&apos;s name.</li>}
-          {rows && !results.length && (
-            <li className="px-3 pb-2 text-sm">
-              <a href={compareSearchHref(q, "figure", region)} rel="nofollow" className="font-semibold text-pink-deep hover:underline">
-                Search every Compare Empire site for &ldquo;{q.trim()}&rdquo; &rarr;
-              </a>
-            </li>
-          )}
           {results.map((r, i) => (
             <li key={r[0]}>
               <a
