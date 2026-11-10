@@ -938,3 +938,14 @@ and /serums/page/11 had 262 in 56 days, both with 0 clicks. Page 2+ was self-can
 `robots: { index: false, follow: true }`: the page and its links stay crawlable, so every product it lists is still
 found, but only the hub (page 1) competes for the category's searches. Page 2+ was already out of the sitemap. The
 canonical stays self (pointing page 23 at page 1 would claim they are the same content). Pinned in `tests/seo.test.ts`.
+
+## 2026-11-10: The nearest paid price under the cheapest store (hero and phone buy bar)
+
+The zero-earnings diagnosis (10 Nov) found 27 buy clicks in 30 days, 11 of them to a link that can earn. RiftCompare's
+paid-alternative rule (owner 2026-10-27; KaeYoung and ScentCompare the same day) is ported to the figure page's hero and
+phone buy bar: when the cheapest orderable store is not a paid link, a line names the cheapest paid row of the same
+table within 20% of its price ("or US$54.99 on Amazon +6% →", "Paid link"). eBay is left out of it because its button,
+with its price, already sits beside the store's Buy button there; the candidates are Amazon's own listing (its price
+hidden in the browser after 24 hours, as the table does) and any store on a joined programme. It is the row's real
+price, never called cheaper, never the best price, never a reorder. Clicks are `buy_click` placement `hero_alt` /
+`buybar_alt`. On 10 Nov no store pays, so it shows only where the build fetched an Amazon price.
