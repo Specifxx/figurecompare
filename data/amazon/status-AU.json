@@ -1,1 +1,1 @@
-{"at":"2026-11-10T16:52:58.605Z","state":"refused","searched":0,"found":0,"known":0,"waiting":1714,"note":"searchItems 403 {\"message\":\"Your account does not currently meet the eligibility requirements.\",\"reason\":\"AssociateNotEligible\",\"type\":\"AccessDeniedException\"}"}
+{"at":"2026-11-11T16:06:23.568Z","state":"refused","searched":0,"found":0,"known":0,"waiting":1715,"note":"searchItems 403 {\"message\":\"Your account does not currently meet the eligibility requirements.\",\"reason\":\"AssociateNotEligible\",\"type\":\"AccessDeniedException\"}"}
