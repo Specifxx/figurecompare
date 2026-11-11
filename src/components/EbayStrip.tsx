@@ -168,7 +168,7 @@ export function EbayButton({ f, region, pick, placement, className = "" }: { f: 
   const href = pick ? ebayAffiliateUrl(pick.u, sub) : ebaySearchUrl(f.name.replace(/[()]/g, " ").replace(/\s+/g, " ").trim(), region, sub);
   if (!href) return null;
   return (
-    <OutLink href={href} paid event={{ source: "ebay", region, placement, jan: f.jan }} className={`btn-pop border border-line bg-card text-ink hover:border-soft ${className}`}>
+    <OutLink href={href} paid event={{ source: "ebay", region, placement, jan: f.jan }} className={`btn-pop bg-[#3665f3] text-white hover:bg-[#2a50c8] ${className}`}>
       {pick ? <>eBay {money(pick.p, region)}</> : "Check eBay"} <span className="text-[10px] font-semibold uppercase text-soft">Ad</span>
     </OutLink>
   );
