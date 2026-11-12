@@ -67,10 +67,11 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
       ...(ebay && region !== "JP" ? { cart: { title: f.name, image: f.img, priceCents: ebay.p, currency: r.currency } } : {}),
       event: { source: "ebay", region, placement: `${placement}_pinned`, jan: f.jan },
     });
-  if (amazonUrl)
+  // Amazon only with a real price (owner, 2026-11-12): no price, no row, and never in the quick view.
+  if (amazonUrl && live)
     pinned.push({
       name: "Amazon",
-      sub: liveUrl ? `${r.amazonHost?.replace("www.", "")} · new, this exact JAN · Ad` : `Also check on Amazon · ${r.amazonHost?.replace("www.", "")} · Ad`,
+      sub: liveUrl ? `${r.amazonHost?.replace("www.", "")} · new, this exact JAN · Ad` : `${r.amazonHost?.replace("www.", "")} · Ad`,
       price: liveUrl && live ? money(live.p, region) : null,
       status: liveUrl && live ? "in" : null,
       href: amazonUrl,
