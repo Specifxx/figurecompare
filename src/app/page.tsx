@@ -1,3 +1,4 @@
+import { ChristmasGuide } from "@/components/ChristmasGuide";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LINES, REGIONS, SITE } from "@/site";
@@ -51,6 +52,7 @@ export default function Home() {
         <div className="relative mx-auto max-w-6xl px-4 pb-10 pt-10 md:pt-14">
           {/* The creators hub, above the fold (owner, 2026-11-03): top-right corner from sm, a pill above the kicker on a phone. */}
           <CreatorsCornerBadge />
+          <ChristmasGuide />
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-pink">
             フィギュア price check
           </p>

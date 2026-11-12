@@ -34,3 +34,10 @@ export function seasonAt(d: Date): Season | null {
 }
 
 export const SEASON_BOOT_SCRIPT = `(function(){try{var s=null,q=(typeof location!="undefined"&&location.search.match(/[?&]season=([a-z]+)/)||[])[1];if(q){if(q==="halloween"||q==="christmas")s=q}else{var n=new Date(),m=(n.getMonth()+1)*100+n.getDate(),k=n.getFullYear()*10000+m;if(k>=${HALLOWEEN_FROM}&&k<=${HALLOWEEN_TO})s="halloween";else if(m>=${CHRISTMAS_FROM}&&m<=${CHRISTMAS_TO})s="christmas"}if(s)document.documentElement.setAttribute("data-season",s)}catch(e){}})();`;
+
+// The festive layer (owner, 2026-11-12: "more festive again", after the 8 November tone-down): a gift-guide card on the home page
+// (ChristmasGuide), a 3px cranberry-and-pine hairline at the top of every page and the same two colours on the Black Friday strip,
+// all CSS keyed on data-season="christmas" plus data-festive (layout.tsx). THE ONE OFF SWITCH: set this to false after New Year (or
+// simply let the window above end on 26 December, when data-season goes) and the card markup, the hairline and the accents all go.
+// The card is in the static HTML all year and hidden by CSS outside the window. Never snow, lights, hats, stripes or a palette swap.
+export const CHRISTMAS_FESTIVE_LAYER = true;

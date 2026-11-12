@@ -27,6 +27,8 @@ test("the boot script agrees with isHalloween() and never throws", () => {
   assert.doesNotThrow(() => vm.runInNewContext(SEASON_BOOT_SCRIPT, { Date }));
 });
 
+const read = (p: string) => readFileSync(p, "utf8");
+
 test("Christmas runs 1 November to Boxing Day every year, by the visitor's own date", () => {
   assert.equal(isChristmas(new Date(2026, 9, 31, 23, 59)), false);
   assert.equal(isChristmas(new Date(2026, 10, 1, 0, 0)), true);
@@ -61,4 +63,30 @@ test("Christmas is at most one quiet line, never a costume (owner, 2026-11-08: t
   }
   assert.doesNotMatch(css, /data-season="christmas"\][^{]*\{[^}]*--(brand|spark|lilac)/, "no palette swap");
   assert.match(css, /\.xmas-pill \{[^}]*color: inherit;/, "the one line is drawn in the site's own colours");
+});
+
+test("the festive layer (owner, 2026-11-12) is a card, a hairline and two colour tokens, behind one off switch, and nothing more", () => {
+  const css = read("src/app/globals.css");
+  const block = css.slice(css.indexOf("/* xmas-common:start"), css.indexOf("/* xmas-common:end */")).replace(/\/\*[\s\S]*?\*\//g, "");
+  assert.ok(block.length > 500, "the xmas block is there");
+  // The hairline: 3px, two flat tones, keyed on the season attribute and the festive attribute.
+  assert.match(block, /:root\[data-season="christmas"\]\[data-festive\] body::before \{[^}]*height: 3px;[^}]*linear-gradient\(to right, rgb\(var\(--xmas-red\)\) 50%, rgb\(var\(--xmas-pine\)\) 50%\)/);
+  // The accents reach the pill and the Black Friday strip through the tokens only.
+  assert.match(block, /\.xmas-pill \{[^}]*--xmas-red/);
+  assert.match(block, /\[data-holiday-strip\] \{[^}]*--xmas-pine/);
+  assert.match(block, /\.xmas-guide \{[^}]*border-left: 3px solid rgb\(var\(--xmas-red\)\)/);
+  // What stays gone: motion, flakes, canvas, candy stripes, images.
+  for (const bad of ["@keyframes", "animation", "snow", "flake", "canvas", "repeating-", "conic-gradient", "url(", "@font-face"]) {
+    assert.ok(!block.toLowerCase().includes(bad), `${bad} is not in the Christmas CSS`);
+  }
+  assert.doesNotMatch(css, /@keyframes[^{]*(snow|flake|xmas)/i);
+  // The one off switch, and the layout's attribute that the CSS keys on.
+  assert.match(read("src/lib/season.ts"), /export const CHRISTMAS_FESTIVE_LAYER = true;/);
+  assert.match(read("src/app/layout.tsx"), /data-festive=\{CHRISTMAS_FESTIVE_LAYER \? "on" : undefined\}/);
+  // The card: server markup behind the switch, an inline SVG in currentColor, a link and not a heading.
+  const card = read("src/components/ChristmasGuide.tsx");
+  assert.match(card, /CHRISTMAS_FESTIVE_LAYER/);
+  assert.match(card, /<svg[^>]*stroke="currentColor"/);
+  assert.match(card, /Christmas gift guide/);
+  assert.doesNotMatch(card, /<h[1-6]|"use client"|<img|canvas|useEffect|setInterval/);
 });

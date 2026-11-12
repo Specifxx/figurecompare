@@ -20,7 +20,7 @@ import { menuFacts } from "@/lib/menu-facts";
 import { liveSeries } from "@/lib/series";
 import { getMeta, lineCounts } from "@/lib/data";
 import { niceDate } from "@/lib/format";
-import { SEASON_BOOT_SCRIPT } from "@/lib/season";
+import { CHRISTMAS_FESTIVE_LAYER, SEASON_BOOT_SCRIPT } from "@/lib/season";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       .map((x) => ({ slug: x.slug, name: x.name })),
   );
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-festive={CHRISTMAS_FESTIVE_LAYER ? "on" : undefined} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: BOOT + SEASON_BOOT_SCRIPT }} />
       </head>

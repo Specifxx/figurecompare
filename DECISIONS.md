@@ -971,3 +971,24 @@ region's MEDIAN (`featureFloor` in `lib/data.ts`; own currency, never converted;
 US$30 one. A region where fewer than four figures qualify falls back to the old list. Cheaper figures are not removed:
 they stay on /deals, /new, /preorders, the line hubs, search and their own pages, and every URL, title, metadata, the
 alert feed and the price order inside a figure's table are unchanged. Nothing ranks by commission.
+
+
+## 2026-11-12: a tasteful festive layer on the Christmas season (owner)
+
+Bill asked on 2026-11-08 to strip the over-the-top Christmas theme ("the theme must match the domain"), and on 2026-11-12 asked for it to be
+more festive again. We chose tasteful accents, not a return of the costume.
+
+**What.** Behind the existing season window (`data-season="christmas"`, 1 November to Boxing Day, the visitor's date, `?season=` preview) and
+ONE off switch, `CHRISTMAS_FESTIVE_LAYER` in `src/lib/season.ts` (it sets `data-festive` on `<html>` and gates the card's markup): (1) a one-line
+"Christmas gift guide" card on the home page, an inline SVG gift in `currentColor`, linking the existing `/black-friday` deals page (the site has no gift page), in the site's own surface and
+text colours with a cranberry 3px left border and a pine icon; it is a link in the server HTML, not a heading, so every title, meta, h1 and h2 is
+unchanged; (2) a 3px two-tone hairline (cranberry then pine, flat, no stripes) at the very top of the page, drawn by `body::before` from CSS
+alone, with lighter tones in the dark theme for contrast; (3) the same two colour tokens (`--xmas-red`, `--xmas-pine`) on the gifts pill's border and the
+Black Friday strip's bottom border, no new elements. FigureCompare has no season-gated markup (every page is a static file), so the card is in the static HTML all year and CSS-hidden outside the window; there was no gifts pill here, so the pill accent has nothing to colour.
+
+**Still gone, and pinned.** No snow, lights, Santa hats, candy-cane stripes, palette swap, sparkles, animation, image, webfont, extra request,
+pop-up, floating rail or layout shift; no client JavaScript. The test pins both the new pieces and the absence of `@keyframes`, snow, flake,
+canvas and repeating gradients in the Christmas CSS.
+
+**Taking it off.** Set `CHRISTMAS_FESTIVE_LAYER = false` after New Year, or let the window end on 26 December: the card, the hairline and the
+accents all go together. Off, the markup is not rendered at all.
