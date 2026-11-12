@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LINES, REGIONS, SITE } from "@/site";
-import { activeStores, dealsIn, getFigures, getMeta, lineCounts, newest, newestIn, popular, popularIn, preordersIn } from "@/lib/data";
+import { activeStores, featuredDealsIn, featuredNewestIn, featuredPopular, featuredPopularIn, featuredPreordersIn, getFigures, getMeta, lineCounts } from "@/lib/data";
 import { ago } from "@/lib/format";
 import { SearchBox } from "@/components/SearchBox";
 import { RegionChips } from "@/components/RegionPicker";
@@ -84,13 +84,13 @@ export default function Home() {
           ))}
         </section>
 
-        <EbayStrip className="mt-10" placement="home" queries={SITE_QUERIES} figures={popular(30)} title="Figures on eBay" />
+        <EbayStrip className="mt-10" placement="home" queries={SITE_QUERIES} figures={featuredPopular(30)} title="Figures on eBay" />
 
         {REGIONS.map((r) => {
-          const deals = dealsIn(r.code, 8).map((d) => d.f);
-          const pre = preordersIn(r.code, 8);
-          const pop = popularIn(r.code, 8);
-          const fresh = newestIn(r.code, 8);
+          const deals = featuredDealsIn(r.code, 8);
+          const pre = featuredPreordersIn(r.code, 8);
+          const pop = featuredPopularIn(r.code, 8);
+          const fresh = featuredNewestIn(r.code, 8);
           return (
             <div key={r.code} className={`rp rp-${r.code}`}>
               {deals.length > 0 && (
