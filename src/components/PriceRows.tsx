@@ -32,13 +32,15 @@ export interface RowData {
   pin?: "ebay" | "amazon";
 }
 
-/** The pinned rows' outlines: eBay green, Amazon amber. Inset, so the row keeps its size. */
+/**
+ * The pinned rows' classes. Until 2026-11-12 each drew an outline (eBay green, Amazon amber, the cheapest sky blue; owner, 2026-11-06
+ * and 11-07). The owner then found "all the colored rows" too much and left the design to us (DECISIONS.md, "A calmer price table"):
+ * the keys stay as hooks and draw nothing. The cheapest row keeps its own border and price colour.
+ */
 export const PIN_OUTLINE = {
-  ebay: "outline outline-2 -outline-offset-2 outline-[#16a34a]",
-  amazon: "outline outline-2 -outline-offset-2 outline-[#f59e0b]",
-  /** The cheapest store row (owner, 2026-11-07: "the cheapest listing should also have an outline too"): sky blue, the same
-   *  across the family, never read as eBay's green or Amazon's amber. */
-  cheapest: "outline outline-2 -outline-offset-2 outline-[#0ea5e9]",
+  ebay: "",
+  amazon: "",
+  cheapest: "",
 } as const;
 
 export interface RowsData {
@@ -100,7 +102,7 @@ function Row({ name, sub, price, status, href, paid, highlight = false, live, ev
         href={href}
         paid={paid}
         event={event}
-        className={`btn-pop shrink-0 px-3 py-1.5 text-sm ${status === "out" ? "bg-card text-ink" : "bg-buy text-white"}`}
+        className={`btn-pop shrink-0 px-3 py-1.5 text-sm ${status === "out" ? "bg-card text-ink" : highlight || pin ? "bg-buy text-white" : "border border-line bg-card text-ink hover:border-soft"}`}
       >
         {status === "out" ? "View" : price ? "Buy" : "Shop"} <span aria-hidden>→</span>
       </OutLink>
