@@ -1,7 +1,7 @@
 {
  "v": 1,
  "site": "figure",
- "generatedAt": "2026-11-11T15:59:24.222Z",
+ "generatedAt": "2026-11-12T17:11:54.341Z",
  "links": {
   "US": {
    "deals": "https://figurecompare.com/deals",
@@ -92,12 +92,12 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "US",
-   "title": "Nendoroid Hatsune Miku: DecoMiku (Darkness)",
-   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-decomiku-darkness-3007",
-   "cents": 5000,
+   "title": "Nendoroid Final Fantasy XIV - Yotsuyu",
+   "url": "https://figurecompare.com/figure/nendoroid-final-fantasy-xiv-yotsuyu-3153",
+   "cents": 5368,
    "currency": "USD",
-   "store": "Good Game Anime",
-   "image": "https://cdn.shopify.com/s/files/1/0428/3347/7798/files/Character_Vocal_Series_01_Nendoroid__3007_Hatsune_Miku__DecoMiku__Darkness_5.png?v=1794264032&width=600"
+   "store": "Japan Figure Store",
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232595873.jpg?v=1794409895&width=600"
   },
   {
    "kind": "deal",
@@ -690,17 +690,6 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "EU",
-   "title": "Nendoroid Ace Attorney - Phoenix Wright",
-   "url": "https://figurecompare.com/figure/nendoroid-ace-attorney-phoenix-wright-1761",
-   "cents": 4999,
-   "currency": "EUR",
-   "store": "Figuya",
-   "image": "https://cdn.shopify.com/s/files/1/0878/5254/files/4570232592810_1.jpg?v=1790306466&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "EU",
    "title": "Nendoroid Hatsune Miku: Senbonzakura Ver.",
    "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-senbonzakura-ver-480",
    "cents": 5190,
@@ -718,6 +707,17 @@
    "currency": "EUR",
    "store": "Yorokonde",
    "image": "https://cdn.shopify.com/s/files/1/0878/5254/files/4570232592827_1.jpg?v=1790306464&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "EU",
+   "title": "Nendoroid Ace Attorney - Phoenix Wright",
+   "url": "https://figurecompare.com/figure/nendoroid-ace-attorney-phoenix-wright-1761",
+   "cents": 5890,
+   "currency": "EUR",
+   "store": "Yorokonde",
+   "image": "https://cdn.shopify.com/s/files/1/0878/5254/files/4570232592810_1.jpg?v=1790306466&width=600"
   },
   {
    "kind": "preorder",
@@ -750,7 +750,7 @@
    "cents": 3000,
    "currency": "SGD",
    "store": "ToyCoin",
-   "image": "https://cdn.shopify.com/s/files/1/0440/6493/1998/files/NendoroidNarutoShippudenHinataHyuga_1_1024x1024_1.jpg?v=1695618897&width=600",
+   "image": "https://cdn.shopify.com/s/files/1/0712/7279/2357/products/Studio-Project_19_057e6571-7640-4879-a348-8f434d8c2f39.png?v=1680293598&width=600",
    "refCents": 6100,
    "refLabel": "dearest store",
    "savingPct": 51
