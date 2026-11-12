@@ -961,3 +961,13 @@ AU 250 / UK 250, cap unchanged.
 day's budget, filled in the old order (never-checked first, oldest check, the US's a day older); calls a region cannot use
 (fewer pairs than its share) go to the rest in the same order, and the US is searched first so a quota stop never cuts
 it. The run logs its calls by region. Dry run on today's data: US 1,250 / CA 400 / EU 350 / AU 250 / UK 250.
+
+## 2026-11-12: The home page features the dearer figures (owner)
+
+A bigger ticket pays a bigger commission, so the home page's shelves (biggest savings, pre-orders, most stocked, just
+spotted, and the eBay strip) now draw from figures whose lowest orderable price in that region is at or above the
+region's MEDIAN (`featureFloor` in `lib/data.ts`; own currency, never converted; on 2026-11-12 data about US$53, A$99,
+£53, €64, CA$86). Deals are ranked by money saved instead of percentage, so a 15% off a US$150 figure beats 40% off a
+US$30 one. A region where fewer than four figures qualify falls back to the old list. Cheaper figures are not removed:
+they stay on /deals, /new, /preorders, the line hubs, search and their own pages, and every URL, title, metadata, the
+alert feed and the price order inside a figure's table are unchanged. Nothing ranks by commission.

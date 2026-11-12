@@ -147,3 +147,61 @@ export function activeStores(): Record<string, number> {
   for (const f of getFigures()) for (const o of Object.values(f.offers)) for (const x of o ?? []) c[x.s] = (c[x.s] ?? 0) + 1;
   return c;
 }
+
+// Front-page featuring favours the dearer figures (owner, 2026-11-12: a bigger
+// ticket pays a bigger commission). The floor is each region's MEDIAN lowest
+// orderable price, so it follows the real data and stays in the region's own
+// currency; cheaper figures stay listed, searchable and on /deals, /new and
+// the line hubs, they are just not on the home page.
+const floorMemo = new Map<string, number>();
+export function featureFloor(region: RegionCode): number {
+  const hit = floorMemo.get(region);
+  if (hit != null) return hit;
+  const prices: number[] = [];
+  for (const f of getFigures()) {
+    const b = bestIn(f, region);
+    if (b) prices.push(b.offer.p);
+  }
+  prices.sort((a, b) => a - b);
+  const v = prices.length ? prices[Math.floor(prices.length / 2)] : 0;
+  floorMemo.set(region, v);
+  return v;
+}
+
+const lowestIn = (f: Figure, region: RegionCode) => bestIn(f, region)?.offer.p ?? 0;
+
+/** Keep the figures at or above the region's floor, dearest first among equals of the base order.
+ *  Falls back to the unfiltered list when fewer than `min` qualify so a thin region is never empty. */
+function pricier(region: RegionCode, list: Figure[], limit: number, min = 4): Figure[] {
+  const floor = featureFloor(region);
+  const kept = list.filter((f) => lowestIn(f, region) >= floor);
+  return (kept.length >= min ? kept : list).slice(0, limit);
+}
+
+/** Home page "biggest savings": the 10%+ deals on figures at or above the floor, biggest money saved first. */
+export function featuredDealsIn(region: RegionCode, limit = 8): Figure[] {
+  const floor = featureFloor(region);
+  const all = dealsIn(region, 10_000);
+  const kept = all.filter((d) => d.best.offer.p >= floor);
+  const pool = kept.length >= 4 ? kept : all;
+  const saved = (d: { f: Figure; spread: number; best: Best }) => d.best.offer.p * (d.spread / (1 - d.spread));
+  return pool.slice().sort((a, b) => saved(b) - saved(a)).slice(0, limit).map((d) => d.f);
+}
+
+export function featuredPreordersIn(region: RegionCode, limit = 8): Figure[] {
+  return pricier(region, preordersIn(region, 10_000), limit);
+}
+export function featuredPopularIn(region: RegionCode, limit = 8): Figure[] {
+  return pricier(region, popularIn(region, 10_000), limit);
+}
+export function featuredNewestIn(region: RegionCode, limit = 8): Figure[] {
+  return pricier(region, newestIn(region, 10_000), limit);
+}
+
+/** The home page's eBay strip: the most-stocked figures among the dearer half in any region. */
+export function featuredPopular(limit = 30): Figure[] {
+  const ok = (f: Figure) => REGIONS.some((r) => { const p = lowestIn(f, r.code); return p > 0 && p >= featureFloor(r.code); });
+  const list = popular(10_000);
+  const kept = list.filter(ok);
+  return (kept.length >= 10 ? kept : list).slice(0, limit);
+}
