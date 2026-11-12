@@ -992,3 +992,8 @@ canvas and repeating gradients in the Christmas CSS.
 
 **Taking it off.** Set `CHRISTMAS_FESTIVE_LAYER = false` after New Year, or let the window end on 26 December: the card, the hairline and the
 accents all go together. Off, the markup is not rendered at all.
+
+
+## 2026-11-12: the festive layer is released urgently (owner)
+
+The owner said to deploy the festive layer urgently once every site had it, so this merge carries `[deploy] [urgent]` in its subject: one production build now, instead of waiting for the next release. No other change.
