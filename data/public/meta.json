@@ -1,7 +1,7 @@
 {
- "updatedAt": "2026-11-12T16:53:42.302Z",
- "figures": 2933,
- "merged": 4716,
+ "updatedAt": "2026-11-13T16:13:07.527Z",
+ "figures": 2961,
+ "merged": 4734,
  "stores": {
   "blacklistcards": {
    "ok": true,
@@ -12,7 +12,7 @@
     "accessory": 24
    },
    "noJan": 80,
-   "ms": 1274
+   "ms": 1391
   },
   "vault-collectables": {
    "ok": true,
@@ -22,7 +22,7 @@
     "not-a-line": 24
    },
    "noJan": 2,
-   "ms": 1006
+   "ms": 859
   },
   "collectorscompany": {
    "ok": true,
@@ -32,7 +32,7 @@
     "not-a-line": 259
    },
    "noJan": 0,
-   "ms": 3497
+   "ms": 3435
   },
   "gameology": {
    "ok": true,
@@ -43,28 +43,7 @@
     "accessory": 1
    },
    "noJan": 0,
-   "ms": 6521
-  },
-  "gametraderschermside": {
-   "ok": true,
-   "listings": 302,
-   "matched": 14,
-   "refused": {
-    "not-a-line": 276,
-    "accessory": 12
-   },
-   "noJan": 0,
-   "ms": 3636
-  },
-  "gametradersseaford": {
-   "ok": true,
-   "listings": 154,
-   "matched": 4,
-   "refused": {
-    "not-a-line": 150
-   },
-   "noJan": 0,
-   "ms": 1133
+   "ms": 7234
   },
   "gamerholic": {
    "ok": true,
@@ -77,17 +56,17 @@
     "damaged": 1
    },
    "noJan": 16,
-   "ms": 10524
+   "ms": 6121
   },
-  "generalgames": {
+  "gametradersseaford": {
    "ok": true,
-   "listings": 100,
-   "matched": 88,
+   "listings": 154,
+   "matched": 4,
    "refused": {
-    "accessory": 12
+    "not-a-line": 150
    },
    "noJan": 0,
-   "ms": 1341
+   "ms": 1605
   },
   "gaminggrounds": {
    "ok": true,
@@ -97,7 +76,28 @@
     "not-a-line": 276
    },
    "noJan": 0,
-   "ms": 2498
+   "ms": 2571
+  },
+  "gametraderschermside": {
+   "ok": true,
+   "listings": 299,
+   "matched": 12,
+   "refused": {
+    "not-a-line": 275,
+    "accessory": 12
+   },
+   "noJan": 0,
+   "ms": 5079
+  },
+  "generalgames": {
+   "ok": true,
+   "listings": 100,
+   "matched": 88,
+   "refused": {
+    "accessory": 12
+   },
+   "noJan": 0,
+   "ms": 2407
   },
   "hobbykitz": {
    "ok": true,
@@ -105,7 +105,7 @@
    "matched": 12,
    "refused": {},
    "noJan": 0,
-   "ms": 2019
+   "ms": 2469
   },
   "metrohobbies": {
    "ok": true,
@@ -116,7 +116,7 @@
     "accessory": 6
    },
    "noJan": 0,
-   "ms": 6450
+   "ms": 6831
   },
   "pokebox": {
    "ok": true,
@@ -126,15 +126,7 @@
     "not-a-line": 195
    },
    "noJan": 0,
-   "ms": 3370
-  },
-  "popincollectables": {
-   "ok": true,
-   "listings": 5,
-   "matched": 4,
-   "refused": {},
-   "noJan": 1,
-   "ms": 454
+   "ms": 3493
   },
   "goodgames": {
    "ok": true,
@@ -145,7 +137,15 @@
     "accessory": 29
    },
    "noJan": 2,
-   "ms": 14379
+   "ms": 14974
+  },
+  "popincollectables": {
+   "ok": true,
+   "listings": 5,
+   "matched": 4,
+   "refused": {},
+   "noJan": 1,
+   "ms": 708
   },
   "thefinalbosscollectables": {
    "ok": true,
@@ -155,7 +155,7 @@
     "not-a-line": 135
    },
    "noJan": 0,
-   "ms": 1690
+   "ms": 2295
   },
   "acgamesonline": {
    "ok": true,
@@ -167,17 +167,17 @@
     "accessory": 4
    },
    "noJan": 0,
-   "ms": 2763
+   "ms": 2954
   },
   "401games": {
    "ok": true,
-   "listings": 75,
+   "listings": 76,
    "matched": 0,
    "refused": {
-    "not-a-line": 75
+    "not-a-line": 76
    },
    "noJan": 0,
-   "ms": 5288
+   "ms": 6066
   },
   "bentogaming": {
    "ok": true,
@@ -187,7 +187,17 @@
     "not-a-line": 15
    },
    "noJan": 0,
-   "ms": 691
+   "ms": 807
+  },
+  "cardcastergames": {
+   "ok": true,
+   "listings": 93,
+   "matched": 0,
+   "refused": {
+    "not-a-line": 93
+   },
+   "noJan": 0,
+   "ms": 834
   },
   "animeotakuhobby": {
    "ok": true,
@@ -199,17 +209,7 @@
     "damaged": 1
    },
    "noJan": 0,
-   "ms": 3937
-  },
-  "cardcastergames": {
-   "ok": true,
-   "listings": 93,
-   "matched": 0,
-   "refused": {
-    "not-a-line": 93
-   },
-   "noJan": 0,
-   "ms": 1069
+   "ms": 4046
   },
   "derpycards": {
    "ok": true,
@@ -219,7 +219,7 @@
     "not-a-line": 18
    },
    "noJan": 2,
-   "ms": 2241
+   "ms": 3118
   },
   "emmettstoystop": {
    "ok": true,
@@ -229,7 +229,7 @@
     "not-a-line": 61
    },
    "noJan": 0,
-   "ms": 4539
+   "ms": 3534
   },
   "exorgames": {
    "ok": true,
@@ -241,17 +241,7 @@
     "damaged": 1
    },
    "noJan": 0,
-   "ms": 3005
-  },
-  "lamoodcomics": {
-   "ok": true,
-   "listings": 90,
-   "matched": 2,
-   "refused": {
-    "not-a-line": 88
-   },
-   "noJan": 0,
-   "ms": 804
+   "ms": 3605
   },
   "hobbiesville": {
    "ok": true,
@@ -262,27 +252,37 @@
     "not-a-line": 24
    },
    "noJan": 0,
-   "ms": 3188
+   "ms": 3168
+  },
+  "lamoodcomics": {
+   "ok": true,
+   "listings": 90,
+   "matched": 2,
+   "refused": {
+    "not-a-line": 88
+   },
+   "noJan": 0,
+   "ms": 3556
   },
   "pokejeux": {
    "ok": true,
-   "listings": 46,
-   "matched": 10,
+   "listings": 40,
+   "matched": 9,
    "refused": {
-    "not-a-line": 36
+    "not-a-line": 31
    },
    "noJan": 0,
-   "ms": 9201
+   "ms": 9301
   },
   "shopverse": {
    "ok": true,
-   "listings": 161,
+   "listings": 164,
    "matched": 0,
    "refused": {
-    "not-a-line": 161
+    "not-a-line": 164
    },
    "noJan": 0,
-   "ms": 6570
+   "ms": 7006
   },
   "skyfoxgames": {
    "ok": true,
@@ -292,30 +292,7 @@
     "not-a-line": 243
    },
    "noJan": 3,
-   "ms": 3704
-  },
-  "pandahobby": {
-   "ok": true,
-   "listings": 1678,
-   "matched": 438,
-   "refused": {
-    "not-a-line": 1159,
-    "accessory": 39,
-    "pre-owned": 1,
-    "damaged": 1
-   },
-   "noJan": 40,
-   "ms": 26817
-  },
-  "toysnowman": {
-   "ok": true,
-   "listings": 226,
-   "matched": 0,
-   "refused": {
-    "not-a-line": 226
-   },
-   "noJan": 0,
-   "ms": 1055
+   "ms": 3920
   },
   "torchlightgh": {
    "ok": true,
@@ -327,7 +304,30 @@
     "accessory": 15
    },
    "noJan": 209,
-   "ms": 10632
+   "ms": 11658
+  },
+  "toysnowman": {
+   "ok": true,
+   "listings": 225,
+   "matched": 0,
+   "refused": {
+    "not-a-line": 225
+   },
+   "noJan": 0,
+   "ms": 1219
+  },
+  "pandahobby": {
+   "ok": true,
+   "listings": 1685,
+   "matched": 442,
+   "refused": {
+    "not-a-line": 1160,
+    "accessory": 40,
+    "pre-owned": 1,
+    "damaged": 1
+   },
+   "noJan": 41,
+   "ms": 38071
   },
   "untouchables": {
    "ok": true,
@@ -338,7 +338,7 @@
     "accessory": 8
    },
    "noJan": 12,
-   "ms": 1831
+   "ms": 2199
   },
   "gamestimeaversa": {
    "ok": true,
@@ -346,41 +346,18 @@
    "matched": 13,
    "refused": {},
    "noJan": 0,
-   "ms": 2047
+   "ms": 750
   },
   "trinityhobby": {
    "ok": true,
-   "listings": 712,
-   "matched": 231,
+   "listings": 711,
+   "matched": 230,
    "refused": {
     "not-a-line": 472,
     "accessory": 9
    },
    "noJan": 0,
-   "ms": 9689
-  },
-  "otakumart": {
-   "ok": true,
-   "listings": 2915,
-   "matched": 2038,
-   "refused": {
-    "not-a-line": 773,
-    "pre-owned": 3,
-    "accessory": 80,
-    "damaged": 2
-   },
-   "noJan": 19,
-   "ms": 23645
-  },
-  "playx": {
-   "ok": true,
-   "listings": 33,
-   "matched": 0,
-   "refused": {
-    "not-a-line": 33
-   },
-   "noJan": 0,
-   "ms": 875
+   "ms": 9442
   },
   "ocare": {
    "ok": true,
@@ -390,7 +367,30 @@
     "not-a-line": 2003
    },
    "noJan": 0,
-   "ms": 27399
+   "ms": 36327
+  },
+  "playx": {
+   "ok": true,
+   "listings": 33,
+   "matched": 0,
+   "refused": {
+    "not-a-line": 33
+   },
+   "noJan": 0,
+   "ms": 1365
+  },
+  "otakumart": {
+   "ok": true,
+   "listings": 2931,
+   "matched": 2050,
+   "refused": {
+    "not-a-line": 774,
+    "pre-owned": 3,
+    "accessory": 82,
+    "damaged": 2
+   },
+   "noJan": 20,
+   "ms": 41788
   },
   "theavidcollectors": {
    "ok": true,
@@ -401,7 +401,7 @@
     "accessory": 3
    },
    "noJan": 17,
-   "ms": 1823
+   "ms": 2743
   },
   "collecteebles": {
    "ok": true,
@@ -411,7 +411,7 @@
     "not-a-line": 1406
    },
    "noJan": 0,
-   "ms": 9470
+   "ms": 10003
   },
   "cgc-emporium": {
    "ok": true,
@@ -421,7 +421,7 @@
     "not-a-line": 263
    },
    "noJan": 0,
-   "ms": 3861
+   "ms": 4037
   },
   "japan2uk": {
    "ok": true,
@@ -431,18 +431,18 @@
     "not-a-line": 43
    },
    "noJan": 0,
-   "ms": 2636
+   "ms": 3607
   },
   "koolthings": {
    "ok": true,
    "listings": 14,
    "matched": 0,
    "refused": {
-    "not-a-line": 13,
-    "accessory": 1
+    "accessory": 1,
+    "not-a-line": 13
    },
    "noJan": 0,
-   "ms": 797
+   "ms": 976
   },
   "livingrealms": {
    "ok": true,
@@ -452,7 +452,7 @@
     "not-a-line": 241
    },
    "noJan": 0,
-   "ms": 3444
+   "ms": 3757
   },
   "collect": {
    "ok": true,
@@ -462,7 +462,7 @@
     "not-a-line": 104
    },
    "noJan": 0,
-   "ms": 1790
+   "ms": 1780
   },
   "thecardvault": {
    "ok": true,
@@ -474,7 +474,7 @@
     "bundle": 1
    },
    "noJan": 0,
-   "ms": 7995
+   "ms": 8897
   },
   "tokyotoys": {
    "ok": true,
@@ -482,7 +482,7 @@
    "matched": 45,
    "refused": {},
    "noJan": 0,
-   "ms": 651
+   "ms": 674
   },
   "zatu": {
    "ok": true,
@@ -493,7 +493,7 @@
     "accessory": 22
    },
    "noJan": 1,
-   "ms": 5070
+   "ms": 5362
   },
   "allaccesscardshop": {
    "ok": true,
@@ -503,7 +503,7 @@
     "not-a-line": 37
    },
    "noJan": 0,
-   "ms": 860
+   "ms": 1141
   },
   "animeislandca": {
    "ok": true,
@@ -513,7 +513,7 @@
     "not-a-line": 462
    },
    "noJan": 0,
-   "ms": 2482
+   "ms": 3082
   },
   "boardwipe": {
    "ok": true,
@@ -523,7 +523,7 @@
     "not-a-line": 108
    },
    "noJan": 0,
-   "ms": 844
+   "ms": 1091
   },
   "collectorstore": {
    "ok": true,
@@ -533,7 +533,7 @@
     "not-a-line": 65
    },
    "noJan": 0,
-   "ms": 604
+   "ms": 785
   },
   "dxgamesllc": {
    "ok": true,
@@ -543,7 +543,7 @@
     "not-a-line": 13
    },
    "noJan": 0,
-   "ms": 2536
+   "ms": 3475
   },
   "galactictoys": {
    "ok": true,
@@ -554,7 +554,7 @@
     "accessory": 4
    },
    "noJan": 8,
-   "ms": 4212
+   "ms": 4661
   },
   "gamersngeeks": {
    "ok": true,
@@ -564,7 +564,7 @@
     "not-a-line": 128
    },
    "noJan": 0,
-   "ms": 537
+   "ms": 634
   },
   "gamescape": {
    "ok": true,
@@ -574,7 +574,7 @@
     "not-a-line": 14
    },
    "noJan": 0,
-   "ms": 655
+   "ms": 788
   },
   "ginzamkt": {
    "ok": true,
@@ -584,7 +584,7 @@
     "not-a-line": 17
    },
    "noJan": 1,
-   "ms": 578
+   "ms": 672
   },
   "heroesandgames": {
    "ok": true,
@@ -594,7 +594,7 @@
     "not-a-line": 58
    },
    "noJan": 0,
-   "ms": 597
+   "ms": 569
   },
   "hypercollectiblestcg": {
    "ok": true,
@@ -604,7 +604,7 @@
     "not-a-line": 45
    },
    "noJan": 0,
-   "ms": 860
+   "ms": 634
   },
   "impactgamingcenter": {
    "ok": true,
@@ -614,7 +614,7 @@
     "not-a-line": 96
    },
    "noJan": 0,
-   "ms": 981
+   "ms": 1501
   },
   "joshscards": {
    "ok": true,
@@ -624,27 +624,7 @@
     "not-a-line": 3
    },
    "noJan": 1,
-   "ms": 3004
-  },
-  "lspbstore": {
-   "ok": true,
-   "listings": 57,
-   "matched": 0,
-   "refused": {
-    "not-a-line": 57
-   },
-   "noJan": 0,
-   "ms": 737
-  },
-  "mantisgamestudio": {
-   "ok": true,
-   "listings": 107,
-   "matched": 0,
-   "refused": {
-    "not-a-line": 107
-   },
-   "noJan": 0,
-   "ms": 919
+   "ms": 3141
   },
   "popstop": {
    "ok": true,
@@ -655,18 +635,27 @@
     "accessory": 3
    },
    "noJan": 0,
-   "ms": 60329
+   "ms": 71933
   },
-  "millenniumgames": {
+  "lspbstore": {
    "ok": true,
-   "listings": 119,
-   "matched": 3,
+   "listings": 57,
+   "matched": 0,
    "refused": {
-    "not-a-line": 114,
-    "accessory": 1
+    "not-a-line": 57
    },
-   "noJan": 1,
-   "ms": 1863
+   "noJan": 0,
+   "ms": 794
+  },
+  "mantisgamestudio": {
+   "ok": true,
+   "listings": 107,
+   "matched": 0,
+   "refused": {
+    "not-a-line": 107
+   },
+   "noJan": 0,
+   "ms": 890
   },
   "n4ytcg": {
    "ok": true,
@@ -676,7 +665,18 @@
     "not-a-line": 18
    },
    "noJan": 0,
-   "ms": 634
+   "ms": 690
+  },
+  "millenniumgames": {
+   "ok": true,
+   "listings": 114,
+   "matched": 3,
+   "refused": {
+    "not-a-line": 109,
+    "accessory": 1
+   },
+   "noJan": 1,
+   "ms": 1832
   },
   "nxtlegacigaming": {
    "ok": true,
@@ -686,15 +686,7 @@
     "not-a-line": 72
    },
    "noJan": 0,
-   "ms": 809
-  },
-  "pcatoys": {
-   "ok": true,
-   "listings": 1,
-   "matched": 1,
-   "refused": {},
-   "noJan": 0,
-   "ms": 549
+   "ms": 815
   },
   "nerdzoic": {
    "ok": true,
@@ -704,7 +696,15 @@
     "not-a-line": 1
    },
    "noJan": 0,
-   "ms": 2315
+   "ms": 2213
+  },
+  "pcatoys": {
+   "ok": true,
+   "listings": 1,
+   "matched": 1,
+   "refused": {},
+   "noJan": 0,
+   "ms": 744
   },
   "robohunters": {
    "ok": true,
@@ -714,22 +714,22 @@
     "not-a-line": 5
    },
    "noJan": 0,
-   "ms": 2488
+   "ms": 2880
   },
   "solarisjapan": {
    "ok": true,
-   "listings": 5595,
-   "matched": 3572,
+   "listings": 5600,
+   "matched": 3574,
    "refused": {
-    "accessory": 817,
+    "accessory": 818,
     "not-a-line": 397,
-    "pre-owned": 423,
+    "pre-owned": 422,
     "no-price": 311,
     "lucky-bag": 19,
     "damaged": 2
    },
-   "noJan": 54,
-   "ms": 35326
+   "noJan": 57,
+   "ms": 46475
   },
   "undiscoveredrealm": {
    "ok": true,
@@ -737,7 +737,7 @@
    "matched": 14,
    "refused": {},
    "noJan": 0,
-   "ms": 1052
+   "ms": 633
   },
   "animateusa": {
    "ok": true,
@@ -749,7 +749,7 @@
     "lucky-bag": 1
    },
    "noJan": 13,
-   "ms": 6641
+   "ms": 2778
   },
   "superanimestore": {
    "ok": true,
@@ -761,7 +761,7 @@
     "bundle": 2
    },
    "noJan": 39,
-   "ms": 47507
+   "ms": 50708
   },
   "animeseki": {
    "ok": true,
@@ -773,7 +773,7 @@
     "no-price": 1
    },
    "noJan": 26,
-   "ms": 2785
+   "ms": 2113
   },
   "atlantiscomics": {
    "ok": true,
@@ -786,7 +786,7 @@
     "accessory": 1
    },
    "noJan": 117,
-   "ms": 5523
+   "ms": 5563
   },
   "chibichopshop": {
    "ok": true,
@@ -798,7 +798,7 @@
     "pre-owned": 1
    },
    "noJan": 26,
-   "ms": 5243
+   "ms": 2507
   },
   "cosmicdestroyers": {
    "ok": true,
@@ -806,68 +806,68 @@
    "matched": 1,
    "refused": {},
    "noJan": 0,
-   "ms": 1097
+   "ms": 596
+  },
+  "exfigure": {
+   "ok": true,
+   "listings": 1361,
+   "matched": 752,
+   "refused": {
+    "not-a-line": 529,
+    "accessory": 55,
+    "damaged": 1
+   },
+   "noJan": 24,
+   "ms": 14545
+  },
+  "goodgameanime": {
+   "ok": true,
+   "listings": 100,
+   "matched": 91,
+   "refused": {
+    "accessory": 3,
+    "damaged": 1
+   },
+   "noJan": 5,
+   "ms": 948
+  },
+  "goodsmileus": {
+   "ok": true,
+   "listings": 1677,
+   "matched": 461,
+   "refused": {
+    "not-a-line": 1090,
+    "accessory": 87,
+    "no-price": 11,
+    "damaged": 2
+   },
+   "noJan": 26,
+   "ms": 15310
   },
   "animepopshop": {
    "ok": true,
-   "listings": 6492,
+   "listings": 6507,
    "matched": 149,
    "refused": {
-    "not-a-line": 6329,
+    "not-a-line": 6344,
     "accessory": 13,
     "lucky-bag": 1
    },
    "noJan": 0,
-   "ms": 38667
-  },
-  "goodgameanime": {
-   "ok": true,
-   "listings": 99,
-   "matched": 91,
-   "refused": {
-    "accessory": 2,
-    "damaged": 1
-   },
-   "noJan": 5,
-   "ms": 856
-  },
-  "goodsmileus": {
-   "ok": true,
-   "listings": 1620,
-   "matched": 453,
-   "refused": {
-    "not-a-line": 1049,
-    "accessory": 86,
-    "no-price": 11,
-    "damaged": 2
-   },
-   "noJan": 19,
-   "ms": 8393
-  },
-  "exfigure": {
-   "ok": true,
-   "listings": 1358,
-   "matched": 750,
-   "refused": {
-    "not-a-line": 529,
-    "accessory": 54,
-    "damaged": 1
-   },
-   "noJan": 24,
-   "ms": 39419
+   "ms": 49411
   },
   "gundamplanet": {
    "ok": true,
-   "listings": 1482,
-   "matched": 1357,
+   "listings": 1488,
+   "matched": 1359,
    "refused": {
     "not-a-line": 2,
     "bundle": 1,
-    "accessory": 106,
+    "accessory": 107,
     "damaged": 1
    },
-   "noJan": 15,
-   "ms": 14122
+   "noJan": 18,
+   "ms": 15603
   },
   "kappahobby": {
    "ok": true,
@@ -880,17 +880,17 @@
     "bundle": 5
    },
    "noJan": 1,
-   "ms": 11573
+   "ms": 12457
   },
   "kollectkorner": {
    "ok": true,
-   "listings": 1321,
+   "listings": 1323,
    "matched": 1,
    "refused": {
-    "not-a-line": 1319
+    "not-a-line": 1321
    },
    "noJan": 1,
-   "ms": 6147
+   "ms": 6763
   },
   "nekotwo": {
    "ok": true,
@@ -903,7 +903,7 @@
     "lucky-bag": 1
    },
    "noJan": 494,
-   "ms": 31982
+   "ms": 36393
   },
   "ohayopop": {
    "ok": true,
@@ -915,7 +915,7 @@
     "damaged": 2
    },
    "noJan": 0,
-   "ms": 897
+   "ms": 1261
   },
   "ozziecollectables": {
    "ok": true,
@@ -926,7 +926,7 @@
     "accessory": 2
    },
    "noJan": 0,
-   "ms": 5379
+   "ms": 5594
   },
   "shumistore": {
    "ok": true,
@@ -937,43 +937,43 @@
     "accessory": 34
    },
    "noJan": 15,
-   "ms": 14801
+   "ms": 16244
   },
   "spankyslootstash": {
    "ok": true,
-   "listings": 6989,
+   "listings": 6744,
    "matched": 0,
    "refused": {
-    "not-a-line": 6984
+    "not-a-line": 6739
    },
    "noJan": 5,
-   "ms": 51781
+   "ms": 64222
   },
   "japanfigure": {
    "ok": true,
    "listings": 24180,
-   "matched": 3450,
+   "matched": 3455,
    "refused": {
-    "not-a-line": 20019,
+    "not-a-line": 20012,
     "accessory": 670,
     "damaged": 4,
     "bundle": 5,
     "lucky-bag": 1,
     "pre-owned": 1
    },
-   "noJan": 30,
-   "ms": 147271
+   "noJan": 32,
+   "ms": 162424
   },
   "spiedagames": {
    "ok": true,
-   "listings": 8325,
+   "listings": 8326,
    "matched": 2,
    "refused": {
-    "not-a-line": 8300,
+    "not-a-line": 8301,
     "accessory": 5
    },
    "noJan": 18,
-   "ms": 45831
+   "ms": 60950
   },
   "sweetsandgeeks": {
    "ok": true,
@@ -985,30 +985,40 @@
     "damaged": 1
    },
    "noJan": 0,
-   "ms": 4923
+   "ms": 5330
   },
   "theanimethrone": {
    "ok": true,
-   "listings": 476,
-   "matched": 334,
+   "listings": 487,
+   "matched": 342,
    "refused": {
-    "not-a-line": 116,
-    "accessory": 15,
+    "accessory": 16,
+    "not-a-line": 118,
     "damaged": 1
    },
    "noJan": 10,
-   "ms": 4892
+   "ms": 11715
   },
   "tohoanimation": {
    "ok": true,
-   "listings": 81,
+   "listings": 80,
    "matched": 11,
    "refused": {
     "accessory": 6,
-    "not-a-line": 63
+    "not-a-line": 62
    },
    "noJan": 1,
-   "ms": 743
+   "ms": 1163
+  },
+  "sugoimart": {
+   "ok": true,
+   "listings": 15087,
+   "matched": 9,
+   "refused": {
+    "not-a-line": 15076
+   },
+   "noJan": 2,
+   "ms": 87538
   },
   "toyarena": {
    "ok": true,
@@ -1021,17 +1031,7 @@
     "pre-owned": 5
    },
    "noJan": 7,
-   "ms": 18395
-  },
-  "sugoimart": {
-   "ok": true,
-   "listings": 15087,
-   "matched": 9,
-   "refused": {
-    "not-a-line": 15076
-   },
-   "noJan": 2,
-   "ms": 80994
+   "ms": 20577
   },
   "toyshnip": {
    "ok": true,
@@ -1041,7 +1041,7 @@
     "not-a-line": 3
    },
    "noJan": 0,
-   "ms": 3071
+   "ms": 3827
   },
   "ultimasupply": {
    "ok": true,
@@ -1051,19 +1051,19 @@
     "not-a-line": 720
    },
    "noJan": 13,
-   "ms": 2887
+   "ms": 3582
   },
   "usagundamstore": {
    "ok": true,
-   "listings": 3775,
-   "matched": 2598,
+   "listings": 3788,
+   "matched": 2600,
    "refused": {
-    "not-a-line": 1016,
-    "accessory": 138,
+    "not-a-line": 1024,
+    "accessory": 139,
     "damaged": 2
    },
-   "noJan": 21,
-   "ms": 44895
+   "noJan": 23,
+   "ms": 54645
   },
   "utopiatoys": {
    "ok": true,
@@ -1071,7 +1071,7 @@
    "matched": 57,
    "refused": {},
    "noJan": 0,
-   "ms": 671
+   "ms": 2801
   },
   "toynk": {
    "ok": true,
@@ -1082,20 +1082,20 @@
     "accessory": 5
    },
    "noJan": 0,
-   "ms": 103337
+   "ms": 105226
   },
   "hobbybee": {
    "ok": true,
-   "listings": 5342,
-   "matched": 2904,
+   "listings": 5349,
+   "matched": 2908,
    "refused": {
-    "not-a-line": 1549,
+    "not-a-line": 1551,
     "bundle": 2,
-    "accessory": 332,
+    "accessory": 333,
     "damaged": 2
    },
    "noJan": 553,
-   "ms": 38338
+   "ms": 41263
   },
   "animecity": {
    "ok": true,
@@ -1103,7 +1103,7 @@
    "matched": 3,
    "refused": {},
    "noJan": 0,
-   "ms": 3144
+   "ms": 3355
   },
   "chonkycollectibles": {
    "ok": true,
@@ -1113,37 +1113,17 @@
     "not-a-line": 12
    },
    "noJan": 0,
-   "ms": 508
+   "ms": 633
   },
   "envcollectible": {
    "ok": true,
-   "listings": 909,
+   "listings": 7338,
    "matched": 0,
    "refused": {
-    "not-a-line": 909
+    "not-a-line": 7338
    },
    "noJan": 0,
-   "ms": 4241
-  },
-  "gamezilla": {
-   "ok": true,
-   "listings": 32,
-   "matched": 2,
-   "refused": {
-    "not-a-line": 30
-   },
-   "noJan": 0,
-   "ms": 5271
-  },
-  "geekandco": {
-   "ok": true,
-   "listings": 9172,
-   "matched": 1,
-   "refused": {
-    "not-a-line": 9169
-   },
-   "noJan": 2,
-   "ms": 45764
+   "ms": 43393
   },
   "nendoworld": {
    "ok": true,
@@ -1157,41 +1137,59 @@
     "not-a-line": 209
    },
    "noJan": 3358,
-   "ms": 134799
+   "ms": 124616
+  },
+  "gamezilla": {
+   "ok": true,
+   "listings": 32,
+   "matched": 2,
+   "refused": {
+    "not-a-line": 30
+   },
+   "noJan": 0,
+   "ms": 5618
+  },
+  "geekandco": {
+   "ok": true,
+   "listings": 9259,
+   "matched": 1,
+   "refused": {
+    "not-a-line": 9256
+   },
+   "noJan": 2,
+   "ms": 49071
   },
   "oomomo": {
    "ok": true,
-   "listings": 248,
-   "matched": 116,
+   "listings": 247,
+   "matched": 115,
    "refused": {
     "not-a-line": 100,
     "accessory": 32
    },
    "noJan": 0,
-   "ms": 3254
+   "ms": 3613
   },
-  "prexhobby": {
+  "nabema": {
    "ok": true,
-   "listings": 2337,
-   "matched": 157,
+   "listings": 9410,
+   "matched": 7,
    "refused": {
-    "not-a-line": 2134,
-    "accessory": 45,
-    "bundle": 1
+    "not-a-line": 9403
    },
    "noJan": 0,
-   "ms": 16716
+   "ms": 59075
   },
   "camdenanime": {
    "ok": true,
-   "listings": 139,
-   "matched": 115,
+   "listings": 138,
+   "matched": 114,
    "refused": {
     "not-a-line": 7,
     "accessory": 14
    },
    "noJan": 3,
-   "ms": 1436
+   "ms": 1888
   },
   "charmingsushi": {
    "ok": true,
@@ -1202,7 +1200,7 @@
     "not-a-line": 3
    },
    "noJan": 0,
-   "ms": 792
+   "ms": 1464
   },
   "curibo": {
    "ok": true,
@@ -1214,17 +1212,19 @@
     "damaged": 4
    },
    "noJan": 203,
-   "ms": 3050
+   "ms": 3837
   },
-  "nabema": {
+  "prexhobby": {
    "ok": true,
-   "listings": 9403,
-   "matched": 7,
+   "listings": 2387,
+   "matched": 192,
    "refused": {
-    "not-a-line": 9396
+    "not-a-line": 2149,
+    "accessory": 45,
+    "bundle": 1
    },
    "noJan": 0,
-   "ms": 58059
+   "ms": 46858
   },
   "loadeddice": {
    "ok": true,
@@ -1235,19 +1235,19 @@
     "accessory": 49
    },
    "noJan": 0,
-   "ms": 5759
+   "ms": 6358
   },
   "oshoppu": {
    "ok": true,
-   "listings": 389,
-   "matched": 344,
+   "listings": 391,
+   "matched": 346,
    "refused": {
     "not-a-line": 8,
     "accessory": 30,
     "damaged": 1
    },
    "noJan": 6,
-   "ms": 3118
+   "ms": 6392
   },
   "hobbyfigures": {
    "ok": true,
@@ -1260,7 +1260,7 @@
     "lucky-bag": 1
    },
    "noJan": 15,
-   "ms": 50950
+   "ms": 59070
   },
   "forbiddenplanet": {
    "ok": true,
@@ -1270,7 +1270,7 @@
     "not-a-line": 18
    },
    "noJan": 0,
-   "ms": 6422
+   "ms": 6032
   },
   "aniimeshop": {
    "ok": true,
@@ -1280,18 +1280,18 @@
     "accessory": 4
    },
    "noJan": 0,
-   "ms": 882
+   "ms": 979
   },
   "elbenwald": {
    "ok": true,
-   "listings": 92,
+   "listings": 91,
    "matched": 49,
    "refused": {
-    "not-a-line": 40,
+    "not-a-line": 39,
     "accessory": 3
    },
    "noJan": 0,
-   "ms": 5876
+   "ms": 6473
   },
   "fictionaryworld": {
    "ok": true,
@@ -1304,17 +1304,17 @@
     "damaged": 1
    },
    "noJan": 90,
-   "ms": 33396
+   "ms": 25183
   },
   "sincitycomics": {
    "ok": true,
-   "listings": 14834,
+   "listings": 14854,
    "matched": 8,
    "refused": {
-    "not-a-line": 14826
+    "not-a-line": 14846
    },
    "noJan": 0,
-   "ms": 117463
+   "ms": 142903
   },
   "orbitopia": {
    "ok": true,
@@ -1325,7 +1325,7 @@
     "accessory": 8
    },
    "noJan": 49,
-   "ms": 3871
+   "ms": 4537
   },
   "nendoaddicts": {
    "ok": true,
@@ -1337,18 +1337,18 @@
     "not-a-line": 13
    },
    "noJan": 31,
-   "ms": 25777
+   "ms": 22792
   },
   "hobbyco": {
    "ok": true,
-   "listings": 629,
+   "listings": 628,
    "matched": 39,
    "refused": {
-    "not-a-line": 579,
+    "not-a-line": 578,
     "accessory": 6
    },
    "noJan": 5,
-   "ms": 8214
+   "ms": 8422
   },
   "japantoys": {
    "ok": true,
@@ -1360,42 +1360,42 @@
     "pre-owned": 1
    },
    "noJan": 6,
-   "ms": 4252
+   "ms": 5208
   },
   "jumpichiban": {
    "ok": true,
    "listings": 20000,
-   "matched": 164,
+   "matched": 167,
    "refused": {
-    "not-a-line": 19505,
+    "not-a-line": 19494,
     "accessory": 77,
-    "bundle": 4
+    "bundle": 9
    },
-   "noJan": 250,
-   "ms": 126813
+   "noJan": 253,
+   "ms": 145768
   },
   "sugoishop": {
    "ok": true,
-   "listings": 1578,
-   "matched": 1199,
+   "listings": 1611,
+   "matched": 1214,
    "refused": {
-    "accessory": 168,
+    "accessory": 169,
     "damaged": 1,
-    "not-a-line": 194
+    "not-a-line": 203
    },
-   "noJan": 16,
-   "ms": 17620
+   "noJan": 24,
+   "ms": 46532
   },
   "raptorgames": {
    "ok": true,
-   "listings": 15679,
+   "listings": 15578,
    "matched": 5,
    "refused": {
-    "not-a-line": 15672,
+    "not-a-line": 15571,
     "damaged": 2
    },
    "noJan": 0,
-   "ms": 82719
+   "ms": 91571
   },
   "figurecentral": {
    "ok": true,
@@ -1408,7 +1408,7 @@
     "accessory": 8
    },
    "noJan": 20,
-   "ms": 594
+   "ms": 738
   },
   "popculturetengoku": {
    "ok": true,
@@ -1419,7 +1419,7 @@
     "accessory": 6
    },
    "noJan": 1,
-   "ms": 1231
+   "ms": 2129
   },
   "treasuretrip": {
    "ok": true,
@@ -1430,31 +1430,31 @@
     "not-a-line": 13
    },
    "noJan": 1,
-   "ms": 4648
+   "ms": 5948
   },
   "otakuhouse": {
    "ok": true,
-   "listings": 1016,
+   "listings": 1010,
    "matched": 75,
    "refused": {
-    "not-a-line": 928,
+    "not-a-line": 922,
     "accessory": 7
    },
    "noJan": 6,
-   "ms": 6643
+   "ms": 8774
   },
   "toycoin": {
    "ok": true,
-   "listings": 2488,
-   "matched": 1530,
+   "listings": 2500,
+   "matched": 1534,
    "refused": {
     "not-a-line": 366,
     "no-price": 3,
-    "accessory": 220,
+    "accessory": 221,
     "pre-owned": 302
    },
-   "noJan": 67,
-   "ms": 19453
+   "noJan": 74,
+   "ms": 32221
   },
   "animeworks": {
    "ok": true,
@@ -1466,7 +1466,7 @@
     "no-price": 1
    },
    "noJan": 0,
-   "ms": 11937
+   "ms": 13295
   },
   "wonderlandgames": {
    "ok": true,
@@ -1476,7 +1476,7 @@
     "not-a-line": 19989
    },
    "noJan": 0,
-   "ms": 104224
+   "ms": 117294
   },
   "onestopanime": {
    "ok": true,
@@ -1487,20 +1487,20 @@
     "accessory": 15
    },
    "noJan": 0,
-   "ms": 1002
+   "ms": 1251
   },
   "megaculture": {
    "ok": true,
-   "listings": 7792,
-   "matched": 1410,
+   "listings": 7804,
+   "matched": 1413,
    "refused": {
-    "not-a-line": 6230,
+    "not-a-line": 6239,
     "accessory": 132,
     "damaged": 2,
     "bundle": 1
    },
    "noJan": 17,
-   "ms": 57752
+   "ms": 66207
   },
   "dokidokiland": {
    "ok": true,
@@ -1512,21 +1512,21 @@
     "lucky-bag": 1
    },
    "noJan": 3,
-   "ms": 4624
+   "ms": 5602
   },
   "navitoworld": {
    "ok": true,
-   "listings": 8634,
-   "matched": 4039,
+   "listings": 8637,
+   "matched": 4040,
    "refused": {
-    "not-a-line": 3401,
+    "not-a-line": 3403,
     "accessory": 1153,
     "damaged": 2,
     "bundle": 5,
     "lucky-bag": 1
    },
    "noJan": 33,
-   "ms": 49589
+   "ms": 57577
   },
   "manganim": {
    "ok": true,
@@ -1537,7 +1537,7 @@
     "not-a-line": 1
    },
    "noJan": 0,
-   "ms": 4832
+   "ms": 5168
   },
   "animuchuu": {
    "ok": true,
@@ -1549,31 +1549,31 @@
     "damaged": 1
    },
    "noJan": 12,
-   "ms": 9353
+   "ms": 11538
   },
   "amuzzi": {
    "ok": true,
-   "listings": 3177,
-   "matched": 356,
+   "listings": 3095,
+   "matched": 353,
    "refused": {
-    "not-a-line": 2754,
+    "not-a-line": 2675,
     "accessory": 52,
     "damaged": 1
    },
    "noJan": 14,
-   "ms": 27453
+   "ms": 31042
   },
   "finanime": {
    "ok": true,
-   "listings": 2656,
+   "listings": 2668,
    "matched": 1072,
    "refused": {
-    "accessory": 393,
+    "accessory": 394,
     "damaged": 2,
     "not-a-line": 185
    },
-   "noJan": 1004,
-   "ms": 70434
+   "noJan": 1015,
+   "ms": 65211
   },
   "toyorgame": {
    "ok": true,
@@ -1585,7 +1585,7 @@
     "bundle": 1
    },
    "noJan": 403,
-   "ms": 4128
+   "ms": 4766
   },
   "animecha": {
    "ok": true,
@@ -1595,7 +1595,7 @@
     "not-a-line": 96
    },
    "noJan": 2,
-   "ms": 1120
+   "ms": 1273
   },
   "chroniclesinc": {
    "ok": true,
@@ -1606,73 +1606,61 @@
     "accessory": 9
    },
    "noJan": 32,
-   "ms": 1997
+   "ms": 1331
   },
   "kinokuniya": {
    "ok": true,
-   "listings": 274,
-   "matched": 105,
+   "listings": 283,
+   "matched": 104,
    "refused": {
     "accessory": 7,
-    "not-a-line": 162
+    "not-a-line": 172
    },
    "noJan": 0,
-   "ms": 3635
+   "ms": 5222
   },
   "candytoyo": {
    "ok": true,
-   "listings": 3348,
-   "matched": 2864,
+   "listings": 3344,
+   "matched": 2865,
    "refused": {
-    "accessory": 288,
+    "accessory": 283,
     "not-a-line": 23,
     "bundle": 4,
     "no-price": 1,
     "damaged": 1
    },
    "noJan": 167,
-   "ms": 21684
+   "ms": 24713
   },
   "goodsmile-global": {
    "ok": true,
-   "listings": 241,
+   "listings": 242,
    "matched": 6,
    "refused": {
     "accessory": 37,
     "not-a-line": 5,
-    "not-orderable": 193
+    "not-orderable": 194
    },
    "noJan": 0,
-   "ms": 521839
+   "ms": 558720
   },
   "hlj": {
    "ok": true,
-   "listings": 75,
-   "matched": 71,
+   "listings": 744,
+   "matched": 427,
    "refused": {
-    "accessory": 2
+    "accessory": 150,
+    "not-a-line": 5,
+    "not-orderable": 149
    },
-   "noJan": 2,
-   "ms": 2284546
-  },
-  "figuya": {
-   "ok": true,
-   "listings": 6060,
-   "matched": 4198,
-   "refused": {
-    "accessory": 709,
-    "not-a-line": 268,
-    "bundle": 2,
-    "damaged": 1,
-    "no-data": 52
-   },
-   "noJan": 828,
-   "ms": 2575322
+   "noJan": 13,
+   "ms": 860225
   },
   "kurogami": {
    "ok": true,
-   "listings": 603,
-   "matched": 540,
+   "listings": 600,
+   "matched": 537,
    "refused": {
     "accessory": 36,
     "not-a-line": 15,
@@ -1680,20 +1668,34 @@
     "damaged": 2
    },
    "noJan": 9,
-   "ms": 1103416
+   "ms": 1137522
+  },
+  "figuya": {
+   "ok": true,
+   "listings": 6066,
+   "matched": 4201,
+   "refused": {
+    "accessory": 710,
+    "not-a-line": 268,
+    "bundle": 2,
+    "damaged": 1,
+    "no-data": 52
+   },
+   "noJan": 830,
+   "ms": 2473544
   },
   "mangatori": {
    "ok": true,
-   "listings": 768,
-   "matched": 603,
+   "listings": 769,
+   "matched": 608,
    "refused": {
-    "no-data": 18,
-    "accessory": 67,
-    "not-a-line": 66,
+    "accessory": 71,
+    "not-a-line": 69,
+    "no-data": 8,
     "damaged": 1
    },
-   "noJan": 12,
-   "ms": 1798861
+   "noJan": 11,
+   "ms": 1668922
   },
   "yorokonde": {
    "ok": true,
@@ -1705,7 +1707,17 @@
     "damaged": 1
    },
    "noJan": 1686,
-   "ms": 6544888
+   "ms": 6265488
+  },
+  "gamersheek": {
+   "ok": true,
+   "listings": 563,
+   "matched": 334,
+   "refused": {
+    "name-price": 82
+   },
+   "noJan": 147,
+   "ms": 982362
   },
   "bigbadtoystore": {
    "ok": false,
@@ -1714,14 +1726,14 @@
    "matched": 0,
    "refused": {},
    "noJan": 0,
-   "ms": 840
+   "ms": 1084
   }
  },
  "ebay": {
-  "at": "2026-11-12T17:11:53.724Z",
-  "day": "2026-11-12",
+  "at": "2026-11-13T16:30:23.145Z",
+  "day": "2026-11-13",
   "calls": 2500,
   "budget": 2500,
-  "listings": 1717
+  "listings": 1728
  }
 }
