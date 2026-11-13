@@ -70,6 +70,18 @@ export default function Stores() {
         {meta ? <>Every store was last checked {new Date(meta.updatedAt).toLocaleString("en-US", { timeZone: "UTC", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" })} UTC. </> : null}
         Japan stores (HobbyLink Japan, Good Smile Global) are shown on every region&apos;s figure pages under &ldquo;Or import from Japan&rdquo;, converted from yen.
       </p>
+      <section id="missing" className="mt-10 scroll-mt-24">
+        <h2 className="h-display mb-1 text-2xl">Why a figure can be missing</h2>
+        <ul className="sticker list-disc space-y-1.5 py-4 pl-8 pr-4 text-sm">
+          <li>A figure gets a page once <b>two stores in one region</b> list it (or one local store and one Japan store). With one store there is nothing to compare, so it waits.</li>
+          <li>Every listing is matched by the <b>barcode on the box</b>, never by its name, so a re-release or a bootleg can&apos;t borrow another figure&apos;s price. A store that prints no barcode usually can&apos;t be matched.</li>
+          <li>We cover <b>Nendoroid, figma and POP UP PARADE</b> today. Scale figures and prize figures are not compared yet.</li>
+          <li>Sold-out older figures drop off when no store we check still lists them.</li>
+        </ul>
+        <p className="mt-2 text-sm text-soft">
+          Know a shop that sells the one you want? <a href="#suggest" className="underline">Suggest it below</a> and we&apos;ll check whether it can be read.
+        </p>
+      </section>
       <section className="mt-10">
         <h2 className="h-display mb-1 text-2xl">Stores we can&apos;t compare yet</h2>
         <p className="mb-2 text-sm text-soft">Big names you might expect, and the honest reason they&apos;re missing. Check them yourself before you buy.</p>
@@ -84,7 +96,7 @@ export default function Stores() {
       </section>
       <section id="suggest" className="mt-10">
         <h2 className="h-display mb-1 text-2xl">Suggest a store</h2>
-        <p className="mb-2 text-sm text-soft">A real figure shop we don&apos;t check yet? We look at every suggestion and add the store if it lists barcodes we can read (BigBadToyStore, which prints none, is matched by Nendoroid and figma catalogue number instead). Store owners welcome: listing is free.</p>
+        <p className="mb-2 text-sm text-soft">A real figure shop we don&apos;t check yet? We look at every suggestion and add the store if it lists barcodes we can read (BigBadToyStore and Gamersheek, which print none, are matched by catalogue number or whole name instead). Store owners welcome: listing is free.</p>
         <SuggestStore regions={REGIONS.map((r) => [r.code, r.name])} what="figures" buttonClassName="btn-pop bg-pink text-white" />
       </section>
       <EbayStrip className="mt-10" placement="stores" queries={SITE_QUERIES} figures={popular(30)} title="Figures on eBay" />

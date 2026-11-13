@@ -2,7 +2,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { convertYen, fxUsable, FX_TARGETS, type Fx } from "@/lib/fx";
-import { orderableStatus, parseProductPage, parseSearchPage } from "@/lib/import/hlj";
+import { orderableStatus, parseProductPage, parseSearchPage, searchUrl } from "@/lib/import/hlj";
 import { mergeListings } from "@/lib/merge";
 import type { Listing } from "@/lib/types";
 
@@ -60,4 +60,9 @@ test("an HLJ product page gives the JAN, the yen price and the stock from its JS
   // A price not in yen is never read as yen.
   assert.equal(parseProductPage(product(`{"@type":"Offer","price":"41.00","priceCurrency":"USD"}`)), null);
   assert.equal(parseProductPage("<html></html>"), null);
+});
+
+test("HLJ's search pages are asked with a capital Page: a lower-case page repeats page 1 (2026-11-13)", () => {
+  assert.equal(searchUrl("https://www.hlj.com", "pop up parade", 3), "https://www.hlj.com/search/?q=pop%20up%20parade&Page=3");
+  assert.ok(!/[?&]page=/.test(searchUrl("https://www.hlj.com", "nendoroid", 2)));
 });

@@ -7,6 +7,11 @@
 // (never search or filter pages), kept when the URL names one of our lines; readTitle still decides on the page's
 // own title. One request a second, `pages` product pages a run.
 //
+// The one exception is Gamersheek (UK, `byName`), Good Smile's own UK partner, which prints no barcode at all
+// (its pages carry only its own "GSUK" code): matched by its whole name against the day's catalogue, only when
+// exactly one figure fits and its price sits near the other stores' (DECISIONS.md, 2026-11-13; the rule the owner
+// chose for Archonia on 2026-11-07).
+//
 // The pages are many (Figuya alone lists ~5,900 Nendoroid, figma and POP UP PARADE pages, mostly long sold out),
 // so a run does not open all of them. `data/state/page-cache.json` keeps what each page said last time; each run
 // re-reads the pages that were orderable first, then pages never read, then the rest, oldest first. A page read
@@ -15,7 +20,9 @@ import zlib from "node:zlib";
 import type { Store } from "@/content/stores";
 import { REGION_BY_CODE } from "@/site";
 import { isJapaneseJan } from "../jan";
-import { readTitle } from "../title";
+import { readTitle, tidyName } from "../title";
+import type { LineKey, RegionCode } from "@/site";
+import { nameTokens } from "./bbts";
 import type { Listing, Stock } from "../types";
 import type { ReadResult } from "./shopify";
 import { fetchText, sleep } from "./http";
@@ -27,6 +34,12 @@ export interface SitemapConfig {
   match: string;
   /** Product pages a run (default SITEMAP_PAGES, 1,500). */
   pages?: number;
+  /** The store prints no barcode anywhere (Gamersheek): its pages are matched by line, number and the WHOLE name
+   *  against the barcode stores' catalogue of the day, only when exactly one figure fits (`matchByName`). Read
+   *  after the barcode stores. */
+  byName?: boolean;
+  /** The page format, when it is not JSON-LD or Shopware 5: "offer-microdata" (`parseOfferMicrodata`). */
+  reader?: "offer-microdata";
 }
 
 export const SITEMAP_PAGES_PER_RUN = Number(process.env.SITEMAP_PAGES || 1500);
@@ -129,9 +142,110 @@ export function parseShopware5(html: string, base: string): ProductPage | null {
   return { name: decode(name.replace(/<[^>]+>/g, "")), jan: janOf(html.match(/itemprop="gtin13" content="([^"]*)"/)?.[1]), price, currency, st, img: absolute(img, base) };
 }
 
-export function parseProductPage(html: string, base: string): ProductPage | null {
+/** A page with schema.org Offer microdata and no JSON-LD or barcode (Gamersheek's platform): the name from
+ *  og:title, then the FIRST offer on the page (related products follow it): price, currency and availability.
+ *  Its pre-orders say InStock and carry a pre-order acknowledgement box. */
+export function parseOfferMicrodata(html: string, base: string): ProductPage | null {
+  const name = html.match(/<meta property="og:title" content="([^"]*)"/)?.[1];
+  const at = html.search(/itemprop="offers"[^>]*itemtype="https?:\/\/schema\.org\/Offer"/);
+  if (!name || at < 0) return null;
+  const offer = html.slice(at, at + 1500);
+  const price = Number(offer.match(/itemprop="price" content="([\d.]+)"/)?.[1]);
+  const currency = offer.match(/itemprop="priceCurrency" content="([A-Z]{3})"/)?.[1] ?? "";
+  if (!(price > 0) || !currency) return null;
+  if (/itemprop="itemCondition"/.test(offer) && !/NewCondition/.test(offer)) return null;
+  const a = offer.match(/itemprop="availability"[^>]*content="([^"]*)"/)?.[1] ?? "";
+  const st: Stock = /id="preorderAcknowledgement"/.test(html) && /InStock|PreOrder/.test(a) ? "pre" : stockOf(a);
+  const img = html.match(/<meta property="og:image" content="([^"]+)"/)?.[1];
+  return { name: decode(name), jan: null, price, currency, st, img: absolute(img, base) };
+}
+
+export function parseProductPage(html: string, base: string, reader?: SitemapConfig["reader"]): ProductPage | null {
+  if (reader === "offer-microdata") return parseOfferMicrodata(html, base);
   return parseJsonLd(html, base) ?? parseShopware5(html, base);
 }
+
+/** Words that say nothing about WHICH figure: makers, packaging, the store's own filler. */
+const NOISE = new Set([
+  "good", "smile", "company", "gsc", "max", "factory", "freeing", "phat", "orange", "rouge", "kotobukiya", "pvc", "action",
+  "figure", "figures", "figurine", "figur", "figura", "non", "scale", "backorder", "preorder", "order", "pre", "rerun",
+  "run", "release", "reissue", "japan", "import", "official", "authentic", "new", "box", "anime", "toy", "toys", "version",
+]);
+
+/** The words of a title that name the figure (series and character), lower-case, without line, number or noise. */
+export function nameWords(title: string, line: LineKey, number: string | null): Set<string> {
+  const words = new Set([...nameTokens(tidyName(title, line, number))].filter((w) => !NOISE.has(w)));
+  for (const m of variantMarks(title)) words.add(m);
+  return words;
+}
+
+/** The short markers nameTokens drops but that make a different product at a different price: a DX edition, a
+ *  2.0 re-make, a POP UP PARADE L / XL / SP. Kept as words of their own ("~dx"), so a DX title only fits a figure
+ *  some store also calls DX, and a plain title never lands on the DX. */
+export function variantMarks(title: string): string[] {
+  const out: string[] = [];
+  if (/\bDX\b|\bdeluxe\b/i.test(title)) out.push("~dx");
+  if (/\b2\.0\b/.test(title)) out.push("~v2");
+  const size = title.match(/\bparade\s+(XL|SP|L)\b/i)?.[1] ?? title.match(/\b(XL|L)[\s-]size\b/i)?.[1];
+  if (size) out.push(`~${size.toLowerCase()}`);
+  return out;
+}
+
+/** The day's catalogue by name, from the barcode stores' listings: per JAN, its line, numbers, every word any store
+ *  uses for it, and each store title's own words. */
+export interface NameIndex {
+  [jan: string]: { line: LineKey; numbers: Set<string>; all: Set<string>; titles: Set<string>[]; prices: Partial<Record<RegionCode, number[]>> };
+}
+
+export function indexByName(listings: Listing[]): NameIndex {
+  const out: NameIndex = {};
+  for (const l of listings) {
+    const t = readTitle(l.title);
+    if ("refused" in t) continue;
+    const e = (out[l.jan] ??= { line: t.line, numbers: new Set(), all: new Set(), titles: [], prices: {} });
+    if (e.line !== t.line) continue;
+    if (l.cents > 0) (e.prices[l.region] ??= []).push(l.cents);
+    if (t.number) e.numbers.add(t.number);
+    const w = nameWords(l.title, t.line, t.number);
+    if (!w.size) continue;
+    for (const x of w) e.all.add(x);
+    e.titles.push(w);
+  }
+  return out;
+}
+
+/** A name match's price must sit within this share of the other stores' median in its region (the figure's own
+ *  price is the last check that the name landed on the right product). */
+export const NAME_PRICE_BAND = [0.6, 1.6] as const;
+
+export function inBand(cents: number, others: number[] | undefined): boolean {
+  if (!others?.length) return false;
+  const s = [...others].sort((a, b) => a - b);
+  const m = s.length % 2 ? s[(s.length - 1) / 2] : (s[s.length / 2 - 1] + s[s.length / 2]) / 2;
+  return cents >= m * NAME_PRICE_BAND[0] && cents <= m * NAME_PRICE_BAND[1];
+}
+
+/** The one JAN a barcode-less title names, or null. Both ways: every word of the title is a word some store uses for
+ *  that figure, AND some store's whole title for it is inside this title's words (so "Nendoroid Miku" never lands
+ *  on "Nendoroid Miku: Snow Ver." and the reverse). Same line, the same catalogue number when both give one, and
+ *  exactly one figure must fit; a tie is no match. The caller then holds the price to NAME_PRICE_BAND. */
+export function matchByName(title: string, index: NameIndex): string | null {
+  const t = readTitle(title);
+  if ("refused" in t) return null;
+  const words = nameWords(title, t.line, t.number);
+  if (words.size < 1) return null;
+  const hits: string[] = [];
+  for (const [jan, e] of Object.entries(index)) {
+    if (e.line !== t.line) continue;
+    if (t.number && e.numbers.size && !e.numbers.has(t.number)) continue;
+    if (![...words].every((w) => e.all.has(w))) continue;
+    if (!e.titles.some((s) => [...s].every((w) => words.has(w)))) continue;
+    hits.push(jan);
+    if (hits.length > 1) return null;
+  }
+  return hits[0] ?? null;
+}
+
 
 /** A sitemap's text: gzip is unpacked whether or not the server says so. */
 async function fetchSitemap(url: string): Promise<string> {
@@ -159,11 +273,11 @@ export async function productUrls(cfg: SitemapConfig): Promise<string[]> {
 }
 
 /** The pages to open this run: orderable last time first, then never read (newest first), then the rest oldest first. */
-export function pickPages(urls: string[], cache: PageCache, pages: number): string[] {
+export function pickPages(urls: string[], cache: PageCache, pages: number, byName = false): string[] {
   const rank = (u: string) => {
     const c = cache[u];
     if (!c) return 1;
-    return c.j && c.s !== "out" ? 0 : 2;
+    return (c.j || (byName && c.n)) && c.s !== "out" ? 0 : 2;
   };
   return urls
     .map((u, k) => ({ u, k, r: rank(u), d: cache[u]?.d ?? "" }))
@@ -175,9 +289,10 @@ export function pickPages(urls: string[], cache: PageCache, pages: number): stri
 
 const daysBetween = (a: string, b: string) => Math.round((Date.parse(b) - Date.parse(a)) / 86_400_000);
 
-export async function readSitemapStore(store: Store, cache: PageCache, today = new Date().toISOString().slice(0, 10)): Promise<ReadResult> {
+export async function readSitemapStore(store: Store, cache: PageCache, names?: NameIndex, today = new Date().toISOString().slice(0, 10)): Promise<ReadResult> {
   const cfg = store.sitemap;
   if (!cfg) throw new Error("no sitemap config");
+  if (cfg.byName && !names) throw new Error("read after the barcode stores");
   const want = REGION_BY_CODE[store.region].currency;
   const res: ReadResult = { listings: [], seen: 0, refused: {}, noJan: 0 };
   const refuse = (why: string) => (res.refused[why] = (res.refused[why] ?? 0) + 1);
@@ -187,10 +302,10 @@ export async function readSitemapStore(store: Store, cache: PageCache, today = n
   // A page the store no longer lists is forgotten.
   for (const u of Object.keys(cache)) if (u.startsWith(store.base) && !live.has(u)) delete cache[u];
 
-  for (const url of pickPages(urls, cache, cfg.pages ?? SITEMAP_PAGES_PER_RUN)) {
+  for (const url of pickPages(urls, cache, cfg.pages ?? SITEMAP_PAGES_PER_RUN, cfg.byName)) {
     let page: ProductPage | null;
     try {
-      page = parseProductPage(await fetchText(url), store.base);
+      page = parseProductPage(await fetchText(url), store.base, cfg.reader);
     } catch (e) {
       // A page that will not load is skipped; a store answering 403/429 fails the run (never worked around).
       if (/HTTP (403|429)/.test((e as Error).message)) throw e;
@@ -214,19 +329,25 @@ export async function readSitemapStore(store: Store, cache: PageCache, today = n
       refuse("no-data");
       continue;
     }
-    if (!c.j) {
+    const jan = c.j ?? (cfg.byName && names ? matchByName(c.n, names) : null);
+    if (!jan) {
       res.noJan++;
       continue;
     }
     if (!(c.p > 0)) continue;
+    // A name match needs another store's price for that figure in this region, and must sit near it.
+    if (!c.j && !inBand(c.p, names?.[jan]?.prices[store.region])) {
+      refuse("name-price");
+      continue;
+    }
     const t = readTitle(c.n);
     if ("refused" in t) {
       refuse(t.refused);
       continue;
     }
-    const l: Listing = { store: store.id, region: store.region, title: c.n, jan: c.j, cents: c.p, st: c.s, url, img: c.i };
-    const prev = byJan.get(c.j);
-    if (!prev || rank[l.st] < rank[prev.st] || (rank[l.st] === rank[prev.st] && l.cents < prev.cents)) byJan.set(c.j, l);
+    const l: Listing = { store: store.id, region: store.region, title: c.n, jan, cents: c.p, st: c.s, url, img: c.i };
+    const prev = byJan.get(jan);
+    if (!prev || rank[l.st] < rank[prev.st] || (rank[l.st] === rank[prev.st] && l.cents < prev.cents)) byJan.set(jan, l);
   }
   res.listings = [...byJan.values()];
   return res;

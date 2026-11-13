@@ -37,7 +37,7 @@ Production builds only a commit whose SUBJECT carries `[deploy]` (`scripts/verce
 the next release; use *Production deploy* (or `[deploy]`) only when the owner says it is urgent, and say so.
 Previews build only with `[preview]`, when the owner asks. `claude/*` branches never deploy (`vercel.json`).
 
-## Matching: the barcode or nothing (BigBadToyStore excepted)
+## Matching: the barcode or nothing (BigBadToyStore and Gamersheek excepted)
 
 - A listing is matched ONLY by its JAN (Japanese EAN-13, prefix 45/49, valid check digit; `src/lib/jan.ts`), read
   from the variant barcode, the SKU or a labelled "JAN:" in the description. No JAN, no listing. Never match on a
@@ -45,7 +45,10 @@ Previews build only with `[preview]`, when the owner asks. `claude/*` branches n
   BigBadToyStore (`platform: "bbts"`, `src/lib/import/bbts.ts`) prints no barcode, so it is matched by Nendoroid /
   figma catalogue number AND a shared name word, only when that number belongs to exactly one JAN in the day's
   catalogue; POP UP PARADE never; read last, from its product sitemaps (never its search pages), one page a second.
-  Never extend number matching to another store without the owner.
+  Never extend number matching to another store without the owner. **Gamersheek** (UK, 2026-11-13; `sitemap.byName`)
+  prints no barcode either: matched by its whole name, both ways, one figure only, the price within 60–160% of the other
+  UK stores' median, DX / 2.0 / L-size kept apart (`matchByName`, `variantMarks` in `src/lib/import/sitemap-store.ts`).
+  Never add `byName` to another store without the owner.
 - The title decides only whether a listing belongs (`src/lib/title.ts`): our lines, new, one figure. Pre-owned,
   damaged, bootleg, bundles, lucky bags, parts, plush, Nendoroid More/Doll/Plus and figma Styles are refused. Every
   rule changed gets a real store title in `tests/title.test.ts`.
