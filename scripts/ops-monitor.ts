@@ -33,13 +33,23 @@ export function judgeFreshness(updatedAt: string, now = Date.now()): Omit<Result
   return { status: h < 54 ? "warn" : "fail", detail: `prices are ${h.toFixed(0)}h old: check the Import prices workflow` };
 }
 
+/** The fewest products a healthy read of these stores sees. */
+export const MIN_SEEN: Record<string, number> = { hlj: 1000 };
+
 export function judgeStores(meta: Meta, total: number): Omit<Result, "name"> {
   const bad = Object.entries(meta.stores).filter(([, s]) => !s.ok);
   // A store whose figure collections came back empty: its collection moved or
   // was renamed. (A store reading products but none of our lines is normal.)
   const empty = Object.entries(meta.stores).filter(([, s]) => s.ok && s.listings === 0);
-  if (!bad.length && !empty.length) return { status: "ok", detail: `${total} stores read` };
-  const detail = [...bad.map(([k, s]) => `${k}: ${s.error}`), ...empty.map(([k]) => `${k}: figure collection empty`)].join("; ");
+  // A store that should see thousands of products and saw a handful: its paging broke (HobbyLink Japan read the
+  // same first page for a week until 2026-11-13, and nothing noticed).
+  const thin = Object.entries(meta.stores).filter(([k, s]) => s.ok && s.listings > 0 && s.listings < (MIN_SEEN[k] ?? 0));
+  if (!bad.length && !empty.length && !thin.length) return { status: "ok", detail: `${total} stores read` };
+  const detail = [
+    ...bad.map(([k, s]) => `${k}: ${s.error}`),
+    ...empty.map(([k]) => `${k}: figure collection empty`),
+    ...thin.map(([k, s]) => `${k}: only ${s.listings} products seen (expected ${MIN_SEEN[k]}+): its paging may have changed`),
+  ].join("; ");
   return { status: bad.length > total / 3 ? "fail" : "warn", detail };
 }
 

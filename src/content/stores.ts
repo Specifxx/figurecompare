@@ -158,6 +158,24 @@ export const STORES: Store[] = [
   { id: "oshoppu", name: "oshoppu", region: "UK", base: "https://oshoppu.com", platform: "shopify", collections: ["all"] },
   { id: "sincitycomics", name: "Sin City Comics & Gaming", region: "UK", base: "https://sincitycomicsgaming.com", platform: "shopify", collections: ["all"] },
   { id: "forbiddenplanet", name: "Forbidden Planet International", region: "UK", base: "https://shop.forbiddenplanet.co.uk", platform: "shopify", collections: ["all"] },
+  // Gamersheek (Good Smile's UK partner; its owner asked on r/Nendoroid, 2026-11-11, to be listed). Its own platform
+  // prints no barcode, only its "GSUK" code: matched by its whole name against the day's catalogue, only when exactly
+  // one figure fits and the price sits near the other UK stores' (lib/import/sitemap-store.ts matchByName;
+  // DECISIONS.md 2026-11-13). Read after the barcode stores.
+  {
+    id: "gamersheek",
+    name: "Gamersheek",
+    region: "UK",
+    base: "https://www.gamersheek.co.uk",
+    platform: "sitemap",
+    sitemap: {
+      maps: ["nendoroid", "pop-up-parade", "figma"].map((l) => `https://www.gamersheek.co.uk/sitemap-listing_collectibles_good-smile-company_${l}.xml`),
+      match: "^https://www\\.gamersheek\\.co\\.uk/item/",
+      byName: true,
+      reader: "offer-microdata",
+      pages: 700,
+    },
+  },
   { id: "aniimeshop", name: "Aniime Shop", region: "EU", base: "https://aniimeshop.com", platform: "shopify", collections: ["all"] },
   { id: "elbenwald", name: "Elbenwald", region: "EU", base: "https://elbenwald.com", platform: "shopify", collections: ["all"] },
   { id: "fictionaryworld", name: "fictionary world", region: "EU", base: "https://fictionary-world.de", platform: "shopify", collections: ["all"] },
@@ -190,6 +208,8 @@ export const STORES: Store[] = [
   { id: "animecha", name: "Ani Mecha", region: "SG", base: "https://ani-mecha.com", platform: "shopify", collections: ["all"] },
   { id: "chroniclesinc", name: "Chronicles INC", region: "SG", base: "https://chroniclesinc.sg", platform: "shopify", collections: ["all"] },
   { id: "kinokuniya", name: "Books Kinokuniya USA", region: "US", base: "https://usa.kinokuniya.com", platform: "shopify", collections: ["all"] },
+  // Named on r/Nendoroid, 2026-11-11 (probe 2026-11-13: Shopify, USD, barcodes on its Good Smile lines).
+  { id: "kappahobby", name: "Kappa Hobby", region: "US", base: "https://www.kappahobby.com", platform: "shopify", collections: ["all"] },
   // The one store matched by Nendoroid / figma number, not barcode (owner, 2026-11-06; DECISIONS.md). Read last,
   // against the day's catalogue, by src/lib/import/bbts.ts.
   { id: "bigbadtoystore", name: "BigBadToyStore", region: "US", base: "https://www.bigbadtoystore.com", platform: "bbts" },

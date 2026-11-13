@@ -1019,3 +1019,39 @@ drawn only when this build's Creators API lookup found the figure's price (never
 ## 2026-11-13: urgent release
 
 Owner asked for every site to be released now: the unpriced-Amazon fix, Fetch as an ordinary store row and the blue TCGplayer button had been merged without a deploy marker. One build, via this commit's subject.
+
+
+## 2026-11-13: what r/Nendoroid asked for (83 upvotes, 9 comments)
+
+The 11 November r/Nendoroid post drew nine comments. Read against the site, they came to four things.
+
+**"I couldn't find any Nendoroid that ships from Japan."** True, and a bug: HobbyLink Japan's search takes `Page=` with a capital
+P and ignores `page=`, so since 6 November the reader had opened page 1 of each line 400 times and listed 75 products of the
+6,324 its Nendoroid search returns (66 figures had a Japan table). `searchUrl` now asks for `Page=`, the loop stops on a page
+that repeats the one before, and the ops monitor warns when HLJ sees fewer than 1,000 products (`MIN_SEEN`). The "before
+international shipping and any import tax" line under the Japan table already answers the shipping and tariff comment.
+
+**"The search needs a see-all-results option."** The dropdown showed eight rows and Enter opened the first. The dropdown now ends
+with "See all N results", Enter opens `/search?q=` unless a row was picked with the arrow keys, and `/search` lists every match
+(300 at most) with its line and price. Still one static index file; no function.
+
+**"Most of my Nendoroids are missing, why?"** `/stores#missing` says it plainly (two stores in one region, the barcode, three
+lines, no scale figures yet), linked from an empty search and from the results page.
+
+**Stores people named.** Probed 2026-11-13 from a GitHub runner and by hand:
+- Kappa Hobby (US, Shopify, USD, barcodes): added.
+- Gamersheek (UK, Good Smile's UK partner; its owner asked to be listed, the top comment at 15 upvotes): its own platform, product
+  sitemaps and schema.org Offer microdata, but no barcode anywhere, only its own "GSUK" code, and no Nendoroid number. Added
+  under the rule the owner chose for Archonia on 2026-11-07 (that code never shipped because Archonia blocks runners): matched by
+  its WHOLE name against the day's barcode catalogue, both ways, only when exactly one figure fits, the same line, and the price
+  within 60 to 160% of the other UK stores' median (`matchByName`, `inBand`). New here: DX, 2.0 and POP UP PARADE L / XL / SP are
+  words of their own (`variantMarks`), so a DX never borrows the plain figure's page. A dry run of 40 of its 563 titles against
+  the catalogue's own names matched 24, all correct. It is the second store outside the barcode rule, after BigBadToyStore;
+  reverse it by deleting its line in `stores.ts`.
+- Nin-Nin-Game, Hobby Genki, Meccha Japan: custom platforms the probe could not read as Shopify or WooCommerce; not checked
+  further yet. Ichiban Japan, Japan Plaza and Just Press Play did not answer the runner. AmiAmi stays unreadable (bot
+  protection), Mercari is a marketplace (never), JumpIchiban, Solaris Japan, Good Smile US and Global and BigBadToyStore were
+  already in.
+
+Not built: scale figures (a new product line with no shared numbering; one comment, 3 upvotes) and picking two regions at once
+(the Japan table under every region covers the case the commenter described once HLJ reads properly).

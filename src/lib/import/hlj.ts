@@ -79,15 +79,30 @@ export function parseProductPage(html: string): HljPage | null {
   return null;
 }
 
+/**
+ * One page of HLJ's search. The parameter is "Page" with a capital P: HLJ ignores a lower-case "page" and
+ * serves page 1 again, which until 2026-11-13 left this reader with the first 24 items of each line
+ * (75 listings of 6,324 Nendoroid results) and the "Or import from Japan" table nearly empty.
+ */
+export function searchUrl(base: string, q: string, page: number): string {
+  return `${base}/search/?q=${encodeURIComponent(q)}&Page=${page}`;
+}
+
 export async function readHlj(store: Store, pages = HLJ_PAGES_PER_RUN): Promise<ReadResult> {
   const res: ReadResult = { listings: [], seen: 0, refused: {}, noJan: 0 };
   const items = new Map<string, HljItem>();
   for (const q of QUERIES) {
+    const inQuery = new Set<string>();
     for (let page = 1; page <= MAX_SEARCH_PAGES; page++) {
-      const found = parseSearchPage(await fetchText(`${store.base}/search/?q=${encodeURIComponent(q)}&page=${page}`));
-      for (const it of found) items.set(it.code, it);
+      const found = parseSearchPage(await fetchText(searchUrl(store.base, q, page)));
+      const fresh = found.filter((it) => !inQuery.has(it.code));
+      for (const it of found) {
+        inQuery.add(it.code);
+        items.set(it.code, it);
+      }
       await sleep(PACE_MS);
-      if (found.length < 24) break;
+      // A page that repeats the one before means HLJ ignored the page number: stop, never loop on it.
+      if (found.length < 24 || !fresh.length) break;
     }
   }
   const refuse = (why: string) => (res.refused[why] = (res.refused[why] ?? 0) + 1);

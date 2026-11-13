@@ -67,6 +67,18 @@ test("search: every word must match; a barcode finds its figure", () => {
   assert.deepEqual(searchRows(rows, "4545784068991").map((r) => r[0]), ["b"]);
 });
 
+test("the dropdown shows eight rows; the results page gets every match (Reddit, 2026-11-12)", async () => {
+  const { DROPDOWN_ROWS, PAGE_ROWS } = await import("@/components/SearchBox");
+  const rows: IndexRow[] = Array.from({ length: 12 }, (_, i) => [`m${i}`, `Nendoroid Puella Magi Madoka Magica - Figure ${String.fromCharCode(65 + i)}`, "nendoroid", `45805901000${String(i).padStart(2, "0")}`, {}]);
+  assert.equal(searchRows(rows, "Madoka Nendoroid").length, DROPDOWN_ROWS);
+  assert.equal(searchRows(rows, "Madoka Nendoroid", PAGE_ROWS + 1).length, 12);
+  const fs = await import("node:fs");
+  const box = fs.readFileSync("src/components/SearchBox.tsx", "utf8");
+  assert.match(box, /See all/);
+  assert.match(fs.readFileSync("src/app/search/page.tsx", "utf8"), /<SearchBox big autoFocus full \/>/);
+  assert.match(fs.readFileSync("src/app/stores/page.tsx", "utf8"), /id="missing"/);
+});
+
 test("ops monitor judgements", () => {
   const now = Date.parse("2026-10-28T12:00:00Z");
   assert.equal(judgeFreshness("2026-10-28T05:00:00Z", now).status, "ok");
@@ -79,6 +91,9 @@ test("ops monitor judgements", () => {
   // A store with none of our lines is fine; an empty figure collection is not.
   assert.equal(judgeStores({ updatedAt: "", figures: 1, stores: { a: run(true, 0), b: run(true) } }, 2).status, "ok");
   assert.equal(judgeStores({ updatedAt: "", figures: 1, stores: { a: { ...run(true, 0), listings: 0 }, b: run(true) } }, 2).status, "warn");
+  // HobbyLink Japan seeing a handful of products means its paging broke (2026-11-13).
+  assert.equal(judgeStores({ updatedAt: "", figures: 1, stores: { hlj: { ...run(true), listings: 75 }, b: run(true) } }, 2).status, "warn");
+  assert.equal(judgeStores({ updatedAt: "", figures: 1, stores: { hlj: { ...run(true), listings: 6400 }, b: run(true) } }, 2).status, "ok");
 });
 
 test("one contact address everywhere (owner, 2026-10-28)", async () => {
