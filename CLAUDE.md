@@ -14,6 +14,10 @@ stores in the US, UK, Canada, Australia, New Zealand, Europe and Singapore. A Co
 - The only function is eBay's account-deletion hook (`src/app/api/ebay/marketplace-deletion`); keep it while the
   eBay keyset exists.
 - Never write anything private to `data/`: it is public with the source. Never edit `data/` by hand.
+- The sitemap does not churn (2026-11-14): the import keeps `data/public/pages.json` (the sitemap's core figures, which stay
+  while indexable, and the series hubs that have a page, kept down to `SERIES_KEEP` figures); lastmod is the day a page's
+  price last changed, a post's date, or left out, never "today" for everything (`lib/index-tiers.ts`,
+  `tests/sitemap-churn.test.ts`).
 - The visitor's region is chosen in the browser (time zone, then their own pick in localStorage) by the script in
   `src/app/layout.tsx`; every region's prices are in the HTML and CSS shows one (`.rp-XX` in `globals.css`).
 

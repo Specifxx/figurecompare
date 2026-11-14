@@ -26,6 +26,13 @@ function load<T>(file: string, fallback: T): T {
 
 export const getFigures = (): Figure[] => load<{ figures: Figure[] }>("figures.json", { figures: [] }).figures.filter((f) => f.offers && Object.values(f.offers).some((o) => o?.length));
 export const getMeta = (): Meta | null => load<Meta | null>("meta.json", null);
+/** What the import remembers about pages (data/public/pages.json): the sitemap's core figures (JANs) and the series
+ *  hubs that had a page. Absent before the first import that writes it. */
+export interface PageState {
+  core: string[];
+  series: string[];
+}
+export const getPageState = (): PageState | null => load<PageState | null>("pages.json", null);
 export const getHistory = (): History => load<History>("history.json", {});
 export const getFx = (): Fx | null => load<Fx | null>("fx.json", null);
 // Rows from before 2026-10-31 carry no postage (the search took any seller anywhere): not shown (lib/ebay.ts ebayRowShown).

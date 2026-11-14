@@ -1,5 +1,5 @@
-import { SERIES, SERIES_MIN, type Series } from "@/content/series";
-import { getFigures, storeCount } from "./data";
+import { SERIES, seriesIsLive, type Series } from "@/content/series";
+import { getFigures, getPageState, storeCount } from "./data";
 import type { Figure } from "./types";
 
 let memo: Map<string, Figure[]> | null = null;
@@ -12,7 +12,11 @@ function bySeries(): Map<string, Figure[]> {
 }
 
 export const figuresOfSeries = (slug: string): Figure[] => bySeries().get(slug) ?? [];
-/** The series with enough figures for a page, biggest first. */
-export const liveSeries = (): Series[] => SERIES.filter((s) => figuresOfSeries(s.slug).length >= SERIES_MIN).sort((a, b) => figuresOfSeries(b.slug).length - figuresOfSeries(a.slug).length);
+/** The series with enough figures for a page, biggest first. A hub that had a page yesterday keeps it down to
+ *  SERIES_KEEP figures (content/series.ts seriesIsLive), so a hub at the line does not 404 one day and return the next. */
+export const liveSeries = (): Series[] => {
+  const was = new Set(getPageState()?.series ?? []);
+  return SERIES.filter((s) => seriesIsLive(figuresOfSeries(s.slug).length, was.has(s.slug))).sort((a, b) => figuresOfSeries(b.slug).length - figuresOfSeries(a.slug).length);
+};
 /** The live series a figure belongs to (for its page's links). */
 export const seriesOf = (f: Figure): Series[] => liveSeries().filter((s) => s.re.test(f.name));

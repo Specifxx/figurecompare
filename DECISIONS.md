@@ -1055,3 +1055,48 @@ lines, no scale figures yet), linked from an empty search and from the results p
 
 Not built: scale figures (a new product line with no shared numbering; one comment, 3 upvotes) and picking two regions at once
 (the Japan table under every region covers the case the commenter described once HLJ reads properly).
+
+
+## 2026-11-14: The sitemap stops churning (sticky core, truthful lastmod, series hubs that do not flicker)
+
+A sample of sitemap URLs checked in Google found 29 of 31 indexed on 7 November and 10 of 20 on 14 November. Replaying the
+committed `figures.json` of each day through the sitemap code gave four causes.
+
+- **The 7 November cull and lean sitemap were the big one-off.** The sitemap of 6 November listed 4,050 figure pages. On
+  13 November 1,129 of them (28%) are a 404 (the low-traction cull, 4,663 → 2,909 pages that day), 2,620 are live and
+  indexable but no longer listed, and 300 are listed. Line page 2+ left the sitemap the same day and went noindex on
+  10 November. A URL sampled from the old sitemap had roughly a one in four chance of being gone. This was decided
+  (two entries of 2026-11-07) and is not reversed here: a culled figure is still a 404.
+- **The 300 listed figures were re-ranked every day.** Ranked afresh by store count, the list swapped 5 to 32 URLs a day:
+  352 different figure URLs filled the 300 places from 7 to 13 November and only 247 were listed on all seven days. None of
+  the pages was gone (1 of the 300 became a 404 in the week), they just kept leaving and re-entering the sitemap.
+- **Every URL carried the import's time as its lastmod, every day**, including `/about` and `/contact`. A lastmod that is
+  always today is ignored.
+- **Two of the twenty series hubs flickered.** `/series/sword-art-online` (11 or 12 figures) was a 404 for one day and
+  `/series/delicious-in-dungeon` for five, both listed in the sitemap at priority 0.8 before and after.
+- Also in the current sitemap: 59 character hubs that only exist since 8 November, too new to be indexed by the 14th.
+
+Checked and fine: canonicals (one host, no trailing slash, no region in the URL), robots.txt (unchanged; `/search` and
+every query URL disallowed, the new "See all results" page is noindex too), slugs (kept forever in `state/slugs.json`),
+no accidental noindex (0 to 1 of the listed figures was noindex on any day). After the cull, ordinary page churn is small:
+16 of 2,909 figure pages gone in six days, 7 of them back again.
+
+What changed:
+
+- **A sticky core.** The import writes `data/public/pages.json`. Its `core` is the sitemap's figures (JANs): a figure stays
+  while its page is indexable, and only an empty place is filled, by the same ranking as before (`nextCore`,
+  `sitemapFigures` in `lib/index-tiers.ts`). Replayed over the same week: 301 URLs for the 300 places, 299 listed all
+  seven days. Without the file (a fixture, the build before the first import that writes it) the ranking alone decides.
+- **lastmod is the truth or it is left out** (`figureLastmod`). A figure page carries the day its lowest orderable price
+  last changed in any region (the newest point in `history.json`, which is written only on a change), else the day we
+  first saw it. A series or character hub carries the newest of its figures' days. A blog post carries its publication
+  date. The lists rebuilt from the day's prices (home, lines, deals, pre-orders, new, the sale pages, stores, the price
+  report) keep the import's time. Pages of fixed text carry none. On 13 November's data 148 of the 300 core figures
+  changed price that day and 152 carry an older date.
+- **A series hub that has a page keeps it down to 9 figures** (`SERIES_KEEP`, `seriesIsLive` in `content/series.ts`; the
+  live hubs are `pages.json`'s `series`). A new hub still needs 12. Replayed: 20 hubs on each of the seven days instead
+  of 18 to 20. Character hubs keep the owner's 3+ rule as it is: none flickered.
+
+Not done, on purpose: bringing culled figures back as pages, or keeping a figure listed after it stops meeting the cull's
+rule (that changes which products are listed, the owner's call), and widening `SITEMAP_FIGURES` (recheck ~25 November as
+the 7 November entry says). No URL, title, description, canonical or heading changed. `tests/sitemap-churn.test.ts`.
