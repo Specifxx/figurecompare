@@ -119,7 +119,7 @@ export function MobileMenu({
                         type="button"
                         onClick={() => setRegion(r.code)}
                         aria-pressed={region === r.code}
-                        className={`w-full rounded-lg border px-2 py-1.5 text-left text-sm ${region === r.code ? "border-pink bg-pink text-white" : "border-line bg-card text-ink hover:border-pink"}`}
+                        className={`w-full rounded-lg border px-2 py-1.5 text-left text-sm ${region === r.code ? "border-buy bg-buy text-white" : "border-line bg-card text-ink hover:border-pink"}`}
                       >
                         <Flag code={r.code} /> {r.name}
                       </button>

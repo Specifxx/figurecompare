@@ -1111,3 +1111,33 @@ text button (`inline`) is drawn as a bordered button (`cart.css`). Neutral, neve
 filled action and the calm three-colour rule holds. Nothing else moved: which rows can be added (open store rows, eBay and
 Amazon with a live price; never a marketplace or a search row), the line's buy link and its affiliate tag, the row order, the
 buy button and every placement are unchanged. A caller can still ask for the bare icon (`label={false}`).
+
+## 2026-11-14: Every page brought up to the home page (a small polish pass)
+
+The owner asked for the pages behind the home page to look as good as it. FigureCompare is low priority, so this fixes real faults
+and inconsistencies only; nothing was added to any page but a helpful empty search state.
+
+- **Filled buttons are readable in both themes.** White words on the filled red read 4.3:1 in the light theme and 2.9:1 (the
+  header's "Find", the region pills, page numbers, "Back home") or 3.9:1 (buy buttons) in the night theme. Every filled button now
+  uses `--buy` (214 48 66: 4.8:1 under white in both themes); the light `--pink` is the same red, so red words on the page pass too
+  (4.5:1). The night `--pink` stays the bright red, for words only. One red, a shade deeper; no new colour.
+- **Articles (posts, about, contact, the legal pages and the store guides)** are set on the page like the home hero's words
+  instead of boxed in a card: a measure of about 65 characters (it ran to ~110 on a computer and ~37 on a phone), one heading scale,
+  numbered lists that count (the Black Friday post's "Five checks" showed bullets), visible underlined links, and the data tables
+  at the same width as the text, scrolling in their own box. `.prose-fc` in `globals.css`; `Prose` uses it.
+- **Two words ran together** in the bootleg post ("Nendoroid hublists"); the pre-orders link no longer underlines a leading space.
+- **Product page on a phone:** the photo box is 240px instead of the full width, so the name and the prices sit on the first
+  screen with the photo; the sticky buy bar shows the cheapest store's whole name on two lines instead of cutting it off.
+  The phone's "Add to cart" text button is neutral like the computer's (it was drawn in the accent red, against the 14 November
+  entry's intent) and 40px tall.
+- **Search:** a search with no match says so in plain words and offers the three lines and every series (drawn in the browser,
+  like the results; the server HTML is unchanged); the empty bordered box under "0 figures match" is gone; the results area holds
+  its height so the list arriving no longer pushes the page (layout shift 0.49 → 0 with results).
+- **404:** the three lines under "Back home", as a way back in.
+- Prices and counts use tabular figures; the tile photo's hover zoom is 200 ms; the footer's "Is this a good price?" link is drawn
+  like its neighbours.
+
+No paid link, ad block, pinned eBay / Amazon row, placement name, button word, row order, URL, title, description, canonical,
+robots, Open Graph, JSON-LD or heading changed: the server HTML of 12 sampled pages, before and after, has the same metadata,
+h1, internal links, paid links in the same order and the same words (the 404 gains its three line links). The 19 November
+clicks-per-placement recheck is unaffected.

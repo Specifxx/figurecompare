@@ -106,7 +106,7 @@ export default function CreatorsPage() {
             release. Watch them, follow them, and buy your favourite a coffee.
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
-            <a href="#featured" className="btn-pop min-h-11 bg-pink px-5 text-white">
+            <a href="#featured" className="btn-pop min-h-11 bg-buy px-5 text-white">
               Meet the creators
             </a>
             <a href="#apply" className="btn-pop min-h-11 border border-line bg-card px-5 text-ink">
@@ -152,7 +152,7 @@ export default function CreatorsPage() {
 
       {/* How tipping works */}
       <section className="sticker mt-10 grid items-center gap-6 border-pink/30 bg-gradient-to-br from-pink-pale via-card to-card p-6 sm:grid-cols-[auto,1fr] sm:p-8">
-        <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-pink text-white shadow-pop">
+        <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-buy text-white shadow-pop">
           <CoffeeIcon className="h-10 w-10" />
         </div>
         <div>
@@ -190,7 +190,7 @@ export default function CreatorsPage() {
             <h3 className="h-display text-lg">Apply to be featured</h3>
             <p className="mt-1 text-sm text-soft">Email us your channel links and what you make. A real person replies, usually within a few days.</p>
           </div>
-          <a href={APPLY_HREF} className="btn-pop min-h-11 shrink-0 bg-pink px-5 text-white">
+          <a href={APPLY_HREF} className="btn-pop min-h-11 shrink-0 bg-buy px-5 text-white">
             Email us to get featured
           </a>
         </div>

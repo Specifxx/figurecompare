@@ -13,7 +13,7 @@
   --ink: 24 24 32;
   --soft: 96 99 112;
   --line: 228 228 234;
-  --pink: 225 56 72;
+  --pink: 214 48 66; /* 4.8:1 under white words, 4.5:1 as words on the page */
   --pink-deep: 196 36 54;
   --pink-pale: 253 238 240;
   --lilac: 92 96 112;
@@ -24,7 +24,7 @@
   --sky-pale: 242 242 246;
   --lemon: 180 120 20;
   --lemon-pale: 246 245 240;
-  --buy: 225 56 72;
+  --buy: 214 48 66;
   color-scheme: light;
 }
 
@@ -45,7 +45,7 @@
   --sky-pale: 34 34 42;
   --lemon: 230 180 80;
   --lemon-pale: 40 38 32;
-  --buy: 235 64 80;
+  --buy: 214 48 66; /* every filled button with white words: 4.8:1 (the night --pink is for words only) */
   color-scheme: dark;
 }
 
@@ -97,6 +97,50 @@ html:not([data-region]) .rn-US { display: none; }
   }
   .h-display {
     @apply font-display font-bold tracking-tight;
+  }
+  /* Prices and counts line up: every price is drawn in font-display. */
+  .font-display,
+  .h-display {
+    font-variant-numeric: tabular-nums;
+  }
+  /* Article text (Prose: guides, posts, about and the legal pages), 2026-11-14. Set on the page like the home hero's
+     words, not boxed: a measure of about 65 characters, one heading scale, numbered lists that count and links you can
+     see without colour alone. */
+  .prose-fc {
+    @apply max-w-[68ch] text-[1.0625rem] leading-[1.75] text-ink;
+  }
+  .prose-fc > * + * {
+    @apply mt-4;
+  }
+  .prose-fc h2 {
+    @apply h-display mb-1 mt-10 text-[1.5rem] leading-tight sm:text-[1.65rem];
+  }
+  .prose-fc h3 {
+    @apply h-display mb-1 mt-8 text-xl leading-snug;
+  }
+  .prose-fc > h2:first-child,
+  .prose-fc > h3:first-child {
+    @apply mt-0;
+  }
+  .prose-fc ul {
+    @apply list-disc space-y-2 pl-5;
+  }
+  .prose-fc ol {
+    @apply list-decimal space-y-2 pl-6;
+  }
+  .prose-fc li::marker {
+    color: rgb(var(--soft));
+  }
+  .prose-fc a:not([class]) {
+    @apply font-semibold text-pink-deep underline decoration-1 underline-offset-[3px] transition-colors;
+    text-decoration-color: rgb(var(--pink-deep) / 0.35);
+  }
+  .prose-fc a:not([class]):hover {
+    text-decoration-color: currentColor;
+  }
+  .prose-fc strong,
+  .prose-fc b {
+    @apply font-semibold;
   }
   .tile-hover {
     @apply transition hover:-translate-y-0.5 hover:shadow-md;

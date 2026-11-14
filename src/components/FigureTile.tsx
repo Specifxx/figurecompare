@@ -23,7 +23,7 @@ export function FigureTile({ f, i = 0, region }: { f: Figure; i?: number; region
       data-qv-img={f.img || undefined}
       className="sticker tile-hover group flex flex-col overflow-hidden">
       <div className="relative aspect-square bg-white">
-        <FigureImage src={f.img} alt={f.name} line={f.line} className="h-full w-full object-contain p-3 transition-transform duration-300 group-hover:scale-[1.03]" />
+        <FigureImage src={f.img} alt={f.name} line={f.line} className="h-full w-full object-contain p-3 transition-transform duration-200 group-hover:scale-[1.03]" />
         <span className="chip absolute left-2 top-2 border border-line bg-card text-ink">
           {line.name}
           {f.number ? ` ${f.number}` : ""}

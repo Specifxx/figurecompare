@@ -46,7 +46,7 @@ export function CreatorCard({ creator, index = 0 }: { creator: Creator; index?: 
         </div>
         <div className="mt-auto pt-5">
           {creator.tipUrl ? (
-            <a href={creator.tipUrl} target="_blank" rel="noopener" className="btn-pop flex min-h-11 w-full bg-pink text-white">
+            <a href={creator.tipUrl} target="_blank" rel="noopener" className="btn-pop flex min-h-11 w-full bg-buy text-white">
               <CoffeeIcon /> Buy {creator.name.split(" ")[0]} a coffee
             </a>
           ) : main ? (
