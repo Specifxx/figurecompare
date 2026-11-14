@@ -32,7 +32,7 @@ export function FigureTile({ f, i = 0, region }: { f: Figure; i?: number; region
           const s = spreadIn(f, r.code);
           return s != null && s >= 0.1 ? (
             <span key={r.code} className={`${cls(r.code)} absolute bottom-2 right-2`}>
-              <span className="chip bg-mint text-white">save {pct(s)}</span>
+              <span className="chip bg-mint text-bg">save {pct(s)}</span>
             </span>
           ) : null;
         })}
