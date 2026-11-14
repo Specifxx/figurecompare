@@ -1141,3 +1141,24 @@ No paid link, ad block, pinned eBay / Amazon row, placement name, button word, r
 robots, Open Graph, JSON-LD or heading changed: the server HTML of 12 sampled pages, before and after, has the same metadata,
 h1, internal links, paid links in the same order and the same words (the 404 gains its three line links). The 19 November
 clicks-per-placement recheck is unaffected.
+
+## 2026-11-14: Review of the polish pass: the search page's eBay block stays where it was
+
+A second look at the day's polish pass (#101) found one rule broken and one old fault, and fixes both. Nothing else changed.
+
+- **Search (`/search`):** #101 reserved 60vh under the search box from the first paint, so the list arriving would not push
+  the page. On the empty search page (and on a search with no match) that blank reserve pushed the page's eBay block
+  (placement `search`) from 432px to 938px down a 390×844 phone, below the first screen: a paid placement moved while money
+  is frozen for the 19 November clicks-per-placement recheck. The reserve is gone; the block is back at 432px on the empty
+  page and 594px with results, exactly as before #101. The no-match message is now one short paragraph with inline links to
+  the three lines and every series (568px, against 538px before #101), not a bordered box, so the shift on a no-match search
+  stays at the old level (0.07 on a phone, 0.055 before #101; 0.16 with the box). A search loaded from `?q=` shifts as it did
+  before #101 (0.09 on a phone); reserving space without moving the ad would need the URL read before first paint, which is
+  new JavaScript on the critical path, so it waits until after the recheck. `/search` is noindex.
+- **Green that passes:** the light `--mint` is a shade deeper (17 124 78): green words on the page read 4.9:1 (3.99:1 before),
+  "In stock" on its pale chip 4.6:1 (3.78:1) and the tiles' "save" chip 4.9:1 (4.26:1). The night "save" chip drew white words
+  on the bright night green at 1.9:1; it now uses the page's own dark colour, 9.7:1. Same green, same job.
+
+No paid link, ad block, pinned row, placement name, button word, row order, URL, title, description, canonical, robots, Open
+Graph, JSON-LD or heading changed: the server HTML of 22 pages matches the pre-#101 build in all of these (the 404 keeps its
+three line links). The 19 November clicks-per-placement recheck is unaffected.

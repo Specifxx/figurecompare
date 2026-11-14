@@ -158,8 +158,9 @@ export function SearchBox({ big = false, autoFocus = false, full = false }: { bi
           )}
         </ul>
       )}
-      {/* The results area holds its height from the first paint, so the list arriving never pushes the page (CLS). */}
-      {full && <div className="min-h-[60vh]">{q.trim().length > 1 && (
+      {/* No height is reserved here: an empty reserve pushed the search page's eBay block (placement "search") below the
+          first screen, and paid placements stay put until the 19 November clicks recheck (DECISIONS.md, 2026-11-14). */}
+      {full && q.trim().length > 1 && (
         <div className="mt-4 text-left">
           {!rows && <p className="text-sm text-soft">Loading the figure list…</p>}
           {rows && all.length > 0 && (
@@ -168,20 +169,23 @@ export function SearchBox({ big = false, autoFocus = false, full = false }: { bi
             </p>
           )}
           {rows && all.length === 0 && (
-            <div className="sticker p-5">
-              <p className="font-semibold">Nothing matches &ldquo;{q.trim()}&rdquo; yet.</p>
-              <p className="mt-1 text-sm text-soft">Try the character&apos;s name, a series, or the number on the box. Or browse a line:</p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {Object.entries(LINE_LABEL).map(([key, name]) => (
-                  <a key={key} href={`/${key}`} className="inline-flex min-h-10 items-center rounded-lg border border-line bg-card px-3 text-sm font-semibold transition hover:border-soft">
+            <p className="text-sm text-soft">
+              <span className="font-semibold text-ink">Nothing matches &ldquo;{q.trim()}&rdquo; yet.</span> Try the character&apos;s name, a series or
+              the number on the box, or browse{" "}
+              {Object.entries(LINE_LABEL).map(([key, name]) => (
+                <span key={key}>
+                  <a href={`/${key}`} className="font-semibold text-pink-deep underline decoration-1 underline-offset-2">
                     {name}
                   </a>
-                ))}
-                <a href="/series" className="inline-flex min-h-10 items-center rounded-lg border border-line bg-card px-3 text-sm font-semibold transition hover:border-soft">
-                  Every series
-                </a>
-              </div>
-            </div>
+                  {", "}
+                </span>
+              ))}
+              or{" "}
+              <a href="/series" className="font-semibold text-pink-deep underline decoration-1 underline-offset-2">
+                every series
+              </a>
+              .
+            </p>
           )}
           {all.length > 0 && (
             <ul className="divide-y divide-line rounded-lg border border-line bg-card">
@@ -209,7 +213,7 @@ export function SearchBox({ big = false, autoFocus = false, full = false }: { bi
             </p>
           )}
         </div>
-      )}</div>}
+      )}
     </div>
   );
 }

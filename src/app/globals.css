@@ -18,7 +18,7 @@
   --pink-pale: 253 238 240;
   --lilac: 92 96 112;
   --lilac-pale: 242 242 246;
-  --mint: 21 140 88;
+  --mint: 17 124 78; /* 4.6:1 on --mint-pale (In stock), 4.9:1 as words on the page and under the save chip (2026-11-14) */
   --mint-pale: 229 245 236;
   --sky: 60 110 220;
   --sky-pale: 242 242 246;
