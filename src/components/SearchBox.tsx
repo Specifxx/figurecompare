@@ -125,7 +125,7 @@ export function SearchBox({ big = false, autoFocus = false, full = false }: { bi
           autoComplete="off"
           className={`min-w-0 flex-1 bg-transparent font-sans text-ink placeholder:text-soft focus:outline-none ${big ? "text-lg" : "text-sm"}`}
         />
-        <button type="submit" className={`rounded-md bg-pink font-display font-semibold text-white ${big ? "px-5 py-2" : "px-3 py-1 text-sm"}`}>
+        <button type="submit" className={`rounded-md bg-buy font-display font-semibold text-white ${big ? "px-5 py-2" : "px-3 py-1 text-sm"}`}>
           Find
         </button>
       </form>
@@ -158,31 +158,50 @@ export function SearchBox({ big = false, autoFocus = false, full = false }: { bi
           )}
         </ul>
       )}
-      {full && q.trim().length > 1 && (
+      {/* The results area holds its height from the first paint, so the list arriving never pushes the page (CLS). */}
+      {full && <div className="min-h-[60vh]">{q.trim().length > 1 && (
         <div className="mt-4 text-left">
           {!rows && <p className="text-sm text-soft">Loading the figure list…</p>}
-          {rows && (
+          {rows && all.length > 0 && (
             <p className="mb-2 text-sm text-soft">
               {all.length > PAGE_ROWS ? `More than ${PAGE_ROWS} figures match. Showing the first ${PAGE_ROWS}; add a word to narrow it.` : `${all.length} figure${all.length === 1 ? "" : "s"} match${all.length === 1 ? "es" : ""}.`}
             </p>
           )}
-          <ul className="divide-y divide-line rounded-lg border border-line bg-card">
-            {all.slice(0, PAGE_ROWS).map((r) => (
-              <li key={r[0]}>
-                <a href={`/figure/${r[0]}`} className="flex items-center gap-3 px-3 py-2.5 hover:bg-lilac-pale">
-                  <span className="min-w-0 flex-1">
-                    <span className="block truncate text-sm font-semibold">{r[1]}</span>
-                    <span className="block text-xs text-soft">{LINE_LABEL[r[2]] ?? r[2]}</span>
-                  </span>
-                  {r[4][region] != null ? (
-                    <span className="shrink-0 font-display text-sm font-bold text-pink-deep">{money(r[4][region]!, region)}</span>
-                  ) : (
-                    <span className="shrink-0 text-xs text-soft">Other regions</span>
-                  )}
+          {rows && all.length === 0 && (
+            <div className="sticker p-5">
+              <p className="font-semibold">Nothing matches &ldquo;{q.trim()}&rdquo; yet.</p>
+              <p className="mt-1 text-sm text-soft">Try the character&apos;s name, a series, or the number on the box. Or browse a line:</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {Object.entries(LINE_LABEL).map(([key, name]) => (
+                  <a key={key} href={`/${key}`} className="inline-flex min-h-10 items-center rounded-lg border border-line bg-card px-3 text-sm font-semibold transition hover:border-soft">
+                    {name}
+                  </a>
+                ))}
+                <a href="/series" className="inline-flex min-h-10 items-center rounded-lg border border-line bg-card px-3 text-sm font-semibold transition hover:border-soft">
+                  Every series
                 </a>
-              </li>
-            ))}
-          </ul>
+              </div>
+            </div>
+          )}
+          {all.length > 0 && (
+            <ul className="divide-y divide-line rounded-lg border border-line bg-card">
+              {all.slice(0, PAGE_ROWS).map((r) => (
+                <li key={r[0]}>
+                  <a href={`/figure/${r[0]}`} className="flex min-h-12 items-center gap-3 px-3 py-2.5 transition-colors hover:bg-lilac-pale">
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate text-sm font-semibold">{r[1]}</span>
+                      <span className="block text-xs text-soft">{LINE_LABEL[r[2]] ?? r[2]}</span>
+                    </span>
+                    {r[4][region] != null ? (
+                      <span className="shrink-0 font-display text-sm font-bold text-pink-deep">{money(r[4][region]!, region)}</span>
+                    ) : (
+                      <span className="shrink-0 text-xs text-soft">Other regions</span>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
           {rows && (
             <p className="mt-3 text-xs text-soft">
               Can&apos;t find a figure? It gets a page once two stores we check list it with its barcode in one region (or one local store and one Japan store).{" "}
@@ -190,7 +209,7 @@ export function SearchBox({ big = false, autoFocus = false, full = false }: { bi
             </p>
           )}
         </div>
-      )}
+      )}</div>}
     </div>
   );
 }

@@ -61,7 +61,7 @@ function MarketBody({ s, meta, us, line, m }: { s: ReturnType<typeof marketStats
           because a converted price is not what you pay; this is what the stores in each place actually ask.
         </p>
       </Prose>
-      <div className="sticker mt-4 overflow-x-auto p-2">
+      <div className="sticker my-6 max-w-[68ch] overflow-x-auto p-2">
         <table className="w-full text-sm">
           <caption className="sr-only">Median orderable price of each figure line by region</caption>
           <thead>
@@ -163,7 +163,7 @@ function BootlegBody({ s, meta, m }: { s: ReturnType<typeof marketStats>; meta: 
           the same goes for a sold-out figure from years ago offered &ldquo;new in box&rdquo; at under its original price.
         </p>
       </Prose>
-      <div className="sticker mt-4 overflow-x-auto p-2">
+      <div className="sticker my-6 max-w-[68ch] overflow-x-auto p-2">
         <table className="w-full text-sm">
           <caption className="sr-only">Median orderable Nendoroid price by region today</caption>
           <thead>
@@ -222,15 +222,15 @@ function BootlegBody({ s, meta, m }: { s: ReturnType<typeof marketStats>; meta: 
         <p>
           Every Nendoroid has a number, printed on the box, and the number identifies the release: the same character can have several Nendoroids, and a
           re-release keeps the number of the original. Search the name on this site and open the figure whose number matches. If the seller&rsquo;s box shows a
-          number that belongs to a different character, or no number at all, it is not a Good Smile Company release. The <Link prefetch={false} href="/nendoroid">Nendoroid hub</Link>
+          number that belongs to a different character, or no number at all, it is not a Good Smile Company release. The <Link prefetch={false} href="/nendoroid">Nendoroid hub</Link>{" "}
           lists every number stores are selling now.
         </p>
 
         <h2>What to do if you have one</h2>
         <p>
           Marketplaces refund counterfeit goods: open a case with photos beside the real release&rsquo;s product images and quote the price and box checks above. Do not
-          resell it, even described as a copy. And if the figure you wanted is sold out everywhere, wait: Good Smile re-releases popular Nendoroids regularly, and the
-          <Link prefetch={false} href="/preorders"> pre-orders page</Link> lists every re-release the stores we compare are taking orders for.
+          resell it, even described as a copy. And if the figure you wanted is sold out everywhere, wait: Good Smile re-releases popular Nendoroids regularly, and the{" "}
+          <Link prefetch={false} href="/preorders">pre-orders page</Link> lists every re-release the stores we compare are taking orders for.
         </p>
         <p>
           Data as of {meta ? niceDate(meta.updatedAt) : "today"}: {fmt(s.total)} figures across {s.stores} stores, matched by barcode, in each store&rsquo;s own currency and before delivery.
@@ -263,7 +263,7 @@ function BlackFridayBody({ s, meta, m }: { s: ReturnType<typeof marketStats>; me
           ordinary current figure that is not under this is not a deal; it is the going rate.
         </p>
       </Prose>
-      <div className="sticker mt-4 overflow-x-auto p-2">
+      <div className="sticker my-6 max-w-[68ch] overflow-x-auto p-2">
         <table className="w-full text-sm">
           <caption className="sr-only">Median orderable price of each figure line by region today</caption>
           <thead>

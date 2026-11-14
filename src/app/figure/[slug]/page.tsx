@@ -104,8 +104,8 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
 
       <section className="grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
         <div className="relative">
-          <div className="sticker relative mx-auto max-w-sm overflow-hidden bg-white md:max-w-none">
-            <FigureImage src={f.img} alt={f.name} line={f.line} eager className="relative aspect-square w-full object-contain p-6" />
+          <div className="sticker relative mx-auto max-w-[15rem] overflow-hidden bg-white sm:max-w-sm md:max-w-none">
+            <FigureImage src={f.img} alt={f.name} line={f.line} eager className="relative aspect-square w-full object-contain p-4 sm:p-6" />
           </div>
           <p className="mt-2 text-center text-xs text-soft">Photo from a store listing.</p>
         </div>
@@ -299,7 +299,7 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
               <div className="min-w-0 flex-1">
                 {low ? (
                   <>
-                    <p className="truncate text-xs text-soft">Cheapest {r.phrase}: {storeName(low.s)}</p>
+                    <p className="line-clamp-2 text-xs leading-snug text-soft">Cheapest {r.phrase}: {storeName(low.s)}</p>
                     <p className="h-display text-xl text-pink-deep">{money(low.p, r.code)}</p>
                     {alt && (
                       <PaidAlt

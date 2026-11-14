@@ -107,7 +107,7 @@ function Searches({ region, placement, queries }: { region: RegionCode; placemen
             href={x.href!}
             paid
             event={{ source: "ebay", region, placement }}
-            className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border border-line bg-card px-4 py-2 text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-pink hover:text-white"
+            className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border border-line bg-card px-4 py-2 text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-buy hover:text-white"
           >
             {x.label} <span aria-hidden>›</span>
           </OutLink>

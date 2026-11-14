@@ -80,7 +80,7 @@ export function LineHub({ line, page }: { line: LineKey; page: number }) {
               key={p}
               href={href(p)}
               aria-current={p === page ? "page" : undefined}
-              className={`grid h-10 min-w-10 place-items-center rounded-lg border px-3 font-display font-semibold ${p === page ? "border-pink bg-pink text-white" : "border-line bg-card hover:border-pink"}`}
+              className={`grid h-10 min-w-10 place-items-center rounded-lg border px-3 font-display font-semibold ${p === page ? "border-buy bg-buy text-white" : "border-line bg-card hover:border-pink"}`}
             >
               {p}
             </Link>

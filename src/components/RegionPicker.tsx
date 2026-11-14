@@ -72,7 +72,7 @@ export function RegionChips({ className = "" }: { className?: string }) {
             aria-pressed={on}
             onClick={() => setRegion(r.code)}
             title={r.name}
-            className={`inline-flex min-h-10 items-center gap-1.5 rounded-full border px-3 text-sm font-semibold transition ${on ? "border-pink bg-pink text-white" : "border-line bg-card text-ink hover:border-pink"}`}
+            className={`inline-flex min-h-10 items-center gap-1.5 rounded-full border px-3 text-sm font-semibold transition ${on ? "border-buy bg-buy text-white" : "border-line bg-card text-ink hover:border-pink"}`}
           >
             <Flag code={r.code} />
             <span className="sm:hidden">{r.code === "JP" ? "Japan" : r.code}</span>
@@ -95,7 +95,7 @@ export function RegionTabs({ available }: { available: RegionCode[] }) {
           role="tab"
           aria-selected={region === r.code}
           onClick={() => setRegion(r.code)}
-          className={`chip border px-3 py-1 text-sm transition ${region === r.code ? "border-pink bg-pink text-white" : "border-line bg-card text-ink hover:border-pink"}`}
+          className={`chip border px-3 py-1 text-sm transition ${region === r.code ? "border-buy bg-buy text-white" : "border-line bg-card text-ink hover:border-pink"}`}
         >
           <Flag code={r.code} /> {r.code === "JP" ? "From Japan" : r.code}
         </button>
