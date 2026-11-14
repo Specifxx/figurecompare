@@ -17,6 +17,8 @@ import { indexByName, readSitemapStore, type PageCache } from "@/lib/import/site
 import { fetchFx, type Fx } from "@/lib/fx";
 import type { History, Listing, Meta, StoreRun } from "@/lib/types";
 import { demandSlugs, focusCatalog } from "@/lib/focus";
+import { nextCore } from "@/lib/index-tiers";
+import { SERIES, seriesIsLive } from "@/content/series";
 import { execFileSync } from "node:child_process";
 
 const DATA = path.join(process.cwd(), "data");
@@ -145,6 +147,16 @@ async function main() {
   write("public/figures.json", { figures });
   write("public/history.json", history);
   write("public/meta.json", meta, true);
+  // What the pages remember from one day to the next (DECISIONS.md 2026-11-14): the sitemap's core figures stay while
+  // they are indexable, and a series hub that had a page keeps it down to SERIES_KEEP figures.
+  const prevPages = read<{ core?: string[]; series?: string[] }>("public/pages.json", {});
+  const wasLive = new Set(prevPages.series ?? []);
+  const pages = {
+    core: nextCore(prevPages.core ?? [], figures),
+    series: SERIES.filter((s) => seriesIsLive(figures.filter((f) => s.re.test(f.name)).length, wasLive.has(s.slug))).map((s) => s.slug),
+  };
+  write("public/pages.json", pages, true);
+  console.log(`pages: ${pages.core.length} core figures in the sitemap (${pages.core.filter((j) => !(prevPages.core ?? []).includes(j)).length} new), ${pages.series.length} series hubs`);
   // The day's yen rates for the Japan table (lib/fx.ts). A failed fetch keeps yesterday's file.
   try {
     write("public/fx.json", await fetchFx(), true);

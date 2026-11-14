@@ -10,6 +10,11 @@ export interface Series {
 }
 
 export const SERIES_MIN = 12;
+/** A hub that already has a page keeps it down to this many figures (DECISIONS.md 2026-11-14): two of the twenty hubs
+ *  sat at 11 and 12 figures in the week of 7 November and their URLs were a 404 one day and a page the next. */
+export const SERIES_KEEP = 9;
+/** Does a series have a page today? `wasLive`: it had one after the last import (data/public/pages.json). PURE. */
+export const seriesIsLive = (figures: number, wasLive: boolean): boolean => figures >= SERIES_MIN || (wasLive && figures >= SERIES_KEEP);
 
 export const SERIES: Series[] = [
   { slug: "hatsune-miku", name: "Hatsune Miku", re: /\bhatsune miku\b|\b(snow|racing|sakura|magical mirai) miku\b|\bpiapro\b|\bvocaloid\b|\bkagamine\b|\bmegurine luka\b/i, about: "Miku and the Piapro characters, from Snow Miku to Racing Miku." },
