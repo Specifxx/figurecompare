@@ -1,7 +1,7 @@
 {
  "v": 1,
  "site": "figure",
- "generatedAt": "2026-11-15T16:01:43.759Z",
+ "generatedAt": "2026-11-16T17:10:37.520Z",
  "links": {
   "US": {
    "deals": "https://figurecompare.com/deals",
@@ -70,17 +70,6 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "US",
-   "title": "Nendoroid Hatsune Miku: DecoMiku (Darkness)",
-   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-decomiku-darkness-3007",
-   "cents": 5000,
-   "currency": "USD",
-   "store": "Good Game Anime",
-   "image": "https://cdn.shopify.com/s/files/1/0428/3347/7798/files/Character_Vocal_Series_01_Nendoroid__3007_Hatsune_Miku__DecoMiku__Darkness_5.png?v=1794264032&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "US",
    "title": "Nendoroid Final Fantasy XIV - Yotsuyu",
    "url": "https://figurecompare.com/figure/nendoroid-final-fantasy-xiv-yotsuyu-3153",
    "cents": 5368,
@@ -92,12 +81,23 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "US",
-   "title": "Nendoroid Kasane Teto - Kasane Teto: VOICEPEAK Ver.",
-   "url": "https://figurecompare.com/figure/nendoroid-kasane-teto-voicepeak-version-3052",
-   "cents": 5699,
+   "title": "Nendoroid Mydei",
+   "url": "https://figurecompare.com/figure/nendoroid-honkai-star-rail-mydei-3077",
+   "cents": 5495,
    "currency": "USD",
-   "store": "USA Gundam Store",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/kasane-teto-nendoroid-voicepeak-version_1.jpg?v=1777020622&width=600"
+   "store": "Galactic Toys & Collectibles",
+   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/0b9505b3-7333-4ebb-ba37-305398cd7325-L.png?v=1794598249&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "US",
+   "title": "Nendoroid Genshin Impact - Nahida",
+   "url": "https://figurecompare.com/figure/nendoroid-genshin-impact-nahida-3117",
+   "cents": 5779,
+   "currency": "USD",
+   "store": "Japan Figure Store",
+   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/e3fcb548-f5de-4376-8c83-623d3c7649ed-L.png?v=1794598231&width=600"
   },
   {
    "kind": "deal",
@@ -475,7 +475,7 @@
    "cents": 8795,
    "currency": "AUD",
    "store": "Gameology",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232586161.png?v=1785919168&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/berserk_nendoroid_guts_re_run__c68e1.jpg?v=1782448195&width=600"
   },
   {
    "kind": "preorder",
@@ -486,7 +486,7 @@
    "cents": 8795,
    "currency": "AUD",
    "store": "Gameology",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232585195.png?v=1785919181&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/final_fantasy_xiv_nendoroid_y_shtola_5edc8.jpg?v=1781766714&width=600"
   },
   {
    "kind": "preorder",
@@ -665,13 +665,13 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "EU",
-   "title": "POP UP PARADE Rohan Kishibe",
-   "url": "https://figurecompare.com/figure/pop-up-parade-rohan-kishibe",
-   "cents": 4200,
+   "title": "Nendoroid Miroku",
+   "url": "https://figurecompare.com/figure/nendoroid-inuyasha-miroku-1735",
+   "cents": 2980,
    "currency": "EUR",
-   "store": "Amuzzi",
-   "image": "https://cdn.shopify.com/s/files/1/0876/7307/8075/files/77685BD8-4DF3-11EF-859E-282E661BFA1B-L.png?v=1747093672&width=600",
-   "refCents": 9195,
+   "store": "Yorokonde",
+   "image": "https://cdn.shopify.com/s/files/1/0428/3347/7798/products/STL215192.jpg?v=1762450032&width=600",
+   "refCents": 6499,
    "refLabel": "dearest store",
    "savingPct": 54
   },
@@ -690,6 +690,17 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "EU",
+   "title": "Nendoroid Demon Slayer - Zenitsu Agatsuma",
+   "url": "https://figurecompare.com/figure/nendoroid-demon-slayer-kimetsu-no-yaiba-zenitsu-agatsuma-1334-63220",
+   "cents": 4999,
+   "currency": "EUR",
+   "store": "JumpIchiban",
+   "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/Nendoroid-Zenitsu-Agatsuma1.png?v=1773798937&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "EU",
    "title": "Nendoroid Hatsune Miku: Senbonzakura Ver.",
    "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-senbonzakura-ver-480",
    "cents": 5190,
@@ -701,34 +712,12 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "EU",
-   "title": "Nendoroid Ace Attorney - Miles Edgeworth",
-   "url": "https://figurecompare.com/figure/nendoroid-ace-attorney-miles-edgeworth-1762",
-   "cents": 5890,
+   "title": "Nendoroid Final Fantasy XIV - Estinien",
+   "url": "https://figurecompare.com/figure/nendoroid-final-fantasy-xiv-estinien-3096",
+   "cents": 5199,
    "currency": "EUR",
-   "store": "Yorokonde",
-   "image": "https://cdn.shopify.com/s/files/1/0878/5254/files/4570232592827_1.jpg?v=1790306464&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "EU",
-   "title": "Nendoroid Ace Attorney - Phoenix Wright",
-   "url": "https://figurecompare.com/figure/nendoroid-ace-attorney-phoenix-wright-1761",
-   "cents": 5890,
-   "currency": "EUR",
-   "store": "Yorokonde",
-   "image": "https://cdn.shopify.com/s/files/1/0878/5254/files/4570232592810_1.jpg?v=1790306466&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "EU",
-   "title": "Nendoroid Agnes Tachyon",
-   "url": "https://figurecompare.com/figure/nendoroid-agnes-tachyon-2512",
-   "cents": 6200,
-   "currency": "EUR",
-   "store": "Amuzzi",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828678231.png?v=1785919204&width=600"
+   "store": "JumpIchiban",
+   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/final-fantasy-xiv-nendoroid-estinien_1.jpg?v=1784262397&width=600"
   },
   {
    "kind": "preorder",
@@ -740,6 +729,17 @@
    "currency": "EUR",
    "store": "AniMuchuu",
    "image": "https://cdn.shopify.com/s/files/1/0428/3347/7798/files/101_1b64801b-3c6a-4e55-baec-387ded97733c.jpg?v=1794264034&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "EU",
+   "title": "Nendoroid Final Fantasy XIV - Haurchefant",
+   "url": "https://figurecompare.com/figure/nendoroid-final-fantasy-xiv-haurchefant-3125",
+   "cents": 8699,
+   "currency": "EUR",
+   "store": "AniMuchuu",
+   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/438262b1-d0c9-4908-baff-879cdbd77279-L.png?v=1792709460&width=600"
   },
   {
    "kind": "deal",
