@@ -1169,3 +1169,7 @@ The 2026-11-12/13 rule (Amazon row only with a real price) took Amazon buy click
 with them), because almost no row has a live API price. Not a row: `AmazonAlso`, one line under a region's table on the product page, only where
 Amazon's own listing was matched to this exact JAN (committed ASINs), unpriced, labelled paid, hidden when the priced row shows, never the
 quick view, never ranked, best, a deal or an alert. Placement `also_amazon`. Read Amazon clicks per day against 7-12 Nov.
+
+## 2026-11-16: urgent release of the "Also on Amazon" line
+
+Amazon clicks were about 0 a day since 13 Nov. The owner approved one urgent production build (subject carries the urgent marker) so the unpriced matched line goes live now instead of waiting for the next daily release. One build, no previews.
