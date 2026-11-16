@@ -53,7 +53,7 @@ export function HeaderMenus({ menus }: { menus: HeaderMenu[] }) {
               className="relative"
               onPointerEnter={(e) => e.pointerType === "mouse" && later(() => setOpen(i), open === null ? 90 : 0)}
               onBlur={(e) => {
-                if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setOpen((o) => (o === i ? null : o));
+                if (e.relatedTarget && !e.currentTarget.contains(e.relatedTarget as Node | null)) setOpen((o) => (o === i ? null : o));
               }}
             >
               <button
@@ -76,7 +76,7 @@ export function HeaderMenus({ menus }: { menus: HeaderMenu[] }) {
                   <path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
-              <div id={`hm-${i}`} className={`absolute left-0 top-full z-50 pt-1 ${isOpen ? "block" : "hidden"}`}>
+              <div id={`hm-${i}`} onMouseDown={(e) => e.preventDefault()} className={`absolute left-0 top-full z-50 pt-1 ${isOpen ? "block" : "hidden"}`}>
                 <div className="max-h-[75vh] overflow-y-auto rounded-xl border border-line bg-card p-4 shadow-lg">
                   <div className="flex gap-8">
                     {m.columns.map((c, ci) => (
