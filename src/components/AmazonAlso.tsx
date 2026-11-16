@@ -7,7 +7,7 @@ import { REGION_BY_CODE } from "@/site";
 import { amazonItemUrl, subId } from "@/lib/affiliate";
 import { amazonLive } from "@/lib/amazon-live";
 import { readAsins, type AsinFile } from "@/lib/amazon-asins";
-import type { Product } from "@/lib/types";
+import type { Figure } from "@/lib/types";
 import { OutLink } from "./OutLink";
 
 const cache = new Map<string, AsinFile>();
@@ -16,7 +16,7 @@ const asins = (r: RegionCode) => {
   return cache.get(r)!;
 };
 
-export function AmazonAlso({ f, region }: { f: Product; region: RegionCode }) {
+export function AmazonAlso({ f, region }: { f: Figure; region: RegionCode }) {
   const asin = asins(region)[f.jan]?.[0];
   if (!asin || amazonLive(f.jan, region)) return null;
   const href = amazonItemUrl(asin, region, subId(region, "also_amazon", f.jan));
