@@ -9,6 +9,7 @@ import { isIndexable } from "@/lib/index-tiers";
 import { storeUrl } from "@/lib/affiliate";
 import { FigureImage } from "@/components/FigureImage";
 import { PriceTable } from "@/components/PriceTable";
+import { AmazonAlso } from "@/components/AmazonAlso";
 import { PriceHistory } from "@/components/Sparkline";
 import { RegionTabs } from "@/components/RegionPicker";
 import { TileGrid } from "@/components/FigureTile";
@@ -215,6 +216,7 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
           {REGIONS.map((r) => (
             <div key={r.code} className={`rp rp-${r.code}`}>
               <PriceTable f={f} region={r.code} ebay={ebay[r.code]} />
+              <AmazonAlso f={f} region={r.code} />
               {r.code !== "JP" && f.offers.JP?.length ? (
                 <div className="mt-6">
                   <h3 className="h-display mb-1 text-lg">🇯🇵 Or import from Japan</h3>

@@ -1162,3 +1162,10 @@ A second look at the day's polish pass (#101) found one rule broken and one old 
 No paid link, ad block, pinned row, placement name, button word, row order, URL, title, description, canonical, robots, Open
 Graph, JSON-LD or heading changed: the server HTML of 22 pages matches the pre-#101 build in all of these (the 404 keeps its
 three line links). The 19 November clicks-per-placement recheck is unaffected.
+
+## 2026-11-16: A small unpriced "Also on Amazon" line under each region's price table
+
+The 2026-11-12/13 rule (Amazon row only with a real price) took Amazon buy clicks to zero on every site from 13 Nov (Amazon's own reports fell
+with them), because almost no row has a live API price. Not a row: `AmazonAlso`, one line under a region's table on the product page, only where
+Amazon's own listing was matched to this exact JAN (committed ASINs), unpriced, labelled paid, hidden when the priced row shows, never the
+quick view, never ranked, best, a deal or an alert. Placement `also_amazon`. Read Amazon clicks per day against 7-12 Nov.
