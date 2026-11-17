@@ -7,6 +7,7 @@ import { amazonItemUrl, amazonSearchUrl, ebayAffiliateUrl, ebaySearchUrl, ebaySh
 import { getFx, storeName } from "@/lib/data";
 import { convertYen } from "@/lib/fx";
 import { AMAZON_CLOCK, amazonLive } from "@/lib/amazon-live";
+import { readAsins, type AsinFile } from "@/lib/amazon-asins";
 import { money } from "@/lib/format";
 import type { EbayPick, Figure } from "@/lib/types";
 import { PriceRows, type RowData, type RowsData } from "./PriceRows";
@@ -26,6 +27,12 @@ function vsBest(p: number, bestP: number | undefined): string {
 /** One region's rows: eBay first, Amazon second (then HobbyLink Japan on the
  *  Japan table), then the stores in price order. Plain data, so the quick view
  *  (/q/<slug>) draws the same rows as the figure page. */
+const asinCache = new Map<string, AsinFile>();
+const asinsFor = (r: RegionCode) => {
+  if (!asinCache.has(r)) asinCache.set(r, readAsins(r));
+  return asinCache.get(r)!;
+};
+
 export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placement = "table", view?: RegionCode): RowsData {
   const offers = f.offers[region] ?? [];
   const r = REGION_BY_CODE[region];
@@ -117,6 +124,23 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
     // currency. Never the Japan table (yen has no minor unit, and it is shown converted).
     ...(o.st !== "out" && region !== "JP" ? { cart: { title: f.name, image: f.img, priceCents: o.p, currency: r.currency } } : {}),
   }));
+  // No Amazon price: the unpriced "Check on Amazon" row (owner, 2026-11-17: "even if there are no Amazon prices available, we should have
+  // an option to check on Amazon in our price rows"), an ordinary LAST row on the page and the quick view, the item's own page where the
+  // daily ASIN pass matched this barcode, else the tagged search. Never pinned, ranked, the best price, a deal or an alert.
+  if (!live && amazonUrl) {
+    const asin = asinsFor(region)[f.jan]?.[0];
+    const href = (asin && amazonItemUrl(asin, region, subId(region, "check_amazon", f.jan))) || amazonSearchUrl(q, region, subId(region, "check_amazon", f.jan));
+    if (href)
+      stores.push({
+        name: "Check on Amazon",
+        sub: `${r.amazonHost?.replace("www.", "")} · no price shown, check the seller`,
+        price: null,
+        status: null,
+        href,
+        paid: true,
+        event: { source: "amazon", region, placement: "check_amazon", jan: f.jan },
+      });
+  }
   return { pinned, stores };
 }
 

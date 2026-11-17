@@ -67,7 +67,7 @@ test("the Creators API client stays build-side; only the price table and its pai
     const s = fs.readFileSync(f, "utf8");
     if (f !== "src/lib/amazon-creators.ts") assert.ok(!/amazon-creators/.test(s), `${f} imports the Creators API client`);
     // The price table, and the paid alternative under the hero's cheapest store, which quotes that same row (2026-11-10).
-    if (/from "(@\/lib|\.)\/amazon-live"/.test(s)) assert.ok(["src/components/PriceTable.tsx", "src/lib/paid-alternative.ts", "src/components/AmazonAlso.tsx"].includes(f), `${f} reads live Amazon prices`);
+    if (/from "(@\/lib|\.)\/amazon-live"/.test(s)) assert.ok(["src/components/PriceTable.tsx", "src/lib/paid-alternative.ts"].includes(f), `${f} reads live Amazon prices`);
     assert.ok(!/AMAZON_CREATORS/.test(s) || f === "src/lib/amazon-creators.ts", `${f} names the credentials`);
   }
   assert.match(fs.readFileSync(".gitignore", "utf8"), /^data\/amazon-live\/$/m);
@@ -110,7 +110,7 @@ test("the ops check is never red: Amazon's sales gate is expected, only a silent
 
 test("pages never read the ASIN files; the import finds ASINs with the credentials as GitHub secrets", () => {
   for (const f of [...walk("src/app"), ...walk("src/components")].filter((f) => /\.tsx?$/.test(f)))
-    assert.ok(!/amazon-asins/.test(fs.readFileSync(f, "utf8")) || f === "src/components/AmazonAlso.tsx", `${f} reads the ASIN files`); // AmazonAlso: the unpriced "Also on Amazon" line (owner, 2026-11-16)
+    assert.ok(!/amazon-asins/.test(fs.readFileSync(f, "utf8")) || f === "src/components/PriceTable.tsx", `${f} reads the ASIN files`); // AmazonAlso: the unpriced "Also on Amazon" line (owner, 2026-11-16)
   const wf = fs.readFileSync(".github/workflows/import.yml", "utf8");
   assert.match(wf, /npx tsx scripts\/amazon-asins\.ts/);
   for (const r of ["US", "UK", "CA", "EU", "AU"]) assert.match(wf, new RegExp(`AMAZON_CREATORS_${r}_CLIENT_SECRET: \\$\\{\\{ secrets\\.AMAZON_CREATORS_${r}_CLIENT_SECRET \\}\\}`));
