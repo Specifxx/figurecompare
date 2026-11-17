@@ -1204,3 +1204,13 @@ figure loses an offer (0 matched), the import has about 20,000 fewer listings to
 only when its own feed shows a line we cover (probe its `/collections.json` first). Not changed: stores with a few matches out of
 thousands (Toynk 16 of 20,000, Sugoi Mart 9 of 15,090, Sin City Comics, Geek & Co, Raptor Games, Wonderland Games, Nabema, Spieda):
 left for a narrower collection or removal after a second look at their matches.
+
+## 2026-11-17: Fiverr first-time-shopper review of DexCompare, applied here (owner)
+
+The owner bought a professional first-time-shopper QA review of DexCompare and asked for every finding that generalises to reach every site.
+Applied here (the full reasoning is in DexCompare's DECISIONS.md, same date):
+
+- **Cart hand-off:** the cart drawer opens with "You pay each store on its own site. We never take payment." (normal-size text, first thing in the
+  drawer); "Total before postage" became "Estimated total (before postage)"; the add button's tooltip says you pay at the store. The label stays
+  "Add to cart" (owner, 2026-11-14: a literal "Add to cart" on every row).
+- **The quick view sets the tab title and description while it is open** and restores them on close (the tab used to keep the list's title).
