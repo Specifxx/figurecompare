@@ -9,3 +9,10 @@ test("the pinned Amazon row needs a real price: no price, no row", () => {
   assert.match(s, /if \(amazonUrl && live\)/);
   assert.doesNotMatch(s, /Also check on Amazon/);
 });
+
+test("Check on Amazon (owner, 2026-11-17): an unpriced ORDINARY LAST row, page and quick view, never pinned", () => {
+  const s = readFileSync(new URL("../src/components/PriceTable.tsx", import.meta.url), "utf8");
+  assert.match(s, /if \(!live && amazonUrl\) \{/);
+  assert.match(s, /stores\.push\(\{\s+name: "Check on Amazon"/);
+  assert.match(s, /placement: "check_amazon"/);
+});
