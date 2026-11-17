@@ -1194,3 +1194,13 @@ on every card page, non-card sisters in `SITE.sisterSites`) it is removed. A con
 DexCompare's links read dexcompare.io (the old host is still accepted in a feed until Dex republishes). Not changed: price alerts,
 `alert-feed.json`, the family feeds and the sister data reads: they are data, not links. Also a "URL freeze" rule in CLAUDE.md:
 no mass path change without a redirect map, agents never flip hosts, no pop-unders or surprise navigation (this repo had none).
+
+## 2026-11-17: Four stores that matched nothing are no longer read
+
+The 16 November import's `meta.json` shows four stores that were read whole and matched not one figure: OCARE (2,004 listings, all
+"not-a-line"), Collecteebles (1,433), Spanky's Loot Stash (6,745) and ENV Collectible (9,536). Three read an `all` collection, so each
+daily import made hundreds of requests to a shop for no price, no page and no offer. They are removed from `src/content/stores.ts`; no
+figure loses an offer (0 matched), the import has about 20,000 fewer listings to read, and the shops get fewer requests. Put one back
+only when its own feed shows a line we cover (probe its `/collections.json` first). Not changed: stores with a few matches out of
+thousands (Toynk 16 of 20,000, Sugoi Mart 9 of 15,090, Sin City Comics, Geek & Co, Raptor Games, Wonderland Games, Nabema, Spieda):
+left for a narrower collection or removal after a second look at their matches.
