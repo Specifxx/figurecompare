@@ -10,6 +10,7 @@ import { AMAZON_CLOCK, amazonLive } from "@/lib/amazon-live";
 import { readAsins, type AsinFile } from "@/lib/amazon-asins";
 import { money } from "@/lib/format";
 import type { EbayPick, Figure } from "@/lib/types";
+import { orderRows } from "@/lib/row-order";
 import { PriceRows, type RowData, type RowsData } from "./PriceRows";
 
 export function searchQuery(f: Figure): string {
@@ -144,7 +145,8 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
         event: { source: "amazon", region, placement: "check_amazon", jan: f.jan },
       });
   }
-  return { pinned, stores };
+  // Owner, 2026-11-17: every affiliated row at the top by price, then the cheapest plain store, then the rest (lib/row-order.ts).
+  return { ...orderRows(pinned, stores) };
 }
 
 export function PriceTable({ f, region, ebay, placement = "table", view }: { f: Figure; region: RegionCode; ebay?: EbayPick; placement?: string; view?: RegionCode }) {
