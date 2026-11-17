@@ -118,3 +118,11 @@ test("the cart page is a static, noindexed shell and the header shows the cart",
   assert.match(page, /force-static/);
   assert.ok(existsSync("src/components/cart/CartHeaderLink.tsx"));
 });
+
+test("a search row with no price is still a line: it opens its own tagged link and counts for nothing", () => {
+  const l = makeLine({ ...row, storeName: "eBay", href: "https://www.ebay.com/sch/i.html?_nkw=booster+box&campid=5339155912", productUrl: "https://www.ebay.com/sch/i.html?_nkw=booster+box", priceCents: 0 })!;
+  assert.equal(l.priceCents, 0);
+  assert.equal(l.variantId, null);
+  assert.equal(l.store, "ebay.com");
+  assert.equal(makeLine({ ...row, priceCents: -1 }), null);
+});

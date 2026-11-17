@@ -88,15 +88,15 @@ function Row({ name, sub, price, status, href, paid, highlight = false, live, ev
           {sub && <span className={highlight ? "font-bold text-pink-deep" : ""}>{sub}</span>}
           {paid && <span>Paid link</span>}
           {/* Phones: the cart list's add button as a word on this line, where the row has no width to spare. */}
-          {cart && vote && (
-            <CartAddButton inline href={href} productUrl={vote} storeName={name} title={cart.title} priceCents={cart.priceCents} currency={cart.currency} image={cart.image} className="text-xs sm:hidden" />
+          {cart && (
+            <CartAddButton inline href={href} productUrl={vote ?? href} storeName={name} title={cart.title} priceCents={cart.priceCents} currency={cart.currency} image={cart.image} className="text-xs sm:hidden" />
           )}
         </p>
       </div>
       {price && live && <AmazonPrice price={price} at={live.at} timeZone={live.timeZone} zoneLabel={live.zoneLabel} />}
       {price && !live && <span className={`font-display text-lg font-bold ${highlight ? "text-pink-deep" : ""}`}>{price}</span>}
-      {cart && vote && (
-        <CartAddButton href={href} productUrl={vote} storeName={name} title={cart.title} priceCents={cart.priceCents} currency={cart.currency} image={cart.image} className="hidden text-soft sm:inline-flex" />
+      {cart && (
+        <CartAddButton href={href} productUrl={vote ?? href} storeName={name} title={cart.title} priceCents={cart.priceCents} currency={cart.currency} image={cart.image} className="hidden text-soft sm:inline-flex" />
       )}
       <OutLink
         href={href}
