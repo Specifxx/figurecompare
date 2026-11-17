@@ -71,7 +71,8 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
       paid: true,
       pin: "ebay",
       vote: ebay?.u ?? ebayUrl,
-      ...(ebay && region !== "JP" ? { cart: { title: f.name, image: f.img, priceCents: ebay.p, currency: r.currency } } : {}),
+      // Every price row has an Add to cart (owner, 2026-11-17): the search row's line opens this tagged link and says "See today's price".
+      ...(region !== "JP" ? { cart: { title: f.name, image: f.img, priceCents: ebay ? ebay.p : 0, currency: r.currency } } : {}),
       event: { source: "ebay", region, placement: `${placement}_pinned`, jan: f.jan },
     });
   // Amazon only with a real price (owner, 2026-11-12): no price, no row, and never in the quick view.
@@ -97,6 +98,7 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
       status: null,
       href: hlj,
       paid: true,
+      ...(region !== "JP" ? { cart: { title: f.name, image: f.img, priceCents: 0, currency: r.currency } } : {}),
       event: { source: "hlj", region, placement: `${placement}_pinned`, jan: f.jan },
     });
   // The maker's own price as the reference (Reddit feedback, 2026-11-07: "flag prices above RRP"): in the US, Good
@@ -138,6 +140,7 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
         status: null,
         href,
         paid: true,
+        ...(region !== "JP" ? { cart: { title: f.name, image: f.img, priceCents: 0, currency: r.currency } } : {}),
         event: { source: "amazon", region, placement: "check_amazon", jan: f.jan },
       });
   }
