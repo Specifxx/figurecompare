@@ -10,6 +10,7 @@ import { AMAZON_CLOCK, amazonLive } from "@/lib/amazon-live";
 import { readAsins, type AsinFile } from "@/lib/amazon-asins";
 import { money } from "@/lib/format";
 import type { EbayPick, Figure } from "@/lib/types";
+import { orderRows } from "@/lib/row-order";
 import { PriceRows, type RowData, type RowsData } from "./PriceRows";
 
 export function searchQuery(f: Figure): string {
@@ -127,13 +128,13 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
     ...(o.st !== "out" && region !== "JP" ? { cart: { title: f.name, image: f.img, priceCents: o.p, currency: r.currency } } : {}),
   }));
   // No Amazon price: the unpriced "Check on Amazon" row (owner, 2026-11-17: "even if there are no Amazon prices available, we should have
-  // an option to check on Amazon in our price rows"), an ordinary LAST row on the page and the quick view, the item's own page where the
-  // daily ASIN pass matched this barcode, else the tagged search. Never pinned, ranked, the best price, a deal or an alert.
+  // an option to check on Amazon in our price rows"), a pinned affiliate row UNDER eBay at the top (owner, 2026-11-17), on the page and the quick view, the item's own page where the
+  // daily ASIN pass matched this barcode, else the tagged search. Never ranked, the best price, a deal or an alert.
   if (!live && amazonUrl) {
     const asin = asinsFor(region)[f.jan]?.[0];
     const href = (asin && amazonItemUrl(asin, region, subId(region, "check_amazon", f.jan))) || amazonSearchUrl(q, region, subId(region, "check_amazon", f.jan));
     if (href)
-      stores.push({
+      pinned.splice(pinned[0]?.event?.source === "ebay" ? 1 : 0, 0, {
         name: "Check on Amazon",
         sub: `${r.amazonHost?.replace("www.", "")} · no price shown, check the seller`,
         price: null,
@@ -144,7 +145,8 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
         event: { source: "amazon", region, placement: "check_amazon", jan: f.jan },
       });
   }
-  return { pinned, stores };
+  // Owner, 2026-11-17: every affiliated row at the top by price, then the cheapest plain store, then the rest (lib/row-order.ts).
+  return { ...orderRows(pinned, stores) };
 }
 
 export function PriceTable({ f, region, ebay, placement = "table", view }: { f: Figure; region: RegionCode; ebay?: EbayPick; placement?: string; view?: RegionCode }) {
