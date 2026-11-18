@@ -22,6 +22,8 @@ import { liveSeries } from "@/lib/series";
 import { getMeta, lineCounts } from "@/lib/data";
 import { niceDate } from "@/lib/format";
 import { CHRISTMAS_FESTIVE_LAYER, SEASON_BOOT_SCRIPT } from "@/lib/season";
+import { BottomNav } from "@/components/BottomNav";
+import { BOTTOM_NAV } from "@/lib/bottom-nav";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -76,6 +78,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <RateCard />
         <Analytics />
         <ShareArrival />
+        {/* The phone bottom nav (components/BottomNav.tsx, lib/bottom-nav.ts): browser only, phones only, BOTTOM_NAV is its switch. */}
+        {BOTTOM_NAV !== "off" && <BottomNav mode={BOTTOM_NAV} />}
       </body>
     </html>
   );
