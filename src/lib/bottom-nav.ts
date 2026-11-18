@@ -3,7 +3,7 @@
 // ?bn=1, "on" shows it to every phone visitor (?bn=0 still opts out). The tabs are worked out in the browser from the page.
 import type { BottomNavMode, BottomNavTab } from "@/components/BottomNav";
 
-export const BOTTOM_NAV: BottomNavMode = "optin";
+export const BOTTOM_NAV: BottomNavMode = "on";
 
 /** The header's search field (only used by a search tab that focuses it; this site's Search tab is its /search page). */
 export const BOTTOM_NAV_SEARCH_INPUT = "header input[type='search'], header input[name='q']";
