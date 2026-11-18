@@ -112,7 +112,8 @@ test("eBay strips on every page but the legal ones, labelled and sponsored (owne
   const walk = (d: string): string[] => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(`${d}/${e.name}`) : [`${d}/${e.name}`]));
   // The cart (owner 2026-11-06) is the visitor's own checkout list: no ad strip beside the checkout buttons.
   // /our-sites (2026-11-08) is a list of our own sites: no ad strip either.
-  const legal = /\/(terms|privacy|disclosure|contact|how-we-pick-stores|list-your-store|cart|our-sites)\/page\.tsx$/;
+  // /feedback (2026-11-18) is a form, like /contact: no ad strip beside it.
+  const legal = /\/(terms|privacy|disclosure|contact|how-we-pick-stores|list-your-store|cart|our-sites|feedback)\/page\.tsx$/;
   for (const f of walk("src/app").filter((f) => /\/(page|not-found)\.tsx$/.test(f) && !legal.test(f))) {
     const src = fs.readFileSync(f, "utf8");
     const viaHub = src.includes("<LineHub") && fs.readFileSync("src/components/LineHub.tsx", "utf8").includes("<EbayStrip");

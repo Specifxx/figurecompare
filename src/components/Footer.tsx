@@ -2,10 +2,13 @@ import Link from "next/link";
 import { LINES, SITE } from "@/site";
 import { LogoMark } from "./Logo";
 import { RateUsLink } from "./site-reviews/SiteReviews";
+import { FeedbackAsk } from "@/components/FeedbackAsk";
 
 export function Footer({ updated }: { updated?: string | null }) {
   return (
     <footer className="relative mt-16 border-t border-line bg-card pt-10 text-sm">
+      {/* "Was this page useful?" (owner, 2026-11-18: more feedback). One inline line, never a pop-up. */}
+      <div className="mx-auto max-w-6xl px-4"><FeedbackAsk email={SITE.email} /></div>
       <div className="mx-auto grid max-w-6xl gap-8 px-4 pb-8 sm:grid-cols-2 lg:grid-cols-3">
         <div>
           <div className="flex items-center gap-2">
@@ -50,6 +53,7 @@ export function Footer({ updated }: { updated?: string | null }) {
             <li><Link prefetch={false} href="/disclosure" className="hover:text-pink-deep">Affiliate disclosure</Link></li>
             <li><Link prefetch={false} href="/privacy" className="hover:text-pink-deep">Privacy</Link></li>
             <li><Link prefetch={false} href="/terms" className="hover:text-pink-deep">Terms</Link></li>
+            <li><Link prefetch={false} href="/feedback" className="hover:text-pink-deep">Send feedback</Link></li>
             <li><Link prefetch={false} href="/contact" className="hover:text-pink-deep">Contact us</Link></li>
             <li><RateUsLink className="hover:text-pink-deep">Rate us</RateUsLink></li>
             <li><Link prefetch={false} href="/list-your-store" className="hover:text-pink-deep">List your store</Link></li>
