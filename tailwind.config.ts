@@ -23,8 +23,8 @@ export default {
         buy: v("buy"),
       },
       fontFamily: {
-        sans: ['"Inter Variable"', "system-ui", "Segoe UI", "Arial", "sans-serif"],
-        display: ['"Inter Variable"', "system-ui", "Segoe UI", "Arial", "sans-serif"],
+        sans: ["var(--font-inter)", "system-ui", "Segoe UI", "Arial", "sans-serif"],
+        display: ["var(--font-inter)", "system-ui", "Segoe UI", "Arial", "sans-serif"],
       },
       borderRadius: { blob: "12px" },
       boxShadow: {

@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import { ShareArrival } from "@/components/ShareArrival";
-import "@fontsource-variable/inter";
 import "./globals.css";
 // The cart list's styles (components/cart): imported here, never from a component, so node tests can load them.
 import "@/components/cart/cart.css";
@@ -24,6 +24,14 @@ import { niceDate } from "@/lib/format";
 import { CHRISTMAS_FESTIVE_LAYER, SEASON_BOOT_SCRIPT } from "@/lib/season";
 import { BottomNav } from "@/components/BottomNav";
 import { BOTTOM_NAV } from "@/lib/bottom-nav";
+
+
+// Fonts (2026-11-18, "Speed up sites on mobile"): the latin files of the same variable fonts, bundled through next/font
+// (OFL, src/app/fonts) instead of @fontsource's CSS. next/font preloads them and draws the first paint in a fallback
+// sized to match, and display "optional" never swaps a face in after the text is laid out: with @fontsource's swap,
+// the text re-wrapped when the font landed and moved everything below it (Lighthouse mobile layout shift 0.07 to 0.13,
+// live). The DexCompare engine made the same choice for the same reason (MTG Compare measured 0.209 with swap).
+const inter = localFont({ src: "./fonts/Inter-latin.woff2", weight: "100 900", style: "normal", display: "optional", variable: "--font-inter", adjustFontFallback: "Arial" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -53,7 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       .map((x) => ({ slug: x.slug, name: x.name })),
   );
   return (
-    <html lang="en" data-theme="night" data-festive={CHRISTMAS_FESTIVE_LAYER ? "on" : undefined} suppressHydrationWarning>
+    <html className={`${inter.variable}`} lang="en" data-theme="night" data-festive={CHRISTMAS_FESTIVE_LAYER ? "on" : undefined} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: BOOT + SEASON_BOOT_SCRIPT }} />
         {/* Impact (affiliate network) site check, in the exact form Impact gives: a `value` attribute. */}

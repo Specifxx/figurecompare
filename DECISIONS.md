@@ -1377,3 +1377,15 @@ URL Inspection showed formerly ranking pages "Crawled - currently not indexed" w
   The cross-site cluster tiles are off (`CROSS_SITE_BLOCKS = false`).
 - The about page names the co-founders (Bill and George), says AI tools help with code and guides while prices are read
   by a program, and gives the running cost (about A$790 a month for the group, our books to 15 Nov 2026).
+
+## 2026-11-19: fonts through next/font with display "optional", and a hero that slides instead of fading
+
+Speed pass before Google's core update ends (owner, 2026-11-18: "speed and mobile"). Lighthouse mobile on the live pages
+measured layout shift 0.07 to 0.13: the text was laid out in the fallback face, @fontsource's `font-display: swap` then
+dropped the web font in, the lines re-wrapped and everything below moved. The fonts are now the same latin variable files
+bundled in `src/app/fonts` (OFL) and loaded through `next/font/local`: preloaded, drawn first in a fallback sized to
+match, and `display: "optional"`, so a face that is not there in time is never swapped in under a reader. The card
+sites made the same choice for the same reason. Only the latin subset ships: other scripts use the fallback face.
+The home hero's entrance (`.mo-enter`, where the site has one) also no longer fades from opacity 0: a browser does not
+count an element as painted while it is invisible, so the fade held the largest paint back ~1.1 s
+(`tests/hero-lcp.test.ts`).
