@@ -55,6 +55,7 @@ export function navGroups(counts: Record<LineKey, number>, topSeries: { slug: st
         { href: "/forum", label: "Community forum", emoji: "💬" },
         { href: "/creators", label: "Creators", emoji: "⭐" },
         { href: "/about", label: "About", emoji: "💌" },
+        { href: "/feedback", label: "Send feedback", emoji: "✉️" },
         { href: "/disclosure", label: "How we make money", emoji: "🪙" },
       ],
     },
