@@ -1319,3 +1319,17 @@ The "off" arm sees no Add to cart button, and no header or bottom-nav cart unles
 carries `cart_arm`. Verdict 2 Dec: buy clickers and paid buy clicks per arm (the arms are equal halves of visitors). Keep the cart
 only if the "on" arm is not lower; otherwise `cartArm()` returns "off" for everyone. Not on Dex or MTG Compare (their quick-view
 A/B runs to 3 Dec).
+
+## 2026-11-18: A plain store's best price gets a small "Best price" tag, not the loud highlight
+
+Owner, 2026-11-18: when the cheapest row is just a store that pays us nothing, do not highlight it (the pink outline and sticker
+shadow, bold pink sub line, pink price, buy-coloured button): the loudest row on the page should not be the one that earns nothing.
+`priceRows` (`PriceTable.tsx`) now marks that row `plainBest`: a small neutral "Best price" chip (`BestTag.tsx`) and the price in the
+normal ink, with an "i" hint (title, aria-label, tap-to-show line on a phone) reading "Prices and stock change: also check eBay",
+shown ONLY when the list has an eBay row, and naming only rows it has; it never says eBay is cheaper. When the cheapest row is an
+affiliate or paid row (eBay or Amazon winning, or a store that pays us) it keeps the full highlight exactly as before. The Japan
+table (converted yen) loses the highlight on a plain store but keeps its "Cheapest in Japan" words and gets no tag, since a
+converted price is never called the best price. Same on the figure page and the quick view (one `PriceRows`). Unchanged: row order,
+sorting, `rel="sponsored"`, tracking, labels, the hero price box, deal badges, JSON-LD, the feed, alerts. `lib/best-tag.ts`,
+`tests/best-price-tag.test.ts`. Verdict: paid clicks per 100 buy clicks before and after (`buy_click` events, paid or not), because
+the loud highlight on a non-paying store was pulling clicks from our paid rows.
