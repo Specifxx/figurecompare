@@ -34,6 +34,9 @@ const asinsFor = (r: RegionCode) => {
   return asinCache.get(r)!;
 };
 
+/** An eBay or Amazon price more than 25% under the cheapest store is a wrong product, never the best price. */
+const BEST_MAX_UNDER_STORES = 0.75;
+
 export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placement = "table", view?: RegionCode): RowsData {
   const offers = f.offers[region] ?? [];
   const r = REGION_BY_CODE[region];
@@ -108,6 +111,19 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
   const maker = offers.find((o) => o.s === (region === "JP" ? "goodsmile-global" : "goodsmileus"));
   const overMaker = (o: { s: string; p: number }) => !!maker && o.s !== maker.s && o.p > maker.p * 1.02 + 100; // cents, or yen
   const makerName = region === "JP" ? "Good Smile Global" : "Good Smile US";
+  // The cheapest row of the table carries the highlight, whichever row it is (owner, 2026-11-18, withdrawing "eBay and Amazon are never the
+  // best price"): a priced eBay or Amazon row strictly under the cheapest in-stock store, but never more than 25% under it (that is a
+  // wrong product, not a deal). Not in the Japan table (converted yen). Row order is unchanged: eBay, Amazon, then the stores.
+  const winner = best && region !== "JP" && !convert
+    ? pinned
+        .filter((p) => (p.event?.source === "ebay" || p.event?.source === "amazon") && p.status === "in" && (p.cart?.priceCents ?? 0) > 0)
+        .filter((p) => p.cart!.priceCents < best.p && p.cart!.priceCents >= best.p * BEST_MAX_UNDER_STORES)
+        .sort((a, b) => a.cart!.priceCents - b.cart!.priceCents)[0] ?? null
+    : null;
+  if (winner) {
+    winner.highlight = true;
+    winner.sub = `Lowest price · ${winner.sub ?? ""}`.replace(/ · $/, "");
+  }
   const stores: RowData[] = offers.map((o) => ({
     name: storeName(o.s),
     sub: [
@@ -121,7 +137,7 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
     href: storeUrl(o.s, o.u),
     vote: o.u,
     paid: storePays(o.s),
-    highlight: o === best,
+    highlight: o === best && !winner,
     event: { source: o.s, region, placement, jan: f.jan },
     // The cart list (components/cart, owner 2026-11-06): orderable rows in the region's own
     // currency. Never the Japan table (yen has no minor unit, and it is shown converted).

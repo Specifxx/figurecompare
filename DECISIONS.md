@@ -1263,3 +1263,12 @@ The opt-in build passed the phone tests (iPhone SE, Pixel 7, Z Fold cover: flush
 scroll up, hidden while typing, zoomed, over the cart or menu, never over Add to cart, CLS 0, no slower scrolling) and was checked
 live with `?bn=1`, so `BOTTOM_NAV` is "on" (the owner asked for the bar on every site). `?bn=0` still opts a visitor out, and "off"
 is the rollback. It ships with the next daily release, not its own build.
+
+## 2026-11-18: an eBay or Amazon row may carry the lowest price (owner)
+
+The owner withdrew "eBay and Amazon are never the best price": a row that is genuinely the cheapest says so, whichever row it is. In
+`priceRows` (`components/PriceTable.tsx`) a priced eBay or Amazon row strictly under the cheapest in-stock store, and not more than 25% under it
+(`BEST_MAX_UNDER_STORES`: that is a wrong product, not a deal), takes the highlight and "Lowest price"; the cheapest store then loses its tint
+and keeps "Lowest store price". Row order is unchanged (eBay, Amazon, other affiliate rows, then the stores). The alert feed, deals, JSON-LD and
+list tiles still use the cheapest STORE price (alerts and structured data are not promises about an ad's price). Unpriced "Check" rows never win.
+`tests/best-price-paid-rows.test.ts`. Disclosure and "How we pick stores" copy updated.
