@@ -10,7 +10,7 @@ test("a priced eBay or Amazon row under the cheapest store takes the highlight, 
   assert.match(src, /const BEST_MAX_UNDER_STORES = 0\.75;/);
   assert.match(src, /\(p\.event\?\.source === "ebay" \|\| p\.event\?\.source === "amazon"\) && p\.status === "in"/);
   assert.match(src, /p\.cart!\.priceCents < best\.p && p\.cart!\.priceCents >= best\.p \* BEST_MAX_UNDER_STORES/);
-  assert.match(src, /highlight: o === best && !winner,/, "only one row is highlighted");
+  assert.match(src, /highlight: o === best && !winner && !plainRow,/, "only one row is highlighted");
 });
 
 test("the row order is still the affiliate rows first, then the stores", () => {

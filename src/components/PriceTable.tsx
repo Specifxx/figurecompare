@@ -11,6 +11,7 @@ import { readAsins, type AsinFile } from "@/lib/amazon-asins";
 import { money } from "@/lib/format";
 import type { EbayPick, Figure } from "@/lib/types";
 import { orderRows } from "@/lib/row-order";
+import { bestPriceHint, isPlainBest } from "@/lib/best-tag";
 import { PriceRows, type RowData, type RowsData } from "./PriceRows";
 
 export function searchQuery(f: Figure): string {
@@ -124,25 +125,31 @@ export function priceRows(f: Figure, region: RegionCode, ebay?: EbayPick, placem
     winner.highlight = true;
     winner.sub = `Lowest price · ${winner.sub ?? ""}`.replace(/ · $/, "");
   }
-  const stores: RowData[] = offers.map((o) => ({
-    name: storeName(o.s),
-    sub: [
-      convert
-        ? [o === best ? "Cheapest in Japan" : null, convertYen(o.p, convert, fx) != null ? `${money(o.p, region)} · ships from Japan` : "ships from Japan"].filter(Boolean).join(" · ")
-        : o === best ? "Cheapest store" : null,
-      overMaker(o) ? `Above ${makerName}'s ${money(maker!.p, region)}` : null,
-    ].filter(Boolean).join(" · ") || null,
-    price: shown(o.p),
-    status: o.st,
-    href: storeUrl(o.s, o.u),
-    vote: o.u,
-    paid: storePays(o.s),
-    highlight: o === best && !winner,
-    event: { source: o.s, region, placement, jan: f.jan },
-    // The cart list (components/cart, owner 2026-11-06): orderable rows in the region's own
-    // currency. Never the Japan table (yen has no minor unit, and it is shown converted).
-    ...(o.st !== "out" && region !== "JP" ? { cart: { title: f.name, image: f.img, priceCents: o.p, currency: r.currency } } : {}),
-  }));
+  const stores: RowData[] = offers.map((o) => {
+    // A plain cheapest store gets the small "Best price" tag, never the highlight (owner, 2026-11-18). Not the Japan table (converted yen).
+    const plainRow = o === best && !winner && isPlainBest({ paid: storePays(o.s) });
+    const plainBest = plainRow && !convert;
+    return {
+      name: storeName(o.s),
+      sub: [
+        convert
+          ? [o === best ? "Cheapest in Japan" : null, convertYen(o.p, convert, fx) != null ? `${money(o.p, region)} · ships from Japan` : "ships from Japan"].filter(Boolean).join(" · ")
+          : o === best && !plainBest ? "Cheapest store" : null,
+        overMaker(o) ? `Above ${makerName}'s ${money(maker!.p, region)}` : null,
+      ].filter(Boolean).join(" · ") || null,
+      price: shown(o.p),
+      status: o.st,
+      href: storeUrl(o.s, o.u),
+      vote: o.u,
+      paid: storePays(o.s),
+      highlight: o === best && !winner && !plainRow,
+      ...(plainBest ? { plainBest: true, bestHint: bestPriceHint(pinned.map((p) => ({ brand: p.event.source }))) } : {}),
+      event: { source: o.s, region, placement, jan: f.jan },
+      // The cart list (components/cart, owner 2026-11-06): orderable rows in the region's own
+      // currency. Never the Japan table (yen has no minor unit, and it is shown converted).
+      ...(o.st !== "out" && region !== "JP" ? { cart: { title: f.name, image: f.img, priceCents: o.p, currency: r.currency } } : {}),
+    };
+  });
   // No Amazon price: the unpriced "Check on Amazon" row (owner, 2026-11-17: "even if there are no Amazon prices available, we should have
   // an option to check on Amazon in our price rows"), a pinned affiliate row UNDER eBay at the top (owner, 2026-11-17), on the page and the quick view, the item's own page where the
   // daily ASIN pass matched this barcode, else the tagged search. Never ranked, the best price, a deal or an alert.

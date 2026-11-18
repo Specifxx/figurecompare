@@ -6,6 +6,7 @@ import { OutLink } from "./OutLink";
 import { AMAZON_PRICE_DISCLAIMER, AmazonPrice } from "./AmazonPrice";
 import { StoreVote } from "./StoreVote";
 import { CartAddButton } from "./cart/CartAddButton";
+import { BestTag } from "./BestTag";
 
 const STOCK: Record<Offer["st"], { label: string; cls: string }> = {
   in: { label: "In stock", cls: "bg-mint-pale text-mint" },
@@ -21,6 +22,10 @@ export interface RowData {
   href: string;
   paid: boolean;
   highlight?: boolean;
+  /** The cheapest row is a plain store that pays us nothing (owner, 2026-11-18): a small neutral "Best price" tag instead of the highlight. */
+  plainBest?: boolean;
+  /** The tag's "i" hint (lib/best-tag.ts), only when the list has an eBay row. */
+  bestHint?: string | null;
   /** Amazon's own price from the Creators API (lib/amazon-live.ts): shown with its time, hidden after 24 hours. */
   live?: { at: string; timeZone: string; zoneLabel: string };
   event: { source: string; region: string; placement: string; jan?: string };
@@ -70,7 +75,7 @@ export function PriceRows({ pinned, stores }: RowsData) {
   );
 }
 
-function Row({ name, sub, price, status, href, paid, highlight = false, live, event, vote, cart, pin }: RowData) {
+function Row({ name, sub, price, status, href, paid, highlight = false, plainBest = false, bestHint = null, live, event, vote, cart, pin }: RowData) {
   const s = status ? STOCK[status] : null;
   return (
     <div
@@ -85,6 +90,7 @@ function Row({ name, sub, price, status, href, paid, highlight = false, live, ev
         </p>
         <p className="flex flex-wrap items-center gap-1.5 text-xs text-soft">
           {s && <span className={`chip ${s.cls}`}>{s.label}</span>}
+          {plainBest && <BestTag hint={bestHint} />}
           {sub && <span className={highlight ? "font-bold text-pink-deep" : ""}>{sub}</span>}
           {paid && <span>Paid link</span>}
           {/* Phones: the cart list's add button as a word on this line, where the row has no width to spare. */}
