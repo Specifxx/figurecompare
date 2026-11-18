@@ -1,15 +1,25 @@
 "use client";
 // Share (owner, 2026-11-02: word of mouth): the phone's own share sheet (navigator.share) where there is one, else the
-// link and message copied, with a short "Link copied" note. No pop-up, no reward, no function: the messages were
+// link and message copied, with a short "Link copied" note. No pop-up, no function; the share-for-a-deal test is ShareThanks.tsx (2026-11-18): the messages were
 // written at build (lib/share-link.ts) and this picks the visitor's region (the root's data-region). The link is the
 // page's URL plus utm_source=share. One Vercel event per tap, share { medium }; the growth report counts them.
 import { useEffect, useRef, useState } from "react";
+import { ShareThanks, useShareArm } from "./ShareThanks";
 import { track } from "@vercel/analytics";
 import { SITE } from "@/site";
 import { shareUrl, type ShareMedium } from "@/lib/share-link";
 
 export function ShareButton({ title, path, texts, medium = "figure", className = "" }: { title: string; path: string; texts?: Partial<Record<string, string>>; medium?: ShareMedium; className?: string }) {
   const [note, setNote] = useState("");
+  const arm = useShareArm();
+  const [thanks, setThanks] = useState(false);
+  const unlock = () => {
+    if (arm !== "reward") return;
+    setThanks(true);
+    try {
+      track("share_unlock", { medium });
+    } catch {}
+  };
   const timer = useRef<ReturnType<typeof setTimeout>>();
   useEffect(() => () => clearTimeout(timer.current), []);
   const say = (t: string) => {
@@ -21,11 +31,12 @@ export function ShareButton({ title, path, texts, medium = "figure", className =
     const url = shareUrl(SITE.url, path, medium);
     const text = texts?.[document.documentElement.dataset.region || "US"] || `${title}: every store's price on ${SITE.name}`;
     try {
-      track("share", { medium });
+      track("share", { medium, arm });
     } catch {}
     if (typeof navigator.share === "function") {
       try {
         await navigator.share({ title, text, url });
+        unlock();
         return;
       } catch (e) {
         if ((e as Error)?.name === "AbortError") return;
@@ -34,6 +45,7 @@ export function ShareButton({ title, path, texts, medium = "figure", className =
     try {
       await navigator.clipboard.writeText(`${text} ${url}`);
       say("Link copied");
+      unlock();
     } catch {
       say("Couldn’t copy the link");
     }
@@ -46,11 +58,12 @@ export function ShareButton({ title, path, texts, medium = "figure", className =
           <path d="M16 6l-4-4-4 4" />
           <path d="M12 2v13" />
         </svg>
-        Share
+        {arm === "reward" ? "Share · get a deal" : "Share"}
       </button>
       <span role="status" aria-live="polite" className={`pointer-events-none absolute left-0 top-full z-10 mt-1.5 whitespace-nowrap rounded-md bg-ink px-2.5 py-1 text-xs font-semibold text-card transition-opacity ${note ? "opacity-100" : "opacity-0"}`}>
         {note}
       </span>
+      {thanks && <ShareThanks href="/deals" line="Today’s figures selling under their usual price at stores in your region, checked every day." onClose={() => setThanks(false)} />}
     </span>
   );
 }

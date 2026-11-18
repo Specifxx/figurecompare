@@ -1288,3 +1288,12 @@ The owner withdrew "eBay and Amazon are never the best price": a row that is gen
 and keeps "Lowest store price". Row order is unchanged (eBay, Amazon, other affiliate rows, then the stores). The alert feed, deals, JSON-LD and
 list tiles still use the cheapest STORE price (alerts and structured data are not promises about an ad's price). Unpriced "Check" rows never win.
 `tests/best-price-paid-rows.test.ts`. Disclosure and "How we pick stores" copy updated.
+
+## 2026-11-18: Share for a deal (owner)
+
+Owner: "share this link and get a free deal … it's all free, but we'll give you something else to look at if you share", for every
+site. `ShareThanks.tsx`: half of browsers (`share_arm` in localStorage, `pickShareArm`) see "Share · get a deal" on the share
+button; after a share completes (share sheet or copied link) a small card opens under the button, on the visitor's own tap and
+closed with ✕, pointing to `/deals`. Nothing is withheld or gated; the other half is the control. Events `share { medium, arm }`
+(two properties, Vercel's limit) and `share_unlock { medium }`. Read the share rate per arm after two weeks; keep it only if it
+raises sharing.
