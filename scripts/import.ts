@@ -17,6 +17,7 @@ import { readGoodSmile } from "@/lib/import/goodsmile";
 import { indexByName, readSitemapStore, type PageCache } from "@/lib/import/sitemap-store";
 import { fetchFx, type Fx } from "@/lib/fx";
 import type { History, Listing, Meta, StoreRun } from "@/lib/types";
+import { CARRY_HOURS, stampReads } from "@/lib/import/carry";
 import { demandSlugs, focusCatalog } from "@/lib/focus";
 import { nextCore } from "@/lib/index-tiers";
 import { SERIES, seriesIsLive } from "@/content/series";
@@ -86,7 +87,7 @@ async function main() {
       const t0 = Date.now();
       try {
         const r = await readStore(s, cache);
-        listings.push(...r.listings);
+        for (const l of r.listings) listings.push(l); // a loop: a store with 100k+ variants overflows a spread (Maximum call stack size exceeded, 2026-11-18)
         runs[s.id] = { ok: true, listings: r.seen, matched: r.listings.length, refused: r.refused, noJan: r.noJan, ms: Date.now() - t0 };
         console.log(`✓ ${s.id}: ${r.seen} products, ${r.listings.length} with a JAN on a covered line, ${r.noJan} without a JAN`);
       } catch (e) {
@@ -102,7 +103,7 @@ async function main() {
     const t0 = Date.now();
     try {
       const r = s.platform === "bbts" ? await readBbts(s, indexByNumber(listings), BBTS_PAGES_PER_RUN) : await readSitemapStore(s, pageCache, indexByName(listings));
-      listings.push(...r.listings);
+      for (const l of r.listings) listings.push(l); // a loop: a store with 100k+ variants overflows a spread (Maximum call stack size exceeded, 2026-11-18)
       runs[s.id] = { ok: true, listings: r.seen, matched: r.listings.length, refused: r.refused, noJan: r.noJan, ms: Date.now() - t0 };
       console.log(`✓ ${s.id}: ${r.seen} product pages, ${r.listings.length} matched by number and name, ${r.noJan} with no unique number`);
     } catch (e) {
@@ -114,7 +115,9 @@ async function main() {
   // A store that failed today keeps yesterday's offers (marked as they were),
   // so one timeout does not drop a figure under the two-store rule. Its
   // listings come back from the previous figures file.
-  const failed = new Set(Object.entries(runs).filter(([, r]) => !r.ok).map(([id]) => id));
+  // Only while its last good read is under CARRY_HOURS old (lib/import/carry.ts): after that its old prices leave the site.
+  const { carry: failed, expired } = stampReads(runs, prevMeta, new Date());
+  for (const id of expired) console.log(`✗ ${id}: not read for over ${CARRY_HOURS} hours; its old offers are dropped`);
   if (failed.size) {
     for (const f of prevFigures) {
       for (const [region, offers] of Object.entries(f.offers)) {
@@ -169,7 +172,7 @@ async function main() {
   write("state/page-cache.json", pageCache);
   write("state/slugs.json", state.slugs, true);
   write("state/first-seen.json", state.first, true);
-  console.log(`\n${figures.length} figures from ${listings.length} listings (${failed.size} store(s) failed, ${PRODUCT_LOOKUPS_PER_RUN - budget.lookups} barcode lookups).`);
+  console.log(`\n${figures.length} figures from ${listings.length} listings (${Object.values(runs).filter((r) => !r.ok).length} store(s) failed, ${PRODUCT_LOOKUPS_PER_RUN - budget.lookups} barcode lookups).`);
 }
 
 main().catch((e) => {

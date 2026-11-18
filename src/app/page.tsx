@@ -4,6 +4,7 @@ import Link from "next/link";
 import { LINES, REGIONS, SITE } from "@/site";
 import { activeStores, featuredDealsIn, featuredNewestIn, featuredPopular, featuredPopularIn, featuredPreordersIn, getFigures, getMeta, lineCounts } from "@/lib/data";
 import { ago } from "@/lib/format";
+import { LiveAgo } from "@/components/LiveAgo";
 import { rankFigures } from "@/lib/home-demand";
 import { SearchBox } from "@/components/SearchBox";
 import { RegionChips } from "@/components/RegionPicker";
@@ -71,7 +72,7 @@ export default function Home() {
             <span><b className="text-ink">{total.toLocaleString("en-US")}</b> figures</span>
             <span><b className="text-ink">{stores}</b> stores</span>
             <span><b className="text-ink">{ACTIVE_REGIONS.length}</b> regions</span>
-            {meta && <span>Checked {ago(meta.updatedAt)}</span>}
+            {meta && <span>Checked <LiveAgo iso={meta.updatedAt} initial={ago(meta.updatedAt)} /></span>}
           </div>
         </div>
       </section>
