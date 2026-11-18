@@ -1288,3 +1288,12 @@ The owner withdrew "eBay and Amazon are never the best price": a row that is gen
 and keeps "Lowest store price". Row order is unchanged (eBay, Amazon, other affiliate rows, then the stores). The alert feed, deals, JSON-LD and
 list tiles still use the cheapest STORE price (alerts and structured data are not promises about an ad's price). Unpriced "Check" rows never win.
 `tests/best-price-paid-rows.test.ts`. Disclosure and "How we pick stores" copy updated.
+
+## 2026-11-18: the Amazon button is amber, and the quick view's "See full page" is a real button (owner)
+
+Decision (owner): the Amazon row's button, priced and the unpriced "Check Amazon" search row alike, in every price list and quick view, is
+Amazon amber (`.btn-amazon` in `globals.css`: #FFA41C, hover #FA8900, 1px #E08A00 border, dark #111 text in both themes) so it reads as
+different from the site's own buy button and from eBay's. Only the colour changed: link targets, `rel="sponsored"`, tracking, the "Ad" and
+"Paid link" labels, row order, prices, badges and the Cheapest logic are as they were. The quick view's pinned bottom link is now a button at
+least 44px tall reading "See full page: price history and details" (it was the same link, slightly smaller, with shorter copy); it stays one
+button, not two. `tests/amazon-button-quickview.test.ts`.
