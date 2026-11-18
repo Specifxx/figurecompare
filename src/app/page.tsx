@@ -4,6 +4,7 @@ import Link from "next/link";
 import { LINES, REGIONS, SITE } from "@/site";
 import { activeStores, featuredDealsIn, featuredNewestIn, featuredPopular, featuredPopularIn, featuredPreordersIn, getFigures, getMeta, lineCounts } from "@/lib/data";
 import { ago } from "@/lib/format";
+import { rankFigures } from "@/lib/home-demand";
 import { SearchBox } from "@/components/SearchBox";
 import { RegionChips } from "@/components/RegionPicker";
 import { TileGrid } from "@/components/FigureTile";
@@ -89,9 +90,9 @@ export default function Home() {
         <EbayStrip className="mt-10" placement="home" queries={SITE_QUERIES} figures={featuredPopular(30)} title="Figures on eBay" />
 
         {REGIONS.map((r) => {
-          const deals = featuredDealsIn(r.code, 8);
-          const pre = featuredPreordersIn(r.code, 8);
-          const pop = featuredPopularIn(r.code, 8);
+          const deals = rankFigures(featuredDealsIn(r.code, 24), r.code).slice(0, 8);
+          const pre = rankFigures(featuredPreordersIn(r.code, 24), r.code).slice(0, 8);
+          const pop = rankFigures(featuredPopularIn(r.code, 24), r.code).slice(0, 8);
           const fresh = featuredNewestIn(r.code, 8);
           return (
             <div key={r.code} className={`rp rp-${r.code}`}>
