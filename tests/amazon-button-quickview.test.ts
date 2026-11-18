@@ -9,8 +9,8 @@ test("the Amazon button is amber with dark text, in both themes", () => {
   const css = read("src/app/globals.css");
   const m = /\.btn-amazon\s*\{([^}]*)\}/.exec(css);
   assert.ok(m, ".btn-amazon is defined");
-  assert.match(m[1], /bg-\[#FFA41C\]/);
-  assert.match(m[1], /hover:bg-\[#FA8900\]/);
+  assert.match(m[1], /bg-\[#F5A524\]/);
+  assert.match(m[1], /hover:bg-\[#DC8A0B\]/);
   assert.match(m[1], /text-\[#111\]/);
   assert.doesNotMatch(css, /night"\]\s*\.btn-amazon/, "no night override: dark text on amber stays");
 });

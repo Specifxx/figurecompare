@@ -1292,8 +1292,20 @@ list tiles still use the cheapest STORE price (alerts and structured data are no
 ## 2026-11-18: the Amazon button is amber, and the quick view's "See full page" is a real button (owner)
 
 Decision (owner): the Amazon row's button, priced and the unpriced "Check Amazon" search row alike, in every price list and quick view, is
-Amazon amber (`.btn-amazon` in `globals.css`: #FFA41C, hover #FA8900, 1px #E08A00 border, dark #111 text in both themes) so it reads as
+Amazon amber (`.btn-amazon` in `globals.css`: #F5A524, hover #DC8A0B, 1px #B7791F border, dark #111 text in both themes) so it reads as
 different from the site's own buy button and from eBay's. Only the colour changed: link targets, `rel="sponsored"`, tracking, the "Ad" and
 "Paid link" labels, row order, prices, badges and the Cheapest logic are as they were. The quick view's pinned bottom link is now a button at
 least 44px tall reading "See full page: price history and details" (it was the same link, slightly smaller, with shorter copy); it stays one
 button, not two. `tests/amazon-button-quickview.test.ts`.
+## 2026-11-18: Share for a deal (owner)
+
+Owner: "share this link and get a free deal … it's all free, but we'll give you something else to look at if you share", for every
+site. `ShareThanks.tsx`: half of browsers (`share_arm` in localStorage, `pickShareArm`) see "Share · get a deal" on the share
+button; after a share completes (share sheet or copied link) a small card opens under the button, on the visitor's own tap and
+closed with ✕, pointing to `/deals`. Nothing is withheld or gated; the other half is the control. Events `share { medium, arm }`
+(two properties, Vercel's limit) and `share_unlock { medium }`. Read the share rate per arm after two weeks; keep it only if it
+raises sharing.
+
+## 2026-11-18: the amber of the Amazon button is not Amazon's own orange
+
+The first cut used #FFA41C, which is Amazon's brand orange. Amazon's Associates agreement bars styling that could pass for Amazon, so the button is now a distinct, calmer amber (#F5A524, hover #DC8A0B, border #B7791F, dark text #111): still clearly different from the site's normal buy button, not Amazon's colour.
