@@ -21,7 +21,7 @@ export default function Page() {
           what="anime figures"
           stores={STORES.map((s) => s.name)}
           priceRule="With three or more stores selling a figure, a price under 40% of their median is dropped automatically, and a figure is only matched by its barcode, so a bootleg can't borrow a real figure's page."
-          marketplaces="eBay and Amazon rows are marketplaces, not stores: they are labelled and never counted as a store or as the cheapest. We don't vet the individual sellers there, so check a seller's feedback before you buy."
+          marketplaces="eBay and Amazon rows are marketplaces, not stores: they are labelled and never counted as a store; one is marked the lowest price only when its real price is genuinely lower than every store's. We don't vet the individual sellers there, so check a seller's feedback before you buy."
           buttonClassName="btn-pop"
           suggestHref="/stores#suggest"
         />
