@@ -28,6 +28,8 @@ export interface Figure {
 
 export interface StoreRun {
   ok: boolean;
+  /** The store's last good read (lib/import/carry.ts): a failed store's offers are carried only while it is recent. */
+  lastOkAt?: string;
   error?: string;
   listings: number;
   matched: number;

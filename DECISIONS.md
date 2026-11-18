@@ -1350,3 +1350,15 @@ sitting on top of it.
   `var(--bn-space)` + a small gap up, and the body's bottom padding follows it. Hidden, it slides fully off-screen (transform only, CLS 0).
 - **Measured** (local build, dock stacked): Pixel 7 412×915 nav + dock take 129px (14.1%); iPhone 15 393×852 with a 34px safe area
   143px (16.8%); iPhone SE 375×667 129px (19.3%); the old flush bar took about the same plus the full safe area.
+
+## 2026-11-19: a failed store's prices are carried for 72 hours, not forever
+
+A store that failed to read kept its previous offers so one timeout would not drop a product under the two-store rule.
+That carry had no end: each run copied the last file's rows forward, so a store blocked for days kept showing its old
+prices "in stock" (ScentCompare, 18 Nov: 104 offers from two stores failing for up to 6 days, 13 of them the cheapest row)
+under a page that said "Checked today". Now every store records its last good read (`lastOkAt` in `meta.json`), and its
+offers are carried only while that read is under 72 hours old (`src/lib/import/carry.ts`, `tests/carry.test.ts`), the
+same limit the card sites use. A store with no known good read is never carried. The import also pushes a store's
+listings with a loop, not a spread: a store with 100k+ variants overflowed it ("Maximum call stack size exceeded",
+three MotorCompare stores unread since at least 14 Nov). The home page's "Checked … ago" is now corrected in the browser
+(`LiveAgo`): worked out at build, it froze for the whole release.
