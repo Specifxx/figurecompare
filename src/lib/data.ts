@@ -9,6 +9,7 @@ import { ebayRowShown } from "./ebay";
 import { lowestOrderable } from "./history";
 import type { EbayData, Figure, History, Meta, Offer } from "./types";
 import type { Fx } from "./fx";
+import { asksToBeIndexed, sitemapFigures } from "./index-tiers";
 
 // FIGURE_DATA_DIR points local development and tests at a fixture; production
 // always reads the committed files.
@@ -211,4 +212,15 @@ export function featuredPopular(limit = 30): Figure[] {
   const list = popular(10_000);
   const kept = list.filter(ok);
   return (kept.length >= 10 ? kept : list).slice(0, limit);
+}
+
+// The figure pages that ask to be indexed (lib/index-tiers.ts asksToBeIndexed): the sitemap's core plus the slugs Search
+// Console shows people finding, which the daily import writes to search-demand.json.
+let indexCore: { core: Set<string>; demand: Set<string> } | null = null;
+export function figureIndexed(f: Figure): boolean {
+  if (!indexCore) {
+    const demand = load<string[]>("search-demand.json", []);
+    indexCore = { core: new Set(sitemapFigures(getFigures(), getPageState()?.core).map((x) => x.jan)), demand: new Set(Array.isArray(demand) ? demand : []) };
+  }
+  return asksToBeIndexed(f, indexCore.core, indexCore.demand);
 }

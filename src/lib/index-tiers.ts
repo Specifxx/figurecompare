@@ -13,6 +13,16 @@ export function isIndexable(f: Figure): boolean {
   return orderable && compared;
 }
 
+/**
+ * Which indexable figure pages actually ask Google to index them (2026-11-19, after the November core update took the
+ * site from ~100 impressions a day to 0-2): the sitemap's core figures, plus every figure page Search Console shows
+ * people finding (search-demand.json: a click or 10+ impressions in 56 days). Every other figure page stays live for
+ * visitors and linked, `noindex, follow`. DECISIONS.md, 2026-11-19 "Index only the core and what search already finds".
+ */
+export function asksToBeIndexed(f: Figure, core: ReadonlySet<string>, demand: ReadonlySet<string>): boolean {
+  return isIndexable(f) && (core.has(f.jan) || demand.has(f.slug));
+}
+
 /** Figure pages the sitemap lists (SEO audit 2026-11-07, DECISIONS.md "The sitemap lists a lean core"). */
 export const SITEMAP_FIGURES = 300;
 

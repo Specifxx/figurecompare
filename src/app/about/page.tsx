@@ -5,8 +5,8 @@ import { Prose } from "@/components/Prose";
 import { EbayStrip, SITE_QUERIES } from "@/components/EbayStrip";
 
 export const metadata: Metadata = {
-  title: "About FigureCompare and how matching works",
-  description: "How FigureCompare compares anime figure prices: barcode matching, real stores only, daily checks, and how the site is paid for.",
+  title: "About FigureCompare: who runs it and how matching works",
+  description: "FigureCompare is run by two people, Bill and George. How we match figure prices by barcode, how the site is paid for and what it costs to run.",
   alternates: { canonical: "/about" },
 };
 
@@ -14,7 +14,7 @@ export default function About() {
   return (
     <div className="mx-auto max-w-3xl px-4">
       <div className="flex items-end gap-4">
-        <PageHead title="About FigureCompare" sub="A price guide for figure collectors, made by fans of the hobby." />
+        <PageHead title="About FigureCompare" sub="Who runs it, how prices are matched, and how it is paid for." />
       </div>
       <Prose>
         <p>
@@ -37,9 +37,17 @@ export default function About() {
         <p>
           Some links (eBay, Amazon and stores that run an affiliate program) pay us a small commission if you buy, at no cost to you. That never changes the order: stores are always sorted by price. See the <a href="/disclosure">affiliate disclosure</a>.
         </p>
+        <h2>The people behind it</h2>
+        <p>
+          FigureCompare is run by its two co-founders, Bill and George. It is independent: no store, maker or investor owns any part of it. We lean on AI tools to help write the site&apos;s code and draft its guides, and read every guide before it goes up. The prices are never typed in: a program reads them from each store and keeps a listing only when its barcode matches.
+        </p>
+        <h2>What it costs to run</h2>
+        <p>
+          FigureCompare runs on the same servers and daily jobs as a few other price sites we look after. All together they cost about A$790 a month (our own books, 30 days to 15 November 2026), which the commission above pays for. No store pays to appear.
+        </p>
         <h2>Spotted a mistake? Want a store added?</h2>
         <p>
-          Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. FigureCompare is part of a family of price comparison sites, linked at the bottom of every page.
+          Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
         </p>
       </Prose>
       <EbayStrip className="mt-10" placement="about" queries={SITE_QUERIES} />

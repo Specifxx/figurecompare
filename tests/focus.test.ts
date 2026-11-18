@@ -19,6 +19,7 @@ test("search demand keeps a figure; the import applies the rule and keeps histor
   assert.deepEqual(kept.map((f) => f.slug), ["b"]);
   assert.deepEqual([...demandSlugs({ "/figure/a": [1, 1, 1], "/figure/b": [0, 12, 1], "/nendoroid": [3, 99, 1] })].sort(), ["a", "b"]);
   const imp = fs.readFileSync("scripts/import.ts", "utf8");
-  assert.match(imp, /focusCatalog\(merged, readDemand\(\)\)/);
+  assert.match(imp, /const demand = readDemand\(\);/);
+  assert.match(imp, /focusCatalog\(merged, demand\)/);
   assert.match(imp, /\}\), merged, today\);/);
 });

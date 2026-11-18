@@ -2,10 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LINE_BY_KEY, REGIONS, SITE, type RegionCode } from "@/site";
-import { bestIn, figuresOfLine, getEbay, getFigure, getFigures, getHistory, regionsOf, spreadIn, storeCount, storeName, getFx, getMeta } from "@/lib/data";
+import { bestIn, figuresOfLine, getEbay, getFigure, figureIndexed, getFigures, getHistory, regionsOf, spreadIn, storeCount, storeName, getFx, getMeta } from "@/lib/data";
 import { dayNumber, lowestOrderable } from "@/lib/history";
 import { decimal, money, niceDate, pct } from "@/lib/format";
-import { isIndexable } from "@/lib/index-tiers";
 import { storeUrl } from "@/lib/affiliate";
 import { FigureImage } from "@/components/FigureImage";
 import { PriceTable } from "@/components/PriceTable";
@@ -45,7 +44,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
     title,
     description,
     alternates: { canonical: `/figure/${f.slug}` },
-    robots: isIndexable(f) ? undefined : { index: false, follow: true },
+    robots: figureIndexed(f) ? undefined : { index: false, follow: true },
     openGraph: { title, description, url: `/figure/${f.slug}`, images: f.img ? [{ url: f.img }] : undefined },
   };
 }

@@ -20,10 +20,10 @@ export function menuFacts(): MenuFacts {
   return {
     lineRegions: Object.fromEntries(LINES.map((l) => [l.key, marketsOf(figuresOfLine(l.key))])),
     series: liveSeries()
-      .slice(0, 14)
+      .slice(0, 8)
       .map((x) => ({ href: `/series/${x.slug}`, label: x.name, regions: marketsOf(figuresOfSeries(x.slug)) })),
     characters: liveCharacters()
-      .slice(0, 14)
+      .slice(0, 8)
       .map((c) => ({ href: `/character/${c.slug}`, label: c.name, regions: marketsOf(figuresOfCharacter(c.slug)) })),
   };
 }

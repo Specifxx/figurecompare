@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { figureLastmod, nextCore, sitemapFigures } from "../src/lib/index-tiers";
+import { asksToBeIndexed, figureLastmod, nextCore, sitemapFigures } from "../src/lib/index-tiers";
 import { SERIES_KEEP, SERIES_MIN, seriesIsLive } from "../src/content/series";
 import { dayNumber } from "../src/lib/history";
 import type { Figure, Offer } from "../src/lib/types";
@@ -57,4 +57,14 @@ test("the import writes what the sitemap reads, and fixed pages carry no made-up
   assert.match(sm, /getPageState\(\)\?\.core/);
   for (const p of ["/about", "/contact", "/how-we-pick-stores", "/list-your-store"]) assert.ok(sm.includes(`fixed("${p}"`), p);
   assert.match(sm, /u\(`\/figure\/\$\{f\.slug\}`, 0\.7, figureDay\(f\)\)/);
+});
+
+test("only the core and pages search finds ask to be indexed (2026-11-19, core-update quality pass)", () => {
+  const core = new Set(["1"]);
+  const demand = new Set(["f-2"]);
+  assert.equal(asksToBeIndexed(fig("1", 3), core, demand), true, "in the core");
+  assert.equal(asksToBeIndexed(fig("2", 3), core, demand), true, "found in search");
+  assert.equal(asksToBeIndexed(fig("3", 3), core, demand), false, "indexable but neither: noindex, follow");
+  assert.equal(asksToBeIndexed(fig("1", 3, "out"), core, demand), false, "sold out everywhere");
+  assert.match(readFileSync("src/app/figure/[slug]/page.tsx", "utf8"), /robots: figureIndexed\(f\) \? undefined : \{ index: false, follow: true \}/);
 });

@@ -7,7 +7,13 @@ import { REGIONS } from "@/site";
 import { familyTiles } from "@/lib/family";
 import { FAMILY_REGIONS, blockHeading, familyMoney, tileNote, type FamilyRegion } from "@/lib/family-network";
 
+// Off (2026-11-19, the core-update quality pass; owner: "too many sites pages linking to others"): a block of tiles linking
+// our other sites on deals, pre-order and sale pages reads as a link network. The one link between our sites is the footer's
+// /our-sites. The component stays so the pages need no change; flip this only with the owner.
+const CROSS_SITE_BLOCKS = false;
+
 export function FamilyCluster({ kind }: { kind: "deal" | "preorder" }) {
+  if (!CROSS_SITE_BLOCKS) return null;
   const blocks = REGIONS.map((r) => {
     const fr = ((FAMILY_REGIONS as readonly string[]).includes(r.code) ? r.code : "US") as FamilyRegion;
     return { code: r.code, tiles: familyTiles(kind, fr) };
