@@ -40,6 +40,7 @@ export function MobileMenu({
         onClick={() => setOpen(true)}
         aria-expanded={open}
         aria-controls="site-menu"
+        data-bn-menu
         className="grid h-9 w-9 place-items-center rounded-lg border border-line bg-card text-lg text-ink transition hover:border-soft"
       >
         <span aria-hidden>☰</span>
