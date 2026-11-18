@@ -1362,3 +1362,18 @@ same limit the card sites use. A store with no known good read is never carried.
 listings with a loop, not a spread: a store with 100k+ variants overflowed it ("Maximum call stack size exceeded",
 three MotorCompare stores unread since at least 14 Nov). The home page's "Checked … ago" is now corrected in the browser
 (`LiveAgo`): worked out at build, it froze for the whole release.
+
+## 2026-11-19: Index only the core and what search already finds; fewer links; who runs the site
+
+Google's November 2026 core update took FigureCompare from ~102 impressions a day to 0-2 (from 11 Nov). On sister sites
+URL Inspection showed formerly ranking pages "Crawled - currently not indexed" with no technical fault: a quality verdict.
+2,949 figure pages asked to be indexed; the sitemap listed 300.
+
+- A figure page asks to be indexed only when it is in the sitemap's core (`pages.json`, 300) or Search Console shows
+  people finding it (`search-demand.json`, written by the import from the `demand` branch: a click or 10+ impressions in
+  56 days) (`asksToBeIndexed`, `figureIndexed` in `lib/data.ts`). Every other figure page stays live, linked, noindex, follow.
+- The footer drops the seasonal sale pages, forum, creators, report, widget, feedback, rate-us and list-your-store links
+  (~30 to ~12); the menus show 8 series and 8 characters (was 14) and no forum, creators or feedback link. The pages stay.
+  The cross-site cluster tiles are off (`CROSS_SITE_BLOCKS = false`).
+- The about page names the co-founders (Bill and George), says AI tools help with code and guides while prices are read
+  by a program, and gives the running cost (about A$790 a month for the group, our books to 15 Nov 2026).

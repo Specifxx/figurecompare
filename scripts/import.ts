@@ -143,7 +143,8 @@ async function main() {
     process.exit(1);
   }
   // The low-traction cull (lib/focus.ts): only figures two stores can sell today, or that people find through search.
-  const figures = focusCatalog(merged, readDemand());
+  const demand = readDemand();
+  const figures = focusCatalog(merged, demand);
   console.log(`focus: ${figures.length} of ${merged.length} figures listed`);
   // History keeps every merged figure, so one that is listed again returns with its chart.
   const history = recordHistory(read<History>("public/history.json", {}), merged, today);
@@ -152,6 +153,9 @@ async function main() {
   write("public/figures.json", { figures });
   write("public/history.json", history);
   write("public/meta.json", meta, true);
+  // Which listed figure pages Search Console shows people finding: they keep asking to be indexed (lib/index-tiers.ts).
+  const listedSlugs = new Set(figures.map((f) => f.slug));
+  write("public/search-demand.json", [...demand].filter((s) => listedSlugs.has(s)).sort(), true);
   // What the pages remember from one day to the next (DECISIONS.md 2026-11-14): the sitemap's core figures stay while
   // they are indexable, and a series hub that had a page keeps it down to SERIES_KEEP figures.
   const prevPages = read<{ core?: string[]; series?: string[] }>("public/pages.json", {});

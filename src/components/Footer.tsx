@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { LINES, SITE } from "@/site";
 import { LogoMark } from "./Logo";
-import { RateUsLink } from "./site-reviews/SiteReviews";
 import { FeedbackAsk } from "@/components/FeedbackAsk";
 
 export function Footer({ updated }: { updated?: string | null }) {
@@ -31,32 +30,17 @@ export function Footer({ updated }: { updated?: string | null }) {
               </li>
             ))}
             <li><Link prefetch={false} href="/deals" className="hover:text-pink-deep">Figure deals today</Link></li>
-            <li><Link prefetch={false} href="/black-friday" className="hover:text-pink-deep">Black Friday figure deals</Link></li>
-            <li><Link prefetch={false} href="/cyber-monday" className="hover:text-pink-deep">Cyber Monday figure deals</Link></li>
-            <li><Link prefetch={false} href="/boxing-day" className="hover:text-pink-deep">Boxing Day figure deals</Link></li>
-            <li><Link prefetch={false} href="/january-sales" className="hover:text-pink-deep">January sales</Link></li>
-            <li><Link prefetch={false} href="/lunar-new-year" className="hover:text-pink-deep">Lunar New Year deals</Link></li>
-            <li><Link prefetch={false} href="/valentines-day" className="hover:text-pink-deep">Valentine&apos;s Day gifts</Link></li>
             <li><Link prefetch={false} href="/preorders" className="hover:text-pink-deep">Figure pre-orders</Link></li>
-            <li><Link prefetch={false} href="/stores" className="hover:text-pink-deep">Where to buy anime figures</Link></li>
           </ul>
         </div>
         <div>
           <h2 className="h-display mb-2 text-base">FigureCompare</h2>
           <ul className="space-y-1">
-            <li><Link prefetch={false} href="/about" className="hover:text-pink-deep">About &amp; how matching works</Link></li>
-            <li><Link prefetch={false} href="/forum" className="hover:text-pink-deep">Community forum (beta)</Link></li>
-            <li><Link prefetch={false} href="/creators" className="hover:text-pink-deep">Creators</Link></li>
-            <li><Link prefetch={false} href="/price-report" className="hover:text-pink-deep">Monthly figure price report</Link></li>
-            <li><Link prefetch={false} href="/is-this-a-good-price" className="hover:text-pink-deep">Is this a good price?</Link></li>
-            <li><Link prefetch={false} href="/widgets" className="hover:text-pink-deep">Free price links for your site</Link></li>
+            <li><Link prefetch={false} href="/about" className="hover:text-pink-deep">Who runs it &amp; how matching works</Link></li>
             <li><Link prefetch={false} href="/disclosure" className="hover:text-pink-deep">Affiliate disclosure</Link></li>
             <li><Link prefetch={false} href="/privacy" className="hover:text-pink-deep">Privacy</Link></li>
             <li><Link prefetch={false} href="/terms" className="hover:text-pink-deep">Terms</Link></li>
-            <li><Link prefetch={false} href="/feedback" className="hover:text-pink-deep">Send feedback</Link></li>
             <li><Link prefetch={false} href="/contact" className="hover:text-pink-deep">Contact us</Link></li>
-            <li><RateUsLink className="hover:text-pink-deep">Rate us</RateUsLink></li>
-            <li><Link prefetch={false} href="/list-your-store" className="hover:text-pink-deep">List your store</Link></li>
             <li><Link prefetch={false} href="/how-we-pick-stores" className="hover:text-pink-deep">How we pick stores</Link></li>
             <li><a href={`mailto:${SITE.email}`} className="hover:text-pink-deep">{SITE.email}</a></li>
             {/* No sister-site list (owner, 2026-11-03), and since 2026-11-08 no link to another of our domains on every
