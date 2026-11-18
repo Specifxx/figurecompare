@@ -92,6 +92,11 @@ html:not([data-region]) .rn-US { display: none; }
   .btn-pop {
     @apply inline-flex items-center justify-center gap-1.5 rounded-lg px-4 py-2 font-display font-semibold transition hover:brightness-110 active:brightness-95;
   }
+  /* Amazon's own button colour (owner, 2026-11-18): a calm amber, distinct from the site's buy button and from eBay's.
+     Dark text on amber in both themes; used only by the Amazon row of a price list and quick view. */
+  .btn-amazon {
+    @apply border border-[#B7791F] bg-[#F5A524] text-[#111] hover:bg-[#DC8A0B] hover:opacity-100;
+  }
   .chip {
     @apply inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-xs font-semibold;
   }

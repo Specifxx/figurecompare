@@ -102,7 +102,7 @@ function Row({ name, sub, price, status, href, paid, highlight = false, live, ev
         href={href}
         paid={paid}
         event={event}
-        className={`btn-pop shrink-0 px-3 py-1.5 text-sm ${status === "out" ? "bg-card text-ink" : highlight || pin ? "bg-buy text-white" : "border border-line bg-card text-ink hover:border-soft"}`}
+        className={`btn-pop shrink-0 px-3 py-1.5 text-sm ${status === "out" ? "bg-card text-ink" : pin === "amazon" ? "btn-amazon" : highlight || pin ? "bg-buy text-white" : "border border-line bg-card text-ink hover:border-soft"}`}
       >
         {status === "out" ? "View" : price ? "Buy" : "Shop"} <span aria-hidden>→</span>
       </OutLink>
