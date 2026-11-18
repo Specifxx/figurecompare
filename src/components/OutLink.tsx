@@ -7,6 +7,7 @@
 // rest, so the old four (source, region, placement, jan) lost placement.
 import { track } from "@vercel/analytics";
 import type { ReactNode } from "react";
+import { cartArmNow } from "@/lib/cart-list";
 
 export function OutLink({
   href,
@@ -30,7 +31,7 @@ export function OutLink({
       className={className}
       onClick={() => {
         try {
-          track("buy_click", {
+          track("buy_click", { cart_arm: cartArmNow(),
             retailer: `${event.source} (${event.region})`.slice(0, 255),
             placement: event.placement.slice(0, 255),
           });
