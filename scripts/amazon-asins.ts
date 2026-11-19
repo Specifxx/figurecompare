@@ -7,7 +7,7 @@
  * stores in the region go first. Found ASINs and misses go in data/amazon/asins-<REGION>.json; a miss is
  * retried after 30 days. Without credentials it does nothing; a refusal (that store's account has no API
  * access yet: 10 qualifying sales in 30 days) ends that region quietly and the next one still runs.
- *   npx tsx scripts/amazon-asins.ts            AMAZON_SEARCH_BUDGET=300 searches a region by default
+ *   npx tsx scripts/amazon-asins.ts            AMAZON_SEARCH_BUDGET=0 (owner, 2026-11-19: the network's Amazon API allowance is shared, mostly ScentCompare's) searches a region by default
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -42,7 +42,7 @@ async function region(code: RegionCode, products: Figure[]) {
     console.log(`Amazon ASINs ${code}: ${(e as Error).message}, skipped.`);
     return null;
   });
-  const budget = Number(process.env.AMAZON_SEARCH_BUDGET || 300);
+  const budget = Math.min(0, Number(process.env.AMAZON_SEARCH_BUDGET || 0));
   let found = 0, searched = 0, refused = "";
   if (api)
     for (const { p } of todo) {
