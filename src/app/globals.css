@@ -394,7 +394,12 @@ html[data-season="halloween"] header.sticky {
 .bn-tab[aria-current="page"]::before { top: 4px; left: 32%; right: 32%; border-radius: 2px; }
 @media (prefers-reduced-motion: reduce) { .bn, .bn[data-bottomnav-bar="hidden"], .bn-ico { transition: none; } }
 
-<<<<<<< HEAD
+/* The phone eBay dock (components/PhoneDock.tsx, owner 2026-11-19): stays up while the bottom nav shows, lifted just above it.
+   Moved with `translate` only (CLS 0). */
+html [data-dock-stack] { transition: transform 0.2s ease-out, translate 0.22s cubic-bezier(0.2, 0.8, 0.2, 1); }
+html[data-bottomnav] [data-dock-stack] { translate: 0 calc(-1 * var(--bn-space) - 4px); padding-bottom: 6px; z-index: 29; }
+@media (prefers-reduced-motion: reduce) { html [data-dock-stack] { transition: none; } }
+
 /* Phone rails (2026-11-19, owner: "way too much going on in the mobile version of the home page"). Below sm a home shelf
    is ONE sideways row instead of a grid six rows deep, so a phone sees each shelf in one screen's height. Same HTML at
    every width: only the layout changes. From sm up it is the usual grid. */
@@ -413,10 +418,3 @@ html[data-season="halloween"] header.sticky {
   .phone-rail::-webkit-scrollbar { display: none; }
   .phone-rail > * { flex: 0 0 44%; min-width: 0; scroll-snap-align: start; }
 }
-=======
-/* The phone eBay dock (components/PhoneDock.tsx, owner 2026-11-19): stays up while the bottom nav shows, lifted just above it.
-   Moved with `translate` only (CLS 0). */
-html [data-dock-stack] { transition: transform 0.2s ease-out, translate 0.22s cubic-bezier(0.2, 0.8, 0.2, 1); }
-html[data-bottomnav] [data-dock-stack] { translate: 0 calc(-1 * var(--bn-space) - 4px); padding-bottom: 6px; z-index: 29; }
-@media (prefers-reduced-motion: reduce) { html [data-dock-stack] { transition: none; } }
->>>>>>> origin/main
