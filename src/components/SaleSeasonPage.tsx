@@ -5,7 +5,7 @@ import { dealsIn, popular } from "@/lib/data";
 import { EbayStrip, SITE_QUERIES } from "@/components/EbayStrip";
 import { TileGrid } from "@/components/FigureTile";
 import { PageHead } from "@/components/Section";
-import { listRegions, saleHeading, saleIntro, saleYear, SALE_SEASONS, type SaleSlug } from "@/lib/sale-seasons";
+import { listRegions, saleHeading, saleIntro, saleYear, SALE_SEASONS, type SaleSlug, saleIndexable } from "@/lib/sale-seasons";
 
 // The seasonal sale pages, /boxing-day, /january-sales, /lunar-new-year and /valentines-day (DECISIONS.md, "Seasonal sale
 // pages", 2026-11-02): one URL each kept every year, with the Black Friday page's rows (dealsIn per region), prerendered at the
@@ -19,6 +19,7 @@ export function saleMetadata(slug: SaleSlug): Metadata {
     title: `Anime figure ${saleHeading(slug, y)}`,
     description: `${SALE_SEASONS[slug].name} ${y} deals on Nendoroid, figma and POP UP PARADE figures: in stock today where the cheapest store is at least 10% under the dearest, per region, updated daily.`,
     alternates: { canonical: `/${slug}` },
+    ...(saleIndexable(slug, new Date().toISOString().slice(0, 10)) ? {} : { robots: { index: false, follow: true } }),
   };
 }
 
