@@ -1438,6 +1438,28 @@ red; the yen rates are amber after eight days. The family feed is written weekly
 none of it for part of each week. This replaces the 26 Jan fold-into-Gundam plan: nothing is folded. Undo by restoring the
 two daily crons and the old thresholds in `scripts/ops-monitor.ts`.
 
+## Amazon API allowance: mostly ScentCompare, card sites at zero (owner, 2026-11-19)
+
+Amazon's Creators API limit is per Associates account (one a country), shared by every site on it: 1 call a second and
+8,640 a day for the first 30 days (the US until about 8 Dec 2026), then 1 a day per US$0.05 of shipped revenue the API
+referred in 30 days. The owner: "be very frugal", no Amazon calls for card sites ("people aren't buying on Amazon"), and
+half or more for ScentCompare, the best performer. Each site's daily calls (environment variables can only lower them):
+
+| Site | searchItems a day (US / other) | getItems at build (US / other) |
+|---|---|---|
+| ScentCompare | 2,000 / 600 | 200 / 100 |
+| KaeYoung | 600 / 300 | 100 / 60 |
+| DexCompare | 300 | 30 |
+| MTG Compare, WargameCompare | 100 | 20 |
+| Compare Empire | 100 | 30 |
+| CamCompare | 150 (AU only) | about 30 (AU only) |
+| Rift, OP, YGO, Lorcana, Cyberpunk, Gundam (and kits), Bandai, SportsCardCompare, TCG Prices, Figure, Motor | 0 | 0 |
+
+US total at most about 3,600 calls a day (ScentCompare about 61%, ScentCompare and KaeYoung together about 81%), against
+8,640 until about 8 Dec 2026 and a revenue-based limit after it (1 a day per US$0.05 of API-referred shipped revenue).
+
+Here both defaults are 0: no search, no price call; the Amazon row keeps its tagged search link. Raising them is the owner's call.
+
 ## 2026-11-19: [urgent] needs eight hours too: a network ceiling of 57 builds a day
 
 [urgent] in a commit subject used to skip the 12-hour gap altogether. On 17 and 18 Nov the network built production 94
