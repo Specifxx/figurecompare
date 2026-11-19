@@ -393,3 +393,22 @@ html[data-season="halloween"] header.sticky {
 .bn-tab { height: 52px; border-radius: 999px; }
 .bn-tab[aria-current="page"]::before { top: 4px; left: 32%; right: 32%; border-radius: 2px; }
 @media (prefers-reduced-motion: reduce) { .bn, .bn[data-bottomnav-bar="hidden"], .bn-ico { transition: none; } }
+
+/* Phone rails (2026-11-19, owner: "way too much going on in the mobile version of the home page"). Below sm a home shelf
+   is ONE sideways row instead of a grid six rows deep, so a phone sees each shelf in one screen's height. Same HTML at
+   every width: only the layout changes. From sm up it is the usual grid. */
+@media (max-width: 639.98px) {
+  .phone-rail {
+    display: flex;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+    scroll-padding-inline: 1rem;
+    padding-bottom: 2px;
+  }
+  .phone-rail::-webkit-scrollbar { display: none; }
+  .phone-rail > * { flex: 0 0 44%; min-width: 0; scroll-snap-align: start; }
+}

@@ -51,9 +51,12 @@ export default function Home() {
   return (
     <>
       <section className="border-b border-line bg-card">
-        <div className="relative mx-auto max-w-6xl px-4 pb-10 pt-10 md:pt-14">
-          {/* The creators hub, above the fold (owner, 2026-11-03): top-right corner from sm, a pill above the kicker on a phone. */}
-          <CreatorsCornerBadge />
+        <div className="relative mx-auto max-w-6xl px-4 pb-7 pt-6 sm:pb-10 sm:pt-10 md:pt-14">
+          {/* The creators hub, above the fold (owner, 2026-11-03): top-right corner from sm. Phone hero, 2026-11-19 (owner: "way
+              too much going on in the mobile version of the home page"): the headline, one line and the gift guide; the header
+              already has the search and the region, so the creators pill, region chips, second search and counts show from sm
+              up. Same HTML at every width. */}
+          <div className="hidden sm:contents"><CreatorsCornerBadge /></div>
           <ChristmasGuide />
           <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-pink">
             フィギュア price check
@@ -61,14 +64,14 @@ export default function Home() {
           <h1 className="h-display max-w-3xl text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
             Find the <span className="text-pink">lowest price</span> for any anime figure
           </h1>
-          <p className="mt-4 max-w-2xl text-lg text-soft">
+          <p className="mt-3 max-w-2xl text-base text-soft sm:mt-4 sm:text-lg">
             Nendoroid, figma and POP UP PARADE prices from {stores || "real"} figure stores, matched by the barcode on the box and checked every day.
           </p>
-          <RegionChips className="mt-6" />
-          <div className="mt-4 max-w-2xl">
+          <div className="hidden sm:block"><RegionChips className="mt-6" /></div>
+          <div className="mt-4 hidden max-w-2xl sm:block">
             <SearchBox big />
           </div>
-          <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-soft">
+          <div className="mt-5 hidden flex-wrap items-center gap-x-5 gap-y-2 text-sm text-soft sm:flex">
             <span><b className="text-ink">{total.toLocaleString("en-US")}</b> figures</span>
             <span><b className="text-ink">{stores}</b> stores</span>
             <span><b className="text-ink">{ACTIVE_REGIONS.length}</b> regions</span>
@@ -78,7 +81,8 @@ export default function Home() {
       </section>
 
       <div className="mx-auto max-w-6xl px-4">
-        <section className="mt-10 grid gap-4 sm:grid-cols-3">
+        {/* The three line tiles from sm up (2026-11-19): on a phone the chip row under the header names the same three. */}
+        <section className="mt-10 hidden gap-4 sm:grid sm:grid-cols-3">
           {LINES.map((l) => (
             <Link prefetch={false} key={l.key} href={`/${l.key}`} className="sticker tile-hover p-5">
               <h2 className="h-display text-2xl">{l.name}</h2>
@@ -87,8 +91,6 @@ export default function Home() {
             </Link>
           ))}
         </section>
-
-        <EbayStrip className="mt-10" placement="home" queries={SITE_QUERIES} figures={featuredPopular(30)} title="Figures on eBay" />
 
         {REGIONS.map((r) => {
           const deals = rankFigures(featuredDealsIn(r.code, 24), r.code).slice(0, 8);
@@ -99,23 +101,26 @@ export default function Home() {
             <div key={r.code} className={`rp rp-${r.code}`}>
               {deals.length > 0 && (
                 <Section title={`Biggest savings ${r.phrase}`} href="/deals" more="All deals">
-                  <TileGrid figures={deals} region={r.code} />
+                  <TileGrid figures={deals} region={r.code} rail />
                 </Section>
               )}
               {pre.length > 0 && (
                 <Section title={`Open for pre-order ${r.phrase}`} href="/preorders" more="All pre-orders">
-                  <TileGrid figures={pre} region={r.code} />
+                  <TileGrid figures={pre} region={r.code} rail />
                 </Section>
               )}
               {pop.length > 0 && (
                 <Section title={`Stocked by the most stores ${r.phrase}`}>
-                  <TileGrid figures={pop} region={r.code} />
+                  <TileGrid figures={pop} region={r.code} rail />
                 </Section>
               )}
+              {/* Just spotted from sm up: a phone gets three shelves, each one sideways row (2026-11-19). */}
               {fresh.length > 0 && (
-                <Section title="Just spotted" href="/new" more="Everything new">
-                  <TileGrid figures={fresh} region={r.code} />
-                </Section>
+                <div className="hidden sm:block">
+                  <Section title="Just spotted" href="/new" more="Everything new">
+                    <TileGrid figures={fresh} region={r.code} />
+                  </Section>
+                </div>
               )}
               {!deals.length && !pre.length && !pop.length && (
                 <p className="sticker mt-10 p-6 text-center text-soft">No store {r.phrase} has figures in stock right now. Try another region.</p>
@@ -124,8 +129,13 @@ export default function Home() {
           );
         })}
 
+        {/* The eBay strip sits under the figure shelves, never above them (2026-11-19: on a phone it was the first thing after
+            the hero, an ad above the page's own content). */}
+        <EbayStrip className="mt-10" placement="home" queries={SITE_QUERIES} figures={featuredPopular(30)} title="Figures on eBay" />
 
-        <section className="mt-14">
+        {/* "How it works", the browse links and the guide cards from sm up (2026-11-19): on a phone the menu and footer reach
+            the same pages without three more screens. */}
+        <section className="mt-14 hidden sm:block">
           <h2 className="h-display mb-4 text-2xl sm:text-3xl">
             How FigureCompare works
           </h2>
@@ -144,7 +154,7 @@ export default function Home() {
           </ol>
         </section>
 
-        <section className="mt-14">
+        <section className="mt-14 hidden sm:block">
           <h2 className="h-display mb-4 text-2xl sm:text-3xl">Browse figures</h2>
           <ul className="grid gap-x-6 gap-y-2 text-sm sm:grid-cols-2">
             {LINES.map((l) => (
@@ -161,6 +171,7 @@ export default function Home() {
 
         {/* The site's own star score and approved reviews (owner, 2026-11-03), loaded in the browser; nothing until there is a rating. */}
         {/* Guides with thumbnails (owner, 2026-11-09): every post on the home page, server-rendered, below the figures. */}
+        <div className="hidden sm:block">
         <Section title="Guides" href="/blog" more="All guides">
           <ul role="list" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[...POSTS].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 6).map((p) => (
@@ -177,6 +188,7 @@ export default function Home() {
             ))}
           </ul>
         </Section>
+        </div>
 
         <SiteReviews className="mt-14" />
 

@@ -1389,3 +1389,14 @@ sites made the same choice for the same reason. Only the latin subset ships: oth
 The home hero's entrance (`.mo-enter`, where the site has one) also no longer fades from opacity 0: a browser does not
 count an element as painted while it is invisible, so the fade held the largest paint back ~1.1 s
 (`tests/hero-lcp.test.ts`).
+
+## 2026-11-19 — A calmer home page on a phone
+
+Owner, 2026-11-19: "way too much going on in the mobile version of the home page" (KaeYoung first; the same pass on every
+site). Below sm the hero is the headline, one line and the gift guide; the creators pill, region chips, second search and
+counts show from sm up (the header already carries the search, the region and the three lines, so the three line tiles
+show from sm up too). Each region's savings, pre-order and most-stocked shelves are ONE sideways row on a phone (`rail`
+on `TileGrid`, `.phone-rail` in globals.css); "Just spotted", "How it works", the browse links and the guide cards show
+from sm up. The eBay strip moved from above the shelves to under them, at every width: on a phone it was the first thing
+after the hero. Measured on a 390px phone: 11,244 px tall before, about 4,250 after. Layout and order only: URLs,
+titles, headings, metadata and JSON-LD are the same, the server HTML is the same at every width.
