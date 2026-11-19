@@ -27,10 +27,16 @@ async function get(p: string) {
   return r;
 }
 
+/** The import runs once a week (owner, 2026-11-19: FigureCompare idle, weekly import and release), so every age
+ *  check allows one week plus a day before amber and nine days before red. */
+const WEEK_H = 7 * 24;
+const IDLE_OK_H = WEEK_H + 30;
+const IDLE_RED_H = WEEK_H + 54;
+
 export function judgeFreshness(updatedAt: string, now = Date.now()): Omit<Result, "name"> {
   const h = (now - Date.parse(updatedAt)) / 3_600_000;
-  if (h < 30) return { status: "ok", detail: `${h.toFixed(1)}h old` };
-  return { status: h < 54 ? "warn" : "fail", detail: `prices are ${h.toFixed(0)}h old: check the Import prices workflow` };
+  if (h < IDLE_OK_H) return { status: "ok", detail: `${h.toFixed(1)}h old` };
+  return { status: h < IDLE_RED_H ? "warn" : "fail", detail: `prices are ${h.toFixed(0)}h old: check the Import prices workflow (weekly)` };
 }
 
 /** The fewest products a healthy read of these stores sees. */
@@ -100,7 +106,7 @@ async function main() {
       const f = path.join(process.cwd(), "data/family/family-feed.json");
       if (!fs.existsSync(f)) return { status: "warn", detail: "data/family/family-feed.json not written yet" };
       const age = (Date.now() - Date.parse((JSON.parse(fs.readFileSync(f, "utf8")) as { generatedAt: string }).generatedAt)) / 3_600_000;
-      return age > 50 ? { status: "warn", detail: `written ${age.toFixed(0)}h ago: read the Family feed step of import.yml` } : { status: "ok", detail: `${age.toFixed(1)}h old` };
+      return age > IDLE_OK_H ? { status: "warn", detail: `written ${age.toFixed(0)}h ago: read the Family feed step of import.yml` } : { status: "ok", detail: `${age.toFixed(1)}h old` };
     }),
     // Yen rates for the Japan table (lib/fx.ts): stale rates only drop the conversion, so amber at worst.
     check("Yen exchange rates", () => {
@@ -108,14 +114,14 @@ async function main() {
       if (!fs.existsSync(f)) return { status: "warn", detail: "data/public/fx.json not written yet: Japan prices show in yen only" };
       const fx = JSON.parse(fs.readFileSync(f, "utf8")) as { at: string; date: string };
       const age = (Date.now() - Date.parse(fx.at)) / 86_400_000;
-      return age > 3 ? { status: "warn", detail: `rates fetched ${age.toFixed(1)} days ago (ECB ${fx.date}); after 7 the Japan table falls back to yen` } : { status: "ok", detail: `ECB ${fx.date}` };
+      return age > 8 ? { status: "warn", detail: `rates fetched ${age.toFixed(1)} days ago (ECB ${fx.date}); after 7 the Japan table falls back to yen` } : { status: "ok", detail: `ECB ${fx.date}` };
     }),
     check("Amazon ASINs", () => judgeAmazon(Object.fromEntries((["US", "UK", "CA", "EU", "AU"] as RegionCode[]).map((r) => [r, readAsinStatus(r)])))),
     check("eBay listings", () => {
       if (!process.env.EBAY_CLIENT_ID) return { status: "warn", detail: "EBAY_CLIENT_ID not set in GitHub secrets: no eBay listings yet" };
       if (!meta.ebay) return { status: "warn", detail: "no eBay run recorded yet" };
       const age = (Date.now() - Date.parse(meta.ebay.at)) / 3_600_000;
-      if (age > 30) return { status: "warn", detail: `last eBay run ${age.toFixed(0)}h ago` };
+      if (age > IDLE_OK_H) return { status: "warn", detail: `last eBay run ${age.toFixed(0)}h ago` };
       return { status: "ok", detail: `${meta.ebay.calls}/${meta.ebay.budget} calls on ${meta.ebay.day}` };
     }),
   ]);

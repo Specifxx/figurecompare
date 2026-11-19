@@ -81,9 +81,10 @@ test("the dropdown shows eight rows; the results page gets every match (Reddit, 
 
 test("ops monitor judgements", () => {
   const now = Date.parse("2026-10-28T12:00:00Z");
-  assert.equal(judgeFreshness("2026-10-28T05:00:00Z", now).status, "ok");
-  assert.equal(judgeFreshness("2026-10-27T00:00:00Z", now).status, "warn");
-  assert.equal(judgeFreshness("2026-10-25T00:00:00Z", now).status, "fail");
+  // Weekly import (2026-11-19): ok within a week and a day, amber to nine days, red after.
+  assert.equal(judgeFreshness("2026-10-22T05:00:00Z", now).status, "ok");
+  assert.equal(judgeFreshness("2026-10-20T00:00:00Z", now).status, "warn");
+  assert.equal(judgeFreshness("2026-10-18T00:00:00Z", now).status, "fail");
   const run = (ok: boolean, matched = 5) => ({ ok, matched, listings: 10, refused: {}, noJan: 0, ms: 1, error: ok ? undefined : "HTTP 429" });
   assert.equal(judgeStores({ updatedAt: "", figures: 1, stores: { a: run(true), b: run(true) } }, 2).status, "ok");
   assert.equal(judgeStores({ updatedAt: "", figures: 1, stores: { a: run(false), b: run(true), c: run(true), d: run(true) } }, 4).status, "warn");

@@ -6,7 +6,7 @@ name: Import prices
 
 on:
   schedule:
-    - cron: "23 5 * * *"
+    - cron: "23 5 * * 1" # Mondays only: FigureCompare is idle (owner, 2026-11-19)
   workflow_dispatch:
     inputs:
       ebay:
@@ -82,7 +82,7 @@ jobs:
             echo "No data changes."
             exit 0
           fi
-          git commit -m "data: daily prices $(date -u +%F) [deploy]" -m "Written by import.yml. This is the one scheduled production build a day."
+          git commit -m "data: weekly prices $(date -u +%F) [deploy]" -m "Written by import.yml. This is the one scheduled production build a week (site idle since 2026-11-19)."
           for i in 1 2 3 4; do
             git push origin HEAD:main && exit 0
             sleep $((2 ** i)); git pull --rebase origin main

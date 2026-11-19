@@ -6,8 +6,8 @@ stores in the US, UK, Canada, Australia, New Zealand, Europe and Singapore. A Co
 
 ## A fully static site: data in GitHub, pages on Vercel's CDN
 
-- The daily import (`.github/workflows/import.yml`: `scripts/import.ts`, then `scripts/ebay-import.ts`) writes
-  `data/public/*.json` and commits it to `main` with `[deploy]` in the subject: the one production build a day.
+- The import (`.github/workflows/import.yml`: `scripts/import.ts`, then `scripts/ebay-import.ts`; WEEKLY, Mondays, since 2026-11-19: the site is idle) writes
+  `data/public/*.json` and commits it to `main` with `[deploy]` in the subject: the one production build a week.
 - Every page is prerendered at that build (`generateStaticParams` + `dynamicParams = false`): a visit is a static
   file, never a function. No database, no middleware, no ISR timer, no page reads cookies, headers or `searchParams`,
   every `next/link` has `prefetch={false}`, image optimisation is off. `tests/cost-rules.test.ts` pins all of it.

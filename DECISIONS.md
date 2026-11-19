@@ -1425,3 +1425,15 @@ content "spread across a large network of sites" and re-dating pages to look fre
   country. It is now one question whose answer names every region.
 
 Black Friday and Cyber Monday pages are unchanged (in season). Judge the effect on 1 to 8 Dec against 3 to 9 Nov.
+
+## 2026-11-19 — Idle: one import and one release a week
+
+Owner, 2026-11-19: "figure compare and motorcompare have earnt 0 dollars maybe they were bad ideas". The Monday report of
+16 Nov: A$0.00 earned in 30 days (eBay, TCGplayer and Awin tags all empty), 353 visitors and 99 buy clicks in a week, 9
+pages in Bing, A$24.12 of Vercel over four weeks. The site stays live and unchanged (hosts, URLs and pages untouched); its
+agent loop was already off (18 Nov), and now `import.yml` and the fallback `production-deploy.yml` run on Mondays only, so it
+builds once a week and spends its eBay calls once a week (WargameCompare's half of the shared keyset is untouched; the
+freed calls are the owner's to move). The ops monitor's age checks allow a week and a day before amber and nine days before
+red; the yen rates are amber after eight days. The family feed is written weekly, so sisters that read it (4-day limit) show
+none of it for part of each week. This replaces the 26 Jan fold-into-Gundam plan: nothing is folded. Undo by restoring the
+two daily crons and the old thresholds in `scripts/ops-monitor.ts`.
