@@ -1410,3 +1410,18 @@ on `TileGrid`, `.phone-rail` in globals.css); "Just spotted", "How it works", th
 from sm up. The eBay strip moved from above the shelves to under them, at every width: on a phone it was the first thing
 after the hero. Measured on a 390px phone: 11,244 px tall before, about 4,250 after. Layout and order only: URLs,
 titles, headings, metadata and JSON-LD are the same, the server HTML is the same at every width.
+
+## 2026-11-19: Search-engine-first audit after the November 2026 core update
+
+Google's core-update guidance asks whether a page exists mainly to help people or mainly to catch a search, and names
+content "spread across a large network of sites" and re-dating pages to look fresh as warning signs. What changed here:
+
+- **Seasonal sale pages.** The same template put Boxing Day, January sales and Lunar New Year (and Valentine's Day where
+  a site has it) pages on every Compare site, indexed all year, each listing the same deals as the Black Friday page.
+  `saleIndexable` in `lib/sale-seasons.ts`: Lunar New Year and Valentine's Day pages are never indexed, Boxing Day and
+  January sales only from three weeks before the homepage links them until a week after they end; out of season they are
+  noindex, follow and out of the sitemap (`withoutOffSeasonSales`). The URLs stay live all year (URL freeze).
+- **Product FAQ.** "Where is X cheapest in <region>?" was one question per region, the same sentence reworded for each
+  country. It is now one question whose answer names every region.
+
+Black Friday and Cyber Monday pages are unchanged (in season). Judge the effect on 1 to 8 Dec against 3 to 9 Nov.

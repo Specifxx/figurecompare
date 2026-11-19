@@ -332,11 +332,14 @@ export default function FigurePage({ params }: { params: { slug: string } }) {
 
 function Faq({ f, regions }: { f: ReturnType<typeof getFigure> & {}; regions: RegionCode[] }) {
   const qa: [string, string][] = [];
-  for (const r of regions) {
+  // One question for every region, not one per region: the same question reworded for each country is copy written for
+  // searches, not readers (search-engine-first audit, 2026-11-19).
+  const cheapest = regions.flatMap((r) => {
     const b = bestIn(f, r);
     const reg = REGIONS.find((x) => x.code === r)!;
-    if (b) qa.push([`Where is ${f.name} cheapest ${reg.phrase}?`, `${storeName(b.offer.s)} at ${money(b.offer.p, r)}${b.offer.st === "pre" ? " (pre-order)" : ""}, the lowest of ${b.stores} store${b.stores === 1 ? "" : "s"} we compared at our last check.`]);
-  }
+    return b ? [`${reg.phrase}, ${storeName(b.offer.s)} at ${money(b.offer.p, r)}${b.offer.st === "pre" ? ", pre-order" : ""} (the lowest of ${b.stores} store${b.stores === 1 ? "" : "s"})`] : [];
+  });
+  if (cheapest.length) qa.push([`Where is ${f.name} cheapest?`, `At our last check: ${cheapest.join("; ")}.`]);
   qa.push([
     `How do you know every store sells the same ${f.name}?`,
     `We match listings by the barcode printed on the box (JAN ${f.jan}). A listing without a barcode is left out rather than guessed, so re-releases, exclusives and look-alikes never get mixed up. The one exception is BigBadToyStore, whose pages carry no barcode: it is matched by the Nendoroid or figma catalogue number together with the character's name, and only when that number belongs to a single figure.`,

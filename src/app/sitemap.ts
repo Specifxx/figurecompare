@@ -6,6 +6,7 @@ import { figuresOfSeries, liveSeries } from "@/lib/series";
 import { figuresOfCharacter, liveCharacters } from "@/lib/characters";
 import type { Figure } from "@/lib/types";
 import { POSTS } from "@/content/blog";
+import { withoutOffSeasonSales } from "@/lib/sale-seasons";
 
 // A lean core (SEO audit 2026-11-07, src/lib/index-tiers.ts sitemapFigures): hubs, series, guides and
 // the SITEMAP_FIGURES core figures. Every other figure and line page 2+ stays live, indexable and linked;
@@ -33,7 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     u("/deals", 0.8),
     u("/black-friday", 0.8),
     u("/cyber-monday", 0.8),
-    ...["/boxing-day", "/january-sales", "/lunar-new-year", "/valentines-day"].map((p) => u(p, 0.7)),
+    ...withoutOffSeasonSales(["/boxing-day", "/january-sales"], new Date().toISOString().slice(0, 10)).map((p) => u(p, 0.7)),
     u("/preorders", 0.8),
     u("/new", 0.7),
     u("/blog", 0.7, POSTS.map((p) => p.date).sort().pop()),
