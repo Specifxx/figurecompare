@@ -24,6 +24,7 @@ import { niceDate } from "@/lib/format";
 import { CHRISTMAS_FESTIVE_LAYER, SEASON_BOOT_SCRIPT } from "@/lib/season";
 import { BottomNav } from "@/components/BottomNav";
 import { BOTTOM_NAV } from "@/lib/bottom-nav";
+import { PhoneEbayDock } from "@/components/PhoneEbayDock";
 
 
 // Fonts (2026-11-18, "Speed up sites on mobile"): the latin files of the same variable fonts, bundled through next/font
@@ -88,6 +89,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ShareArrival />
         {/* The phone bottom nav (components/BottomNav.tsx, lib/bottom-nav.ts): browser only, phones only, BOTTOM_NAV is its switch. */}
         {BOTTOM_NAV !== "off" && <BottomNav mode={BOTTOM_NAV} />}
+        {/* The phone eBay dock (owner, 2026-11-19): browser only, phones only, after a scroll, stacked above the bottom nav. */}
+        <PhoneEbayDock />
       </body>
     </html>
   );
