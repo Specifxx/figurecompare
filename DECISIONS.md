@@ -1389,3 +1389,14 @@ sites made the same choice for the same reason. Only the latin subset ships: oth
 The home hero's entrance (`.mo-enter`, where the site has one) also no longer fades from opacity 0: a browser does not
 count an element as painted while it is invisible, so the fade held the largest paint back ~1.1 s
 (`tests/hero-lcp.test.ts`).
+
+## 2026-11-19: The phone eBay dock comes to FigureCompare (owner)
+
+The owner wants the phone strip ad that sits just above the bottom nav (RiftCompare's and the sister sites' dock) "for every
+single site … eBay as a strip banner there". FigureCompare never had a dock, so `PhoneDock.tsx` ports the sisters' AdDock in
+its stacked form, and `PhoneEbayDock.tsx` builds its tiles at the daily build: per region, the most popular figures with a
+believable new Buy It Now eBay listing (the eBay pass's own picks, no extra call), else eBay searches for the three lines.
+The visitor's region (`html[data-region]`) picks one list in the browser. Rules kept from the sisters: browser and phones
+only, never on the first screen, hidden near the footer, a price table, a dialog or the keyboard, eBay only (never Amazon),
+labelled Ad, rel sponsored, ✕ for the visit, moved on transform only (CLS 0). It stays up above the bottom nav
+(`html[data-bottomnav] [data-dock-stack]`). Placement `dock` in the earnings reports.
