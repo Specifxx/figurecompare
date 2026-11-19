@@ -69,9 +69,10 @@ export function FigureTile({ f, i = 0, region }: { f: Figure; i?: number; region
   );
 }
 
-export function TileGrid({ figures, region }: { figures: Figure[]; region?: RegionCode }) {
+/** `rail`: one sideways row on a phone (the home page's shelves, 2026-11-19), the usual grid from sm up. */
+export function TileGrid({ figures, region, rail }: { figures: Figure[]; region?: RegionCode; rail?: boolean }) {
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+    <div className={`grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4${rail ? " phone-rail scroller" : ""}`}>
       {figures.map((f, i) => (
         <FigureTile key={f.jan} f={f} i={i} region={region} />
       ))}
