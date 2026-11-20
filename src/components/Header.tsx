@@ -14,7 +14,7 @@ export function Header({ groups, menus }: { groups: NavGroup[]; menus: HeaderMen
   const links = (t: string) => groups.find((g) => g.title === t)?.links ?? [];
   const quick = [...links("Figure lines"), ...links("Series & characters").filter((l) => l.href === "/series" || l.href === "/characters"), ...links("Deals & stock").filter((l) => ["/deals", "/preorders", "/new"].includes(l.href))];
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-card/90 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-line bg-card/90 backdrop-blur xmas-garland">
       <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-2.5 xl:max-w-[1440px]">
         <Link href="/" prefetch={false} className="shrink-0" aria-label="FigureCompare home">
           <Logo wordmark="hidden min-[400px]:inline" />
