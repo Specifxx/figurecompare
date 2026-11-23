@@ -1484,3 +1484,10 @@ asked for hats and lights by name, so they come back after the 2026-11-08 tone-d
   but two class names, so titles, metadata and structured data are untouched. Favicons and share images are unchanged.
 - Off switch: `CHRISTMAS_FESTIVE_LAYER` (`lib/season.ts`, the `data-festive` attribute on `<html>`); the Christmas window
   also ends it on 27 December by itself. Remove after New Year: delete the block and the two classes.
+
+## 2026-11-23: A header dropdown's label is a link
+
+Owner, 2026-11-23: "every time I click on the drop downs, I expect it to be a link and … take me somewhere … when I click on
+one of the drop downs, it doesn't do anything. It just drops it down." Each label of `HeaderMenus.tsx` is now a `<Link>` to the menu's own "all" page (`m.all.href`, the link at the foot of its panel). Hover still opens the panel after the same
+intent delay; the chevron beside the label is now the button that toggles it (click, tap, Enter, Space, ArrowDown), with
+`aria-expanded` and its own label. The panels stay in the server HTML. `tests/site.test.ts` pins it.
