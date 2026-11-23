@@ -1,7 +1,7 @@
 {
  "v": 1,
  "site": "figure",
- "generatedAt": "2026-11-17T17:50:45.862Z",
+ "generatedAt": "2026-11-23T19:38:30.941Z",
  "links": {
   "US": {
    "deals": "https://figurecompare.com/deals",
@@ -37,23 +37,12 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "US",
-   "title": "Nendoroid Komaro Michinoku",
+   "title": "Nendoroid There is Also a Hole in the Student Organization! - Komaro Michinoku",
    "url": "https://figurecompare.com/figure/nendoroid-seitokai-ni-mo-ana-wa-aru-michinoku-komaro-3188",
    "cents": 4499,
    "currency": "USD",
    "store": "The Anime Throne",
-   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/94dc2e0e-9024-4741-8605-4ac526710ff0-L.png?v=1794369681&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "US",
-   "title": "Nendoroid Clannad - Tomoyo Sakagami",
-   "url": "https://figurecompare.com/figure/nendoroid-clannad-tomoyo-sakagami-3169",
-   "cents": 4695,
-   "currency": "USD",
-   "store": "Galactic Toys & Collectibles",
-   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/2a07c8bc-4cc9-45b5-bf8e-f183b0968c15-L.png?v=1794598235&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232596269.jpg?v=1794990657&width=600"
   },
   {
    "kind": "preorder",
@@ -70,23 +59,34 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "US",
-   "title": "Nendoroid Final Fantasy XIV - Yotsuyu",
-   "url": "https://figurecompare.com/figure/nendoroid-final-fantasy-xiv-yotsuyu-3153",
-   "cents": 5368,
+   "title": "Nendoroid Clannad - Tomoyo Sakagami",
+   "url": "https://figurecompare.com/figure/nendoroid-clannad-tomoyo-sakagami-3169",
+   "cents": 4695,
    "currency": "USD",
-   "store": "Japan Figure Store",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232595873.jpg?v=1794409895&width=600"
+   "store": "Galactic Toys & Collectibles",
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232596030.jpg?v=1794990269&width=600"
   },
   {
    "kind": "preorder",
    "cluster": "hobby",
    "region": "US",
-   "title": "Nendoroid Mydei",
+   "title": "Nendoroid Honkai: Star Rail - Mydei",
    "url": "https://figurecompare.com/figure/nendoroid-honkai-star-rail-mydei-3077",
    "cents": 5495,
    "currency": "USD",
    "store": "Galactic Toys & Collectibles",
-   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/0b9505b3-7333-4ebb-ba37-305398cd7325-L.png?v=1794598249&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232595958.jpg?v=1794990450&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "US",
+   "title": "Nendoroid Final Fantasy XIV - Emet-Selch",
+   "url": "https://figurecompare.com/figure/nendoroid-final-fantasy-xiv-emet-selch-3194",
+   "cents": 5495,
+   "currency": "USD",
+   "store": "Galactic Toys & Collectibles",
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232596740.jpg?v=1794990341&width=600"
   },
   {
    "kind": "preorder",
@@ -97,7 +97,7 @@
    "cents": 5779,
    "currency": "USD",
    "store": "Japan Figure Store",
-   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/e3fcb548-f5de-4376-8c83-623d3c7649ed-L.png?v=1794598231&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232593053.jpg?v=1794990357&width=600"
   },
   {
    "kind": "deal",
@@ -131,6 +131,20 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "UK",
+   "title": "POP UP PARADE Kirby: Wheelie Rider Ver.",
+   "url": "https://figurecompare.com/figure/pop-up-parade-kirby-wheelie-rider-ver",
+   "cents": 4495,
+   "currency": "GBP",
+   "store": "Gamersheek",
+   "image": "https://cdn.shopify.com/s/files/1/0467/3083/8169/files/31c3efcc-abf6-4a51-999f-8e8dffe1aea0.png?v=1792597658&width=600",
+   "refCents": 7595,
+   "refLabel": "dearest store",
+   "savingPct": 41
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "UK",
    "title": "Nendoroid Hatsune Miku: The Vampire Ver.",
    "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-the-vampire-ver-2239",
    "cents": 4795,
@@ -145,7 +159,21 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "UK",
-   "title": "Nendoroid Chilchuck",
+   "title": "Nendoroid Gintama - Ginpachi Sakata - Arts Shanghai",
+   "url": "https://figurecompare.com/figure/nendoroid-gintama-ginpachi-sakata-arts-shanghai-2898",
+   "cents": 4495,
+   "currency": "GBP",
+   "store": "Gamersheek",
+   "image": "https://cdn.shopify.com/s/files/1/0005/5122/3414/files/4580828665378-TB.webp?v=1763772299&width=600",
+   "refCents": 7499,
+   "refLabel": "dearest store",
+   "savingPct": 40
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "UK",
+   "title": "Nendoroid Delicious in Dungeon - Chilchuck",
    "url": "https://figurecompare.com/figure/nendoroid-chilchuck-2396",
    "cents": 4495,
    "currency": "GBP",
@@ -156,54 +184,15 @@
    "savingPct": 40
   },
   {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "UK",
-   "title": "Nendoroid Laios",
-   "url": "https://figurecompare.com/figure/nendoroid-laios-2375",
-   "cents": 4495,
-   "currency": "GBP",
-   "store": "Hobby Figures",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/delicious-in-dungeon-nendoroid-laios-1.jpg?v=1708124761&width=600",
-   "refCents": 7495,
-   "refLabel": "dearest store",
-   "savingPct": 40
-  },
-  {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "UK",
-   "title": "Nendoroid Delicious in Dungeon - Action Senshi 10 cm",
-   "url": "https://figurecompare.com/figure/nendoroid-senshi-2415",
-   "cents": 4895,
-   "currency": "GBP",
-   "store": "Hobby Figures",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/delicious-in-dungeon-nendoroid-senshi-1.jpg?v=1709245503&width=600",
-   "refCents": 8095,
-   "refLabel": "dearest store",
-   "savingPct": 40
-  },
-  {
    "kind": "preorder",
    "cluster": "hobby",
    "region": "UK",
-   "title": "Nendoroid Yuta Okkotsu: Execution Ver.",
-   "url": "https://figurecompare.com/figure/nendoroid-yuta-okkotsu-execution-ver-2933",
+   "title": "Nendoroid Blue Archive - Toki Asuma",
+   "url": "https://figurecompare.com/figure/nendoroid-blue-archive-toki-asuma-2812",
    "cents": 3995,
    "currency": "GBP",
    "store": "Gamersheek",
-   "image": "https://cdn.shopify.com/s/files/1/0876/7307/8075/files/104.png?v=1788419860&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "UK",
-   "title": "Nendoroid Hatsune Miku: Unshuttered Sekai Ver.",
-   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-unshuttered-sekai-ver-2904",
-   "cents": 4495,
-   "currency": "GBP",
-   "store": "Gamersheek",
-   "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/NendoroidHatsuneMikuUnshutteredSEKAIVer._01.jpg?v=1773896971&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4571697186316.png?v=1753107007&width=600"
   },
   {
    "kind": "preorder",
@@ -220,23 +209,23 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "UK",
-   "title": "Nendoroid Hatsune Miku: DecoMiku (Darkness)",
-   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-decomiku-darkness-3007",
-   "cents": 4995,
+   "title": "Nendoroid Dandadan - Turbo Granny (Manekineko)",
+   "url": "https://figurecompare.com/figure/nendoroid-dandadan-turbo-granny-manekineko-3015",
+   "cents": 4495,
    "currency": "GBP",
-   "store": "Gamersheek",
-   "image": "https://cdn.shopify.com/s/files/1/0428/3347/7798/files/Character_Vocal_Series_01_Nendoroid__3007_Hatsune_Miku__DecoMiku__Darkness_5.png?v=1794264032&width=600"
+   "store": "Hobby Figures",
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828676268.png?v=1773840175&width=600"
   },
   {
    "kind": "preorder",
    "cluster": "hobby",
    "region": "UK",
-   "title": "Nendoroid Hatsune Miku: DecoMiku (Lightness)",
-   "url": "https://figurecompare.com/figure/nendoroid-hatsune-miku-decomiku-lightness-3006",
-   "cents": 4995,
+   "title": "Nendoroid Doma",
+   "url": "https://figurecompare.com/figure/nendoroid-doma-3034",
+   "cents": 4795,
    "currency": "GBP",
-   "store": "Gamersheek",
-   "image": "https://cdn.shopify.com/s/files/1/0428/3347/7798/files/602311927_jpg.webp?v=1794264033&width=600"
+   "store": "Hobby Figures",
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232588226.png?v=1785919174&width=600"
   },
   {
    "kind": "preorder",
@@ -248,6 +237,17 @@
    "currency": "GBP",
    "store": "Gamersheek",
    "image": "https://cdn.shopify.com/s/files/1/0261/9795/0486/files/DISOUNT_InstagramPost_-2026-10-07T121216.118.png?v=1791389543&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "UK",
+   "title": "Nendoroid Delicious in Dungeon - Falin (Chimera)",
+   "url": "https://figurecompare.com/figure/nendoroid-delicious-in-dungeon-falin-chimera-3055",
+   "cents": 4995,
+   "currency": "GBP",
+   "store": "Gamersheek",
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232588295.png?v=1785919052&width=600"
   },
   {
    "kind": "deal",
@@ -309,20 +309,6 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "CA",
-   "title": "POP UP PARADE Setsuna Yuki",
-   "url": "https://figurecompare.com/figure/pop-up-parade-setsuna-yuki",
-   "cents": 2999,
-   "currency": "CAD",
-   "store": "Geek & Co.",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/products/om-G94315-1.jpg?v=1651528755&width=600",
-   "refCents": 6000,
-   "refLabel": "dearest store",
-   "savingPct": 50
-  },
-  {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "CA",
    "title": "POP UP PARADE Yuri Is My Job! - Mitsuki Ayanokoji",
    "url": "https://figurecompare.com/figure/pop-up-parade-yuri-is-my-job-mitsuki-ayanokoji",
    "cents": 3000,
@@ -332,6 +318,20 @@
    "refCents": 5999,
    "refLabel": "dearest store",
    "savingPct": 50
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "CA",
+   "title": "POP UP PARADE To Love-Ru Darkness - Yui Kotegawa",
+   "url": "https://figurecompare.com/figure/pop-up-parade-to-love-ru-darkness-yui-kotegawa",
+   "cents": 3500,
+   "currency": "CAD",
+   "store": "PokéJeux",
+   "image": "https://cdn.shopify.com/s/files/1/0440/6493/1998/products/4580416944885_3-1.jpg?v=1688013406&width=600",
+   "refCents": 6900,
+   "refLabel": "dearest store",
+   "savingPct": 49
   },
   {
    "kind": "preorder",
@@ -359,23 +359,23 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "CA",
+   "title": "Nendoroid Arisa Izayoi cosplay by Marin",
+   "url": "https://figurecompare.com/figure/nendoroid-arisa-izayoi-cosplay-by-marin-2917",
+   "cents": 7999,
+   "currency": "CAD",
+   "store": "Trinity Hobby",
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828672604.png?v=1785919074&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "CA",
    "title": "POP UP PARADE hololive production - Yukihana Lamy",
    "url": "https://figurecompare.com/figure/pop-up-parade-yukihana-lamy",
    "cents": 8800,
    "currency": "CAD",
    "store": "Navito World",
    "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/HololiveProductionPOPUPPARADEYukihanaLamy_01.jpg?v=1773969556&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "CA",
-   "title": "POP UP PARADE Kirby: Wheelie Rider Ver.",
-   "url": "https://figurecompare.com/figure/pop-up-parade-kirby-wheelie-rider-ver",
-   "cents": 11100,
-   "currency": "CAD",
-   "store": "Navito World",
-   "image": "https://cdn.shopify.com/s/files/1/0467/3083/8169/files/31c3efcc-abf6-4a51-999f-8e8dffe1aea0.png?v=1792597658&width=600"
   },
   {
    "kind": "preorder",
@@ -459,23 +459,12 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "AU",
-   "title": "POP UP PARADE Dandadan - Momo",
-   "url": "https://figurecompare.com/figure/pop-up-parade-dan-da-dan-momo",
-   "cents": 6900,
-   "currency": "AUD",
-   "store": "Animeworks",
-   "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/DanDaDanPOPUPPARADEMomo_01.jpg?v=1739603998&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "AU",
    "title": "Nendoroid Berserk - Guts",
    "url": "https://figurecompare.com/figure/nendoroid-berserk-guts",
    "cents": 8795,
    "currency": "AUD",
    "store": "Gameology",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232586161.png?v=1785919168&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/berserk_nendoroid_guts_re_run__c68e1.jpg?v=1782448195&width=600"
   },
   {
    "kind": "preorder",
@@ -486,7 +475,18 @@
    "cents": 8795,
    "currency": "AUD",
    "store": "Gameology",
-   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4570232585195.png?v=1785919181&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/final_fantasy_xiv_nendoroid_y_shtola_5edc8.jpg?v=1781766714&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "AU",
+   "title": "Nendoroid Gold Ship",
+   "url": "https://figurecompare.com/figure/nendoroid-umamusume-pretty-derby-gold-ship-1783",
+   "cents": 9900,
+   "currency": "AUD",
+   "store": "JapanToys",
+   "image": "https://cdn.shopify.com/s/files/1/0023/4029/0630/files/umamusume-pretty-derby-nendoroid-gold-ship-re-run--137516_f8d2f.jpg?v=1795396170&width=600"
   },
   {
    "kind": "preorder",
@@ -609,6 +609,20 @@
    "kind": "deal",
    "cluster": "hobby",
    "region": "EU",
+   "title": "Nendoroid The Quintessential Quintuplets Specials - Yotsuba Nakano: Wedding Dress Ver.",
+   "url": "https://figurecompare.com/figure/nendoroid-no-2405-yotsuba-nakano-wedding-dress-ver-2405",
+   "cents": 3590,
+   "currency": "EUR",
+   "store": "Manganim",
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/products/4580590179691.png?v=1709803846&width=600",
+   "refCents": 8295,
+   "refLabel": "dearest store",
+   "savingPct": 57
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "EU",
    "title": "POP UP PARADE One-Punch Man - King",
    "url": "https://figurecompare.com/figure/pop-up-parade-one-punch-man-king",
    "cents": 1990,
@@ -616,6 +630,20 @@
    "store": "fictionary world",
    "image": "https://cdn.shopify.com/s/files/1/0876/7307/8075/files/11DBBF28-327B-11EF-A71C-B1FE4E1BFA1B-L.png?v=1747167264&width=600",
    "refCents": 4499,
+   "refLabel": "dearest store",
+   "savingPct": 56
+  },
+  {
+   "kind": "deal",
+   "cluster": "hobby",
+   "region": "EU",
+   "title": "Nendoroid Jujutsu Kaisen - Panda",
+   "url": "https://figurecompare.com/figure/nendoroid-jujutsu-kaisen-panda-1844",
+   "cents": 3890,
+   "currency": "EUR",
+   "store": "Manganim",
+   "image": "https://cdn.shopify.com/s/files/1/0467/3083/8169/files/0F9C3B2C-8302-11ED-A6C1-965E09019D5C-L.png?v=1736442809&width=600",
+   "refCents": 8895,
    "refLabel": "dearest store",
    "savingPct": 56
   },
@@ -662,42 +690,6 @@
    "savingPct": 55
   },
   {
-   "kind": "deal",
-   "cluster": "hobby",
-   "region": "EU",
-   "title": "Nendoroid Miroku",
-   "url": "https://figurecompare.com/figure/nendoroid-inuyasha-miroku-1735",
-   "cents": 2980,
-   "currency": "EUR",
-   "store": "Yorokonde",
-   "image": "https://cdn.shopify.com/s/files/1/0428/3347/7798/products/STL215192.jpg?v=1762450032&width=600",
-   "refCents": 6499,
-   "refLabel": "dearest store",
-   "savingPct": 54
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "EU",
-   "title": "POP UP PARADE Okami - Amaterasu 13 cm",
-   "url": "https://figurecompare.com/figure/pop-up-parade-okami-amaterasu",
-   "cents": 4499,
-   "currency": "EUR",
-   "store": "AniMuchuu",
-   "image": "https://cdn.shopify.com/s/files/1/2467/9979/products/PopUpParade-Amaterasu1.jpg?v=1635439491&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "EU",
-   "title": "Nendoroid Demon Slayer - Zenitsu Agatsuma",
-   "url": "https://figurecompare.com/figure/nendoroid-demon-slayer-kimetsu-no-yaiba-zenitsu-agatsuma-1334-63220",
-   "cents": 4999,
-   "currency": "EUR",
-   "store": "JumpIchiban",
-   "image": "https://cdn.shopify.com/s/files/1/0921/7330/files/Nendoroid-Zenitsu-Agatsuma1.png?v=1773798937&width=600"
-  },
-  {
    "kind": "preorder",
    "cluster": "hobby",
    "region": "EU",
@@ -712,12 +704,34 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "EU",
-   "title": "Nendoroid Final Fantasy XIV - Estinien",
-   "url": "https://figurecompare.com/figure/nendoroid-final-fantasy-xiv-estinien-3096",
-   "cents": 5199,
+   "title": "Nendoroid Ace Attorney - Phoenix Wright",
+   "url": "https://figurecompare.com/figure/nendoroid-ace-attorney-phoenix-wright-1761",
+   "cents": 5890,
    "currency": "EUR",
-   "store": "JumpIchiban",
-   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/final-fantasy-xiv-nendoroid-estinien_1.jpg?v=1784262397&width=600"
+   "store": "Yorokonde",
+   "image": "https://cdn.shopify.com/s/files/1/0878/5254/files/4570232592810_1.jpg?v=1790306466&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "EU",
+   "title": "Nendoroid Witch Hat Atelier - Coco",
+   "url": "https://figurecompare.com/figure/nendoroid-witch-hat-atelier-coco-3051",
+   "cents": 6299,
+   "currency": "EUR",
+   "store": "AniMuchuu",
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828679597.png?v=1785919208&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "EU",
+   "title": "Nendoroid Agnes Tachyon",
+   "url": "https://figurecompare.com/figure/nendoroid-agnes-tachyon-2512",
+   "cents": 6700,
+   "currency": "EUR",
+   "store": "Amuzzi",
+   "image": "https://cdn.shopify.com/s/files/1/0987/8934/files/4580828678231.png?v=1785919204&width=600"
   },
   {
    "kind": "preorder",
@@ -728,18 +742,18 @@
    "cents": 7499,
    "currency": "EUR",
    "store": "AniMuchuu",
-   "image": "https://cdn.shopify.com/s/files/1/0428/3347/7798/files/101_1b64801b-3c6a-4e55-baec-387ded97733c.jpg?v=1794264034&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0876/7307/8075/files/88_4d178696-0a19-4d96-a690-50a7aa54521c.png?v=1794992789&width=600"
   },
   {
    "kind": "preorder",
    "cluster": "hobby",
    "region": "EU",
-   "title": "Nendoroid Final Fantasy XIV - Haurchefant",
-   "url": "https://figurecompare.com/figure/nendoroid-final-fantasy-xiv-haurchefant-3125",
-   "cents": 8699,
+   "title": "Nendoroid Arknights: Endfield - Action Perlica 10 cm",
+   "url": "https://figurecompare.com/figure/nendoroid-arknights-endfield-perlica-3043",
+   "cents": 7599,
    "currency": "EUR",
    "store": "AniMuchuu",
-   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/438262b1-d0c9-4908-baff-879cdbd77279-L.png?v=1792709460&width=600"
+   "image": "https://cdn.shopify.com/s/files/1/0558/2114/0029/files/arknights-endfield-nendoroid-perlica_1.jpg?v=1777626204&width=600"
   },
   {
    "kind": "deal",
@@ -815,28 +829,6 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "SG",
-   "title": "Nendoroid Chiikawa - Kurimanju",
-   "url": "https://figurecompare.com/figure/nendoroid-chiikawa-kurimanju-3122",
-   "cents": 5788,
-   "currency": "SGD",
-   "store": "Otaku House",
-   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/4849349d-8bb7-4a43-940d-1a88a8301fe5.png?v=1794508875&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "SG",
-   "title": "Nendoroid Chiikawa - Shisa",
-   "url": "https://figurecompare.com/figure/nendoroid-chiikawa-shisa-3123",
-   "cents": 5788,
-   "currency": "SGD",
-   "store": "Otaku House",
-   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/f4fcc983-a1af-4a9e-9a6a-44853a9bcc45-L.png?v=1794509070&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "SG",
    "title": "Nendoroid Danganronpa 1.2 Reload - Nagito Komaeda",
    "url": "https://figurecompare.com/figure/nendoroid-danganronpa-1-2-reload-nagito-komaeda-2580",
    "cents": 6769,
@@ -848,34 +840,56 @@
    "kind": "preorder",
    "cluster": "hobby",
    "region": "SG",
+   "title": "Nendoroid Silent Hill f - Fox Hinako",
+   "url": "https://figurecompare.com/figure/nendoroid-silent-hill-f-fox-hinako-3163",
+   "cents": 6965,
+   "currency": "SGD",
+   "store": "Otaku House",
+   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/4698e033-4b2a-4e7d-a84d-91d0dffc5f7d-L.png?v=1792708633&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "SG",
+   "title": "Nendoroid Kokichi Oma",
+   "url": "https://figurecompare.com/figure/nendoroid-danganronpa-v3-killing-harmony-kokichi-oma-2802",
+   "cents": 7259,
+   "currency": "SGD",
+   "store": "Otaku House",
+   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/53c3fc1c-99ad-44df-9577-0b01f19097ff-L.png?v=1792708642&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "SG",
+   "title": "Nendoroid Reverse: 1999 - X",
+   "url": "https://figurecompare.com/figure/nendoroid-x-2824",
+   "cents": 7259,
+   "currency": "SGD",
+   "store": "Otaku House",
+   "image": "https://cdn.shopify.com/s/files/1/0876/7307/8075/files/8_d31f4839-2e5a-4e02-ac03-5116363d94c0.png?v=1776917853&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "SG",
+   "title": "Nendoroid Ichi the Witch - Ichi",
+   "url": "https://figurecompare.com/figure/nendoroid-ichi-the-witch-ichi-3149",
+   "cents": 7358,
+   "currency": "SGD",
+   "store": "Otaku House",
+   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/abe1f9dd-ab18-4771-84d0-db8fe9831015-L.png?v=1794450079&width=600"
+  },
+  {
+   "kind": "preorder",
+   "cluster": "hobby",
+   "region": "SG",
    "title": "Nendoroid Blue Archive - Miyako Tsukiyuki",
    "url": "https://figurecompare.com/figure/nendoroid-blue-archive-miyako-tsukiyuki-3150",
    "cents": 7848,
    "currency": "SGD",
    "store": "Otaku House",
    "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/7f26b609-9f6d-4c6a-8ab6-60510043761a-L.png?v=1792708586&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "SG",
-   "title": "Nendoroid Final Fantasy XIV - Haurchefant",
-   "url": "https://figurecompare.com/figure/nendoroid-final-fantasy-xiv-haurchefant-3125",
-   "cents": 7848,
-   "currency": "SGD",
-   "store": "Otaku House",
-   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/438262b1-d0c9-4908-baff-879cdbd77279-L.png?v=1792709460&width=600"
-  },
-  {
-   "kind": "preorder",
-   "cluster": "hobby",
-   "region": "SG",
-   "title": "Nendoroid BanG Dream! - Miyako Fuji",
-   "url": "https://figurecompare.com/figure/nendoroid-bang-dream-miyako-fuji-3151",
-   "cents": 8142,
-   "currency": "SGD",
-   "store": "Otaku House",
-   "image": "https://cdn.shopify.com/s/files/1/2467/9979/files/c05de1ea-f9b3-46d4-bf53-b4b4f9ad0594-L.png?v=1792709404&width=600"
   }
  ]
 }
