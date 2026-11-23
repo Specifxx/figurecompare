@@ -176,5 +176,6 @@ test("header mega menus (Bill, 2026-11-09): built from the nav groups, empty mar
   const comp = readFileSync("src/components/HeaderMenus.tsx", "utf8");
   assert.match(comp, /Escape/);
   assert.match(comp, /aria-expanded/);
+  assert.match(comp, /href=\{m\.all\.href\}[\s\S]{0,700}\{m\.label\}\s*<\/Link>/, "a menu label is a link to its section page (owner, 2026-11-23)");
   assert.match(comp, /rp-\$\{r\}/);
 });

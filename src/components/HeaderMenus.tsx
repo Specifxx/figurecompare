@@ -1,6 +1,7 @@
 "use client";
 // The header's mega menus, from lg up (Bill, 2026-11-09: "navigation is very, very important"). Every panel is in the server HTML as
 // plain links (crawlable; closed panels are only hidden by CSS), and lib/nav.ts builds them from the same lists as the phone menu.
+// Each label is a link to its section's page (owner, 2026-11-23); the chevron beside it is the menu button.
 // Opens on hover with a short intent delay (no flicker while the pointer crosses the bar), on click or tap, and with the keyboard:
 // Enter/Space/ArrowDown opens, Tab walks the links, Escape closes and returns to the button. Region-bound links carry the engine's
 // `rp rp-XX` classes, so a visitor sees only what is listed in their market. No library, no layout shift (panels are absolute).
@@ -56,26 +57,44 @@ export function HeaderMenus({ menus }: { menus: HeaderMenu[] }) {
                 if (e.relatedTarget && !e.currentTarget.contains(e.relatedTarget as Node | null)) setOpen((o) => (o === i ? null : o));
               }}
             >
-              <button
-                type="button"
-                data-menu={i}
-                aria-expanded={isOpen}
-                aria-controls={`hm-${i}`}
-                onClick={() => setOpen(isOpen ? null : i)}
-                onKeyDown={(e) => {
-                  if (e.key === "ArrowDown") {
-                    e.preventDefault();
-                    setOpen(i);
-                    requestAnimationFrame(() => root.current?.querySelector<HTMLElement>(`#hm-${i} a`)?.focus());
-                  }
-                }}
-                className={`inline-flex min-h-10 items-center gap-1 rounded-lg px-2.5 text-sm font-semibold transition hover:bg-bg hover:text-ink ${here || isOpen ? "text-ink" : "text-soft"}`}
-              >
-                {m.label}
-                <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" className={`transition-transform ${isOpen ? "rotate-180" : ""}`}>
-                  <path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
+              {/* The label is a link to the section's own page (owner, 2026-11-23: "every time I click on the drop downs, I expect it
+                  to be a link"); hover still opens the panel, and the chevron beside it is the button that toggles it. */}
+              <div className={`inline-flex min-h-10 items-center rounded-lg transition hover:bg-bg hover:text-ink ${here || isOpen ? "text-ink" : "text-soft"}`}>
+                <Link
+                  href={m.all.href}
+                  prefetch={false}
+                  onKeyDown={(e) => {
+                    if (e.key === "ArrowDown") {
+                      e.preventDefault();
+                      setOpen(i);
+                      requestAnimationFrame(() => root.current?.querySelector<HTMLElement>(`#hm-${i} a`)?.focus());
+                    }
+                  }}
+                  className="inline-flex min-h-10 items-center rounded-l-lg pl-2.5 pr-1 text-sm font-semibold text-inherit"
+                >
+                  {m.label}
+                </Link>
+                <button
+                  type="button"
+                  data-menu={i}
+                  aria-label={`${m.label} menu`}
+                  aria-expanded={isOpen}
+                  aria-controls={`hm-${i}`}
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  onKeyDown={(e) => {
+                    if (e.key === "ArrowDown") {
+                      e.preventDefault();
+                      setOpen(i);
+                      requestAnimationFrame(() => root.current?.querySelector<HTMLElement>(`#hm-${i} a`)?.focus());
+                    }
+                  }}
+                  className="inline-flex min-h-10 items-center rounded-r-lg pl-1 pr-2.5 text-inherit"
+                >
+                  <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true" className={`transition-transform ${isOpen ? "rotate-180" : ""}`}>
+                    <path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              </div>
               <div id={`hm-${i}`} onMouseDown={(e) => e.preventDefault()} className={`absolute left-0 top-full z-50 pt-1 ${isOpen ? "block" : "hidden"}`}>
                 <div className="max-h-[75vh] overflow-y-auto rounded-xl border border-line bg-card p-4 shadow-lg">
                   <div className="flex gap-8">
