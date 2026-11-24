@@ -8,7 +8,7 @@ export const SITE = {
   url: (process.env.NEXT_PUBLIC_SITE_URL || "https://figurecompare.com").replace(/\/$/, ""),
   tagline: "Find the cheapest Nendoroid, figma and POP UP PARADE",
   description:
-    "Compare Nendoroid, figma and POP UP PARADE prices across real anime figure stores in the US, UK, Canada, Australia, New Zealand, Europe and Singapore. Matched by barcode, updated daily.",
+    "Compare Nendoroid, figma and POP UP PARADE prices at real figure stores in the US, UK, Canada, Australia, NZ, Europe and Singapore, matched by barcode.",
   /** A figure gets a page only when this many stores in one region sell it
    *  (comparing one shop is pointless, and it keeps data/ small). */
   /** Every contact address on the site (owner, 2026-10-28: one inbox for the family). */
