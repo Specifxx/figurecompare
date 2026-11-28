@@ -1,0 +1,58 @@
+{
+ "v": 1,
+ "site": "figurecompare.com",
+ "at": "2026-11-28T12:35:33.786Z",
+ "overall": "warn",
+ "checks": [
+  {
+   "name": "Live site",
+   "status": "ok",
+   "detail": "HTTP 200"
+  },
+  {
+   "name": "Search index",
+   "status": "ok",
+   "detail": "2984 figures live"
+  },
+  {
+   "name": "Daily price import",
+   "status": "ok",
+   "detail": "113.3h old"
+  },
+  {
+   "name": "Store imports",
+   "status": "warn",
+   "detail": "bigbadtoystore: https://www.bigbadtoystore.com/sitemap-index.xml: HTTP 403; hlj: only 853 products seen (expected 1000+): its paging may have changed"
+  },
+  {
+   "name": "Catalogue",
+   "status": "ok",
+   "detail": "2984 figures"
+  },
+  {
+   "name": "Data size",
+   "status": "ok",
+   "detail": "6.7 MB"
+  },
+  {
+   "name": "Family feed (sister sites)",
+   "status": "ok",
+   "detail": "113.0h old"
+  },
+  {
+   "name": "Yen exchange rates",
+   "status": "ok",
+   "detail": "ECB 2026-11-23"
+  },
+  {
+   "name": "Amazon ASINs",
+   "status": "warn",
+   "detail": "Amazon ASIN finder last ran over two days ago for US, UK, CA, EU, AU: check the Import prices workflow. US 1288 ASINs (1210 waiting); UK 780 ASINs (1035 waiting); CA 0 ASINs (2672 waiting); EU 0 ASINs (2308 waiting); AU 0 ASINs (1746 waiting)"
+  },
+  {
+   "name": "eBay listings",
+   "status": "ok",
+   "detail": "2500/2500 calls on 2026-11-23"
+  }
+ ]
+}
