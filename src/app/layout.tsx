@@ -15,6 +15,7 @@ import { Footer } from "@/components/Footer";
 import { SideNav } from "@/components/SideNav";
 import { QuickView } from "@/components/QuickView";
 import { RateCard } from "@/components/site-reviews/RateCard";
+import { DealsPopup } from "@/components/DealsPopup";
 import { EbayNavBox } from "@/components/EbayStrip";
 import { headerMenus, navGroups } from "@/lib/nav";
 import { menuFacts } from "@/lib/menu-facts";
@@ -85,6 +86,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <QuickView />
         {/* Rate us (owner, 2026-11-03): the corner card, asking only after real use; RiftCompare keeps the ratings. */}
         <RateCard />
+        {/* Black Friday and after: real Amazon and eBay products in a corner card, once a visit (owner, 2026-11-28). */}
+        <DealsPopup />
         <Analytics />
         <ShareArrival />
         {/* The phone bottom nav (components/BottomNav.tsx, lib/bottom-nav.ts): browser only, phones only, BOTTOM_NAV is its switch. */}
