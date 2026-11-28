@@ -1515,5 +1515,4 @@ and the owner accepted the remaining risk (as for the quick view, 2026-11-06).
 
 Prompt rules kept: once a visit, sharing the visit's one prompt slot with the rate-us card (`srv_rate_seen`); never before
 nine seconds on the page, never while typing or over another dialog; ✕ and Escape close it (for the visit during Black
-Friday, for a week after). Premium members never see it where Premium exists. The rate card's "we don't run pop-ups" line
-became "We keep ads light", so it stays true. Released urgently on the owner's word.
+Friday, for a week after). Premium members never see it where Premium exists. Released urgently on the owner's word.

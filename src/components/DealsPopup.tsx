@@ -139,7 +139,7 @@ export function DealsPopup({ dealsHref = "/deals" }: { dealsHref?: string }) {
         <span style={{ background: "#ffd400", color: "#0b0b0c", borderRadius: 4, padding: "1px 6px", fontSize: 11, fontWeight: 800, letterSpacing: ".05em", textTransform: "uppercase" }}>{chip}</span>
         <span style={{ color: "#a1a1aa", fontSize: 12 }}>Ad · {brands}</span>
       </p>
-      <p style={{ margin: "6px 0 8px", fontSize: 16, fontWeight: 800 }}>Deals on {brands} right now</p>
+      <p style={{ margin: "6px 0 8px", fontSize: 16, fontWeight: 800 }}>Deals on {brands}</p>
       <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
         {picks.map((p) => (
           <li key={`${p.brand}-${p.id}`} style={{ minWidth: 0 }}>
