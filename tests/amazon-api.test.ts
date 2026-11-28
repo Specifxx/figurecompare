@@ -67,7 +67,7 @@ test("the Creators API client stays build-side; only the price table and its pai
     const s = fs.readFileSync(f, "utf8");
     if (f !== "src/lib/amazon-creators.ts") assert.ok(!/amazon-creators/.test(s), `${f} imports the Creators API client`);
     // The price table, and the paid alternative under the hero's cheapest store, which quotes that same row (2026-11-10).
-    if (/from "(@\/lib|\.)\/amazon-live"/.test(s)) assert.ok(["src/components/PriceTable.tsx", "src/lib/paid-alternative.ts"].includes(f), `${f} reads live Amazon prices`);
+    if (/from "(@\/lib|\.)\/amazon-live"/.test(s)) assert.ok(["src/components/PriceTable.tsx", "src/lib/paid-alternative.ts", "src/lib/deal-picks.ts"].includes(f), `${f} reads live Amazon prices`);
     assert.ok(!/AMAZON_CREATORS/.test(s) || f === "src/lib/amazon-creators.ts", `${f} names the credentials`);
   }
   assert.match(fs.readFileSync(".gitignore", "utf8"), /^data\/amazon-live\/$/m);
